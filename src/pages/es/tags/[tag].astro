@@ -1,0 +1,158 @@
+---
+import BaseHead from "../../../components/BaseHead.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import Container from "../../../components/Container.astro";
+import SimpleAnalytics from "../../../components/SimpleAnalytics.astro";
+import PostGrid from "../../../components/PostGrid.astro";
+import SearchBar from "../../../components/SearchBar.astro";
+import DiscordCallout from "../../../components/DiscordCallout.astro";
+import BackLink from "../../../components/BackLink.astro";
+import {
+  type Post,
+  getPostsByLanguage,
+  getPostTags,
+  tagToSlug,
+} from "../../../utils/content";
+import { getMessages } from "../../../i18n";
+import { getLocaleFromAstro } from "../../../i18n/config";
+
+export async function getStaticPaths() {
+  const posts = await getPostsByLanguage("es");
+  const tagMap = new Map<string, { label: string; posts: Post[] }>();
+
+  for (const post of posts) {
+    for (const tag of getPostTags(post)) {
+      const slug = tagToSlug(tag);
+      if (!tagMap.has(slug)) {
+        tagMap.set(slug, { label: tag, posts: [] });
+      }
+      tagMap.get(slug)!.posts.push(post);
+    }
+  }
+
+  return Array.from(tagMap.entries()).map(([slug, entry]) => ({
+    params: { tag: slug },
+    props: {
+      tagLabel: entry.label,
+      posts: entry.posts.sort(
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+      ),
+      locale: "es" as const,
+    },
+  }));
+}
+
+type Props = {
+  tagLabel: string;
+  posts: Post[];
+  locale: "es";
+};
+
+const { tagLabel, posts } = Astro.props;
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <BaseHead
+      title={`${pageTitle} — ${messages.site.title}`}
+      description={messages.site.description}
+    />
+  </head>
+  <body>
+    <Header locale={locale} />
+    <main class="tag-page">
+      <section class="tag-header">
+        <Container>
+          <BackLink />
+          <h1 class="title">#{tagLabel}</h1>
+          <div class="search-row">
+            <SearchBar locale={locale} />
+          </div>
+        </Container>
+      </section>
+      <PostGrid posts={posts} locale={locale} />
+      <DiscordCallout locale={locale} />
+    </main>
+    <Footer locale={locale} />
+    <SimpleAnalytics />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.querySelector<HTMLInputElement>(
+          "[data-search-input]"
+        );
+        const wrapper = document.querySelector<HTMLElement>("[data-post-grid]");
+        const emptyState = document.querySelector<HTMLElement>(
+          "[data-empty-state]"
+        );
+        if (!wrapper) return;
+
+        const cards = Array.from(
+          wrapper.querySelectorAll<HTMLElement>("[data-search]")
+        );
+
+        let query = "";
+
+        const apply = () => {
+          let visibleCount = 0;
+          cards.forEach((card) => {
+            const haystack = card.dataset.search ?? "";
+            const show = !query || haystack.includes(query);
+            card.style.display = show ? "" : "none";
+            if (show) visibleCount += 1;
+          });
+
+          wrapper
+            .querySelectorAll<HTMLElement>(".grid-section, .highlight-section")
+            .forEach((section) => {
+              const visibleInside = section.querySelectorAll<HTMLElement>(
+                "[data-search]:not([style*='display: none'])"
+              );
+              section.style.display = visibleInside.length > 0 ? "" : "none";
+            });
+
+          if (emptyState) {
+            emptyState.hidden = visibleCount > 0;
+          }
+        };
+
+        let debounceId: number | undefined;
+        searchInput?.addEventListener("input", () => {
+          if (debounceId) window.clearTimeout(debounceId);
+          debounceId = window.setTimeout(() => {
+            query = (searchInput.value ?? "").trim().toLowerCase();
+            apply();
+          }, 120);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .tag-header {
+    padding: 1.5em 0 1em;
+  }
+
+  .title {
+    margin: 0.4em 0 0.8em;
+    color: var(--color-black-pearl-900);
+    font-size: 2.4em;
+    line-height: 1.1;
+  }
+
+  .search-row {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 640px) {
+    .search-row {
+      justify-content: flex-start;
+    }
+  }
+</style>

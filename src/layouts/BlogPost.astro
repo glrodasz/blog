@@ -7,6 +7,12 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Container from "../components/Container.astro";
 import SimpleAnalytics from "../components/SimpleAnalytics.astro";
 import LanguageVersionBanner from "../components/LanguageVersionBanner.astro";
+import TagChip from "../components/TagChip.astro";
+import BackLink from "../components/BackLink.astro";
+import AuthorBio from "../components/AuthorBio.astro";
+import ShareButtons from "../components/ShareButtons.astro";
+import RelatedPosts from "../components/RelatedPosts.astro";
+import DiscordCallout from "../components/DiscordCallout.astro";
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 import { Link } from "lucide";
@@ -32,11 +38,19 @@ const {
   heroImage,
   readingTime,
   languageVersions,
+  tags: rawTags,
+  relatedPosts,
 } = Astro.props;
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
 const tabTitle = `${title} • ${messages.site.description} • ${messages.site.title} by ${messages.site.author}`;
+
+const tags = rawTags
+  ? Array.isArray(rawTags)
+    ? rawTags
+    : [rawTags]
+  : [];
 ---
 
 <html lang={locale}>
@@ -47,97 +61,51 @@ const tabTitle = `${title} • ${messages.site.description} • ${messages.site.
       description={description}
       image={heroImage}
     />
-    <style>
-      .hero-image {
-        width: 100%;
-        margin-bottom: 1em;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        aspect-ratio: 48 / 9;
-        object-fit: cover;
-        width: 100%;
-      }
-      .prose {
-        max-width: 920px;
-        width: 100%;
-        margin: auto;
-        color: var(--color-black-pearl-700);
-      }
-      .title {
-        padding: 1em 0 0;
-        text-align: left;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 3rem 0 2rem;
-        color: var(--color-black-pearl-900);
-      }
-      .date,
-      .reading-time {
-        color: rgb(var(--gray));
-      }
-
-      .subheader {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
-
-      .has-hero-image {
-        padding-top: 0;
-      }
-
-      @media (max-width: 920px) {
-        .hero-image img {
-          aspect-ratio: 24 / 9;
-        }
-
-        .date {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-    </style>
   </head>
-
   <body>
     <Header locale={locale} />
-    <div class="hero-image">
-      {heroImage && <img width={1200} height={510} src={heroImage} alt="" />}
-    </div>
-    <Container>
-      <main class={heroImage ? "has-hero-image" : ""}>
+    <main class="article-page">
+      <Container>
+        <div class="post-head">
+          <BackLink />
+          {tags.length > 0 && (
+            <div class="post-tags">
+              {tags.map((tag) => <TagChip tag={tag} locale={locale} />)}
+            </div>
+          )}
+          <h1 class="post-title">{title}</h1>
+          <div class="post-meta">
+            <FormattedDate
+              date={pubDate}
+              leadingComma={Boolean(updatedDate)}
+              locale={locale}
+            />
+            {updatedDate && (
+              <span class="last-updated-on">
+                {messages.blog.lastUpdatedOn}{" "}
+                <FormattedDate date={updatedDate} locale={locale} />
+              </span>
+            )}
+            {readingTime && (
+              <span class="reading-time">
+                · {readingTime} {messages.blog.minRead}
+              </span>
+            )}
+          </div>
+        </div>
+      </Container>
+
+      {heroImage && (
+        <div class="hero-image">
+          <Container>
+            <img width={1200} height={510} src={heroImage} alt="" />
+          </Container>
+        </div>
+      )}
+
+      <Container>
         <article>
           <div class="prose">
-            <div class="title">
-              <div class="subheader">
-                <div class="date">
-                  <FormattedDate
-                    date={pubDate}
-                    leadingComma={Boolean(updatedDate)}
-                    locale={locale}
-                  />
-                  {
-                    updatedDate && (
-                      <span class="last-updated-on">
-                        {messages.blog.lastUpdatedOn}{" "}
-                        <FormattedDate date={updatedDate} locale={locale} />
-                      </span>
-                    )
-                  }
-                </div>
-                {
-                  readingTime && (
-                    <strong class="reading-time">
-                      ⏱️ {readingTime} {messages.blog.minRead}
-                    </strong>
-                  )
-                }
-              </div>
-              <h1>{title}</h1>
-            </div>
             <LanguageVersionBanner
               languageVersions={languageVersions}
               currentLocale={locale}
@@ -147,8 +115,16 @@ const tabTitle = `${title} • ${messages.site.description} • ${messages.site.
             </div>
           </div>
         </article>
-      </main>
-    </Container>
+        <section class="post-footer">
+          <AuthorBio locale={locale} />
+          <ShareButtons locale={locale} variant="card" />
+        </section>
+      </Container>
+
+      <RelatedPosts slugs={relatedPosts} locale={locale} />
+
+      <DiscordCallout locale={locale} />
+    </main>
     <Footer locale={locale} />
     <SimpleAnalytics />
     <script define:vars={{ linkIconPaths: JSON.stringify(linkIconPaths) }}>
@@ -230,12 +206,84 @@ const tabTitle = `${title} • ${messages.site.description} • ${messages.site.
       });
     </script>
     <style>
-      .blog-content {
-        margin-top: 2rem;
+      .post-head {
+        padding: 1.5em 0 0.5em;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+      }
+
+      .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .post-title {
+        margin: 0;
+        font-size: 3em;
+        line-height: 1.05;
+        color: var(--color-black-pearl-900);
+      }
+
+      .post-meta {
+        color: var(--color-aquarius-600);
+        font-size: 0.9em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em;
       }
 
       .last-updated-on {
         font-style: italic;
+        color: var(--color-black-pearl-400);
+      }
+
+      .hero-image {
+        margin: 1.25em 0;
+      }
+
+      .hero-image img {
+        display: block;
+        margin: 0 auto;
+        aspect-ratio: 48 / 18;
+        object-fit: cover;
+        width: 100%;
+        border-radius: var(--radius-card);
+      }
+
+      .prose {
+        max-width: 920px;
+        width: 100%;
+        margin: 0 auto;
+        color: var(--color-black-pearl-700);
+      }
+
+      .blog-content {
+        margin-top: 2rem;
+      }
+
+      .post-footer {
+        max-width: 920px;
+        width: 100%;
+        margin: 2.5em auto 0;
+        padding: 2em 0;
+        border-top: 1px solid var(--color-black-pearl-50);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.5em;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 920px) {
+        .post-title {
+          font-size: 2.2em;
+        }
+
+        .hero-image img {
+          aspect-ratio: 24 / 12;
+        }
       }
     </style>
   </body>

@@ -4,8 +4,15 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Container from "../components/Container.astro";
 import SimpleAnalytics from "../components/SimpleAnalytics.astro";
-import PostList from "../components/PostList.astro";
-import { getPostsByLanguage } from "../utils/content";
+import FeaturedHero from "../components/FeaturedHero.astro";
+import TagFilter from "../components/TagFilter.astro";
+import SearchBar from "../components/SearchBar.astro";
+import PostGrid from "../components/PostGrid.astro";
+import DiscordCallout from "../components/DiscordCallout.astro";
+import {
+  getPostsByLanguage,
+  collectTagsFromPosts,
+} from "../utils/content";
 import { getMessages } from "../i18n";
 import { getLocaleFromAstro } from "../i18n/config";
 
@@ -15,6 +22,8 @@ const posts = (await getPostsByLanguage(locale)).sort(
 );
 
 const messages = getMessages(locale);
+const tags = collectTagsFromPosts(posts);
+const [featured, ...rest] = posts;
 ---
 
 <!doctype html>
@@ -27,14 +36,114 @@ const messages = getMessages(locale);
   </head>
   <body>
     <Header locale={locale} />
-    <Container>
-      <main>
-        <section>
-          <PostList posts={posts} locale={locale} />
-        </section>
-      </main>
-    </Container>
+    <main class="home">
+      {featured && <FeaturedHero post={featured} locale={locale} />}
+      <section class="filter-bar">
+        <Container>
+          <div class="filter-inner">
+            <TagFilter tags={tags} locale={locale} activeTagSlug="all" />
+            <SearchBar locale={locale} />
+          </div>
+        </Container>
+      </section>
+      <PostGrid posts={rest} locale={locale} />
+      <DiscordCallout locale={locale} />
+    </main>
     <Footer locale={locale} />
     <SimpleAnalytics />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const tabs = Array.from(
+          document.querySelectorAll<HTMLElement>(".tag-filter [data-tag]")
+        );
+        const searchInput = document.querySelector<HTMLInputElement>(
+          "[data-search-input]"
+        );
+        const wrapper = document.querySelector<HTMLElement>("[data-post-grid]");
+        const emptyState = document.querySelector<HTMLElement>(
+          "[data-empty-state]"
+        );
+        if (!wrapper) return;
+
+        const cards = Array.from(
+          wrapper.querySelectorAll<HTMLElement>("[data-search]")
+        );
+
+        let activeTag = "all";
+        let query = "";
+
+        const apply = () => {
+          let visibleCount = 0;
+          cards.forEach((card) => {
+            const tagSlugs = (card.dataset.tagSlugs ?? "").split(" ").filter(Boolean);
+            const haystack = card.dataset.search ?? "";
+            const tagMatch = activeTag === "all" || tagSlugs.includes(activeTag);
+            const queryMatch = !query || haystack.includes(query);
+            const show = tagMatch && queryMatch;
+            card.style.display = show ? "" : "none";
+            if (show) visibleCount += 1;
+          });
+
+          // Hide empty grid/highlight sections
+          wrapper
+            .querySelectorAll<HTMLElement>(".grid-section, .highlight-section")
+            .forEach((section) => {
+              const visibleInside = section.querySelectorAll<HTMLElement>(
+                "[data-search]:not([style*='display: none'])"
+              );
+              section.style.display = visibleInside.length > 0 ? "" : "none";
+            });
+
+          if (emptyState) {
+            emptyState.hidden = visibleCount > 0;
+          }
+        };
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", (event) => {
+            const tag = tab.dataset.tag;
+            if (!tag) return;
+            if (tab.tagName === "A") {
+              // Allow middle-click / cmd-click to open tag page
+              if (
+                (event as MouseEvent).metaKey ||
+                (event as MouseEvent).ctrlKey ||
+                (event as MouseEvent).shiftKey ||
+                (event as MouseEvent).button === 1
+              ) {
+                return;
+              }
+              event.preventDefault();
+            }
+            activeTag = tag;
+            tabs.forEach((t) => t.classList.toggle("active", t === tab));
+            apply();
+          });
+        });
+
+        let debounceId: number | undefined;
+        searchInput?.addEventListener("input", () => {
+          if (debounceId) window.clearTimeout(debounceId);
+          debounceId = window.setTimeout(() => {
+            query = (searchInput.value ?? "").trim().toLowerCase();
+            apply();
+          }, 120);
+        });
+      });
+    </script>
   </body>
 </html>
+
+<style>
+  .filter-bar {
+    padding: 1.5em 0 0.5em;
+  }
+
+  .filter-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import { type Locale } from "../i18n/config";
+import { getMessages } from "../i18n";
+import { getTagUrl, tagToSlug } from "../utils/content";
+
+type Props = {
+  tags: string[];
+  locale: Locale;
+  activeTagSlug?: string;
+};
+
+const { tags, locale, activeTagSlug = "all" } = Astro.props;
+const messages = getMessages(locale);
+---
+
+<nav class="tag-filter" aria-label="Filter by tag">
+  <button
+    type="button"
+    class:list={["tag-tab", { active: activeTagSlug === "all" }]}
+    data-tag="all"
+  >
+    {messages.filter.all}
+  </button>
+  {tags.map((tag) => {
+    const slug = tagToSlug(tag);
+    return (
+      <a
+        class:list={["tag-tab", { active: activeTagSlug === slug }]}
+        data-tag={slug}
+        href={getTagUrl(tag, locale)}
+      >
+        {tag}
+      </a>
+    );
+  })}
+</nav>
+
+<style>
+  .tag-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .tag-tab {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: var(--radius-card);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-black-pearl-700);
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .tag-tab:hover {
+    background: var(--color-aquarius-100);
+    color: var(--color-aquarius-700);
+  }
+
+  .tag-tab.active {
+    background: var(--color-black-pearl-900);
+    color: var(--color-white);
+  }
+</style>

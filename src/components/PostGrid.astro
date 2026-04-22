@@ -1,0 +1,113 @@
+---
+import ArticleCard from "./ArticleCard.astro";
+import HighlightedArticleCard from "./HighlightedArticleCard.astro";
+import Container from "./Container.astro";
+import { type Post } from "../utils/content";
+import { type Locale } from "../i18n/config";
+
+type Props = {
+  posts: Post[];
+  locale: Locale;
+  highlightEvery?: number;
+};
+
+const { posts, locale, highlightEvery = 3 } = Astro.props;
+
+type Block =
+  | { kind: "grid"; posts: Post[] }
+  | { kind: "highlight"; post: Post; imageSide: "left" | "right" };
+
+const blocks: Block[] = [];
+let groupCounter = 0;
+
+for (let i = 0; i < posts.length; i += highlightEvery + 1) {
+  const gridChunk = posts.slice(i, i + highlightEvery);
+  if (gridChunk.length > 0) {
+    blocks.push({ kind: "grid", posts: gridChunk });
+  }
+  const highlight = posts[i + highlightEvery];
+  if (highlight) {
+    blocks.push({
+      kind: "highlight",
+      post: highlight,
+      imageSide: groupCounter % 2 === 0 ? "left" : "right",
+    });
+    groupCounter += 1;
+  }
+}
+---
+
+<div class="post-grid-wrapper" data-post-grid>
+  {blocks.map((block) => {
+    if (block.kind === "grid") {
+      return (
+        <section class="grid-section">
+          <Container>
+            <div class="grid">
+              {block.posts.map((post) => (
+                <ArticleCard post={post} locale={locale} />
+              ))}
+            </div>
+          </Container>
+        </section>
+      );
+    }
+    return (
+      <section class="highlight-section">
+        <Container>
+          <HighlightedArticleCard
+            post={block.post}
+            locale={locale}
+            imageSide={block.imageSide}
+          />
+        </Container>
+      </section>
+    );
+  })}
+  <p class="empty" data-empty-state hidden>
+    <span></span>
+  </p>
+</div>
+
+<style>
+  .post-grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 1.5em 0 3em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+  }
+
+  .grid-section,
+  .highlight-section {
+    padding: 1em 0;
+  }
+
+  .highlight-section {
+    background: var(--color-aquarius-100);
+    padding: 2em 0;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--color-black-pearl-400);
+    padding: 3em 1em;
+  }
+
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

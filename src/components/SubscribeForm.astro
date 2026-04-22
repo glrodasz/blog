@@ -1,0 +1,101 @@
+---
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  locale?: Locale;
+};
+
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+---
+
+<form class="subscribe-form" data-thanks={messages.subscribe.thanks}>
+  <label class="sr-only" for="subscribe-email">
+    {messages.subscribe.placeholder}
+  </label>
+  <input
+    id="subscribe-email"
+    type="email"
+    name="email"
+    placeholder={messages.subscribe.placeholder}
+    autocomplete="email"
+    required
+  />
+  <button type="submit">{messages.subscribe.submit}</button>
+</form>
+
+<style>
+  .subscribe-form {
+    display: flex;
+    gap: 0;
+    max-width: 520px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  .subscribe-form input {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--color-black-pearl-900);
+    font-size: 15px;
+    font-family: inherit;
+    min-width: 0;
+  }
+
+  .subscribe-form input:focus {
+    outline: 2px solid var(--color-aquarius-600);
+    outline-offset: -2px;
+  }
+
+  .subscribe-form input::placeholder {
+    color: var(--color-black-pearl-400);
+  }
+
+  .subscribe-form button {
+    padding: 14px 22px;
+    background: var(--color-aquarius-600);
+    color: var(--color-white);
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s ease;
+  }
+
+  .subscribe-form button:hover {
+    background: var(--color-aquarius-700);
+  }
+
+  .subscribe-form.success {
+    background: rgba(53, 182, 200, 0.15);
+    justify-content: center;
+    padding: 14px 18px;
+    color: var(--color-white);
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const forms = document.querySelectorAll<HTMLFormElement>(".subscribe-form");
+    forms.forEach((form) => {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const input = form.querySelector<HTMLInputElement>("input[type=email]");
+        if (!input || !input.checkValidity()) {
+          input?.reportValidity();
+          return;
+        }
+        const thanks = form.dataset.thanks ?? "Thanks!";
+        form.classList.add("success");
+        form.innerHTML = `<span>${thanks}</span>`;
+      });
+    });
+  });
+</script>
