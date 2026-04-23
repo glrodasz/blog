@@ -1,6 +1,7 @@
 ---
 import Container from "./Container.astro";
 import NavigationLink from "./NavigationLink.astro";
+import HeaderLink from "./HeaderLink.astro";
 import BootcampButton from "./BootcampButton.astro";
 import DiscordButton from "./DiscordButton.astro";
 import LanguageSelector from "./LanguageSelector.astro";
@@ -45,9 +46,9 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
           <NavigationLink href="/" locale={locale}
             >{messages.navigation.home}</NavigationLink
           >
-          <a href="#subscribe" class="nav-link subscribe-link">
+          <HeaderLink href="#subscribe">
             {messages.navigation.subscribe}
-          </a>
+          </HeaderLink>
           <NavigationLink href="/about" locale={locale}
             >{messages.navigation.about}</NavigationLink
           >
@@ -122,22 +123,6 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
     margin-top: 4px;
   }
 
-  .nav-link {
-    padding: 1em 0.2em;
-    color: var(--color-black-pearl-900);
-    text-decoration: none;
-    border-bottom: 4px solid transparent;
-  }
-
-  .nav-link:hover {
-    color: var(--color-aquarius-700);
-  }
-
-  .subscribe-link {
-    font-weight: 700;
-    color: var(--color-aquarius-600);
-  }
-
   .navigation {
     display: flex;
     align-items: center;
@@ -167,7 +152,7 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
   }
 
   @media (max-width: 640px) {
-    .internal-links .nav-link {
+    .internal-links > a {
       display: none;
     }
   }
