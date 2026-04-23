@@ -10,7 +10,8 @@ export const messages = {
     lastUpdatedOn: "Actualizado el",
     minRead: "min de lectura",
     backToHome: "Volver al inicio",
-    share: "Comparte"
+    share: "Comparte",
+    sharePrefix: "En"
   },
   navigation: {
     home: "Inicio",

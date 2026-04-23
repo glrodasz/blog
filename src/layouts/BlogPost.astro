@@ -45,6 +45,7 @@ const {
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
 const tabTitle = `${title} • ${messages.site.description} • ${messages.site.title} by ${messages.site.author}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "http://localhost/").href;
 
 const tags = rawTags
   ? Array.isArray(rawTags)
@@ -117,7 +118,7 @@ const tags = rawTags
         </article>
         <section class="post-footer">
           <AuthorBio locale={locale} />
-          <ShareButtons locale={locale} variant="card" />
+          <ShareButtons locale={locale} title={title} url={canonicalUrl} />
         </section>
       </Container>
 

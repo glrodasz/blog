@@ -1,7 +1,7 @@
 ---
 import Container from "./Container.astro";
 import SubscribeForm from "./SubscribeForm.astro";
-import ShareButtons from "./ShareButtons.astro";
+import FollowButtons from "./FollowButtons.astro";
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 
@@ -22,7 +22,7 @@ const today = new Date();
           <h2 class="subscribe-title">{messages.subscribe.title}</h2>
           <SubscribeForm locale={locale} />
         </div>
-        <ShareButtons locale={locale} variant="footer" />
+        <FollowButtons locale={locale} />
       </div>
     </Container>
   </div>

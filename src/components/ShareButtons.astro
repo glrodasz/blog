@@ -3,101 +3,91 @@ import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 
 type Props = {
+  title: string;
+  url: string;
   locale?: Locale;
-  variant?: "card" | "footer";
 };
 
-const { variant = "card" } = Astro.props;
+const { title, url } = Astro.props;
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
+
+const encodedTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+const encodedTitleAndUrl = encodeURIComponent(`${title} ${url}`);
+
+const buttons = [
+  {
+    name: "Twitter",
+    href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+    icon: "twitter",
+  },
+  {
+    name: "LinkedIn",
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    icon: "linkedin",
+  },
+  {
+    name: "Threads",
+    href: `https://www.threads.net/intent/post?text=${encodedTitleAndUrl}`,
+    icon: "threads",
+  },
+  {
+    name: "Bluesky",
+    href: `https://bsky.app/intent/compose?text=${encodedTitleAndUrl}`,
+    icon: "bluesky",
+  },
+  {
+    name: "Mastodon",
+    href: `https://mastodonshare.com/?text=${encodedTitle}&url=${encodedUrl}`,
+    icon: "mastodon",
+  },
+] as const;
 ---
 
-<div class:list={["share-buttons", variant]}>
-  {variant === "card" && (
-    <span class="share-label">{messages.blog.share}</span>
-  )}
-  <div class="icons">
-    <a
-      href="https://twitch.tv/guillermorodas"
-      class="icon-button"
-      aria-label={messages.footer.followTwitch}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 16 16"
-        fill="currentColor"
-        aria-hidden="true"
+<div class="share-buttons">
+  <span class="share-label">{messages.blog.share}</span>
+  <div class="buttons">
+    {buttons.map(({ name, href, icon }) => (
+      <a
+        href={href}
+        class="share-button"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${messages.blog.share} ${messages.blog.sharePrefix.toLowerCase()} ${name}`}
       >
-        <path
-          d="M3.857 0 1 2.857v10.286h3.429V16l2.857-2.857H9.57L14.714 8V0zm9.714 7.429-2.285 2.285H9l-2 2v-2H4.429V1.143h9.142z"
-        ></path>
-        <path d="M11.857 3.143h-1.143V6.57h1.143zM8.714 3.143H7.571V6.57h1.143z"></path>
-      </svg>
-    </a>
-    <a
-      href="https://instagram.com/_guillermorodas"
-      class="icon-button"
-      aria-label={messages.footer.followInstagram}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 16 16"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path
-          d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
-        ></path>
-      </svg>
-    </a>
-    <a
-      href="https://twitter.com/guillermorodas"
-      class="icon-button"
-      aria-label={messages.footer.followTwitter}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 16 16"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path
-          d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"
-        ></path>
-      </svg>
-    </a>
-    <a
-      href="https://youtube.com/@guillermorodas"
-      class="icon-button"
-      aria-label={messages.footer.followYoutube}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="18"
-        height="18"
-        viewBox="0 0 16 16"
-        fill="currentColor"
-        aria-hidden="true"
-      >
-        <path
-          d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"
-        ></path>
-      </svg>
-    </a>
+        <span class="icon" aria-hidden="true">
+          {icon === "twitter" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"></path>
+            </svg>
+          )}
+          {icon === "linkedin" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path>
+            </svg>
+          )}
+          {icon === "threads" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.31-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L5.176 6.92c.98-1.454 2.568-2.256 4.497-2.256h.042c3.226.02 5.148 2.002 5.34 5.46.11.045.22.092.327.141 1.513.71 2.62 1.786 3.2 3.113.81 1.851.884 4.878-1.568 7.273-1.874 1.835-4.15 2.666-7.376 2.69Zm1.063-11.695c-.325 0-.655.01-.991.032-1.838.103-2.987.946-2.923 2.148.067 1.258 1.453 1.842 2.787 1.77 1.224-.066 2.825-.543 3.095-3.71a10.342 10.342 0 0 0-1.968-.24z"></path>
+            </svg>
+          )}
+          {icon === "bluesky" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.789.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"></path>
+            </svg>
+          )}
+          {icon === "mastodon" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.193 7.88c0-5.207-3.411-6.733-3.411-6.733C18.062.357 15.108.015 12.041 0h-.076c-3.068.015-6.02.357-7.74 1.147 0 0-3.412 1.526-3.412 6.733 0 1.193-.023 2.619.015 4.13.124 5.092.934 10.109 5.641 11.355 2.17.574 4.035.695 5.535.612 2.722-.151 4.25-.972 4.25-.972l-.09-1.975s-1.945.613-4.13.539c-2.165-.074-4.449-.233-4.799-2.892a5.49 5.49 0 0 1-.048-.745s2.125.52 4.817.643c1.646.076 3.19-.096 4.758-.283 3.007-.359 5.625-2.212 5.954-3.905.52-2.666.476-6.507.476-6.507zm-3.985 6.64h-2.474V8.463c0-1.278-.537-1.926-1.612-1.926-1.189 0-1.785.77-1.785 2.292v3.318h-2.46v-3.319c0-1.522-.597-2.292-1.785-2.292-1.075 0-1.613.648-1.613 1.926v6.058H5.005V8.279c0-1.277.325-2.292.98-3.042.675-.75 1.558-1.135 2.654-1.135 1.27 0 2.23.489 2.864 1.466l.617 1.033.618-1.033c.633-.977 1.593-1.466 2.863-1.466 1.096 0 1.98.385 2.654 1.135.655.75.98 1.765.98 3.042z"></path>
+            </svg>
+          )}
+        </span>
+        <span class="label">
+          {messages.blog.sharePrefix} {name}
+        </span>
+      </a>
+    ))}
   </div>
 </div>
 
@@ -105,12 +95,7 @@ const messages = getMessages(locale);
   .share-buttons {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-  }
-
-  .share-buttons.footer {
-    flex-direction: row;
-    align-items: center;
+    gap: 12px;
   }
 
   .share-label {
@@ -119,29 +104,43 @@ const messages = getMessages(locale);
     font-size: 0.95rem;
   }
 
-  .share-buttons.footer .share-label {
-    color: var(--color-aquarius-600);
-  }
-
-  .icons {
+  .buttons {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .icon-button {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-card);
+  .share-button {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: var(--radius-card);
     background: var(--color-aquarius-600);
     color: var(--color-white);
     text-decoration: none;
-    transition: background 0.15s ease;
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 1;
+    transition: background 0.15s ease, transform 0.15s ease;
   }
 
-  .icon-button:hover {
+  .share-button:hover {
     background: var(--color-aquarius-700);
+  }
+
+  .share-button:focus-visible {
+    outline: 2px solid var(--color-aquarius-700);
+    outline-offset: 2px;
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .label {
+    white-space: nowrap;
   }
 </style>
