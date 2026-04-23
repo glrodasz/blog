@@ -231,7 +231,12 @@ const tags = rawTags
         font-size: 0.9em;
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
         gap: 0.5em;
+      }
+
+      .post-meta :global(time) {
+        margin: 0;
       }
 
       .last-updated-on {
