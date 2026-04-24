@@ -39,7 +39,9 @@ export const messages = {
     title: "Subscribe to stay updated",
     placeholder: "Email",
     submit: "Subscribe",
-    thanks: "Thanks for subscribing!"
+    submitting: "Subscribing...",
+    thanks: "Thanks for subscribing!",
+    error: "Something went wrong. Please try again."
   },
   author: {
     name: "Guillermo Rodas",

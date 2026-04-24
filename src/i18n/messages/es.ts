@@ -39,7 +39,9 @@ export const messages = {
     title: "Suscríbete para estar actualizado",
     placeholder: "Email",
     submit: "Suscribirse",
-    thanks: "¡Gracias por suscribirte!"
+    submitting: "Enviando...",
+    thanks: "¡Gracias por suscribirte!",
+    error: "Algo salió mal. Inténtalo de nuevo."
   },
   author: {
     name: "Guillermo Rodas",

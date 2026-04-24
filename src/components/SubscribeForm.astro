@@ -10,7 +10,13 @@ const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
 ---
 
-<form class="subscribe-form" data-thanks={messages.subscribe.thanks}>
+<form
+  class="subscribe-form"
+  data-submit-label={messages.subscribe.submit}
+  data-submitting-label={messages.subscribe.submitting}
+  data-thanks={messages.subscribe.thanks}
+  data-error={messages.subscribe.error}
+>
   <label class="sr-only" for="subscribe-email">
     {messages.subscribe.placeholder}
   </label>
@@ -23,11 +29,13 @@ const messages = getMessages(locale);
     required
   />
   <button type="submit">{messages.subscribe.submit}</button>
+  <p class="subscribe-form__error" role="alert" hidden></p>
 </form>
 
 <style>
   .subscribe-form {
     display: flex;
+    flex-wrap: wrap;
     gap: 0;
     max-width: 520px;
     width: 100%;
@@ -72,6 +80,11 @@ const messages = getMessages(locale);
     background: var(--color-aquarius-700);
   }
 
+  .subscribe-form button[disabled] {
+    opacity: 0.7;
+    cursor: progress;
+  }
+
   .subscribe-form.success {
     background: rgba(53, 182, 200, 0.15);
     justify-content: center;
@@ -79,22 +92,82 @@ const messages = getMessages(locale);
     color: var(--color-white);
     font-weight: 700;
   }
+
+  .subscribe-form__error {
+    flex-basis: 100%;
+    margin: 8px 2px 0;
+    padding: 0;
+    color: #ffb4b4;
+    font-size: 14px;
+  }
 </style>
 
 <script>
+  type FormState = {
+    form: HTMLFormElement;
+    input: HTMLInputElement;
+    button: HTMLButtonElement;
+    errorEl: HTMLElement;
+  };
+
+  const showError = (state: FormState, message: string) => {
+    state.errorEl.textContent = message;
+    state.errorEl.hidden = false;
+  };
+
+  const clearError = (state: FormState) => {
+    state.errorEl.textContent = "";
+    state.errorEl.hidden = true;
+  };
+
+  const setSubmitting = (state: FormState, submitting: boolean) => {
+    state.button.disabled = submitting;
+    state.input.disabled = submitting;
+    state.button.textContent = submitting
+      ? (state.form.dataset.submittingLabel ?? "...")
+      : (state.form.dataset.submitLabel ?? "Subscribe");
+  };
+
+  const showSuccess = (form: HTMLFormElement) => {
+    const thanks = form.dataset.thanks ?? "Thanks!";
+    form.classList.add("success");
+    form.innerHTML = `<span>${thanks}</span>`;
+  };
+
+  const submit = async (state: FormState) => {
+    clearError(state);
+    setSubmitting(state, true);
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ email: state.input.value.trim() })
+      });
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+      showSuccess(state.form);
+    } catch (error) {
+      console.error(error);
+      setSubmitting(state, false);
+      showError(state, state.form.dataset.error ?? "Something went wrong.");
+    }
+  };
+
   document.addEventListener("DOMContentLoaded", () => {
     const forms = document.querySelectorAll<HTMLFormElement>(".subscribe-form");
     forms.forEach((form) => {
+      const input = form.querySelector<HTMLInputElement>("input[type=email]");
+      const button = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      const errorEl = form.querySelector<HTMLElement>(".subscribe-form__error");
+      if (!input || !button || !errorEl) return;
+      const state: FormState = { form, input, button, errorEl };
+
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-        const input = form.querySelector<HTMLInputElement>("input[type=email]");
-        if (!input || !input.checkValidity()) {
-          input?.reportValidity();
+        if (!input.checkValidity()) {
+          input.reportValidity();
           return;
         }
-        const thanks = form.dataset.thanks ?? "Thanks!";
-        form.classList.add("success");
-        form.innerHTML = `<span>${thanks}</span>`;
+        void submit(state);
       });
     });
   });
