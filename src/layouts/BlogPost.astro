@@ -16,6 +16,7 @@ import DiscordCallout from "../components/DiscordCallout.astro";
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 import { Link } from "lucide";
+import Info from "lucide-astro/Info";
 
 const linkIconPaths = Link;
 
@@ -76,15 +77,19 @@ const tags = rawTags
           )}
           <h1 class="post-title">{title}</h1>
           <div class="post-meta">
-            <FormattedDate
-              date={pubDate}
-              leadingComma={Boolean(updatedDate)}
-              locale={locale}
-            />
+            <FormattedDate date={pubDate} locale={locale} />
             {updatedDate && (
-              <span class="last-updated-on">
-                {messages.blog.lastUpdatedOn}{" "}
-                <FormattedDate date={updatedDate} locale={locale} />
+              <span
+                class="last-updated-on"
+                tabindex="0"
+                role="button"
+                aria-label={messages.blog.updatedLabel}
+              >
+                ({messages.blog.updatedLabel}
+                <Info class="last-updated-icon" aria-hidden="true" />)
+                <span class="last-updated-tooltip" role="tooltip">
+                  <FormattedDate date={updatedDate} locale={locale} />
+                </span>
               </span>
             )}
             {readingTime && (
@@ -241,8 +246,52 @@ const tags = rawTags
       }
 
       .last-updated-on {
-        font-style: italic;
         color: var(--color-black-pearl-400);
+        position: relative;
+        cursor: help;
+        outline: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+      }
+
+      .last-updated-icon {
+        width: 1em;
+        height: 1em;
+        stroke-width: 2;
+      }
+
+      .last-updated-tooltip {
+        position: absolute;
+        bottom: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--color-black-pearl-900);
+        color: #fff;
+        font-size: 0.85em;
+        padding: 4px 8px;
+        border-radius: 4px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s ease;
+        z-index: 1;
+      }
+
+      .last-updated-tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 4px solid transparent;
+        border-top-color: var(--color-black-pearl-900);
+      }
+
+      .last-updated-on:hover .last-updated-tooltip,
+      .last-updated-on:focus .last-updated-tooltip,
+      .last-updated-on:focus-within .last-updated-tooltip {
+        opacity: 1;
       }
 
       .hero-image {
