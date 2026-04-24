@@ -12,6 +12,8 @@ const postSchema = z.object({
     language: z.string(),
     url: z.string()
   })).optional(),
+  relatedPosts: z.array(z.string()).optional(),
+  featured: z.boolean().optional(),
 });
 
 const posts = defineCollection({

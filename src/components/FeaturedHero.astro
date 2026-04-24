@@ -1,0 +1,137 @@
+---
+import Container from "./Container.astro";
+import TagChip from "./TagChip.astro";
+import { type Post, getPostUrl, getPostTags } from "../utils/content";
+import { type Locale } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  post: Post;
+  locale: Locale;
+};
+
+const { post, locale } = Astro.props;
+const messages = getMessages(locale);
+const href = getPostUrl(post.slug, locale);
+const tags = getPostTags(post);
+---
+
+<section class="featured-hero">
+  <Container>
+    <div class="inner">
+      <a class="cover" href={href} aria-hidden="true" tabindex="-1">
+        {post.data.heroImage && (
+          <img src={post.data.heroImage} alt="" width={720} height={480} />
+        )}
+      </a>
+      <div class="body">
+        {tags.length > 0 && (
+          <div class="tags">
+            {tags.map((tag) => <TagChip tag={tag} locale={locale} variant="solid" />)}
+          </div>
+        )}
+        <h1 class="title">
+          <a href={href}>{post.data.title}</a>
+        </h1>
+        <p class="excerpt">{post.data.description}</p>
+        <a class="read-link" href={href}>{messages.home.readArticle}</a>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .featured-hero {
+    padding: 2em 0 0;
+  }
+
+  .inner {
+    background: var(--color-aquarius-900);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 360px;
+  }
+
+  .cover {
+    display: block;
+    overflow: hidden;
+    background: var(--color-aquarius-900);
+  }
+
+  .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .body {
+    padding: 2.5em 2.5em;
+    color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.9em;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .title {
+    margin: 0;
+    font-size: 2.2em;
+    line-height: 1.1;
+    color: var(--color-white);
+  }
+
+  .title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .excerpt {
+    margin: 0;
+    color: var(--color-black-pearl-100);
+    font-size: 0.95em;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-link {
+    color: var(--color-aquarius-600);
+    text-decoration: none;
+    font-weight: 700;
+    align-self: flex-start;
+  }
+
+  .read-link:hover {
+    color: var(--color-aquarius-100);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 920px) {
+    .inner {
+      grid-template-columns: 1fr;
+    }
+
+    .cover {
+      aspect-ratio: 16 / 9;
+    }
+
+    .body {
+      padding: 1.5em;
+    }
+
+    .title {
+      font-size: 1.6em;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import Container from "./Container.astro";
+import ArticleCard from "./ArticleCard.astro";
+import { getRelatedPosts } from "../utils/content";
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  slugs?: string[];
+  locale?: Locale;
+};
+
+const { slugs } = Astro.props;
+const locale = getLocaleFromAstro(Astro);
+const related = await getRelatedPosts(slugs, locale);
+
+if (related.length === 0) {
+  // nothing to render
+}
+
+const messages = getMessages(locale);
+---
+
+{related.length > 0 && (
+  <section class="related-posts">
+    <Container>
+      <h2 class="title">{messages.home.relatedTitle}</h2>
+      <div class="grid">
+        {related.slice(0, 3).map((post) => (
+          <ArticleCard post={post} locale={locale} />
+        ))}
+      </div>
+    </Container>
+  </section>
+)}
+
+<style>
+  .related-posts {
+    padding: 2.5em 0;
+  }
+
+  .title {
+    margin: 0 0 1em;
+    font-size: 1.6em;
+    color: var(--color-black-pearl-900);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+  }
+
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

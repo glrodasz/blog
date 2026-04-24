@@ -1,6 +1,8 @@
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { LOCALES, DEFAULT_LOCALE, type Locale } from "../i18n/config";
 import { getMessages } from "../i18n";
+
+export type Post = CollectionEntry<"posts">;
 
 type RSSFeedContext = {
   site: string;
@@ -69,9 +71,57 @@ export async function generateRSSFeed(locale: Locale, context: RSSFeedContext) {
 
 export async function generateSlugPaths(locale: Locale) {
   const posts = await getPostsByLanguage(locale);
-  
+
   return posts.map((post) => ({
     params: { slug: getCleanSlug(post.slug) },
     props: { post, locale }
   }));
+}
+
+export function getPostTags(post: Post): string[] {
+  const { tags } = post.data;
+  if (!tags) return [];
+  return Array.isArray(tags) ? tags : [tags];
+}
+
+export function tagToSlug(tag: string): string {
+  return tag
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+export function getTagUrl(tag: string, locale: Locale): string {
+  const slug = tagToSlug(tag);
+  if (locale === DEFAULT_LOCALE) {
+    return `/tags/${slug}/`;
+  }
+  return `/${locale}/tags/${slug}/`;
+}
+
+export function collectTagsFromPosts(posts: Post[]): string[] {
+  const set = new Set<string>();
+  for (const post of posts) {
+    for (const tag of getPostTags(post)) {
+      set.add(tag);
+    }
+  }
+  return Array.from(set).sort((a, b) => a.localeCompare(b));
+}
+
+export async function getRelatedPosts(
+  slugs: string[] | undefined,
+  locale: Locale
+): Promise<Post[]> {
+  if (!slugs || slugs.length === 0) return [];
+  const all = await getPostsByLanguage(locale);
+  const bySlug = new Map<string, Post>();
+  for (const post of all) {
+    bySlug.set(getCleanSlug(post.slug), post);
+  }
+  return slugs
+    .map((slug) => bySlug.get(slug))
+    .filter((p): p is Post => Boolean(p));
 }

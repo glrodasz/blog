@@ -8,16 +8,49 @@ export const messages = {
   },
   blog: {
     lastUpdatedOn: "Updated on",
-    minRead: "min read"
+    minRead: "min read",
+    backToHome: "Back to home",
+    share: "Share",
+    sharePrefix: "On"
   },
   navigation: {
     home: "Home",
-    about: "About"
+    about: "About",
+    subscribe: "Subscribe"
+  },
+  home: {
+    readArticle: "Read article",
+    relatedTitle: "Articles you might like"
+  },
+  filter: {
+    all: "All",
+    searchPlaceholder: "Search"
+  },
+  tagPage: {
+    title: "Tag: {tag}"
+  },
+  discord: {
+    title: "Join our Discord community",
+    subtitle: "We are more than 300 people changing the world of programming",
+    cta: "Join Discord"
+  },
+  subscribe: {
+    title: "Subscribe to stay updated",
+    placeholder: "Email",
+    submit: "Subscribe",
+    thanks: "Thanks for subscribing!"
+  },
+  author: {
+    name: "Guillermo Rodas",
+    bio: "Guillermo Rodas is a full-stack JavaScript engineer from Colombia. His favorite CSS colors are tomato, rebeccapurple and papayawhip.",
+    avatar: "/authors/guillermo-rodas.svg"
   },
   footer: {
     copyright: "All rights reserved.",
     followTwitter: "Follow Undefined Shell on Twitter",
-    followInstagram: "Follow Undefined Shell on Instagram"
+    followInstagram: "Follow Undefined Shell on Instagram",
+    followTwitch: "Follow Undefined Shell on Twitch",
+    followYoutube: "Follow Undefined Shell on YouTube"
   },
   languageBanner: {
     readIn: "You can read the {language} version",

@@ -1,0 +1,63 @@
+---
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  locale?: Locale;
+};
+
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+---
+
+<div class="author-bio">
+  <img
+    src={messages.author.avatar}
+    alt=""
+    width="48"
+    height="48"
+    class="avatar"
+  />
+  <div class="text">
+    <p class="name">{messages.author.name}</p>
+    <p class="bio">{messages.author.bio}</p>
+  </div>
+</div>
+
+<style>
+  .author-bio {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--color-aquarius-100);
+    flex-shrink: 0;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .name {
+    margin: 0;
+    font-weight: 700;
+    color: var(--color-black-pearl-900);
+    font-size: 1rem;
+  }
+
+  .bio {
+    margin: 0;
+    color: var(--color-black-pearl-400);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    max-width: 44ch;
+  }
+</style>

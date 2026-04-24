@@ -1,0 +1,50 @@
+---
+import { type Locale, getLocaleFromAstro, DEFAULT_LOCALE } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  locale?: Locale;
+};
+
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+const href = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
+---
+
+<a class="back-link" href={href}>
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <line x1="19" y1="12" x2="5" y2="12"></line>
+    <polyline points="12 19 5 12 12 5"></polyline>
+  </svg>
+  <span>{messages.blog.backToHome}</span>
+</a>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-aquarius-600);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 15px;
+  }
+
+  .back-link:hover {
+    color: var(--color-aquarius-700);
+  }
+
+  .back-link svg {
+    flex-shrink: 0;
+  }
+</style>

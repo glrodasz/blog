@@ -1,6 +1,7 @@
 ---
 import Container from "./Container.astro";
 import NavigationLink from "./NavigationLink.astro";
+import HeaderLink from "./HeaderLink.astro";
 import BootcampButton from "./BootcampButton.astro";
 import DiscordButton from "./DiscordButton.astro";
 import LanguageSelector from "./LanguageSelector.astro";
@@ -18,25 +19,36 @@ type Props = {
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
 const currentPath = Astro.url.pathname;
+const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
 ---
 
 <header id="main-header">
   <Container>
     <nav>
-      <div class="title">
-        <h2>
-          <a href={locale === DEFAULT_LOCALE ? "/" : `/${locale}/`}
-            >{messages.site.title}<span class="author"
-              >by {messages.site.author}</span
-            ></a
-          >
-        </h2>
-      </div>
+      <a href={homeHref} class="brand">
+        <img
+          src="/favicon.svg"
+          alt=""
+          width="40"
+          height="40"
+          class="brand-mark"
+          aria-hidden="true"
+        />
+        <span class="brand-text">
+          <span class="brand-title">
+            <strong>Undefined</strong>Shell
+          </span>
+          <span class="brand-tag">{messages.site.shortDescription}</span>
+        </span>
+      </a>
       <div class="navigation">
         <div class="internal-links">
           <NavigationLink href="/" locale={locale}
             >{messages.navigation.home}</NavigationLink
           >
+          <HeaderLink href="#subscribe">
+            {messages.navigation.subscribe}
+          </HeaderLink>
           <NavigationLink href="/about" locale={locale}
             >{messages.navigation.about}</NavigationLink
           >
@@ -50,6 +62,7 @@ const currentPath = Astro.url.pathname;
     </nav>
   </Container>
 </header>
+
 <style>
   header {
     margin: 0;
@@ -63,70 +76,56 @@ const currentPath = Astro.url.pathname;
   }
 
   header.scrolled {
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 1) 30%,
-      rgba(255, 255, 255, 0.9) 50%,
-      rgba(255, 255, 255, 0.65) 100%
-    );
+    background: rgba(255, 255, 255, 0.92);
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
     backdrop-filter: blur(10px);
-  }
-
-  h2 {
-    margin: 0;
-    font-size: 1em;
-  }
-
-  .author {
-    display: block;
-    font-size: 12.5px;
-    letter-spacing: 2px;
-    color: var(--color-aquarius-600);
-    margin-top: -4px;
-  }
-
-  h2 a {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    border-bottom: none !important;
-  }
-
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
   }
 
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0.6em 0;
   }
-  nav a {
-    padding: 1em 0.2em;
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
     color: var(--color-black-pearl-900);
-    border-bottom: 4px solid transparent;
-    text-decoration: none;
   }
 
-  nav a.active {
-    text-decoration: none;
-    border-bottom-color: var(--accent);
+  .brand-mark {
+    display: block;
   }
 
-  .title {
+  .brand-text {
     display: flex;
-    align-items: baseline;
+    flex-direction: column;
+    line-height: 1;
   }
 
-  .separator {
-    margin: 0 0.5em;
+  .brand-title {
+    font-size: 18px;
+    letter-spacing: 0.01em;
+  }
+
+  .brand-title strong {
+    font-weight: 700;
+  }
+
+  .brand-tag {
+    font-size: 11px;
+    color: var(--color-aquarius-600);
+    letter-spacing: 0.12em;
+    text-transform: lowercase;
+    margin-top: 4px;
   }
 
   .navigation {
     display: flex;
+    align-items: center;
     gap: 1.5em;
   }
 
@@ -136,11 +135,6 @@ const currentPath = Astro.url.pathname;
     gap: 0.8em;
   }
 
-  .social-links,
-  .social-links a {
-    display: flex;
-  }
-
   .buttons-container {
     display: flex;
     align-items: center;
@@ -148,18 +142,18 @@ const currentPath = Astro.url.pathname;
   }
 
   @media (max-width: 1200px) {
-    .buttons-container,
-    .social-links {
+    .buttons-container {
       display: none;
     }
 
-    .title span:not(.author),
-    .title p {
+    .brand-tag {
       display: none;
     }
+  }
 
-    h2 span.author {
-      font-size: 11px;
+  @media (max-width: 640px) {
+    .internal-links > a {
+      display: none;
     }
   }
 </style>
@@ -167,11 +161,7 @@ const currentPath = Astro.url.pathname;
 <script>
   function handleScroll() {
     const header = document.getElementById("main-header");
-
-    if (!header) {
-      return;
-    }
-
+    if (!header) return;
     if (window.scrollY > 0) {
       header.classList.add("scrolled");
     } else {
@@ -179,10 +169,8 @@ const currentPath = Astro.url.pathname;
     }
   }
 
-  // Add scroll listener when the page loads
   document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", handleScroll);
-    // Check initial scroll position
     handleScroll();
   });
 </script>

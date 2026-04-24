@@ -1,0 +1,53 @@
+---
+import { getTagUrl } from "../utils/content";
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+
+type Props = {
+  tag: string;
+  locale?: Locale;
+  variant?: "outline" | "solid";
+};
+
+const { tag, locale: localeProp, variant = "outline" } = Astro.props;
+const locale = localeProp ?? getLocaleFromAstro(Astro);
+const href = getTagUrl(tag, locale);
+---
+
+<a href={href} class:list={["tag-chip", variant]}>{tag}</a>
+
+<style>
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: var(--radius-chip);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: background 0.15s ease-in-out, color 0.15s ease-in-out;
+  }
+
+  .tag-chip.outline {
+    border: 1.5px solid var(--color-aquarius-600);
+    color: var(--color-aquarius-700);
+    background: transparent;
+  }
+
+  .tag-chip.outline:hover {
+    background: var(--color-aquarius-600);
+    color: var(--color-white);
+  }
+
+  .tag-chip.solid {
+    background: var(--color-aquarius-600);
+    color: var(--color-white);
+    border: 1.5px solid var(--color-aquarius-600);
+  }
+
+  .tag-chip.solid:hover {
+    background: var(--color-aquarius-700);
+    border-color: var(--color-aquarius-700);
+  }
+</style>

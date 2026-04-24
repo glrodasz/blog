@@ -1,0 +1,183 @@
+---
+import TagChip from "./TagChip.astro";
+import FormattedDate from "./FormattedDate.astro";
+import {
+  type Post,
+  getPostUrl,
+  calculateReadingTime,
+  getPostTags,
+  tagToSlug,
+} from "../utils/content";
+import { type Locale } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  post: Post;
+  locale: Locale;
+};
+
+const { post, locale } = Astro.props;
+const messages = getMessages(locale);
+
+const href = getPostUrl(post.slug, locale);
+const tags = getPostTags(post);
+const readingTime = calculateReadingTime(post.body);
+const tagSlugs = tags.map(tagToSlug).join(" ");
+const searchHaystack = [post.data.title, post.data.description]
+  .filter(Boolean)
+  .join(" ")
+  .toLowerCase();
+---
+
+<article
+  class="article-card"
+  data-href={href}
+  data-tag-slugs={tagSlugs}
+  data-search={searchHaystack}
+>
+  <a class="card-cover" href={href} tabindex="-1" aria-hidden="true">
+    {post.data.heroImage && (
+      <img
+        src={post.data.heroImage}
+        alt=""
+        width={720}
+        height={420}
+        loading="lazy"
+      />
+    )}
+  </a>
+  <div class="card-body">
+    {tags.length > 0 && (
+      <div class="card-tags">
+        {tags.map((tag) => <TagChip tag={tag} locale={locale} />)}
+      </div>
+    )}
+    <h3 class="card-title">
+      <a href={href}>{post.data.title}</a>
+    </h3>
+    <p class="card-excerpt">{post.data.description}</p>
+    <footer class="card-meta">
+      <div class="author">
+        <img
+          src={messages.author.avatar}
+          alt=""
+          width="28"
+          height="28"
+          aria-hidden="true"
+        />
+        <span>{messages.author.name}</span>
+      </div>
+      <span class="reading-time">
+        <FormattedDate date={post.data.pubDate} locale={locale} />
+        <span aria-hidden="true"> · </span>
+        {readingTime} {messages.blog.minRead}
+      </span>
+    </footer>
+  </div>
+</article>
+
+<style>
+  .article-card {
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(var(--gray), 10%);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+  }
+
+  .article-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(var(--gray), 20%);
+  }
+
+  .card-cover {
+    display: block;
+    aspect-ratio: 4 / 3;
+    background: var(--color-black-pearl-50);
+    overflow: hidden;
+  }
+
+  .card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-body {
+    padding: 1.25em 1.25em 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    flex: 1;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .card-title {
+    margin: 0;
+    font-size: 1.2em;
+    line-height: 1.25;
+    color: var(--color-black-pearl-900);
+  }
+
+  .card-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card-title a:hover {
+    color: var(--color-aquarius-700);
+  }
+
+  .card-excerpt {
+    margin: 0;
+    color: var(--color-black-pearl-700);
+    font-size: 0.85em;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-meta {
+    margin-top: auto;
+    padding-top: 1em;
+    border-top: 1px solid var(--color-black-pearl-50);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6em;
+    font-size: 0.75em;
+    color: var(--color-black-pearl-400);
+  }
+
+  .author {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-black-pearl-700);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .author img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--color-aquarius-100);
+  }
+
+  .reading-time {
+    white-space: nowrap;
+  }
+</style>

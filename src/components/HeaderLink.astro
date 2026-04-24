@@ -5,9 +5,13 @@ type Props = HTMLAttributes<"a">;
 
 const { href, class: className, ...props } = Astro.props;
 
-const { pathname } = Astro.url;
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === "/" + subpath?.[0];
+const stripTrailingSlash = (value: string) =>
+  value.length > 1 && value.endsWith("/") ? value.slice(0, -1) : value;
+
+const currentPath = stripTrailingSlash(Astro.url.pathname);
+const normalizedHref =
+  typeof href === "string" ? stripTrailingSlash(href) : "";
+const isActive = normalizedHref === currentPath;
 ---
 
 <a href={href} class:list={[className, { active: isActive }]} {...props}>

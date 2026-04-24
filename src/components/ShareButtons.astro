@@ -1,0 +1,146 @@
+---
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  title: string;
+  url: string;
+  locale?: Locale;
+};
+
+const { title, url } = Astro.props;
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+
+const encodedTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+const encodedTitleAndUrl = encodeURIComponent(`${title} ${url}`);
+
+const buttons = [
+  {
+    name: "Twitter",
+    href: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+    icon: "twitter",
+  },
+  {
+    name: "LinkedIn",
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    icon: "linkedin",
+  },
+  {
+    name: "Threads",
+    href: `https://www.threads.net/intent/post?text=${encodedTitleAndUrl}`,
+    icon: "threads",
+  },
+  {
+    name: "Bluesky",
+    href: `https://bsky.app/intent/compose?text=${encodedTitleAndUrl}`,
+    icon: "bluesky",
+  },
+  {
+    name: "Mastodon",
+    href: `https://mastodonshare.com/?text=${encodedTitle}&url=${encodedUrl}`,
+    icon: "mastodon",
+  },
+] as const;
+---
+
+<div class="share-buttons">
+  <span class="share-label">{messages.blog.share}</span>
+  <div class="buttons">
+    {buttons.map(({ name, href, icon }) => (
+      <a
+        href={href}
+        class="share-button"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${messages.blog.share} ${messages.blog.sharePrefix.toLowerCase()} ${name}`}
+      >
+        <span class="icon" aria-hidden="true">
+          {icon === "twitter" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"></path>
+            </svg>
+          )}
+          {icon === "linkedin" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path>
+            </svg>
+          )}
+          {icon === "threads" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.31-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L5.176 6.92c.98-1.454 2.568-2.256 4.497-2.256h.042c3.226.02 5.148 2.002 5.34 5.46.11.045.22.092.327.141 1.513.71 2.62 1.786 3.2 3.113.81 1.851.884 4.878-1.568 7.273-1.874 1.835-4.15 2.666-7.376 2.69Zm1.063-11.695c-.325 0-.655.01-.991.032-1.838.103-2.987.946-2.923 2.148.067 1.258 1.453 1.842 2.787 1.77 1.224-.066 2.825-.543 3.095-3.71a10.342 10.342 0 0 0-1.968-.24z"></path>
+            </svg>
+          )}
+          {icon === "bluesky" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.789.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8Z"></path>
+            </svg>
+          )}
+          {icon === "mastodon" && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.193 7.88c0-5.207-3.411-6.733-3.411-6.733C18.062.357 15.108.015 12.041 0h-.076c-3.068.015-6.02.357-7.74 1.147 0 0-3.412 1.526-3.412 6.733 0 1.193-.023 2.619.015 4.13.124 5.092.934 10.109 5.641 11.355 2.17.574 4.035.695 5.535.612 2.722-.151 4.25-.972 4.25-.972l-.09-1.975s-1.945.613-4.13.539c-2.165-.074-4.449-.233-4.799-2.892a5.49 5.49 0 0 1-.048-.745s2.125.52 4.817.643c1.646.076 3.19-.096 4.758-.283 3.007-.359 5.625-2.212 5.954-3.905.52-2.666.476-6.507.476-6.507zm-3.985 6.64h-2.474V8.463c0-1.278-.537-1.926-1.612-1.926-1.189 0-1.785.77-1.785 2.292v3.318h-2.46v-3.319c0-1.522-.597-2.292-1.785-2.292-1.075 0-1.613.648-1.613 1.926v6.058H5.005V8.279c0-1.277.325-2.292.98-3.042.675-.75 1.558-1.135 2.654-1.135 1.27 0 2.23.489 2.864 1.466l.617 1.033.618-1.033c.633-.977 1.593-1.466 2.863-1.466 1.096 0 1.98.385 2.654 1.135.655.75.98 1.765.98 3.042z"></path>
+            </svg>
+          )}
+        </span>
+        <span class="label">
+          {messages.blog.sharePrefix} {name}
+        </span>
+      </a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .share-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .share-label {
+    font-weight: 700;
+    color: var(--color-black-pearl-700);
+    font-size: 0.95rem;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .share-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: var(--radius-card);
+    background: var(--color-aquarius-600);
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 1;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .share-button:hover {
+    background: var(--color-aquarius-700);
+  }
+
+  .share-button:focus-visible {
+    outline: 2px solid var(--color-aquarius-700);
+    outline-offset: 2px;
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .label {
+    white-space: nowrap;
+  }
+</style>

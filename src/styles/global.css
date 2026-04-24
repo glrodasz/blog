@@ -31,6 +31,8 @@
   --gray-dark: 34, 41, 57;
   --box-shadow: 0 2px 5px rgba(var(--gray), 12%),
     0 6px 20px rgba(var(--gray), 20%), 0 14px 28px rgba(var(--gray), 18%);
+  --radius-card: 8px;
+  --radius-chip: 999px;
 }
 
 @font-face {
@@ -73,7 +75,6 @@ body {
   padding: 0;
   text-align: left;
   background: var(--color-black-pearl-50);
-  background-size: 100% 600px;
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: var(--color-black-pearl-700);
@@ -81,26 +82,19 @@ body {
   line-height: 1.8rem;
 }
 
-body.footer-visible {
-  background: var(--color-black-pearl-900);
-}
-
-body.footer-visible::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--color-black-pearl-50);
-  z-index: -1;
-}
-
 main {
   width: 100%;
   max-width: 980px;
   margin: 0 auto;
   padding: 5.5em 0 2em;
+}
+
+main.home,
+main.tag-page,
+main.article-page {
+  max-width: none;
+  padding-top: 5.5em;
+  padding-bottom: 0;
 }
 
 h1,
@@ -425,6 +419,18 @@ sup {
   margin-bottom: 2em;
 }
 
+.page-section {
+  padding: 2.5em 0;
+}
+
+.page-section.tight {
+  padding: 1.5em 0;
+}
+
+.page-section.on-band {
+  background: var(--color-aquarius-100);
+}
+
 @media (max-width: 920px) {
   body {
     font-size: 18px;
@@ -444,6 +450,10 @@ sup {
 
   .astro-code code>.line:hover {
     background: transparent;
+  }
+
+  .page-section {
+    padding: 1.75em 0;
   }
 }
 
