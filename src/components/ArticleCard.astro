@@ -10,6 +10,7 @@ import {
 } from "../utils/content";
 import { type Locale } from "../i18n/config";
 import { getMessages } from "../i18n";
+import { normalizeForSearch } from "../utils/searchNormalize";
 
 type Props = {
   post: Post;
@@ -23,10 +24,9 @@ const href = getPostUrl(post.slug, locale);
 const tags = getPostTags(post);
 const readingTime = calculateReadingTime(post.body);
 const tagSlugs = tags.map(tagToSlug).join(" ");
-const searchHaystack = [post.data.title, post.data.description]
-  .filter(Boolean)
-  .join(" ")
-  .toLowerCase();
+const searchHaystack = normalizeForSearch(
+  [post.data.title, post.data.description].filter(Boolean).join(" ")
+);
 ---
 
 <article
@@ -70,7 +70,7 @@ const searchHaystack = [post.data.title, post.data.description]
       <span class="reading-time">
         <FormattedDate date={post.data.pubDate} locale={locale} />
         <span aria-hidden="true"> · </span>
-        {readingTime} {messages.blog.minRead}
+        {readingTime} {messages.blog.minReadCard}
       </span>
     </footer>
   </div>
