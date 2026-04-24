@@ -7,6 +7,10 @@ heroImage: "/covers/architect-desk-with-tools-and-blueprints.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/tipos-de-lenguajes-de-programacion"
+relatedPosts:
+  - how-does-a-programming-language-work
+  - expressions-and-sentences-whats-next
+  - javascript-history
 ---
 
 Just as people communicate in different languages, usually from the place where we are, in programming there are also various languages. For an experienced programmer, it can be relatively easy to understand multiple programming languages, similar to mutual understanding between speakers of Romance languages like Spanish, Italian, or Portuguese.

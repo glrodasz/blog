@@ -8,6 +8,10 @@ heroImage: "/covers/underwater-bubbles-with-sunlight-rays.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/algoritmos-con-naipes-ordenamiento-burbuja"
+relatedPosts:
+  - algorithms-with-cards-binary-search
+  - designing-an-algorithm
+  - what-is-an-algorithm
 ---
 
 Imagine you shuffle a deck of cards and then without thinking much you start sorting them: first the Ace, then the 2, then the 3... A pretty easy task, right? Our brain uses sight, recognizes each card instantly and knows how to place them in the correct position almost without conscious effort.

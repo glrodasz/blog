@@ -7,6 +7,10 @@ heroImage: "/covers/old-treasure-map-with-red-x-mark.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/designing-an-algorithm"
+relatedPosts:
+  - que-es-un-algoritmo
+  - algoritmos-con-naipes-busqueda-binaria
+  - algoritmos-con-naipes-ordenamiento-burbuja
 ---
 
 Antes mencionamos que *un algoritmo no es más que un conjunto de instrucciones que se siguen para realizar una tarea en particular.* Sin embargo, una lista de instrucciones no siempre es la mejor forma de representarlo, ya que no todas las tareas pueden ejecutarse de manera lineal, dicho de otro modo, paso a paso. Algunos algoritmos requieren que las instrucciones sigan diferentes caminos o incluso se ejecuten en distintos momentos.

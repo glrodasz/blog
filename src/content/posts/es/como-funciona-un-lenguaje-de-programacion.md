@@ -7,6 +7,10 @@ heroImage: "/covers/vintage-punched-card-on-wooden-table.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/how-does-a-programming-language-work"
+relatedPosts:
+  - tipos-de-lenguajes-de-programacion
+  - expresiones-y-sentencias-luego-que
+  - que-necesitas-saber-antes-de-programar
 ---
 
 Si lo piensas bien, los lenguajes de programación no son tan distintos de cualquier idioma humano: cada lengua tiene su propio conjunto de reglas, lo que conocemos como **gramática**, para que lo que decimos tenga sentido.

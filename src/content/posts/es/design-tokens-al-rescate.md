@@ -6,6 +6,10 @@ tags:
   - Design Systems
 description: Se puede decir que los Design Tokens son una metodología que se encarga del manejo de variables en un sistema de diseño. Sin embargo, esta metodología se puede aplicar en una escala mucho más pequeña.
 heroImage: "/covers/smooth-colored-stones-on-the-ground.jpg"
+relatedPosts:
+  - la-evolucion-de-los-design-tokens
+  - evolucion-de-las-arquitecturas-de-css
+  - introduccion-a-los-web-components
 ---
 
 Desde hace unos años venimos escuchando hablar sobre los **Design Systems**, herramientas que, hoy por hoy, se han convertido de suma importancia para el desarrollo de aplicaciones web. A partir de entonces, empezamos a escuchar una serie de nuevos términos y conceptos, tales como, Principles, Guidelines, Atomic Design, Dark Mode y uno de los más importantes y poco implementados: **Design Tokens**. En este post vamos a explorar qué son, cómo y cuándo usarlos.

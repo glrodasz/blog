@@ -7,6 +7,10 @@ heroImage: "/covers/vintage-wooden-toolbox-with-metal-wrenches.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/what-you-need-to-know-before-programming"
+relatedPosts:
+  - la-programacion-es-para-mi
+  - para-que-me-sirve-programar
+  - como-funciona-un-lenguaje-de-programacion
 ---
 Antes de empezar a programar no hace falta ser un genio ni memorizar fórmulas; basta con seguir tres pilares que simplifican el camino: 
 

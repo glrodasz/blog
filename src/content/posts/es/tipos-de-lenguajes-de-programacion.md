@@ -7,6 +7,10 @@ heroImage: "/covers/architect-desk-with-tools-and-blueprints.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/types-of-programming-languages"
+relatedPosts:
+  - como-funciona-un-lenguaje-de-programacion
+  - expresiones-y-sentencias-luego-que
+  - historia-de-javascript
 ---
 
 Así como las personas nos comunicamos en diferentes idiomas, usualmente del lugar donde nos encontramos, en programación también existen diversos lenguajes. Para un programador experimentado, puede ser relativamente sencillo entender múltiples lenguajes de programación, de forma similar a la intercomprensión entre hablantes de idiomas romances como el español, italiano o portugués.

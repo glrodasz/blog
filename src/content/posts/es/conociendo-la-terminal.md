@@ -4,6 +4,10 @@ pubDate: "2019-10-29T00:00:00.000Z"
 tags: Aprende a programar
 description: La terminal es una herramienta clave en el desarrollo, ofreciendo ventajas al conocer sus comandos básicos, descubrir la interfaz del sistema operativo, y realizar tareas rápidamente sin dejar el teclado. No es esencial para empezar a programar, pero es inevitable enfrentarla, así que ¿por qué no empezar ya?
 heroImage: "/covers/close-up-of-seashell-on-sandy-beach.jpg"
+relatedPosts:
+  - comandos-alias-para-la-terminal
+  - que-necesitas-saber-antes-de-programar
+  - como-funciona-un-lenguaje-de-programacion
 ---
 
 La terminal es una herramienta que puede hacer la diferencia a la hora de desarrollar, principalmente porque nos otorga tres grandes ventajas con solo conocer los comandos básicos:

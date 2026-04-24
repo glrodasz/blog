@@ -7,6 +7,10 @@ heroImage: "/covers/cardboard-with-eggs-and-js-egg.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/javascript-history"  
+relatedPosts:
+  - tipos-de-lenguajes-de-programacion
+  - como-funciona-un-lenguaje-de-programacion
+  - estatico-dinamico-spa-mpa-jamstack
 ---
 
 La historia de JavaScript es la historia de la web misma: nació con prisa, creció en medio del caos y maduró a base de experimentos. Lo que comenzó como un lenguaje improvisado para dar vida a las páginas web terminó expandiéndose hacia servidores, dispositivos móviles y entornos distribuidos. Su camino no ha sido lineal ni predecible, pero justamente ahí radica su encanto: logró evolucionar sin perder su esencia. Por eso, es uno de los lenguajes más amados y odiados[^1] al mismo tiempo, pero sin duda **imposible de ignorar**.

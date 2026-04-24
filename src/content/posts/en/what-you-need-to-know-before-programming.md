@@ -7,6 +7,10 @@ heroImage: "/covers/vintage-wooden-toolbox-with-metal-wrenches.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/que-necesitas-saber-antes-de-programar"
+relatedPosts:
+  - is-programming-for-me
+  - what-is-programming-useful-for
+  - how-does-a-programming-language-work
 ---
 
 Before starting to program, you don't need to be a genius or memorize formulas; just follow three pillars that simplify the path:

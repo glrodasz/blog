@@ -7,6 +7,10 @@ heroImage: "/covers/intertwined-tree-branches-with-green-leaves.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/algorithms-with-cards-binary-search"
+relatedPosts:
+  - algoritmos-con-naipes-ordenamiento-burbuja
+  - disenando-un-algoritmo
+  - que-es-un-algoritmo
 ---
 > 🤿 Esto hace parte de la serie ilustrada "**Algoritmos con naipes**", puedes encontrar el primer articulo [aquí](/posts/algorithms-with-cards-bubble-sort/) en el que hablamos del _ordenamiento burbuja_.
 

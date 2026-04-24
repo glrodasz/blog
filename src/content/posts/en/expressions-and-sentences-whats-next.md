@@ -8,6 +8,10 @@ heroImage: "/covers/cardboard-boxes-with-red-toolbox-and-wrenches.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/expresiones-y-sentencias-luego-que"
+relatedPosts:
+  - how-does-a-programming-language-work
+  - types-of-programming-languages
+  - what-is-an-algorithm
 ---
 
 So far we've seen how the code we write is composed of smaller parts, like [*expressions* and *statements*](/posts/how-does-a-programming-language-work). But how many statements and/or expressions are needed to consider it an algorithm? At what point does a set of algorithms become what we call *frameworks*? And when does a *framework* differ from a *utility* or a *library*?

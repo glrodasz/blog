@@ -4,6 +4,10 @@ pubDate: "2021-01-10T00:00:00.000Z"
 tags: CSS
 description: Las Arquitecturas de CSS nos ayudan a escalar y mantener nuestras hojas de estilo en el tiempo. Estas son necesarias porque, el CSS, al carecer de un sistema de módulos conveniente y debido a su naturaleza de sobrescritura en cascada, crea la combinación perfecta para generar un ambiente caótico.
 heroImage: "/covers/ancient-stone-arch-with-detailed-sculptures.jpg"
+relatedPosts:
+  - design-tokens-al-rescate
+  - la-evolucion-de-los-design-tokens
+  - estatico-dinamico-spa-mpa-jamstack
 ---
 
 Las Arquitecturas de CSS nos ayudan a escalar y mantener nuestras hojas de estilo en el tiempo. Estas son necesarias porque, el CSS, al carecer de un sistema de módulos conveniente y debido a su naturaleza de sobrescritura en cascada, crea la combinación perfecta para generar un ambiente caótico rápidamente en proyectos de nivel empresarial.

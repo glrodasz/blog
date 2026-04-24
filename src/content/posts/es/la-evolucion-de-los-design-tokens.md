@@ -4,6 +4,10 @@ pubDate: "2023-03-27T00:00:00.000Z"
 tags: Design Systems
 description: Han pasado muchos meses desde que escribí mi primer artículo en español sobre Design Tokens, y desde entonces no solo han evolucionado, sino que cada vez se adaptan y se vuelven una parte fundamental de un sistema de diseño. Hoy les quiero compartir los puntos clave de esta evolución.
 heroImage: "/covers/busy-kitchen-with-many-pots-on-gas-stove.jpg"
+relatedPosts:
+  - design-tokens-al-rescate
+  - evolucion-de-las-arquitecturas-de-css
+  - introduccion-a-los-web-components
 ---
 
 Han pasado muchos meses desde que escribí mi primer artículo en español sobre Design Tokens, y desde entonces no solo han evolucionado, sino que cada vez se adaptan y se vuelven una parte fundamental de un sistema de diseño. Hoy les quiero compartir los puntos clave de esta evolución.

@@ -8,6 +8,10 @@ heroImage: "/covers/underwater-bubbles-with-sunlight-rays.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/algorithms-with-cards-bubble-sort"
+relatedPosts:
+  - algoritmos-con-naipes-busqueda-binaria
+  - disenando-un-algoritmo
+  - que-es-un-algoritmo
 ---
 Imagina que mezclas una baraja de naipes y luego sin pensarlo mucho la empiezas a ordernar: primero el As, luego el 2, después el 3… Una tarea bastante fácil, ¿cierto? Nuestro cerebro usa la vista, reconoce cada carta al instante y sabe como colocarlas en la posición correcta casi sin esfuerzo consciente.
 
