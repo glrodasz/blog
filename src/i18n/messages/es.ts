@@ -9,6 +9,7 @@ export const messages = {
   blog: {
     updatedLabel: "Actualizado",
     minRead: "min de lectura",
+    minReadCard: "min",
     backToHome: "Volver al inicio",
     share: "Comparte",
     sharePrefix: "En"

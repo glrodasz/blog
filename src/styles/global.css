@@ -33,22 +33,12 @@
     0 6px 20px rgba(var(--gray), 20%), 0 14px 28px rgba(var(--gray), 18%);
   --radius-card: 8px;
   --radius-chip: 999px;
-}
 
-@font-face {
-  font-family: "Atkinson";
-  src: url("/fonts/atkinson-regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Atkinson";
-  src: url("/fonts/atkinson-bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+  /* Body: native UI text; titles: Sora (loaded in BaseHead) */
+  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --font-title: "Sora", var(--font-body);
 }
 
 html {
@@ -70,7 +60,7 @@ body {
 
 body {
   position: relative;
-  font-family: "Atkinson", sans-serif;
+  font-family: var(--font-body);
   margin: 0;
   padding: 0;
   text-align: left;
@@ -103,6 +93,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: var(--font-title);
   margin: 1rem 0 0.5rem 0;
   color: var(--color-black-pearl-900);
   line-height: 0.85;

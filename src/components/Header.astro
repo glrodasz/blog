@@ -1,7 +1,6 @@
 ---
 import Container from "./Container.astro";
 import NavigationLink from "./NavigationLink.astro";
-import HeaderLink from "./HeaderLink.astro";
 import BootcampButton from "./BootcampButton.astro";
 import DiscordButton from "./DiscordButton.astro";
 import LanguageSelector from "./LanguageSelector.astro";
@@ -46,9 +45,6 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
           <NavigationLink href="/" locale={locale}
             >{messages.navigation.home}</NavigationLink
           >
-          <HeaderLink href="#subscribe">
-            {messages.navigation.subscribe}
-          </HeaderLink>
           <NavigationLink href="/about" locale={locale}
             >{messages.navigation.about}</NavigationLink
           >
@@ -103,12 +99,15 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
   .brand-text {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     line-height: 1;
   }
 
   .brand-title {
-    font-size: 18px;
-    letter-spacing: 0.01em;
+    white-space: nowrap;
+    font-family: var(--font-title);
+    font-size: 22px;
+    letter-spacing: 0.03em;
   }
 
   .brand-title strong {
@@ -116,11 +115,12 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
   }
 
   .brand-tag {
+    margin-top: 4px;
     font-size: 11px;
     color: var(--color-aquarius-600);
     letter-spacing: 0.12em;
     text-transform: lowercase;
-    margin-top: 4px;
+    white-space: nowrap;
   }
 
   .navigation {
@@ -159,6 +159,31 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
 </style>
 
 <script>
+  const BRAND_TAG_BASE_PX = 11;
+  const BRAND_TAG_SIZE_MIN = 7;
+  const BRAND_TAG_SIZE_MAX = 16;
+
+  function fitBrandTag() {
+    const brand = document.querySelector(".brand .brand-text");
+    const title = brand?.querySelector(".brand-title");
+    const tag = brand?.querySelector(".brand-tag");
+    if (!title || !tag) return;
+    if (!(tag instanceof HTMLElement)) return;
+    if (getComputedStyle(tag).display === "none") {
+      tag.style.removeProperty("font-size");
+      return;
+    }
+    const targetW = title.getBoundingClientRect().width;
+    if (targetW < 1) return;
+    tag.style.removeProperty("font-size");
+    tag.style.fontSize = `${BRAND_TAG_BASE_PX}px`;
+    const w = tag.scrollWidth;
+    if (w < 0.1) return;
+    let size = (BRAND_TAG_BASE_PX * targetW) / w;
+    size = Math.max(BRAND_TAG_SIZE_MIN, Math.min(BRAND_TAG_SIZE_MAX, size));
+    tag.style.fontSize = `${size}px`;
+  }
+
   function handleScroll() {
     const header = document.getElementById("main-header");
     if (!header) return;
@@ -169,8 +194,32 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
     }
   }
 
+  function setupBrandTagFit() {
+    const run = () => {
+      requestAnimationFrame(() => {
+        void document.fonts.ready.then(() => {
+          requestAnimationFrame(fitBrandTag);
+        });
+      });
+    };
+    const header = document.getElementById("main-header");
+    if (header) {
+      const ro = new ResizeObserver(run);
+      ro.observe(header);
+    }
+    const mq = window.matchMedia("(min-width: 1201px)");
+    mq.addEventListener("change", run);
+    run();
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", handleScroll);
     handleScroll();
+    setupBrandTagFit();
+  });
+  window.addEventListener("load", () => {
+    void document.fonts.ready.then(() => {
+      requestAnimationFrame(fitBrandTag);
+    });
   });
 </script>
