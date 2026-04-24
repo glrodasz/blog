@@ -7,6 +7,10 @@ heroImage: "/covers/beige-hats-arranged-on-wooden-shelves.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/la-programacion-es-para-mi"
+relatedPosts:
+  - what-is-programming-useful-for
+  - what-you-need-to-know-before-programming
+  - how-does-a-programming-language-work
 ---
 
 I know many don't come to programming by simple chance, as happened to several of us. Some arrive because they had a childhood very close to video games or, in general, to electronic devices, like the computer.

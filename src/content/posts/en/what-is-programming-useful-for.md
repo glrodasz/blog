@@ -7,6 +7,10 @@ heroImage: "/covers/vintage-typewriter-on-wooden-desk.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/para-que-me-sirve-programar"
+relatedPosts:
+  - is-programming-for-me
+  - what-you-need-to-know-before-programming
+  - types-of-programming-languages
 ---
 
 When I was in university, if someone asked me *what programming is useful for*, I answered without thinking much: **to make web pages**. Over time I understood that programming is useful for much more, and I'm convinced that, in a few years, it will be as essential as knowing how to use spreadsheets.

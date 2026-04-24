@@ -8,6 +8,10 @@ heroImage: "/covers/cardboard-boxes-with-red-toolbox-and-wrenches.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/expressions-and-sentences-whats-next"  
+relatedPosts:
+  - como-funciona-un-lenguaje-de-programacion
+  - tipos-de-lenguajes-de-programacion
+  - que-es-un-algoritmo
 ---
 
 Hasta ahora hemos visto cómo el código que escribimos está compuesto de partes más pequeñas, como [*expresiones* y *sentencias*](/es/posts/como-funciona-un-lenguaje-de-programacion). Pero, ¿cuántas sentencias y/o expresiones son necesarias para considerarlo un algoritmo? ¿En qué momento un conjunto de algoritmos se convierte en lo que llamamos *frameworks*? ¿Y cuándo un *framework* se diferencia de una *utilidad* o una *biblioteca*?

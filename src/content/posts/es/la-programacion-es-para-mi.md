@@ -7,6 +7,10 @@ heroImage: "/covers/beige-hats-arranged-on-wooden-shelves.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/is-programming-for-me"
+relatedPosts:
+  - para-que-me-sirve-programar
+  - que-necesitas-saber-antes-de-programar
+  - como-funciona-un-lenguaje-de-programacion
 ---
 
 Sé que muchos no llegan a la programación por simple casualidad, como nos paso a varios de nosotros. Algunos llegan porque tuvieron una infancia muy cercana a los videojuegos o, en general, a los dispositivos electrónicos, como la computadora.

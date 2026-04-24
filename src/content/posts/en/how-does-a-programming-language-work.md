@@ -7,6 +7,10 @@ heroImage: "/covers/vintage-punched-card-on-wooden-table.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/como-funciona-un-lenguaje-de-programacion"
+relatedPosts:
+  - types-of-programming-languages
+  - expressions-and-sentences-whats-next
+  - what-you-need-to-know-before-programming
 ---
 
 If you think about it, programming languages aren't so different from any human language: each language has its own set of rules, what we know as **grammar**, so that what we say makes sense.

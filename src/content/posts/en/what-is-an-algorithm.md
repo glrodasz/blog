@@ -8,6 +8,10 @@ heroImage: "/covers/open-cookbook-with-sourdough-recipe.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/que-es-un-algoritmo"
+relatedPosts:
+  - designing-an-algorithm
+  - algorithms-with-cards-binary-search
+  - algorithms-with-cards-bubble-sort
 ---
 
 Have you tried assembling an IKEA piece of furniture following the steps in the manual? *And yes... there's usually a screw left over and you're left wondering if something went wrong. 🙃* What about the Rubik's cube? Maybe you've seen people turning it over and over, as if the movements didn't make sense, until suddenly all the faces are perfect.

@@ -7,6 +7,10 @@ heroImage: "/covers/vintage-typewriter-on-wooden-desk.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/what-is-programming-useful-for"
+relatedPosts:
+  - la-programacion-es-para-mi
+  - que-necesitas-saber-antes-de-programar
+  - tipos-de-lenguajes-de-programacion
 ---
 
 Cuando estaba en la universidad si alguien me preguntaba *para qué sirve programar*, respondía sin pensarlo mucho: **para hacer páginas web**. Con el tiempo entendí que programar sirve para muchísimo más, y estoy convencido de que, dentro de unos años, será tan imprescindible como saber manejar hojas de cálculo.

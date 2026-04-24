@@ -8,6 +8,10 @@ heroImage: "/covers/open-cookbook-with-sourdough-recipe.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/what-is-an-algorithm"
+relatedPosts:
+  - disenando-un-algoritmo
+  - algoritmos-con-naipes-busqueda-binaria
+  - algoritmos-con-naipes-ordenamiento-burbuja
 ---
 ¿Has intentado armar un mueble de IKEA siguiendo los pasos del manual? *Y si… suele sobrar algún tornillo y te quedas con la duda de si algo quedó mal. 🙃* ¿Y el cubo de Rubik? Quizá has visto a gente girarlo una y otra vez, como si los movimientos no tuvieran sentido, hasta que de pronto todas las caras quedan perfectas.
 

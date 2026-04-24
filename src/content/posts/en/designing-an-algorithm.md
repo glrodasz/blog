@@ -7,6 +7,10 @@ heroImage: "/covers/old-treasure-map-with-red-x-mark.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/disenando-un-algoritmo"
+relatedPosts:
+  - what-is-an-algorithm
+  - algorithms-with-cards-binary-search
+  - algorithms-with-cards-bubble-sort
 ---
 
 We previously mentioned that *an algorithm is nothing more than a set of instructions that are followed to perform a particular task.* However, a list of instructions is not always the best way to represent it, since not all tasks can be executed linearly. Put another way, not all tasks can be executed step by step. Some algorithms require the instructions to follow different paths or even be executed at different times.

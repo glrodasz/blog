@@ -7,6 +7,10 @@ heroImage: "/covers/intertwined-tree-branches-with-green-leaves.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/algoritmos-con-naipes-busqueda-binaria"
+relatedPosts:
+  - algorithms-with-cards-bubble-sort
+  - designing-an-algorithm
+  - what-is-an-algorithm
 ---
 
 > 🤿 This is part of the illustrated series "**Algorithms with cards**", you can find the first article [here](/posts/algorithms-with-cards-bubble-sort/) where we talk about _bubble sort_.
