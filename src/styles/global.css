@@ -35,22 +35,6 @@
   --radius-chip: 999px;
 }
 
-@font-face {
-  font-family: "Atkinson";
-  src: url("/fonts/atkinson-regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Atkinson";
-  src: url("/fonts/atkinson-bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -70,7 +54,7 @@ body {
 
 body {
   position: relative;
-  font-family: "Atkinson", sans-serif;
+  font-family: "Sora", sans-serif;
   margin: 0;
   padding: 0;
   text-align: left;
