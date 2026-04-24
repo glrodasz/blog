@@ -7,7 +7,7 @@ export const messages = {
     url: "https://undefined.sh"
   },
   blog: {
-    lastUpdatedOn: "Updated on",
+    updatedLabel: "Updated",
     minRead: "min read",
     backToHome: "Back to home",
     share: "Share",
