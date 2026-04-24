@@ -16,6 +16,7 @@ import DiscordCallout from "../components/DiscordCallout.astro";
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 import { Link } from "lucide";
+import Info from "lucide-astro/Info";
 
 const linkIconPaths = Link;
 
@@ -84,7 +85,8 @@ const tags = rawTags
                 role="button"
                 aria-label={messages.blog.updatedLabel}
               >
-                ({messages.blog.updatedLabel})
+                ({messages.blog.updatedLabel}
+                <Info class="last-updated-icon" aria-hidden="true" />)
                 <span class="last-updated-tooltip" role="tooltip">
                   <FormattedDate date={updatedDate} locale={locale} />
                 </span>
@@ -249,6 +251,15 @@ const tags = rawTags
         position: relative;
         cursor: help;
         outline: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25em;
+      }
+
+      .last-updated-icon {
+        width: 1em;
+        height: 1em;
+        stroke-width: 2;
       }
 
       .last-updated-tooltip {
