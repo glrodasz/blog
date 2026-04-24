@@ -80,7 +80,7 @@ La mayoría de las veces esto es más que suficiente. Además, es una de las mej
 Las páginas estáticas también pueden tener otro tipo de archivos, como las hojas de estilo que se encargan de darle diseño o los archivos de JavaScript que se encargan de manipular los datos y lógica de nuestro sitio web. Estos últimos son los más pesados, pues, además de leer sus instrucciones, también consumen recursos a la hora de ejecutar dichas instrucciones.
 
 Finalmente, tenemos los archivos de multimedia como imágenes, videos, fuentes de texto, música que, de igual manera, en uso excesivo pueden afectar el rendimiento de nuestro sitio web.
-![Figura 1: flujo de un sitio web estático](/images/posts/es/estatico-dinamico-spa-mpa-jamstack/diagrama-paginas-estaticas.png)_**Figura 1**: flujo de un sitio web estático_
+![Figura 1: flujo de un sitio web estático](/images/posts/es/estatico-dinamico-spa-mpa-jamstack/diagrama-paginas-estaticas.jpg)_**Figura 1**: flujo de un sitio web estático_
 
 El flujo de un sitio web estático funciona de la siguiente manera (Figura 1):
 
@@ -97,7 +97,7 @@ Hay que aclarar que mediante un sitio web estático no hay manera de acceder a l
 El **servidor de aplicación** generalmente es invocado por un **framework web** mediante un lenguaje de programación que corre del lado del servidor. Por ejemplo, cuando ejecutamos el comando `node server.js` lo que estamos haciendo es invocar un servidor de aplicación. Para que funcione correctamente, es necesario que se le indique al **servidor web** (Apache, NGINX) dónde se van a generar los archivos, pues se espera que sea el **servidor de aplicación** quien los genere dinámicamente a medida que se vayan necesitando.
 
 Los archivos de multimedia por lo general se sirven de manera estática como lo vimos en el flujo anterior y esto también se configura mediante reglas en el **servidor web**.
-![Figura 2: flujo de un sitio web dinámico](/images/posts/es/estatico-dinamico-spa-mpa-jamstack/diagrama-paginas-dinamicas-multipage.png)_**Figura 2**: flujo de un sitio web dinámico_
+![Figura 2: flujo de un sitio web dinámico](/images/posts/es/estatico-dinamico-spa-mpa-jamstack/diagrama-paginas-dinamicas-multipage.jpg)_**Figura 2**: flujo de un sitio web dinámico_
 
 El flujo de un sitio web dinámico funciona de la siguiente manera (Figura 2):
 
@@ -126,7 +126,7 @@ Sin embargo, debido a que todo nuestro código existe en un solo archivo de Java
 Es por eso que, si queremos mejorar nuestra carga inicial o velocidad de indexación en los buscadores, es importante implementar una serie de metodologías de optimización. Entre ellas, una de las más efectivas es lo que se conoce como **[server-side rendering](https://youtu.be/GQzn7XRdzxY)**. Esto es, la misma técnica de construir dinámicamente el contenido del lado del servidor. Así, esta primera carga se vuelve efectiva y a partir de allí las cargas posteriores se harán del lado del cliente.
 
 Aunque pareciera que hay solución para las desventajas de las SPA, claramente lo que nos facilita nuestro flujo de desarrollo complica todo el flujo de despliegue y optimización en producción.
-![Figura 3: flujo de una single page app](/images/posts/es/estatico-dinamico-spa-mpa-jamstack/diagrama-single-page-app.png)_**Figura 3**: flujo de una single page app_
+![Figura 3: flujo de una single page app](/images/posts/es/estatico-dinamico-spa-mpa-jamstack/diagrama-single-page-app.jpg)_**Figura 3**: flujo de una single page app_
 
 El flujo de una SPA funciona de la siguiente manera (Figura 3):
 
@@ -145,7 +145,7 @@ El flujo de una SPA funciona de la siguiente manera (Figura 3):
 El JAMStack es un concepto que se ha popularizado últimamente porque hace uso de lo mejor de ambos mundos: client-side y server-side. No es algo nuevo, pues si alguna vez habías oído hablar de un [generador de sitios estáticos](https://www.staticgen.com/), estos usan el mismo principio del JAMStack.
 
 El JAM es nada más y nada menos que: **J**avaScript, **A**PIs y **M**arkup. Se hace uso de JavaScript para la creación de interfaz y contenido a partir del uso de plantillas e información mediante una APIs. Lo interesante es que en vez de hacer uso de un sitio dinámico del lado del servidor, la propuesta de JAMStack es que todo sea estático.
-![Figura 4: flujo de un sitio web dinámico mediante JAM Stack](/images/posts/es/estatico-dinamico-spa-mpa-jamstack/diagrama-jam-stack.png)_**Figura 4**: flujo de un sitio web dinámico mediante JAM Stack_
+![Figura 4: flujo de un sitio web dinámico mediante JAM Stack](/images/posts/es/estatico-dinamico-spa-mpa-jamstack/diagrama-jam-stack.jpg)_**Figura 4**: flujo de un sitio web dinámico mediante JAM Stack_
 
 El flujo de un sitio web dinámico mediante JAM Stack sería el siguiente (Figura 4):
 
