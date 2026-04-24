@@ -81,6 +81,8 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
     <Footer locale={locale} />
     <SimpleAnalytics />
     <script>
+      import { normalizeForSearch } from "../../../utils/searchNormalize";
+
       document.addEventListener("DOMContentLoaded", () => {
         const searchInput = document.querySelector<HTMLInputElement>(
           "[data-search-input]"
@@ -115,7 +117,7 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
         searchInput?.addEventListener("input", () => {
           if (debounceId) window.clearTimeout(debounceId);
           debounceId = window.setTimeout(() => {
-            query = (searchInput.value ?? "").trim().toLowerCase();
+            query = normalizeForSearch(searchInput.value ?? "");
             apply();
           }, 120);
         });

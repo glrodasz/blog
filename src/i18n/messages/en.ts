@@ -9,6 +9,7 @@ export const messages = {
   blog: {
     updatedLabel: "Updated",
     minRead: "min read",
+    minReadCard: "min",
     backToHome: "Back to home",
     share: "Share",
     sharePrefix: "On"

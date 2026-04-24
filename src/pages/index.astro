@@ -52,6 +52,8 @@ const [featured, ...rest] = posts;
     <Footer locale={locale} />
     <SimpleAnalytics />
     <script>
+      import { normalizeForSearch } from "../utils/searchNormalize";
+
       document.addEventListener("DOMContentLoaded", () => {
         const tabs = Array.from(
           document.querySelectorAll<HTMLElement>(".tag-filter [data-tag]")
@@ -128,7 +130,7 @@ const [featured, ...rest] = posts;
         searchInput?.addEventListener("input", () => {
           if (debounceId) window.clearTimeout(debounceId);
           debounceId = window.setTimeout(() => {
-            query = (searchInput.value ?? "").trim().toLowerCase();
+            query = normalizeForSearch(searchInput.value ?? "");
             apply();
           }, 120);
         });
