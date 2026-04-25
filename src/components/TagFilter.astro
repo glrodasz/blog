@@ -13,27 +13,29 @@ const { tags, locale, activeTagSlug = "all" } = Astro.props;
 const messages = getMessages(locale);
 ---
 
-<nav class="tag-filter" aria-label="Filter by tag">
-  <button
-    type="button"
-    class:list={["tag-tab", { active: activeTagSlug === "all" }]}
-    data-tag="all"
-  >
-    {messages.filter.all}
-  </button>
-  {tags.map((tag) => {
-    const slug = tagToSlug(tag);
-    return (
-      <a
-        class:list={["tag-tab", { active: activeTagSlug === slug }]}
-        data-tag={slug}
-        href={getTagUrl(tag, locale)}
-      >
-        {tag}
-      </a>
-    );
-  })}
-</nav>
+<div class="tag-filter-scroll">
+  <nav class="tag-filter" aria-label="Filter by tag">
+    <button
+      type="button"
+      class:list={["tag-tab", { active: activeTagSlug === "all" }]}
+      data-tag="all"
+    >
+      {messages.filter.all}
+    </button>
+    {tags.map((tag) => {
+      const slug = tagToSlug(tag);
+      return (
+        <a
+          class:list={["tag-tab", { active: activeTagSlug === slug }]}
+          data-tag={slug}
+          href={getTagUrl(tag, locale)}
+        >
+          {tag}
+        </a>
+      );
+    })}
+  </nav>
+</div>
 
 <style>
   .tag-filter {
@@ -71,8 +73,7 @@ const messages = getMessages(locale);
   }
 
   @media (max-width: 640px) {
-    .tag-filter {
-      flex-wrap: nowrap;
+    .tag-filter-scroll {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       margin: 0 -15px;
@@ -80,8 +81,13 @@ const messages = getMessages(locale);
       scrollbar-width: none;
     }
 
-    .tag-filter::-webkit-scrollbar {
+    .tag-filter-scroll::-webkit-scrollbar {
       display: none;
+    }
+
+    .tag-filter {
+      flex-wrap: nowrap;
+      width: max-content;
     }
 
     .tag-tab {
