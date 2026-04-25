@@ -59,7 +59,7 @@ const messages = getMessages(locale);
     border: none;
     outline: none;
     background: transparent;
-    font-size: 0.95rem;
+    font-size: 16px;
     font-family: inherit;
     color: var(--color-black-pearl-900);
     min-width: 0;
@@ -72,5 +72,13 @@ const messages = getMessages(locale);
 
   .icon {
     flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .search-bar {
+      display: flex;
+      width: 100%;
+      min-width: 0;
+    }
   }
 </style>

@@ -121,6 +121,12 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
             apply();
           }, 120);
         });
+
+        const mobileQuery = window.matchMedia("(max-width: 640px)");
+        searchInput?.addEventListener("focus", () => {
+          if (!mobileQuery.matches) return;
+          searchInput.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       });
     </script>
   </body>
