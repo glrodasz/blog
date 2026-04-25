@@ -56,7 +56,8 @@ const messages = getMessages(locale);
     border: none;
     font-family: inherit;
     cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition: background 0.15s ease, color 0.15s ease,
+      border-color 0.15s ease;
   }
 
   .tag-tab:hover {
@@ -67,5 +68,32 @@ const messages = getMessages(locale);
   .tag-tab.active {
     background: var(--color-black-pearl-900);
     color: var(--color-white);
+  }
+
+  @media (max-width: 640px) {
+    .tag-filter {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+      margin: 0 -20px;
+      padding: 4px 20px;
+      scrollbar-width: none;
+    }
+
+    .tag-filter::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tag-tab {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      border-radius: var(--radius-chip);
+      border: 1px solid var(--color-black-pearl-50);
+    }
+
+    .tag-tab.active {
+      border-color: transparent;
+    }
   }
 </style>
