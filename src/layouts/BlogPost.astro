@@ -29,6 +29,7 @@ type Props = CollectionEntry<"posts">["data"] & {
   readingTime?: number;
   locale?: Locale;
   languageVersions?: LanguageVersion[];
+  isPage?: boolean;
 };
 
 const {
@@ -41,6 +42,7 @@ const {
   languageVersions,
   tags: rawTags,
   relatedPosts,
+  isPage = false,
 } = Astro.props;
 
 const locale = getLocaleFromAstro(Astro);
@@ -76,28 +78,30 @@ const tags = rawTags
             </div>
           )}
           <h1 class="post-title">{title}</h1>
-          <div class="post-meta">
-            <FormattedDate date={pubDate} locale={locale} />
-            {updatedDate && (
-              <span
-                class="last-updated-on"
-                tabindex="0"
-                role="button"
-                aria-label={messages.blog.updatedLabel}
-              >
-                ({messages.blog.updatedLabel}
-                <Info class="last-updated-icon" aria-hidden="true" />)
-                <span class="last-updated-tooltip" role="tooltip">
-                  <FormattedDate date={updatedDate} locale={locale} />
+          {!isPage && (
+            <div class="post-meta">
+              <FormattedDate date={pubDate} locale={locale} />
+              {updatedDate && (
+                <span
+                  class="last-updated-on"
+                  tabindex="0"
+                  role="button"
+                  aria-label={messages.blog.updatedLabel}
+                >
+                  ({messages.blog.updatedLabel}
+                  <Info class="last-updated-icon" aria-hidden="true" />)
+                  <span class="last-updated-tooltip" role="tooltip">
+                    <FormattedDate date={updatedDate} locale={locale} />
+                  </span>
                 </span>
-              </span>
-            )}
-            {readingTime && (
-              <span class="reading-time">
-                • {readingTime} {messages.blog.minRead}
-              </span>
-            )}
-          </div>
+              )}
+              {readingTime && (
+                <span class="reading-time">
+                  • {readingTime} {messages.blog.minRead}
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </Container>
 
@@ -121,10 +125,12 @@ const tags = rawTags
             </div>
           </div>
         </article>
-        <section class="post-footer">
-          <AuthorBio locale={locale} />
-          <ShareButtons locale={locale} title={title} url={canonicalUrl} />
-        </section>
+        {!isPage && (
+          <section class="post-footer">
+            <AuthorBio locale={locale} />
+            <ShareButtons locale={locale} title={title} url={canonicalUrl} />
+          </section>
+        )}
       </Container>
 
       <RelatedPosts slugs={relatedPosts} locale={locale} />
