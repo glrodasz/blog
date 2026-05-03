@@ -16,6 +16,7 @@ const messages = getMessages(locale);
   data-submitting-label={messages.subscribe.submitting}
   data-thanks={messages.subscribe.thanks}
   data-error={messages.subscribe.error}
+  data-locale={locale}
 >
   <label class="sr-only" for="subscribe-email">
     {messages.subscribe.placeholder}
@@ -141,7 +142,10 @@ const messages = getMessages(locale);
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ email: state.input.value.trim() })
+        body: JSON.stringify({
+          email: state.input.value.trim(),
+          locale: state.form.dataset.locale ?? "en"
+        })
       });
       if (!response.ok) throw new Error(`Request failed: ${response.status}`);
       showSuccess(state.form);

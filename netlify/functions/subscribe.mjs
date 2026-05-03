@@ -16,6 +16,13 @@ const parseListIds = (raw) => {
   return ids.length > 0 ? ids : undefined;
 };
 
+const resolveListIds = (locale) => {
+  if (locale === "es") {
+    return parseListIds(process.env.BREVO_LIST_IDS_ES) ?? parseListIds(process.env.BREVO_LIST_IDS);
+  }
+  return parseListIds(process.env.BREVO_LIST_IDS_EN) ?? parseListIds(process.env.BREVO_LIST_IDS);
+};
+
 export default async (req) => {
   if (req.method !== "POST") {
     return json(405, { error: "method_not_allowed" });
@@ -38,11 +45,13 @@ export default async (req) => {
     return json(400, { error: "invalid_email" });
   }
 
+  const locale = typeof payload?.locale === "string" ? payload.locale.trim() : "en";
+
   const body = {
     email,
     updateEnabled: true
   };
-  const listIds = parseListIds(process.env.BREVO_LIST_IDS);
+  const listIds = resolveListIds(locale);
   if (listIds) body.listIds = listIds;
 
   const response = await fetch(BREVO_CONTACTS_ENDPOINT, {
