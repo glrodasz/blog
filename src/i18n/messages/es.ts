@@ -49,6 +49,7 @@ export const messages = {
     avatar: "/authors/guillermo-rodas.svg"
   },
   footer: {
+    creditBy: "por",
     copyright: "Todos los derechos reservados.",
     followTwitter: "Sigue Undefined Shell en Twitter",
     followInstagram: "Sigue Undefined Shell en Instagram",
