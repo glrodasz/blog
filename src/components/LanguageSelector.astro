@@ -31,7 +31,7 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
     onclick="this.closest('.language-selector')?.classList.toggle('active')"
   >
     <img src="/icons/language.svg" alt="" width="20" height="20" />
-    <span class="current-flag">{currentLanguage?.flag}</span>
+    <span class="current-flag">{currentLocale.toUpperCase()}</span>
   </button>
 
   <div class="language-dropdown">
@@ -42,7 +42,6 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
           class="language-option"
           hreflang={language.code}
         >
-          <span class="flag">{language.flag}</span>
           <span class="name">{language.name}</span>
         </a>
       ))
@@ -128,11 +127,13 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
   }
 
   .current-flag {
-    font-size: 1.5em;
+    font-size: 0.9em;
+    font-weight: 600;
   }
 
   .flag {
-    font-size: 1.2em;
+    font-size: 0.9em;
+    font-weight: 600;
   }
 
   .name {
