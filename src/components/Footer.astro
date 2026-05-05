@@ -32,6 +32,9 @@ const today = new Date();
         <span class="copy">
           {messages.site.title} &nbsp;&copy;&nbsp; {today.getFullYear()}
         </span>
+        <span class="copy">
+          Unrefined Shell by <a href="https://guillermorodas.com" target="_blank" rel="noopener noreferrer">Guillermo Rodas</a> &nbsp;&copy;&nbsp; {today.getFullYear()}
+        </span>
       </div>
     </Container>
   </div>
@@ -86,6 +89,15 @@ const today = new Date();
   .copy {
     color: var(--color-black-pearl-300);
     font-size: 0.75em;
+  }
+
+  .copy a {
+    color: var(--color-black-pearl-300);
+    text-decoration: underline;
+  }
+
+  .copy a:hover {
+    color: var(--color-white);
   }
 
   @media (max-width: 640px) {
