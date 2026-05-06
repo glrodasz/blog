@@ -15,6 +15,7 @@ I mean, AI has become something fundamental.
 And I know what some of you are thinking:
 
 > "Oh, what course are you trying to sell us?"
+>
 > "What promotion is he running?"
 
 No. Not at all.
@@ -111,9 +112,13 @@ I have a lot of projects around. Not necessarily abandoned, because "abandoned" 
 But now, when I have a free moment, I can open an instance and say:
 
 > "I have five minutes. Help me move this forward."
+>
 > "Square this part away."
+>
 > "Look at this error."
+>
 > "Propose a structure."
+>
 > "Continue from here."
 
 An hour might pass, a day, two days, or even another weekend. Then I come back and say:
@@ -163,12 +168,19 @@ That I don't forget.
 And then the mental torture begins:
 
 > "Dude, what was it?"
+>
 > "I was thinking about something."
+>
 > "It was important."
+>
 > "I needed to sit down with it."
+>
 > "I needed to write it."
+>
 > "What was it?"
+>
 > "What was it?"
+>
 > "What was it?"
 
 And I almost always manage to get back to the idea, but it's a horrible moment of frustration.

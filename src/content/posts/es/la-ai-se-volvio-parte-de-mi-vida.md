@@ -15,6 +15,7 @@ O sea, la AI se volvió algo fundamental.
 Y yo sé lo que algunos están pensando:
 
 > "Ay, ¿qué curso nos va a vender?"
+>
 > "¿Qué promoción estará haciendo?"
 
 No. Para nada.
@@ -111,9 +112,13 @@ Tengo muchos proyectos por ahí. No necesariamente abandonados, porque "abandona
 Pero ahora, cuando tengo un rato libre, puedo abrir una instancia y decir:
 
 > "Tengo cinco minutos. Ayúdame a avanzar esto."
+>
 > "Cuádreme esta parte."
+>
 > "Revise este error."
+>
 > "Proponga una estructura."
+>
 > "Continúe por acá."
 
 Puede pasar una hora, un día, dos días o incluso otro fin de semana. Luego vuelvo y digo:
@@ -163,12 +168,19 @@ Eso no se me olvida.
 Y ahí empieza la tortura mental:
 
 > "Marica, ¿qué era?"
+>
 > "Yo estaba pensando en algo."
+>
 > "Era importante."
+>
 > "Me tenía que sentar."
+>
 > "Tenía que escribirlo."
+>
 > "¿Qué era?"
+>
 > "¿Qué era?"
+>
 > "¿Qué era?"
 
 Y casi siempre logro volver a la idea, pero es un momento de frustración horrible.
