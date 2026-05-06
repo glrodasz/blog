@@ -3,7 +3,7 @@ title: El ecosistema oculto de JavaScript
 description: "Detrás de JavaScript existe un ecosistema que normalmente pasa desapercibido: los motores que transforman el código en instrucciones, los entornos de ejecución que lo llevan más allá del navegador y las plataformas que lo han convertido en un lenguaje verdaderamente full-stack."
 pubDate: "2026-05-05T00:00:00.000Z"
 tags: Aprende a programar
-heroImage: "/covers/hidden-gears-inside-a-machine.jpg"
+heroImage: "/covers/hidden-mushrooms-inside-a-tree-root.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/the-hidden-javascript-ecosystem"

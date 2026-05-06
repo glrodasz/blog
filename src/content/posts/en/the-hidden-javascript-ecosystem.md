@@ -3,7 +3,7 @@ title: The Hidden JavaScript Ecosystem
 description: "Behind JavaScript lies an ecosystem that normally goes unnoticed: the engines that transform code into instructions, the runtime environments that take it beyond the browser, and the platforms that have made it a truly full-stack language."
 pubDate: "2026-05-05T00:00:00.000Z"
 tags: [Learn to program]
-heroImage: "/covers/hidden-gears-inside-a-machine.jpg"
+heroImage: "/covers/hidden-mushrooms-inside-a-tree-root.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/ecosistema-oculto-de-javascript"
