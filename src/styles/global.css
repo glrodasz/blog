@@ -330,8 +330,8 @@ blockquote {
   background: var(--color-white);
 }
 
-blockquote p {
-  padding: 5px 0;
+blockquote > p {
+  padding: 2px 0;
 }
 
 hr {
