@@ -13,11 +13,11 @@ relatedPosts:
   - how-does-a-programming-language-work
 ---
 
-When people ask me which is the best language for programming, my answer is almost always "it depends." *I really like JavaScript*, but the choice of a language depends on many factors, and one of the most important is the ecosystem that exists around it.
+When people ask me which is the best language for programming, my answer is almost always "it depends." *I really like JavaScript*, but the choice of a language does depend on many factors, and one of the most important is the ecosystem that exists around it.
 
 The ecosystem includes everything that surrounds a language: the community, documentation, testing tools, package and dependency managers, IntelliSense support, and real projects that demonstrate its use in production. All these elements directly influence the development experience, also known as DX.
 
-> 🤿 DX (Developer Experience) is the concept focused on improving the experience of developing software. For example, making writing code fast and comfortable, or being able to automate tasks to validate that your code meets certain quality standards.
+> 🤿 **DX (Developer Experience)**: is the concept focused on improving the experience of developing software. For example, making writing code fast and comfortable, or being able to automate tasks to validate that your code meets certain quality standards.
 
 Part of that ecosystem is made up of components we normally don't worry about. I call this **"the hidden ecosystem"**: fundamental pieces that make JavaScript so versatile and present practically everywhere, such as engines and runtime environments.
 
@@ -42,23 +42,18 @@ V8 is frequently updated to incorporate the latest ECMAScript features and is ea
 > 🐤 **Chromium**: is the open-source project on which Chrome is based. In other words, it's the heart of Chrome without the private and proprietary parts that Google adds. Browsers like Microsoft Edge, Opera, and Brave are also based on Chromium.
 
 ### **SpiderMonkey**
-SpiderMonkey is the engine used by Mozilla Firefox, originally created by Netscape. It uses a base interpreter and multiple levels of *just-in-time* compilation, along with a garbage collector tuned for the browser environment.
-
-It stands out for its strict adherence to the ECMAScript standard and for offering excellent debugging tools.
+SpiderMonkey is the engine used by Mozilla Firefox, originally created by Netscape. It uses a base interpreter and multiple levels of *just-in-time* compilation, along with a garbage collector tuned for the browser environment. It stands out for its strict adherence to the ECMAScript standard and for offering excellent debugging tools.
 
 It can also be embedded in applications that need a complete, standard-conforming JavaScript *runtime environment*. A well-known case was **MongoDB**, a non-relational database engine that used SpiderMonkey to run JavaScript in various internal functionalities, although this use has been reduced over time.
 
 ### **JavaScriptCore**
-JavaScriptCore, also called Nitro or WebKit JavaScript Engine, is the engine used by Safari.
-
-It evolved from the old SquirrelFish engine toward a multi-tier architecture with an optimized *just-in-time* compiler.
+JavaScriptCore, also called Nitro or WebKit JavaScript Engine, is the engine used by Safari. It evolved from the old SquirrelFish engine toward a multi-tier architecture with an optimized *just-in-time* compiler.
 
 Apple has tuned it especially to maximize memory efficiency and low power consumption, with limited-resource devices in mind. It integrates closely with the native iOS and macOS APIs through the JavaScriptCore framework and prioritizes stability and predictable behavior over radical changes.
 
 ### **Chakra**
 Chakra was the engine used by Internet Explorer 9 and later, as well as by Microsoft Edge in its legacy version, Edge 18.
-
-Designed by Microsoft, it offered *just-in-time* compilation and was heavily optimized for Windows operating systems.
+ Designed by Microsoft, it offered *just-in-time* compilation and was heavily optimized for Windows operating systems.
 
 > 🦋 Microsoft Edge migrated to Chromium and started using V8 in 2020. Even so, Chakra continued to be available as ChakraCore, an open-source project aimed at embedded uses, but Microsoft stopped publishing new versions and the availability of its official downloads was withdrawn in 2024.
 
@@ -67,7 +62,7 @@ For many years, JavaScript had a very limited place in web development. Until th
 
 Anyone who wanted to build a complete web application had to face, at least, two different worlds. On one hand, JavaScript in the browser. On the other, any language of the era capable of running on the server, such as PHP, Python, Java, or Ruby. Two languages, two ecosystems, and often two very different ways of solving problems.
 
-That was the dominant scenario for several years, until 2009 when a turning point occurred. At a conference, **Ryan Dahl presented Node.js**, an idea that at the time seemed crazy: running JavaScript not only in the browser, but also on the server.
+That was the dominant scenario for several years, until 2009 when a turning point occurred. At a conference, **Ryan Dahl** presented Node.js, an idea that at the time seemed crazy: running JavaScript not only in the browser, but also on the server.
 
 Node.js thus became the runtime environment that popularized JavaScript on the server side, built on the V8 engine. Suddenly, the language that for years had been considered slow and unsuitable for "serious" tasks was beginning to show it could compete in the big leagues.
 
@@ -85,17 +80,13 @@ For the first time, developers could bet on a single language, deepen their know
 The growth of JavaScript brought with it the emergence of alternative runtime environments to Node.js, designed for modern use cases like serverless applications, *edge computing*, or to improve historical decisions that were difficult to change in Node.js without breaking compatibility.
 
 ### **Deno**
-Deno is a runtime environment created by Ryan Dahl, the same creator of Node.js. It was introduced in 2018 with the intention of correcting some "design mistakes" that Dahl identified in Node.js.
+Deno is a runtime environment created by **Ryan Dahl**, the same creator of Node.js. It was introduced in 2018 with the intention of correcting some "design mistakes" that Dahl identified in Node.js.
 
 > 🦕 In case you haven't noticed yet, **Deno** is an anagram of **Node**, the name associated with Node.js.
 
 It is open-source, written in Rust, and uses the V8 engine. Unlike Node.js, Deno was designed with security as a starting point: by default, it doesn't allow access to the file system, network, or environment variables unless explicit permissions are granted.
 
-Additionally, it includes native support for TypeScript and adopts module importing via URLs or local files, instead of taking *npm* as the required starting point.
-
-Deno also seeks to offer a more integrated experience. It includes tools such as a formatter, linter, documentation server, and test runner, in addition to prioritizing standard web APIs when possible.
-
-Its community is still smaller than Node.js's, but Deno has made significant progress in compatibility with packages and projects from the Node.js ecosystem.[^1]
+Additionally, it includes native support for TypeScript and adopts module importing via URLs or local files, instead of taking *npm* as the required starting point. Deno also seeks to offer a more integrated experience. It includes tools such as a formatter, linter, documentation server, and test runner, in addition to prioritizing standard web APIs when possible. Its community is still smaller than Node.js's, but Deno has made significant progress in compatibility with packages and projects from the Node.js ecosystem.[^1]
 
 A good reason to use Deno is precisely that: it represents a second opportunity to design a modern JavaScript *runtime environment*, learning from more than a decade of experience with Node.js.
 
@@ -113,9 +104,7 @@ Bun's philosophy is to reduce friction: start faster, consume fewer resources, a
 ### **Specialized Runtime Environments**
 In addition to Deno and Bun, there are runtime environments oriented toward specific scenarios.
 
-In *edge computing* and next-generation **serverless** functions, for example, V8 isolates are used instead of traditional Node.js processes.
-
-Platforms like **Cloudflare Workers** allow executing JavaScript code in isolated instances almost instantaneously. This enables having thousands of concurrent functions per server and drastically reducing startup time.
+In *edge computing* and next-generation **serverless** functions, for example, V8 isolates are used instead of traditional Node.js processes. Platforms like **Cloudflare Workers** allow executing JavaScript code in isolated instances almost instantaneously. This enables having thousands of concurrent functions per server and drastically reducing startup time.
 
 In the world of **IoT and embedded devices**, there are also minimalist JavaScript engines like **JerryScript**[^4], designed to run on microcontrollers with very little memory. These engines sacrifice some advanced features but allow running JavaScript scripts on very limited hardware.
 
@@ -129,35 +118,29 @@ After the Node.js revolution, JavaScript continued extending beyond the browser,
 This has revolutionized the way software products are created, allowing the building of native and desktop apps using only JavaScript knowledge and sharing part of the code between platforms.
 
 ### **On Mobile Platforms**
-In 2009, hybrid solutions like **PhoneGap** emerged, allowing *"write once, run anywhere"* using HTML, CSS, and JavaScript to create cross-platform mobile apps.
-
-Basically, PhoneGap packaged a web application inside a native container and exposed JavaScript APIs to access device features, such as the camera or sensors.
+In 2009, hybrid solutions like **PhoneGap** emerged, allowing *"write once, run anywhere"* using HTML, CSS, and JavaScript to create cross-platform mobile apps. Basically, PhoneGap packaged a web application inside a native container and exposed JavaScript APIs to access device features, such as the camera or sensors.
 
 The approach was revolutionary, but it came with performance and UX limitations: the apps were really *WebViews*, not native interfaces, which sometimes translated into less fluidity.
 
-In 2015, Facebook introduced **React Native**. Unlike PhoneGap, although developers write the logic in JavaScript, the interface is rendered using **native views** on each platform.
-
-This means the resulting app uses real iOS and Android components, achieving an appearance and performance closer to those of a pure native app.
+In 2015, Facebook introduced **React Native**. Unlike PhoneGap, although developers write the logic in JavaScript, the interface is rendered using **native views** on each platform. This means the resulting app uses real iOS and Android components, achieving an appearance and performance closer to those of a pure native app.
 
 Many other options continued to emerge, such as **Ionic**, **NativeScript**, and **Progressive Web Apps**, which bring web experiences to mobile directly.
 
 ### **On the Desktop**
 JavaScript also conquered ground through frameworks like **Electron**, launched in 2013 by GitHub.
 
-Electron allows building cross-platform desktop applications for Windows, macOS, and Linux using web technologies, with Chromium for the interface and Node.js for system access.
+Electron allows building cross-platform desktop applications for Windows, macOS, and Linux using web technologies, with Chromium for the interface and Node.js for system access. In practice, Electron enables a web application to be distributed as a desktop application, offering an experience close to native, but built with web technologies.
 
-In practice, Electron enables a web application to be distributed as a desktop application, offering an experience close to native, but built with web technologies.
-
-This approach has had an enormous impact on the industry. Many applications in our daily lives have been built with Electron: **Visual Studio Code, Slack, Discord, WhatsApp Desktop, Notion, Figma**, and **Descript**. Some have migrated, or could migrate in the future, to other technologies, but it's still surprising to see how far JavaScript has been used in desktop applications and in products that compete with native apps. This is the case of Figma, for design, or **Descript**, for video editing: things that before seemed unthinkable outside the native environment.
+This approach has had an enormous impact on the industry. Many applications in our daily lives have been built with Electron: **Visual Studio Code, Slack, Discord, WhatsApp Desktop, Notion, Figma**, and **Descript**. Some have migrated, or could migrate in the future, to other technologies, but it's still surprising to see how far JavaScript has been used in desktop applications and in products that compete with native apps. This is the case of **Figma**, for design, or **Descript**, for video editing: things that before seemed unthinkable outside the native environment.
 
 ## **The Future of the Ecosystem**
 JavaScript has shown us time and again its versatility, perhaps because it was born alongside the web, as we mentioned in the [JavaScript History and Evolution](/posts/javascript-history).
 
 The web helped position it, but JavaScript also had a particular advantage: it advanced slowly. Like a snail. That slowness, combined with its massive adoption, allowed the language to incorporate lessons learned from other ecosystems without disappearing in the process.
 
-If JavaScript has already reached so many corners, then what's left? My prediction is that in a very short time it will also be an important language in the development of Artificial Intelligence applications.
+If JavaScript has already reached so many corners, then what's left? My prediction is that in a very short time it will also be an important language in the development of Artificial Intelligence applications. The community has already started to notice that many natural features of JavaScript, Node.js, and the web such as *Streams*, asynchronous APIs, and event-driven execution, fit very well with this new scenario.
 
-The community has already started to notice that many natural features of JavaScript, Node.js, and the web — such as *Streams*, asynchronous APIs, and event-driven execution — fit very well with this new scenario. If Artificial Intelligence continues to coexist primarily with web products, JavaScript could gain a much more relevant place in the artificial intelligence ecosystem.
+If Artificial Intelligence continues to coexist primarily with web products, JavaScript could gain a much more relevant place in the artificial intelligence ecosystem.
 
 [^1]: Deno is Node-compatible — https://docs.deno.com/runtime/fundamentals/node/
 [^2]: Zig Language — https://ziglang.org/
