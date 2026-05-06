@@ -334,8 +334,8 @@ blockquote p {
   padding: 10px 0;
 }
 
-blockquote > p:empty {
-  display: none;
+blockquote p + p {
+  padding-top: 0;
 }
 
 hr {
