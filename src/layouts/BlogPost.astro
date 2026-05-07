@@ -64,7 +64,25 @@ const tags = rawTags
       tabTitle={tabTitle}
       description={description}
       image={heroImage}
+      imageAlt={title}
+      type={isPage ? "website" : "article"}
+      locale={locale}
     />
+    {!isPage && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": description,
+        "image": heroImage ? new URL(heroImage, Astro.site ?? "https://undefined.sh").href : new URL("/images/undefined-shell-cover.png", Astro.site ?? "https://undefined.sh").href,
+        "datePublished": pubDate.toISOString(),
+        "dateModified": (updatedDate ?? pubDate).toISOString(),
+        "author": { "@type": "Person", "name": "Guillermo Rodas", "url": "https://undefined.sh" },
+        "publisher": { "@type": "Organization", "name": "Undefined Shell", "url": "https://undefined.sh" },
+        "url": canonicalUrl,
+        "inLanguage": locale,
+      })} />
+    )}
   </head>
   <body>
     <Header locale={locale} />
@@ -108,7 +126,7 @@ const tags = rawTags
       {heroImage && (
         <div class="hero-image">
           <Container>
-            <img width={1200} height={510} src={heroImage} alt="" />
+            <img width={1200} height={510} src={heroImage} alt={title} />
           </Container>
         </div>
       )}
