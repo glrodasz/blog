@@ -40,6 +40,11 @@ const href = getTagUrl(tag, locale);
     color: var(--color-white);
   }
 
+  .tag-chip.outline:focus-visible {
+    outline: 2px solid var(--color-aquarius-700);
+    outline-offset: 2px;
+  }
+
   .tag-chip.solid {
     background: var(--color-aquarius-600);
     color: var(--color-white);
@@ -49,5 +54,11 @@ const href = getTagUrl(tag, locale);
   .tag-chip.solid:hover {
     background: var(--color-aquarius-700);
     border-color: var(--color-aquarius-700);
+  }
+
+  .tag-chip.solid:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--color-aquarius-700);
   }
 </style>

@@ -21,6 +21,7 @@ const currentPath = Astro.url.pathname;
 const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
 ---
 
+<a href="#main-content" class="skip-link">{messages.navigation.skipToMain}</a>
 <header id="main-header">
   <Container>
     <nav>
@@ -60,6 +61,23 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
 </header>
 
 <style>
+  .skip-link {
+    position: absolute;
+    top: -9999px;
+    left: 0;
+    z-index: 9999;
+    padding: 0.75em 1.25em;
+    background: var(--color-black-pearl-900);
+    color: var(--color-white);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
   header {
     margin: 0;
     width: 100%;
