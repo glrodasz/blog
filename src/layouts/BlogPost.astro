@@ -47,8 +47,11 @@ const {
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
-const tabTitle = `${title} • ${messages.site.description} • ${messages.site.title} by ${messages.site.author}`;
+const tabTitle = `${title} • ${messages.site.shortDescription} • ${messages.site.title} by ${messages.site.author}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "http://localhost/").href;
+
+const localePrefix = locale === "es" ? "es/" : "";
+const computedImage = heroImage ?? (isPage ? `/og/${localePrefix}about.png` : `/og/${localePrefix}home.png`);
 
 const tags = rawTags
   ? Array.isArray(rawTags)
@@ -63,8 +66,26 @@ const tags = rawTags
       title={title}
       tabTitle={tabTitle}
       description={description}
-      image={heroImage}
+      image={computedImage}
+      imageAlt={title}
+      type={isPage ? "website" : "article"}
+      locale={locale}
     />
+    {!isPage && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": description,
+        "image": new URL(computedImage, Astro.site ?? "https://undefined.sh").href,
+        "datePublished": pubDate.toISOString(),
+        "dateModified": (updatedDate ?? pubDate).toISOString(),
+        "author": { "@type": "Person", "name": "Guillermo Rodas", "url": "https://undefined.sh" },
+        "publisher": { "@type": "Organization", "name": "Undefined Shell", "url": "https://undefined.sh" },
+        "url": canonicalUrl,
+        "inLanguage": locale,
+      })} />
+    )}
   </head>
   <body>
     <Header locale={locale} />
@@ -109,7 +130,7 @@ const tags = rawTags
       {heroImage && (
         <div class="hero-image">
           <Container>
-            <img width={1200} height={510} src={heroImage} alt="" />
+            <img width={1200} height={510} src={heroImage} alt={title} />
           </Container>
         </div>
       )}

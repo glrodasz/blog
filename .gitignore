@@ -1,5 +1,7 @@
 # build output
 dist/
+# generated OG images (created by scripts/generate-og.mjs at build time)
+public/og/
 # generated types
 .astro/
 
