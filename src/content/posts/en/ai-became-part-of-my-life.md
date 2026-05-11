@@ -23,9 +23,9 @@ No. Not at all.
 
 Fortunately, I'm not here to sell you anything. This is about something else entirely.
 
-What I want to tell you is why trying these tools early became so important to me. And this is where a key concept comes in: **early adopters**.
+What I want to tell you is why trying these tools early became so important to me. And this is where a key concept comes in: early adopters.
 
-I've had the fortune — or stubbornness — of genuinely liking to try things out. And many times, when someone would say to me:
+I've had the fortune, or stubbornness, of genuinely liking to try things out. And many times, when someone would say to me:
 
 > "Why would you pay for ChatGPT when you have Copilot for free?"
 
@@ -41,16 +41,16 @@ The question was:
 
 And that's where AI started changing the way I work and live.
 
-## **My Two Big Use Cases**
+## My Two Big Use Cases
 
 I use AI primarily for two things:
 
-1. **Work**
-2. **Everyday life**
+1. Work
+2. Everyday life
 
 And in both cases, the impact has been enormous.
 
-### **AI at Work**
+### AI at Work
 
 At work, I almost never write code from scratch anymore.
 
@@ -62,7 +62,7 @@ And you don't need to be a professional "prompt engineer" or take three certific
 
 You just have to use it.
 
-**Use it.**
+Use it.
 
 Use it and little by little you'll understand what works for you, what doesn't, when to trust it, when to scrutinize it closely, and when to simply say: "No, this is wrong, let's do it differently."
 
@@ -70,21 +70,21 @@ You also need patience.
 
 AI won't necessarily do 100% or 120% of the work for you. But it can do 70%, 80%, or even 90%, depending on the context.
 
-And that remaining 10% or 20% often isn't even "doing it by hand" from scratch. It's more about **massaging the result**: adjusting details, asking for a better version, correcting a misinterpretation, improving the design, writing tests, reviewing edge cases.
+And that remaining 10% or 20% often isn't even "doing it by hand" from scratch. It's more about massaging the result: adjusting details, asking for a better version, correcting a misinterpretation, improving the design, writing tests, reviewing edge cases.
 
 That has become a normal part of my workflow.
 
-I've been doing this for a while now. And just as I know people who are deeply into it — with tons of agents, automations, and very advanced workflows — I don't go to the extreme either.
+I've been doing this for a while now. And just as I know people who are deeply into it, with tons of agents, automations, and very advanced workflows, I don't go to the extreme either.
 
 Because I also have a life.
 
 But I am adapting more and more.
 
-Tools like **Cursor** and **Claude Code** have become central to my programming. I tend to use Cursor for more detailed work — it helps you plan, write, and review code. Claude Code, on the other hand, I use for end-to-end tasks, and depending on the task I review and refine its planning. But at this point both do practically the same thing, so either one — or alternatives like **Codex** — works perfectly.
+Tools like Cursor and Claude Code have become central to my programming. I tend to use Cursor for more detailed work. It helps you plan, write, and review code. Claude Code, on the other hand, I use for complete tasks, and depending on the task I review and refine its planning. But at this point both do practically the same thing, so either one, or alternatives like Codex, works perfectly.
 
 And that, both personally and professionally, is huge.
 
-### **The Contrast Between Personal and Enterprise**
+### The Contrast Between Personal and Enterprise
 
 On a personal level, using these tools is wild.
 
@@ -102,7 +102,7 @@ Using AI on a side project is not the same as using it inside a company with sen
 
 But even with those restrictions, the change is already being felt.
 
-## **AI in Personal Projects**
+## AI in Personal Projects
 
 The second big use case for me is personal life.
 
@@ -130,7 +130,7 @@ And maybe I didn't make enormous progress, but I made progress.
 
 And that matters to me.
 
-Because before, many projects would stall because of the friction of re-entering them — remembering the context, figuring out where I left off, opening the editor, reviewing errors, looking up documentation.
+Because before, many projects would stall because of the friction of reentering them: remembering the context, figuring out where I left off, opening the editor, reviewing errors, looking up documentation.
 
 Now that friction drops significantly.
 
@@ -138,15 +138,15 @@ AI helps me pick things back up.
 
 And sometimes a small step forward is still a step forward.
 
-### **AI as Cognitive Offloading**
+### AI as Cognitive Offloading
 
 But it's not all code.
 
-One of the most important uses for me is **cognitive offloading**.
+One of the most important uses for me is cognitive offloading.
 
-I've always been a big note-taking app person. Right now I'm using one I highly recommend: **Voicenotes**.
+I've always been a big person for note taking apps. Right now I'm using one I highly recommend: Voicenotes.
 
-I use it to dump everything I'm thinking: ideas, to-do lists, personal journaling, reflections, quick notes, pending things. Voicenotes lets you record voice notes, transcribe them, and then interact with those notes using AI.
+I use it to dump everything I'm thinking: ideas, task lists, personal journaling, reflections, quick notes, pending things. Voicenotes lets you record voice notes, transcribe them, and then interact with those notes using AI.
 
 And that helps me not stress out.
 
@@ -192,7 +192,7 @@ So I prefer to offload it quickly: record it, jot it down, leave it somewhere.
 
 For me, that cognitive offloading is essential.
 
-### **The Pending Task That Keeps Circling**
+### The Pending Task That Keeps Circling
 
 I don't know if something like this has happened to you.
 
@@ -208,7 +208,7 @@ In a free moment I think again:
 
 Tuesday arrives.
 
-I'm heading into a mentoring session — where I'm the mentor — and suddenly, while talking with my mentee about something related to my friend, I remember I still haven't messaged him:
+I'm heading into a mentoring session, where I'm the mentor, and suddenly, while talking with my mentee about something related to my friend, I remember I still haven't messaged him:
 
 > "Sorry, give me a moment. I need to write to him right now, because I've been carrying this intention since Sunday."
 
@@ -220,7 +220,7 @@ It's the mental load of remembering that I have a pending task.
 
 And that's where AI, voice notes, transcriptions, reminders, and tools that organize my thoughts became indispensable.
 
-## **There's No Going Back**
+## There's No Going Back
 
 For me, AI stopped being a curiosity.
 
@@ -248,4 +248,4 @@ And once you get used to that, going back feels impossible.
 
 Without AI, I can no longer work or live the way I used to.
 
-**There's no way.**
+There's no way.
