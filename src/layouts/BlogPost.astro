@@ -47,7 +47,7 @@ const {
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
-const tabTitle = `${title} • ${messages.site.description} • ${messages.site.title} by ${messages.site.author}`;
+const tabTitle = `${title} • ${messages.site.shortDescription} • ${messages.site.title} by ${messages.site.author}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "http://localhost/").href;
 
 const tags = rawTags
