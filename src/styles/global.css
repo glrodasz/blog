@@ -334,7 +334,7 @@ blockquote p {
   padding: 10px 0;
 }
 
-blockquote p {
+.prose blockquote p {
   margin: 0;
 }
 
