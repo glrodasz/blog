@@ -61,6 +61,7 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
     <BaseHead
       title={`${pageTitle} — ${messages.site.title}`}
       description={messages.site.description}
+      image={`/og/tags/${tagToSlug(tagLabel)}.png`}
       locale={locale}
     />
   </head>

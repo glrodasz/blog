@@ -50,6 +50,9 @@ const messages = getMessages(locale);
 const tabTitle = `${title} • ${messages.site.shortDescription} • ${messages.site.title} by ${messages.site.author}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "http://localhost/").href;
 
+const localePrefix = locale === "es" ? "es/" : "";
+const computedImage = heroImage ?? (isPage ? `/og/${localePrefix}about.png` : `/og/${localePrefix}home.png`);
+
 const tags = rawTags
   ? Array.isArray(rawTags)
     ? rawTags
@@ -63,7 +66,7 @@ const tags = rawTags
       title={title}
       tabTitle={tabTitle}
       description={description}
-      image={heroImage}
+      image={computedImage}
       imageAlt={title}
       type={isPage ? "website" : "article"}
       locale={locale}
@@ -74,7 +77,7 @@ const tags = rawTags
         "@type": "BlogPosting",
         "headline": title,
         "description": description,
-        "image": heroImage ? new URL(heroImage, Astro.site ?? "https://undefined.sh").href : new URL("/images/undefined-shell-cover.png", Astro.site ?? "https://undefined.sh").href,
+        "image": new URL(computedImage, Astro.site ?? "https://undefined.sh").href,
         "datePublished": pubDate.toISOString(),
         "dateModified": (updatedDate ?? pubDate).toISOString(),
         "author": { "@type": "Person", "name": "Guillermo Rodas", "url": "https://undefined.sh" },
