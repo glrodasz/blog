@@ -480,6 +480,7 @@ sup {
   border: none;
   padding: 0;
   cursor: pointer;
+  font-size: inherit;
   color: var(--color-black-pearl-300);
   margin: 0 0.2em;
   transition:

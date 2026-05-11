@@ -200,7 +200,7 @@ const tags = rawTags
         copyBtn.setAttribute("type", "button");
         copyBtn.setAttribute("aria-label", `${copyLinkLabel}: "${headingText}"`);
         copyBtn.innerHTML = `
-          <svg aria-hidden="true" width="0.6em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg aria-hidden="true" width="0.75em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             ${linkIconData.map(([_, attrs]) => `<path d="${attrs.d}" />`).join("")}
           </svg>
         `;
