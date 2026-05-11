@@ -6,7 +6,7 @@
     "format": "prettier --write .",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build && cp _redirects dist/_redirects",
+    "build": "astro check && node scripts/generate-og.mjs && astro build && cp _redirects dist/_redirects",
     "preview": "astro preview",
     "astro": "astro"
   },
