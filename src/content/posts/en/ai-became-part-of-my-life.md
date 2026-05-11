@@ -1,6 +1,6 @@
 ---
 title: "AI Became Part of My Life"
-pubDate: "2026-05-06T00:00:00.000Z"
+pubDate: "2026-05-11T00:00:00.000Z"
 tags: Thoughts
 description: "I have a confession to make: there's no way to live my life without AI anymore. How artificial intelligence changed the way I work, organize my thoughts, and move personal projects forward."
 heroImage: "/covers/close-up-of-a-robotic-hand-over-human-hand.jpg"

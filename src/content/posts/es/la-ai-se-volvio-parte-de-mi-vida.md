@@ -1,6 +1,6 @@
 ---
 title: "La AI se volvió parte de mi vida"
-pubDate: "2026-05-06T00:00:00.000Z"
+pubDate: "2026-05-11T00:00:00.000Z"
 tags: Pensamientos
 description: "Hay algo que les tengo que confesar: ya no hay forma de vivir mi vida sin AI. Cómo la inteligencia artificial cambió mi forma de trabajar, organizar mis pensamientos y avanzar proyectos personales."
 heroImage: "/covers/close-up-of-a-robotic-hand-over-human-hand.jpg"
