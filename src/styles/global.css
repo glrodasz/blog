@@ -334,6 +334,10 @@ blockquote p {
   padding: 10px 0;
 }
 
+.prose blockquote p {
+  margin: 0;
+}
+
 hr {
   border: none;
   border-top: 1px solid rgb(var(--gray-light));
