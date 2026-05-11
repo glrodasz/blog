@@ -117,6 +117,18 @@ const tags = getPostTags(post);
     text-decoration: underline;
   }
 
+  .title a:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .read-link:focus-visible {
+    outline: 2px solid var(--color-aquarius-100);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   @media (max-width: 920px) {
     .inner {
       grid-template-columns: 1fr;

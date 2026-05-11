@@ -44,6 +44,12 @@ const href = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
     color: var(--color-aquarius-700);
   }
 
+  .back-link:focus-visible {
+    outline: 2px solid var(--color-aquarius-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   .back-link svg {
     flex-shrink: 0;
   }

@@ -12,12 +12,15 @@ export const messages = {
     minReadCard: "min",
     backToHome: "Volver al inicio",
     share: "Comparte",
-    sharePrefix: "En"
+    sharePrefix: "En",
+    copyHeadingLink: "Copiar enlace a sección"
   },
   navigation: {
     home: "Inicio",
     about: "Acerca",
-    subscribe: "Suscribirse"
+    subscribe: "Suscribirse",
+    skipToMain: "Saltar al contenido principal",
+    selectLanguage: "Seleccionar idioma"
   },
   home: {
     readArticle: "Leer artículo",
