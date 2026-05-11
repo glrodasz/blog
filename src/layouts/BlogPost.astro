@@ -89,7 +89,7 @@ const tags = rawTags
   </head>
   <body>
     <Header locale={locale} />
-    <main class="article-page">
+    <main id="main-content" class="article-page" tabindex="-1">
       <Container>
         <div class="post-head">
           <BackLink />
@@ -106,12 +106,13 @@ const tags = rawTags
                 <span
                   class="last-updated-on"
                   tabindex="0"
-                  role="button"
+                  role="note"
                   aria-label={messages.blog.updatedLabel}
+                  aria-describedby="last-updated-date"
                 >
                   ({messages.blog.updatedLabel}
                   <Info class="last-updated-icon" aria-hidden="true" />)
-                  <span class="last-updated-tooltip" role="tooltip">
+                  <span class="last-updated-tooltip" role="tooltip" id="last-updated-date">
                     <FormattedDate date={updatedDate} locale={locale} />
                   </span>
                 </span>
@@ -160,7 +161,7 @@ const tags = rawTags
     </main>
     <Footer locale={locale} />
     <SimpleAnalytics />
-    <script define:vars={{ linkIconPaths: JSON.stringify(linkIconPaths) }}>
+    <script define:vars={{ linkIconPaths: JSON.stringify(linkIconPaths), copyLinkLabel: messages.blog.copyHeadingLink }}>
       const linkIconData = JSON.parse(linkIconPaths);
       const headings = Array.from(
         document.querySelectorAll(
@@ -210,32 +211,27 @@ const tags = rawTags
 
         const headingText = heading.textContent?.trim() ?? "section";
         heading.dataset.shareableHeading = "true";
-        heading.tabIndex = 0;
         heading.classList.add("shareable-heading");
+        // Pin the heading's accessible name to its text content so that the
+        // button appended below is excluded from heading-navigation announcements.
+        heading.setAttribute("aria-label", headingText);
 
-        const linkIcon = document.createElement("span");
-        linkIcon.className = "heading-link-icon";
-        linkIcon.setAttribute("aria-hidden", "true");
-        linkIcon.innerHTML = `
-          <svg width="0.6em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        const copyBtn = document.createElement("button");
+        copyBtn.className = "heading-copy-btn";
+        copyBtn.setAttribute("type", "button");
+        copyBtn.setAttribute("aria-label", `${copyLinkLabel}: "${headingText}"`);
+        copyBtn.innerHTML = `
+          <svg aria-hidden="true" width="0.75em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             ${linkIconData.map(([_, attrs]) => `<path d="${attrs.d}" />`).join("")}
           </svg>
         `;
 
-        const copyHandler = (event) => {
+        copyBtn.addEventListener("click", (event) => {
           event.preventDefault();
           handleCopy(heading);
-        };
-
-        heading.addEventListener("click", copyHandler);
-        heading.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            handleCopy(heading);
-          }
         });
 
-        heading.appendChild(linkIcon);
+        heading.appendChild(copyBtn);
       });
     </script>
     <style>

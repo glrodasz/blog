@@ -39,7 +39,7 @@ const [featured, ...rest] = posts;
   </head>
   <body>
     <Header locale={locale} />
-    <main class="home">
+    <main id="main-content" class="home" tabindex="-1">
       {featured && <FeaturedHero post={featured} locale={locale} />}
       <section class="filter-bar">
         <Container>

@@ -90,6 +90,12 @@ const messages = getMessages(locale);
     background: var(--color-aquarius-700);
   }
 
+  .cta:focus-visible {
+    outline: 2px solid var(--color-white);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--color-aquarius-700);
+  }
+
   @media (max-width: 768px) {
     .inner {
       flex-direction: column;

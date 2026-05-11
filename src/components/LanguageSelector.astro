@@ -5,6 +5,7 @@ import {
   LANGUAGE_CONFIG,
   LOCALES,
 } from "../i18n/config";
+import { getMessages } from "../i18n";
 
 type Props = {
   currentLocale: Locale;
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const { currentLocale, currentPath } = Astro.props;
+const messages = getMessages(currentLocale);
 
 const languages = LOCALES.map((code) => ({
   code,
@@ -19,22 +21,21 @@ const languages = LOCALES.map((code) => ({
   flag: LANGUAGE_CONFIG[code].flag,
 }));
 
-const currentLanguage = languages.find((lang) => lang.code === currentLocale);
 const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
 ---
 
 <div class="language-selector">
   <button
     class="language-button"
-    aria-label="Select language"
+    aria-label={messages.navigation.selectLanguage}
     aria-expanded="false"
-    onclick="this.closest('.language-selector')?.classList.toggle('active')"
+    aria-controls="language-dropdown"
   >
     <img src="/icons/language.svg" alt="" width="20" height="20" />
     <span class="current-flag">{currentLocale.toUpperCase()}</span>
   </button>
 
-  <div class="language-dropdown">
+  <div class="language-dropdown" id="language-dropdown">
     {
       otherLanguages.map((language) => (
         <a
@@ -74,7 +75,7 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
     background-color: rgba(var(--black), 5%);
   }
 
-  .language-button:focus {
+  .language-button:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
@@ -102,6 +103,12 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
     transform: translateY(0);
   }
 
+  .language-selector.active .language-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
   .language-option {
     display: flex;
     align-items: center;
@@ -115,6 +122,12 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
   }
 
   .language-option:hover {
+    background-color: rgba(var(--black), 5%);
+  }
+
+  .language-option:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -2px;
     background-color: rgba(var(--black), 5%);
   }
 
@@ -141,7 +154,6 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
     font-weight: 500;
   }
 
-  /* Mobile: Show dropdown on click instead of hover */
   @media (max-width: 768px) {
     .language-selector:hover .language-dropdown {
       opacity: 0;
@@ -155,7 +167,6 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
       transform: translateY(0);
     }
 
-    /* Hide language icon on mobile, only show flag */
     .language-button img {
       display: none;
     }
@@ -163,10 +174,63 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLocale);
 </style>
 
 <script>
-  document.addEventListener("click", (e) => {
-    const languageSelector = document.querySelector(".language-selector");
-    if (!languageSelector?.contains(e.target as Node)) {
-      languageSelector?.classList.remove("active");
+  document.addEventListener("DOMContentLoaded", () => {
+    const selector = document.querySelector<HTMLElement>(".language-selector");
+    const button = selector?.querySelector<HTMLElement>(".language-button");
+    const dropdown = document.getElementById("language-dropdown");
+    if (!selector || !button || !dropdown) return;
+
+    const sel = selector;
+    const btn = button;
+
+    const options = Array.from(dropdown.querySelectorAll<HTMLElement>(".language-option"));
+
+    function open() {
+      sel.classList.add("active");
+      btn.setAttribute("aria-expanded", "true");
+      const first = options[0];
+      if (first) first.focus();
     }
+
+    function close(returnFocus = true) {
+      sel.classList.remove("active");
+      btn.setAttribute("aria-expanded", "false");
+      if (returnFocus) btn.focus();
+    }
+
+    function isOpen() {
+      return sel.classList.contains("active");
+    }
+
+    btn.addEventListener("click", () => {
+      isOpen() ? close(false) : open();
+    });
+
+    btn.addEventListener("keydown", (ev) => {
+      const e = ev as KeyboardEvent;
+      if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+        e.preventDefault();
+        if (!isOpen()) open();
+      }
+      if (e.key === "Escape") close();
+    });
+
+    dropdown.addEventListener("keydown", (ev) => {
+      const e = ev as KeyboardEvent;
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+      }
+    });
+
+    // Close when focus leaves the selector entirely (Tab past last option)
+    sel.addEventListener("focusout", (ev) => {
+      const e = ev as FocusEvent;
+      if (!sel.contains(e.relatedTarget as Node)) close(false);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!sel.contains(e.target as Node)) close(false);
+    });
   });
 </script>
