@@ -53,7 +53,7 @@ const messages = getMessages(locale);
     font-size: 0.95rem;
     font-weight: 700;
     text-decoration: none;
-    color: var(--color-black-pearl-700);
+    color: var(--color-text-default);
     background: transparent;
     border: none;
     font-family: inherit;
@@ -63,8 +63,8 @@ const messages = getMessages(locale);
   }
 
   .tag-tab:hover {
-    background: var(--color-aquarius-100);
-    color: var(--color-aquarius-700);
+    background: var(--color-accent-subtle);
+    color: var(--color-accent-fg);
   }
 
   .tag-tab:focus-visible {
@@ -73,7 +73,7 @@ const messages = getMessages(locale);
   }
 
   .tag-tab.active {
-    background: var(--color-black-pearl-900);
+    background: var(--color-text-strong);
     color: var(--color-white);
   }
 
@@ -100,7 +100,7 @@ const messages = getMessages(locale);
     .tag-tab {
       flex: 0 0 auto;
       border-radius: var(--radius-chip);
-      border: 1px solid var(--color-black-pearl-50);
+      border: 1px solid var(--color-border-default);
     }
 
     .tag-tab.active {
