@@ -42,6 +42,20 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="theme-color" content="#ffffff" />
 
+<!-- Anti-flash: apply stored/preferred theme before first paint -->
+<script is:inline>
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme = stored || (prefersDark ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", theme === "dark" ? "#1b262c" : "#ffffff");
+    } catch (_) {}
+  })();
+</script>
+
 <meta name="generator" content={Astro.generator} />
 
 <!-- Brand / heading font (body uses system UI stack in global.css) -->

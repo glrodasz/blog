@@ -39,14 +39,15 @@ const today = new Date();
 
 <style>
   footer {
-    background: var(--color-black-pearl-900);
-    color: var(--color-white);
+    background: var(--color-bg-inverse);
+    color: var(--color-text-on-inverse);
+    border-top: 1px solid var(--color-border-default);
     margin-top: 0;
   }
 
   .subscribe-band {
     padding: 2.5em 0;
-    background: var(--color-black-pearl-800);
+    background: var(--color-bg-inverse-raised);
   }
 
   .subscribe-inner {
@@ -84,17 +85,17 @@ const today = new Date();
   }
 
   .copy {
-    color: var(--color-black-pearl-300);
+    color: var(--color-text-on-inverse-muted);
     font-size: 0.75em;
   }
 
   .copy a {
-    color: var(--color-black-pearl-300);
+    color: var(--color-text-on-inverse-muted);
     text-decoration: underline;
   }
 
   .copy a:hover {
-    color: var(--color-white);
+    color: var(--color-text-on-inverse);
   }
 
   @media (max-width: 640px) {

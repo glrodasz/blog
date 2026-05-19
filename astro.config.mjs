@@ -26,7 +26,11 @@ export default defineConfig({
   },
   markdown: {
     shikiConfig: {
-      theme: "catppuccin-frappe",
+      themes: {
+        light: "github-light",
+        dark: "catppuccin-frappe",
+      },
+      defaultColor: "light",
     },
   },
   redirects: await getRedirects(),

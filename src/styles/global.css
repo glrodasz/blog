@@ -5,6 +5,7 @@
  */
 
 :root {
+  /* ── Primitive tokens ─────────────────────────────────────────────────── */
   --color-white: #fff;
 
   --color-black-pearl-50: #e4ebee;
@@ -14,6 +15,7 @@
   --color-black-pearl-700: #3c5562;
   --color-black-pearl-800: #2c3d47;
   --color-black-pearl-900: #1b262c;
+  --color-black-pearl-950: #0f1c22;
 
   --color-aquarius-50: #e2f5f7;
   --color-aquarius-100: #c5eaf0;
@@ -23,6 +25,34 @@
 
   --color-morrocan-blue-100: #b5dbf5;
 
+  /* ── Semantic tokens — light mode defaults ────────────────────────────── */
+  --color-bg-default: var(--color-black-pearl-50);
+  --color-bg-surface: var(--color-white);
+  --color-bg-subtle: var(--color-aquarius-50);
+  --color-bg-inset: var(--color-aquarius-100);
+
+  --color-text-default: var(--color-black-pearl-700);
+  --color-text-strong: var(--color-black-pearl-900);
+  --color-text-muted: var(--color-black-pearl-400);
+  --color-text-subtle: var(--color-black-pearl-300);
+
+  --color-border-default: var(--color-black-pearl-100);
+  --color-border-muted: var(--color-black-pearl-50);
+
+  --color-accent-fg: var(--color-aquarius-700);
+  --color-accent-emphasis: var(--color-aquarius-600);
+  --color-accent-hover: var(--color-aquarius-700);
+  --color-accent-subtle: var(--color-aquarius-100);
+
+  --color-bg-inverse: var(--color-black-pearl-900);
+  --color-bg-inverse-raised: var(--color-black-pearl-800);
+  --color-text-on-inverse: var(--color-white);
+  --color-text-on-inverse-muted: var(--color-black-pearl-300);
+
+  --color-header-bg: #ffffff;
+  --color-header-bg-scrolled: rgba(255, 255, 255, 0.92);
+
+  /* ── Legacy tokens (kept for component compatibility) ─────────────────── */
   --accent: var(--color-aquarius-600);
   --accent-dark: var(--color-aquarius-700);
   --black: 15, 18, 25;
@@ -39,6 +69,45 @@
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji";
   --font-title: "Sora", var(--font-body);
+
+  color-scheme: light;
+}
+
+/* ── Dark mode overrides ────────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --color-bg-default: var(--color-black-pearl-900);
+  --color-bg-surface: var(--color-black-pearl-800);
+  --color-bg-subtle: var(--color-aquarius-900);
+  --color-bg-inset: var(--color-aquarius-900);
+
+  --color-text-default: var(--color-black-pearl-100);
+  --color-text-strong: var(--color-black-pearl-50);
+  --color-text-muted: var(--color-black-pearl-400);
+  --color-text-subtle: var(--color-black-pearl-300);
+
+  --color-border-default: var(--color-black-pearl-700);
+  --color-border-muted: var(--color-black-pearl-800);
+
+  --color-accent-fg: var(--color-aquarius-600);
+  --color-accent-emphasis: var(--color-aquarius-600);
+  --color-accent-hover: var(--color-aquarius-700);
+  --color-accent-subtle: var(--color-aquarius-900);
+
+  --color-bg-inverse: var(--color-black-pearl-950);
+  --color-bg-inverse-raised: var(--color-black-pearl-800);
+  --color-text-on-inverse: var(--color-white);
+  --color-text-on-inverse-muted: var(--color-black-pearl-400);
+
+  --color-header-bg: var(--color-black-pearl-800);
+  --color-header-bg-scrolled: rgba(44, 61, 71, 0.92);
+
+  --black: 255, 255, 255;
+  --gray: 0, 0, 0;
+  --gray-light: 44, 61, 71;
+  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+    0 6px 20px rgba(0, 0, 0, 0.25), 0 14px 28px rgba(0, 0, 0, 0.2);
+
+  color-scheme: dark;
 }
 
 html {
@@ -66,10 +135,10 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
-  background: var(--color-black-pearl-50);
+  background: var(--color-bg-default);
   word-wrap: break-word;
   overflow-wrap: break-word;
-  color: var(--color-black-pearl-700);
+  color: var(--color-text-default);
   font-size: 20px;
   line-height: 1.8rem;
 }
@@ -97,7 +166,7 @@ h5,
 h6 {
   font-family: var(--font-title);
   margin: 1rem 0 0.5rem 0;
-  color: var(--color-black-pearl-900);
+  color: var(--color-text-strong);
   line-height: 0.85;
   text-wrap: balance;
 }
@@ -239,13 +308,13 @@ li {
   width: 99%;
   height: 85%;
   transform: rotate(-1deg);
-  background-color: var(--color-aquarius-100);
+  background-color: var(--color-bg-inset);
   z-index: -1;
   border-radius: 20px;
 }
 
 blockquote:has(sup a:target) {
-  background-color: var(--color-aquarius-100);
+  background-color: var(--color-bg-inset);
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -261,7 +330,7 @@ p:has(sup a:target)::before {
   width: 99%;
   height: 85%;
   transform: rotate(-1deg);
-  background-color: var(--color-aquarius-100);
+  background-color: var(--color-bg-inset);
   z-index: -1;
   border-radius: 20px;
 }
@@ -297,7 +366,7 @@ img+em {
   text-align: center;
   display: block;
   margin: 0 auto;
-  color: var(--color-black-pearl-400);
+  color: var(--color-text-muted);
   margin-bottom: 2em;
   line-height: 1.2;
   text-wrap: balance;
@@ -305,8 +374,8 @@ img+em {
 
 code {
   padding: 1px 4px;
-  background-color: var(--color-aquarius-100);
-  border: 1px solid var(--color-aquarius-600);
+  background-color: var(--color-bg-inset);
+  border: 1px solid var(--color-accent-emphasis);
   border-radius: 4px;
 }
 
@@ -327,7 +396,7 @@ blockquote {
   border-left: 4px solid var(--accent);
   padding: 0 0 0 20px;
   margin: 0px;
-  background: var(--color-white);
+  background: var(--color-bg-surface);
 }
 
 blockquote p {
@@ -340,7 +409,7 @@ blockquote p {
 
 hr {
   border: none;
-  border-top: 1px solid rgb(var(--gray-light));
+  border-top: 1px solid var(--color-border-default);
 }
 
 time {
@@ -354,7 +423,7 @@ sup {
 
 ::marker {
   font-weight: bolder;
-  color: var(--color-aquarius-700);
+  color: var(--color-accent-hover);
 }
 
 :focus-visible {
@@ -434,7 +503,7 @@ sup {
 }
 
 .page-section.on-band {
-  background: var(--color-aquarius-100);
+  background: var(--color-bg-subtle);
 }
 
 @media (max-width: 920px) {
@@ -485,7 +554,7 @@ sup {
   padding: 0;
   cursor: pointer;
   font-size: inherit;
-  color: var(--color-black-pearl-300);
+  color: var(--color-text-subtle);
   margin: 0 0.2em;
   transition:
     opacity 0.2s ease-in-out,
@@ -525,4 +594,11 @@ sup {
   .shareable-heading.copied .heading-copy-btn {
     opacity: 1 !important;
   }
+}
+
+/* ── Code block theme switching ────────────────────────────────────────── */
+[data-theme="dark"] .astro-code,
+[data-theme="dark"] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
 }
