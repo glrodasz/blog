@@ -77,6 +77,10 @@ const messages = getMessages(locale);
     color: var(--color-white);
   }
 
+  :global([data-theme="dark"]) .tag-tab.active {
+    color: var(--color-bg-default);
+  }
+
   @media (max-width: 640px) {
     .tag-filter-scroll {
       overflow-x: auto;
