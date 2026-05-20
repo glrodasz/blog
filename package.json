@@ -8,7 +8,9 @@
     "start": "astro dev",
     "build": "astro check && node scripts/generate-og.mjs && astro build && cp _redirects dist/_redirects",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -23,6 +25,7 @@
     "typescript": "^5.4.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0"
   },
