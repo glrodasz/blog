@@ -143,6 +143,18 @@ body {
   line-height: 1.8rem;
 }
 
+body.footer-visible {
+  background: var(--color-bg-inverse);
+}
+
+body.footer-visible::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg-default);
+  z-index: -1;
+}
+
 main {
   width: 100%;
   max-width: 980px;
