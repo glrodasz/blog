@@ -99,14 +99,14 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
 
 <script>
   const initScrollBackground = () => {
-    const root = document.documentElement;
+    const body = document.body;
 
     const footer = document.querySelector("footer");
     if (footer) {
       const footerObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            root.classList.toggle("footer-visible", entry.isIntersecting);
+            body.classList.toggle("footer-visible", entry.isIntersecting);
           });
         },
         {
@@ -120,7 +120,7 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
     const topThreshold = () => window.innerHeight * 0.1;
     let ticking = false;
     const updateAtTop = () => {
-      root.classList.toggle("at-top", window.scrollY < topThreshold());
+      body.classList.toggle("at-top", window.scrollY < topThreshold());
       ticking = false;
     };
     window.addEventListener(
