@@ -120,8 +120,12 @@ html {
   transition: background-color 0.25s ease;
 }
 
+html.at-top {
+  background: var(--color-header-bg);
+}
+
 html.footer-visible {
-  background: var(--color-bg-inverse);
+  background: var(--color-bg-inverse-raised);
 }
 
 html,
