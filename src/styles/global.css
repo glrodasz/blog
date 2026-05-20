@@ -152,7 +152,8 @@ body.footer-visible {
   background: var(--color-bg-inverse-raised);
 }
 
-body::after {
+body.at-top::before,
+body.footer-visible::before {
   content: "";
   position: absolute;
   inset: 0;
