@@ -105,11 +105,10 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            document.body.classList.add("footer-visible");
-          } else {
-            document.body.classList.remove("footer-visible");
-          }
+          document.documentElement.classList.toggle(
+            "footer-visible",
+            entry.isIntersecting
+          );
         });
       },
       {
