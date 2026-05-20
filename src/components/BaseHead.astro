@@ -98,7 +98,7 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
 <meta property="twitter:image:alt" content={imageAlt} />
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  const initScrollBackground = () => {
     const root = document.documentElement;
 
     const footer = document.querySelector("footer");
@@ -134,5 +134,11 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
       { passive: true }
     );
     updateAtTop();
-  });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initScrollBackground);
+  } else {
+    initScrollBackground();
+  }
 </script>
