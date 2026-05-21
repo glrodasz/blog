@@ -149,10 +149,9 @@ body.at-top {
 }
 
 body.footer-visible {
-  background: var(--color-bg-inverse-raised);
+  background: var(--color-bg-inverse);
 }
 
-body.at-top::before,
 body.footer-visible::before {
   content: "";
   position: absolute;
