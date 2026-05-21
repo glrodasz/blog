@@ -17,7 +17,6 @@ const { currentLocale, currentPath } = Astro.props;
 const messages = getMessages(currentLocale);
 
 const otherLocale = LOCALES.find((code) => code !== currentLocale)!;
-const currentLanguage = LANGUAGE_CONFIG[currentLocale];
 const otherLanguage = LANGUAGE_CONFIG[otherLocale];
 const switchHref = switchLocalePath(currentPath, otherLocale);
 const switchLabel = messages.navigation.switchToLanguage.replace(
@@ -31,11 +30,12 @@ const switchLabel = messages.navigation.switchToLanguage.replace(
   class="language-toggle"
   hreflang={otherLocale}
   lang={otherLocale}
+  data-locale={otherLocale}
   aria-label={switchLabel}
   title={switchLabel}
 >
   <LanguageIcon />
-  <span class="language-label">{currentLanguage.name}</span>
+  <span class="language-label">{otherLanguage.name}</span>
 </a>
 
 <style>
@@ -71,3 +71,23 @@ const switchLabel = messages.navigation.switchToLanguage.replace(
     letter-spacing: 0.02em;
   }
 </style>
+
+<script>
+  import { LOCALE_STORAGE_KEY } from "../i18n/config";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector<HTMLAnchorElement>(".language-toggle");
+    if (!toggle) return;
+
+    toggle.addEventListener("mousedown", () => {
+      const locale = toggle.dataset.locale;
+      if (!locale) return;
+
+      try {
+        localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+      } catch {
+        // ignore storage failures
+      }
+    });
+  });
+</script>

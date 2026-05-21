@@ -57,7 +57,7 @@ const messages = getMessages(locale);
     data-light={messages.theme.light}
     data-dark={messages.theme.dark}
   >
-    {messages.theme.light}
+    {messages.theme.dark}
   </span>
 </button>
 
@@ -114,43 +114,11 @@ const messages = getMessages(locale);
 </style>
 
 <script>
-  function updateThemeLabels() {
-    const isDark =
-      document.documentElement.getAttribute("data-theme") === "dark";
-    document.querySelectorAll<HTMLSpanElement>(".theme-label").forEach((el) => {
-      const light = el.dataset.light ?? "Light";
-      const dark = el.dataset.dark ?? "Dark";
-      el.textContent = isDark ? dark : light;
-    });
+  import { initThemeToggle } from "../scripts/themeToggle.ts";
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initThemeToggle);
+  } else {
+    initThemeToggle();
   }
-
-  function setupThemeToggle() {
-    updateThemeLabels();
-
-    document
-      .querySelectorAll<HTMLButtonElement>(".theme-toggle")
-      .forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const next =
-            document.documentElement.getAttribute("data-theme") === "dark"
-              ? "light"
-              : "dark";
-          document.documentElement.setAttribute("data-theme", next);
-          const meta = document.querySelector<HTMLMetaElement>(
-            'meta[name="theme-color"]'
-          );
-          if (meta)
-            meta.setAttribute(
-              "content",
-              next === "dark" ? "#1b262c" : "#ffffff"
-            );
-          try {
-            localStorage.setItem("theme", next);
-          } catch (_) {}
-          updateThemeLabels();
-        });
-      });
-  }
-
-  document.addEventListener("DOMContentLoaded", setupThemeToggle);
 </script>

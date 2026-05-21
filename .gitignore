@@ -2,6 +2,7 @@
 dist/
 # generated OG images (created by scripts/generate-og.mjs at build time)
 public/og/
+public/locale-redirect.js
 # generated types
 .astro/
 

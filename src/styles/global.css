@@ -155,7 +155,7 @@ body.footer-visible {
 }
 
 body.at-top::before,
-body.footer-visible::before {
+body.footer-bg-layer::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -622,4 +622,78 @@ sup {
 [data-theme="dark"] .astro-code span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
+}
+
+/* ── Locale redirect gate (skeleton + fade-in) ─────────────────────────── */
+html[data-locale-pending] body {
+  opacity: 0;
+}
+
+html[data-locale-pending]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-bg-default);
+  background-image:
+    linear-gradient(
+      var(--color-bg-surface),
+      var(--color-bg-surface)
+    ),
+    linear-gradient(
+      var(--color-bg-surface),
+      var(--color-bg-surface)
+    ),
+    linear-gradient(
+      var(--color-bg-surface),
+      var(--color-bg-surface)
+    ),
+    linear-gradient(
+      var(--color-bg-surface),
+      var(--color-bg-surface)
+    ),
+    linear-gradient(
+      var(--color-bg-surface),
+      var(--color-bg-surface)
+    );
+  background-size:
+    min(92%, 720px) 56px,
+    min(88%, 680px) 220px,
+    min(44%, 340px) 180px,
+    min(44%, 340px) 180px,
+    min(44%, 340px) 180px;
+  background-position:
+    center 24px,
+    center 104px,
+    calc(50% - min(11%, 85px)) 360px,
+    center 360px,
+    calc(50% + min(11%, 85px)) 360px;
+  background-repeat: no-repeat;
+  animation: locale-skeleton-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes locale-skeleton-shimmer {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(0.97);
+  }
+}
+
+html[data-locale-ready] body {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-locale-pending]::before {
+    animation: none;
+  }
+
+  html[data-locale-ready] body {
+    transition: none;
+  }
 }

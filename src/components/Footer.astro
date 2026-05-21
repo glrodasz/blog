@@ -32,8 +32,11 @@ const today = new Date();
   <div class="copy-band">
     <Container>
       <div class="copy-inner">
-        <span class="copy">
+        <span class="copy copy-full">
           {messages.site.title} {messages.footer.creditBy} <a href="https://guillermorodas.com" target="_blank" rel="noopener noreferrer">{messages.author.name}</a> &nbsp;&copy;&nbsp; {today.getFullYear()}
+        </span>
+        <span class="copy copy-short">
+          {messages.site.title} &nbsp;&copy;&nbsp; {today.getFullYear()}
         </span>
         <div class="footer-utilities">
           <LanguageSelector currentLocale={locale} currentPath={currentPath} />
@@ -96,6 +99,10 @@ const today = new Date();
     font-size: 0.75em;
   }
 
+  .copy-short {
+    display: none;
+  }
+
   .copy a {
     color: var(--color-text-on-inverse-muted);
     text-decoration: underline;
@@ -142,9 +149,18 @@ const today = new Date();
       align-items: flex-start;
     }
 
+    .copy-full {
+      display: none;
+    }
+
+    .copy-short {
+      display: inline;
+    }
+
     .copy-inner {
-      flex-direction: column;
-      align-items: flex-start;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5em;
     }
   }
 </style>
