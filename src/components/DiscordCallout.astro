@@ -50,13 +50,17 @@ const messages = getMessages(locale);
   .inner {
     background: var(--color-aquarius-900);
     color: var(--color-white);
-    border: 1px solid var(--color-aquarius-700);
+    border: 1px solid var(--color-aquarius-600);
     border-radius: var(--radius-card);
     padding: 1.75em 2em;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1.5em;
+  }
+
+  :global([data-theme="dark"]) .inner {
+    border-color: var(--color-aquarius-700);
   }
 
   .title {

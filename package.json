@@ -4,9 +4,10 @@
   "version": "0.2.0",
   "scripts": {
     "format": "prettier --write .",
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && node scripts/generate-og.mjs && astro build && cp _redirects dist/_redirects",
+    "build:locale": "node scripts/build-locale-redirect.mjs",
+    "dev": "yarn build:locale && astro dev",
+    "start": "yarn build:locale && astro dev",
+    "build": "astro check && yarn build:locale && node scripts/generate-og.mjs && astro build && cp _redirects dist/_redirects",
     "preview": "astro preview",
     "astro": "astro",
     "test": "playwright test",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
+    "esbuild": "^0.25.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0"
   },

@@ -122,6 +122,10 @@ const tags = rawTags
                   • {readingTime} {messages.blog.minRead}
                 </span>
               )}
+              <LanguageVersionBanner
+                languageVersions={languageVersions}
+                currentLocale={locale}
+              />
             </div>
           )}
         </div>
@@ -138,10 +142,6 @@ const tags = rawTags
       <Container>
         <article>
           <div class="prose">
-            <LanguageVersionBanner
-              languageVersions={languageVersions}
-              currentLocale={locale}
-            />
             <div class="blog-content">
               <slot />
             </div>

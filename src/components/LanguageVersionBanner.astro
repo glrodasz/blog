@@ -1,6 +1,7 @@
 ---
 import { type Locale, LANGUAGE_CONFIG } from "../i18n/config";
 import { getMessages } from "../i18n";
+import LanguageIcon from "./LanguageIcon.astro";
 
 type LanguageVersion = {
   language: string;
@@ -18,10 +19,6 @@ if (!languageVersions || languageVersions.length === 0) {
   return null;
 }
 
-const languageFlags = Object.fromEntries(
-  Object.entries(LANGUAGE_CONFIG).map(([code, config]) => [code, config.flag])
-) as Record<string, string>;
-
 const otherVersions = languageVersions.filter(
   (version) => version.language !== currentLocale
 );
@@ -37,60 +34,62 @@ const formatMessage = (template: string, language: string) => {
 
 {
   otherVersions.map((version) => {
-    const flag =
-      languageFlags[version.language as keyof typeof languageFlags] || "🌐";
-
-    const targetMessages = getMessages(version.language as Locale);
-    const targetLanguageName =
-      targetMessages.languageBanner.languages[
-        version.language as keyof typeof targetMessages.languageBanner.languages
-      ] || version.language.toUpperCase();
-
-    const message = formatMessage(
+    const versionLocale = version.language as Locale;
+    const targetMessages = getMessages(versionLocale);
+    const languageName =
+      LANGUAGE_CONFIG[versionLocale]?.name ?? version.language.toUpperCase();
+    const linkLabel = formatMessage(
       targetMessages.languageBanner.readIn,
-      targetLanguageName
+      languageName
     );
 
     return (
-      <blockquote class="language-banner">
-        <p>
-          <span class="flag">{flag}</span> {message}{" "}
-          <a href={version.url}>{targetMessages.languageBanner.linkText}</a>
-        </p>
-      </blockquote>
+      <span class="translation-meta">
+        <span class="meta-sep" aria-hidden="true">
+          •
+        </span>
+        <LanguageIcon size={16} />
+        <a
+          href={version.url}
+          hreflang={version.language}
+          lang={version.language}
+        >
+          {linkLabel}
+        </a>
+      </span>
     );
   })
 }
 
 <style>
-  .flag {
-    margin-right: 0.5rem;
+  .translation-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
   }
 
-  .language-banner {
-    margin: 1rem 0;
-    background: repeating-linear-gradient(
-      -45deg,
-      var(--color-black-pearl-800),
-      var(--color-black-pearl-800) 10px,
-      var(--color-black-pearl-900) 10px,
-      var(--color-black-pearl-900) 20px
-    );
-    color: var(--color-white);
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-    font-size: 1rem;
-    border-radius: 0 4px 4px 0;
+  .meta-sep {
+    margin-right: 0.15em;
   }
 
-  .language-banner a {
-    color: var(--accent);
+  .translation-meta :global(.language-icon) {
+    flex-shrink: 0;
+  }
+
+  .translation-meta a {
+    color: inherit;
+    font-weight: 600;
     text-decoration: underline;
-    padding: 0;
-    margin: 0;
+    text-underline-offset: 2px;
   }
 
-  .language-banner p {
-    margin: 0;
-    line-height: 1.2;
+  .translation-meta a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .translation-meta a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 </style>

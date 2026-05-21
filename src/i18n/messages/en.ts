@@ -20,7 +20,13 @@ export const messages = {
     about: "About",
     subscribe: "Subscribe",
     skipToMain: "Skip to main content",
-    selectLanguage: "Select language"
+    selectLanguage: "Select language",
+    switchToLanguage: "Switch to {language}"
+  },
+  theme: {
+    light: "Light",
+    dark: "Dark",
+    toggle: "Toggle light or dark theme"
   },
   home: {
     readArticle: "Read article",
@@ -60,15 +66,6 @@ export const messages = {
     followYoutube: "Follow Undefined Shell on YouTube"
   },
   languageBanner: {
-    readIn: "You can read the {language} version",
-    linkText: "here",
-    languages: {
-      es: "Spanish",
-      en: "English",
-      fr: "French",
-      pt: "Portuguese",
-      de: "German",
-      it: "Italian"
-    }
+    readIn: "Read in {language}"
   }
 } as const;

@@ -1,11 +1,16 @@
 ---
+import { getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
 ---
 
 <button
   class="theme-toggle"
   type="button"
-  aria-label="Toggle dark mode"
-  title="Toggle dark mode"
+  aria-label={messages.theme.toggle}
+  title={messages.theme.toggle}
 >
   <!-- Sun icon — shown in dark mode (click to go light) -->
   <svg
@@ -47,6 +52,13 @@
   >
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
   </svg>
+  <span
+    class="theme-label"
+    data-light={messages.theme.light}
+    data-dark={messages.theme.dark}
+  >
+    {messages.theme.dark}
+  </span>
 </button>
 
 <style>
@@ -57,9 +69,12 @@
     padding: 0.4em 0.5em;
     border-radius: 4px;
     color: var(--color-text-strong);
+    font-size: inherit;
+    font-family: inherit;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 0.4em;
     transition: background-color 0.2s ease;
     line-height: 1;
   }
@@ -71,6 +86,12 @@
   .theme-toggle:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
+  }
+
+  .theme-label {
+    font-size: inherit;
+    font-weight: 600;
+    letter-spacing: 0.02em;
   }
 
   /* Default (light mode): show moon, hide sun */
@@ -93,30 +114,11 @@
 </style>
 
 <script>
-  function setupThemeToggle() {
-    document
-      .querySelectorAll<HTMLButtonElement>(".theme-toggle")
-      .forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const next =
-            document.documentElement.getAttribute("data-theme") === "dark"
-              ? "light"
-              : "dark";
-          document.documentElement.setAttribute("data-theme", next);
-          const meta = document.querySelector<HTMLMetaElement>(
-            'meta[name="theme-color"]'
-          );
-          if (meta)
-            meta.setAttribute(
-              "content",
-              next === "dark" ? "#1b262c" : "#ffffff"
-            );
-          try {
-            localStorage.setItem("theme", next);
-          } catch (_) {}
-        });
-      });
-  }
+  import { initThemeToggle } from "../scripts/themeToggle.ts";
 
-  document.addEventListener("DOMContentLoaded", setupThemeToggle);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
 </script>

@@ -2,6 +2,8 @@
 import Container from "./Container.astro";
 import SubscribeForm from "./SubscribeForm.astro";
 import FollowButtons from "./FollowButtons.astro";
+import LanguageSelector from "./LanguageSelector.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 
@@ -11,6 +13,7 @@ type Props = {
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
+const currentPath = Astro.url.pathname;
 const today = new Date();
 ---
 
@@ -29,9 +32,16 @@ const today = new Date();
   <div class="copy-band">
     <Container>
       <div class="copy-inner">
-        <span class="copy">
+        <span class="copy copy-full">
           {messages.site.title} {messages.footer.creditBy} <a href="https://guillermorodas.com" target="_blank" rel="noopener noreferrer">{messages.author.name}</a> &nbsp;&copy;&nbsp; {today.getFullYear()}
         </span>
+        <span class="copy copy-short">
+          {messages.site.title} &nbsp;&copy;&nbsp; {today.getFullYear()}
+        </span>
+        <div class="footer-utilities">
+          <LanguageSelector currentLocale={locale} currentPath={currentPath} />
+          <ThemeToggle />
+        </div>
       </div>
     </Container>
   </div>
@@ -89,6 +99,10 @@ const today = new Date();
     font-size: 0.75em;
   }
 
+  .copy-short {
+    display: none;
+  }
+
   .copy a {
     color: var(--color-text-on-inverse-muted);
     text-decoration: underline;
@@ -98,10 +112,55 @@ const today = new Date();
     color: var(--color-text-on-inverse);
   }
 
+  .footer-utilities {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+    flex-shrink: 0;
+    font-size: 0.75em;
+  }
+
+  .footer-utilities :global(.language-toggle),
+  .footer-utilities :global(.theme-toggle) {
+    color: var(--color-text-on-inverse-muted);
+  }
+
+  .footer-utilities :global(.language-label),
+  .footer-utilities :global(.theme-label) {
+    font-size: inherit;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .footer-utilities :global(.language-toggle:hover),
+  .footer-utilities :global(.theme-toggle:hover) {
+    background-color: rgba(255, 255, 255, 8%);
+    color: var(--color-text-on-inverse);
+  }
+
+  .footer-utilities :global(.language-toggle:focus-visible),
+  .footer-utilities :global(.theme-toggle:focus-visible) {
+    outline-color: var(--color-text-on-inverse);
+  }
+
   @media (max-width: 640px) {
     .subscribe-inner {
       flex-direction: column;
       align-items: flex-start;
+    }
+
+    .copy-full {
+      display: none;
+    }
+
+    .copy-short {
+      display: inline;
+    }
+
+    .copy-inner {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5em;
     }
   }
 </style>

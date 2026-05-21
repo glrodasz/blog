@@ -3,10 +3,28 @@ export function initScrollBackground() {
   const footer = document.querySelector("body > footer");
 
   if (footer) {
+    let footerBgLayerTimeout: ReturnType<typeof setTimeout> | null = null;
+    const FOOTER_BG_LAYER_DELAY_MS = 500;
+
     const footerObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          body.classList.toggle("footer-visible", entry.isIntersecting);
+          if (entry.isIntersecting) {
+            if (footerBgLayerTimeout) {
+              clearTimeout(footerBgLayerTimeout);
+              footerBgLayerTimeout = null;
+            }
+            body.classList.add("footer-visible", "footer-bg-layer");
+          } else {
+            body.classList.remove("footer-visible");
+            if (footerBgLayerTimeout) {
+              clearTimeout(footerBgLayerTimeout);
+            }
+            footerBgLayerTimeout = setTimeout(() => {
+              body.classList.remove("footer-bg-layer");
+              footerBgLayerTimeout = null;
+            }, FOOTER_BG_LAYER_DELAY_MS);
+          }
         });
       },
       {
