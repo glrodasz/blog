@@ -110,39 +110,30 @@ const today = new Date();
     align-items: center;
     gap: 0.25em;
     flex-shrink: 0;
+    font-size: 0.75em;
   }
 
-  .footer-utilities :global(.language-button),
+  .footer-utilities :global(.language-toggle),
   .footer-utilities :global(.theme-toggle) {
     color: var(--color-text-on-inverse-muted);
   }
 
-  .footer-utilities :global(.language-button) {
-    margin-top: 0;
+  .footer-utilities :global(.language-label),
+  .footer-utilities :global(.theme-label) {
+    font-size: inherit;
+    font-weight: 600;
+    letter-spacing: 0.02em;
   }
 
-  .footer-utilities :global(.language-button:hover),
+  .footer-utilities :global(.language-toggle:hover),
   .footer-utilities :global(.theme-toggle:hover) {
     background-color: rgba(255, 255, 255, 8%);
     color: var(--color-text-on-inverse);
   }
 
-  .footer-utilities :global(.language-button:focus-visible),
+  .footer-utilities :global(.language-toggle:focus-visible),
   .footer-utilities :global(.theme-toggle:focus-visible) {
     outline-color: var(--color-text-on-inverse);
-  }
-
-  .footer-utilities :global(.language-dropdown) {
-    top: auto;
-    bottom: 100%;
-    margin-top: 0;
-    margin-bottom: 4px;
-    transform: translateY(8px);
-  }
-
-  .footer-utilities :global(.language-selector:hover .language-dropdown),
-  .footer-utilities :global(.language-selector.active .language-dropdown) {
-    transform: translateY(0);
   }
 
   @media (max-width: 640px) {

@@ -20,7 +20,13 @@ export const messages = {
     about: "Acerca",
     subscribe: "Suscribirse",
     skipToMain: "Saltar al contenido principal",
-    selectLanguage: "Seleccionar idioma"
+    selectLanguage: "Seleccionar idioma",
+    switchToLanguage: "Cambiar a {language}"
+  },
+  theme: {
+    light: "Claro",
+    dark: "Oscuro",
+    toggle: "Cambiar entre tema claro y oscuro"
   },
   home: {
     readArticle: "Leer artículo",

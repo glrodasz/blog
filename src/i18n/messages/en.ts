@@ -20,7 +20,13 @@ export const messages = {
     about: "About",
     subscribe: "Subscribe",
     skipToMain: "Skip to main content",
-    selectLanguage: "Select language"
+    selectLanguage: "Select language",
+    switchToLanguage: "Switch to {language}"
+  },
+  theme: {
+    light: "Light",
+    dark: "Dark",
+    toggle: "Toggle light or dark theme"
   },
   home: {
     readArticle: "Read article",

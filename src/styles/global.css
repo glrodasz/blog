@@ -51,6 +51,7 @@
 
   --color-header-bg: #ffffff;
   --color-header-bg-scrolled: rgba(255, 255, 255, 0.92);
+  --color-header-bg-scrolled-fade: rgba(255, 255, 255, 0.8);
 
   /* ── Legacy tokens (kept for component compatibility) ─────────────────── */
   --accent: var(--color-aquarius-600);
@@ -100,6 +101,7 @@
 
   --color-header-bg: var(--color-black-pearl-800);
   --color-header-bg-scrolled: rgba(44, 61, 71, 0.92);
+  --color-header-bg-scrolled-fade: rgba(44, 61, 71, 0.8);
 
   --black: 255, 255, 255;
   --gray: 0, 0, 0;

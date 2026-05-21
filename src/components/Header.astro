@@ -88,7 +88,12 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
   }
 
   header.scrolled {
-    background: var(--color-header-bg-scrolled);
+    background: linear-gradient(
+      to bottom,
+      var(--color-header-bg) 0%,
+      var(--color-header-bg) 20%,
+      var(--color-header-bg-scrolled-fade) 100%
+    );
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
     backdrop-filter: blur(10px);
   }
