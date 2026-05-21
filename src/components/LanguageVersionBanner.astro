@@ -37,8 +37,7 @@ const formatMessage = (template: string, language: string) => {
     const versionLocale = version.language as Locale;
     const targetMessages = getMessages(versionLocale);
     const languageName =
-      LANGUAGE_CONFIG[versionLocale as keyof typeof LANGUAGE_CONFIG]?.name ||
-      version.language.toUpperCase();
+      LANGUAGE_CONFIG[versionLocale]?.name ?? version.language.toUpperCase();
     const linkLabel = formatMessage(
       targetMessages.languageBanner.readIn,
       languageName
