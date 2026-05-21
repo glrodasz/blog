@@ -2,6 +2,8 @@
 import Container from "./Container.astro";
 import SubscribeForm from "./SubscribeForm.astro";
 import FollowButtons from "./FollowButtons.astro";
+import LanguageSelector from "./LanguageSelector.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 
@@ -11,6 +13,7 @@ type Props = {
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
+const currentPath = Astro.url.pathname;
 const today = new Date();
 ---
 
@@ -32,6 +35,10 @@ const today = new Date();
         <span class="copy">
           {messages.site.title} {messages.footer.creditBy} <a href="https://guillermorodas.com" target="_blank" rel="noopener noreferrer">{messages.author.name}</a> &nbsp;&copy;&nbsp; {today.getFullYear()}
         </span>
+        <div class="footer-utilities">
+          <LanguageSelector currentLocale={locale} currentPath={currentPath} />
+          <ThemeToggle />
+        </div>
       </div>
     </Container>
   </div>
@@ -98,8 +105,53 @@ const today = new Date();
     color: var(--color-text-on-inverse);
   }
 
+  .footer-utilities {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+    flex-shrink: 0;
+  }
+
+  .footer-utilities :global(.language-button),
+  .footer-utilities :global(.theme-toggle) {
+    color: var(--color-text-on-inverse-muted);
+  }
+
+  .footer-utilities :global(.language-button) {
+    margin-top: 0;
+  }
+
+  .footer-utilities :global(.language-button:hover),
+  .footer-utilities :global(.theme-toggle:hover) {
+    background-color: rgba(255, 255, 255, 8%);
+    color: var(--color-text-on-inverse);
+  }
+
+  .footer-utilities :global(.language-button:focus-visible),
+  .footer-utilities :global(.theme-toggle:focus-visible) {
+    outline-color: var(--color-text-on-inverse);
+  }
+
+  .footer-utilities :global(.language-dropdown) {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 4px;
+    transform: translateY(8px);
+  }
+
+  .footer-utilities :global(.language-selector:hover .language-dropdown),
+  .footer-utilities :global(.language-selector.active .language-dropdown) {
+    transform: translateY(0);
+  }
+
   @media (max-width: 640px) {
     .subscribe-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .copy-inner {
       flex-direction: column;
       align-items: flex-start;
     }

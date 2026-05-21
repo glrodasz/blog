@@ -3,8 +3,6 @@ import Container from "./Container.astro";
 import NavigationLink from "./NavigationLink.astro";
 import BootcampButton from "./BootcampButton.astro";
 import DiscordButton from "./DiscordButton.astro";
-import LanguageSelector from "./LanguageSelector.astro";
-import ThemeToggle from "./ThemeToggle.astro";
 import {
   type Locale,
   getLocaleFromAstro,
@@ -18,7 +16,6 @@ type Props = {
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
-const currentPath = Astro.url.pathname;
 const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
 ---
 
@@ -50,8 +47,6 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
           <NavigationLink href="/about" locale={locale}
             >{messages.navigation.about}</NavigationLink
           >
-          <LanguageSelector currentLocale={locale} currentPath={currentPath} />
-          <ThemeToggle />
         </div>
         <div class="buttons-container">
           <BootcampButton />
