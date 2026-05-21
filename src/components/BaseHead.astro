@@ -98,26 +98,11 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
 <meta property="twitter:image:alt" content={imageAlt} />
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const footer = document.querySelector("footer");
-    if (!footer) return;
+  import { initScrollBackground } from "../scripts/initScrollBackground.ts";
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            document.body.classList.add("footer-visible");
-          } else {
-            document.body.classList.remove("footer-visible");
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -10px 0px",
-      }
-    );
-
-    observer.observe(footer);
-  });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initScrollBackground);
+  } else {
+    initScrollBackground();
+  }
 </script>

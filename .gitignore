@@ -23,3 +23,8 @@ pnpm-debug.log*
 .DS_Store
 
 package-lock.json
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/

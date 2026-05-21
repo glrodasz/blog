@@ -136,11 +136,30 @@ body {
   padding: 0;
   text-align: left;
   background: var(--color-bg-default);
+  transition: background-color 0.25s ease;
   word-wrap: break-word;
   overflow-wrap: break-word;
   color: var(--color-text-default);
   font-size: 20px;
   line-height: 1.8rem;
+}
+
+body.at-top {
+  background: var(--color-header-bg);
+}
+
+body.footer-visible {
+  background: var(--color-bg-inverse);
+}
+
+body.at-top::before,
+body.footer-visible::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg-default);
+  z-index: -1;
+  pointer-events: none;
 }
 
 main {
