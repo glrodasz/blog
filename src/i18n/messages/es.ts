@@ -66,15 +66,6 @@ export const messages = {
     followYoutube: "Sigue Undefined Shell en YouTube"
   },
   languageBanner: {
-    readIn: "Puedes leer la versión en {language}",
-    linkText: "aquí",
-    languages: {
-      es: "Español",
-      en: "Inglés",
-      fr: "Francés",
-      pt: "Portugués",
-      de: "Alemán",
-      it: "Italiano"
-    }
+    readIn: "Leer en {language}"
   }
 } as const;
