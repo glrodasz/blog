@@ -3,7 +3,7 @@ title: "Success Was Never Overnight"
 pubDate: "2026-05-21T00:00:00.000Z"
 tags: Thoughts
 description: "What we call 'overnight success' is usually the moment we find out about a story that's been quietly happening for years. Why the process matters more than we think."
-heroImage: "/covers/hidden-gears-inside-a-machine.jpg"
+heroImage: "/covers/metal-detector-with-gold-coins.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/el-exito-nunca-fue-de-un-dia-para-otro"

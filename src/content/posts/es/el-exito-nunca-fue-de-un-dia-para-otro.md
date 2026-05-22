@@ -3,7 +3,7 @@ title: "El éxito nunca fue de un día para otro"
 pubDate: "2026-05-21T00:00:00.000Z"
 tags: Pensamientos
 description: "Lo que llamamos 'éxito de la noche a la mañana' suele ser el momento en que nos enteramos de una historia que lleva años ocurriendo en silencio. Por qué el proceso importa más de lo que pensamos."
-heroImage: "/covers/hidden-gears-inside-a-machine.jpg"
+heroImage: "/covers/metal-detector-with-gold-coins.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/success-was-never-overnight"
