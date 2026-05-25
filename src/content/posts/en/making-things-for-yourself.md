@@ -9,9 +9,9 @@ languageVersions:
     url: "/es/posts/hacer-cosas-para-uno-mismo"
 ---
 
-There's a part of success that almost no one talks about:
+There's a part of success that almost no one talks about: 
 
-Sustaining something over a long time is hard.
+**Sustaining something over a long time is hard.**
 
 Not hard in the romantic sense of "you have to fight for your dreams," but genuinely hard. Hard because there are days when you don't feel like it. Hard because the results don't arrive as fast as you expected. Hard because sometimes you publish something that took you hours and no one sees it. Hard because what used to excite you starts to feel like an obligation.
 

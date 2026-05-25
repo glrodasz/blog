@@ -11,7 +11,7 @@ languageVersions:
 
 Hay una parte del éxito de la que casi no se habla:
 
-Sostener algo durante mucho tiempo es difícil.
+**Sostener algo durante mucho tiempo es difícil.**
 
 No difícil en el sentido romántico de "hay que luchar por los sueños", sino difícil de verdad. Difícil porque hay días en los que no tienes ganas. Difícil porque los resultados no llegan tan rápido como esperabas. Difícil porque a veces publicas algo que te tomó horas y nadie lo ve. Difícil porque lo que antes te emocionaba empieza a sentirse como una obligación.
 
