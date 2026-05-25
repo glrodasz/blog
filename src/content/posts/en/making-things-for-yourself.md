@@ -3,7 +3,7 @@ title: "Making Things for Yourself"
 pubDate: "2026-05-25T00:00:00.000Z"
 tags: Thoughts
 description: "Sustaining something over a long time is genuinely hard, and no formula replaces internal motivation. Why making things for yourself first dramatically raises the odds of lasting long enough to get a real shot."
-heroImage: "/covers/blue-bicycle-gear-and-chain-close-up.jpg"
+heroImage: "/covers/hand-carved-wooden-horse.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/hacer-cosas-para-uno-mismo"

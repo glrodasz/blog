@@ -3,7 +3,7 @@ title: "Hacer cosas para uno mismo"
 pubDate: "2026-05-25T00:00:00.000Z"
 tags: Pensamientos
 description: "Sostener algo durante mucho tiempo es difícil de verdad, y ninguna fórmula reemplaza la motivación interna. Por qué hacer cosas primero para uno mismo aumenta las probabilidades de seguir el tiempo suficiente."
-heroImage: "/covers/blue-bicycle-gear-and-chain-close-up.jpg"
+heroImage: "/covers/hand-carved-wooden-horse.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/making-things-for-yourself"
