@@ -9,7 +9,7 @@ interface Props {
 
 const { date, leadingComma, locale } = Astro.props;
 
-const currentLocale = getLocaleFromAstro({ ...Astro, props: { locale } });
+const currentLocale = locale || getLocaleFromAstro(Astro);
 
 const titleCase = (str: string) =>
   str.charAt(0).toLocaleUpperCase(currentLocale) +
