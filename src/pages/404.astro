@@ -14,7 +14,7 @@ const messages = getMessages(locale);
 const allPosts = (await getPostsByLanguage(locale)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
-const posts = allPosts.slice(0, 3);
+const posts = allPosts.slice(0, 2);
 const allSlugs = allPosts.map((p) => getCleanSlug(p.slug));
 const basePostPath = "/posts/";
 ---
@@ -259,14 +259,8 @@ const basePostPath = "/posts/";
 
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5em;
-  }
-
-  @media (max-width: 1024px) {
-    .cards-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 
   @media (max-width: 640px) {
