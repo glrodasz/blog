@@ -1,3 +1,6 @@
+# Locale-specific 404 pages
+/es/*  /es/404/  404
+
 # Migration from ghost posts to astro posts
 /comandos-alias-para-la-terminal /es/posts/comandos-alias-para-la-terminal 301
 /conociendo-la-terminal /es/posts/conociendo-la-terminal 301
