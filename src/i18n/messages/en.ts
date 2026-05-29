@@ -67,5 +67,15 @@ export const messages = {
   },
   languageBanner: {
     readIn: "Read in {language}"
+  },
+  notFound: {
+    tabTitle: "404 — Page not found",
+    title: "Page not found",
+    description: "The page you're looking for doesn't exist or has been moved.",
+    prompt: "goto",
+    errorLine: "Error: command not found (exit code 404)",
+    suggestion: "Did you mean:",
+    backToHome: "← Back to home",
+    suggestionsTitle: "While you're here, read something good"
   }
 } as const;

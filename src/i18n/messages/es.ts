@@ -67,5 +67,15 @@ export const messages = {
   },
   languageBanner: {
     readIn: "Leer en {language}"
+  },
+  notFound: {
+    tabTitle: "404 — Página no encontrada",
+    title: "Página no encontrada",
+    description: "La página que buscas no existe o fue movida.",
+    prompt: "ir",
+    errorLine: "Error: comando no encontrado (código 404)",
+    suggestion: "¿Quisiste decir:",
+    backToHome: "← Volver al inicio",
+    suggestionsTitle: "Ya que estás aquí, lee algo bueno"
   }
 } as const;
