@@ -18,9 +18,7 @@ La terminal es una herramienta que puede hacer la diferencia a la hora de desarr
 
 No es un requisito para empezar a programar, pero tarde o que temprano nos vamos a tener que enfrentar a ella. Entonces, ¿por qué no hacerlo de una vez?
 
-### Diferencias en los sistemas operativos
-
-> Los comandos de la terminal  varían un poco en sistemas operativos que no son tipo UNIX (Linux, Mac OS) como lo es Windows. La realidad es que la mayoría de los servidores Web tienen Linux como su sistema operativo, motivo por el cual, mi recomendación es familiarizarse con UNIX desde el inicio. Afortunadamente, se puede activar la funcionalidad de Linux en Windows 10 mediante Ubuntu. Puedes revisar un tutorial [aquí](https://discourse.ubuntu.com/t/instalacion-de-ubuntu-en-windows-10).
+> **Diferencias en los sistemas operativos:** Los comandos de la terminal  varían un poco en sistemas operativos que no son tipo UNIX (Linux, Mac OS) como lo es Windows. La realidad es que la mayoría de los servidores Web tienen Linux como su sistema operativo, motivo por el cual, mi recomendación es familiarizarse con UNIX desde el inicio. Afortunadamente, se puede activar la funcionalidad de Linux en Windows 10 mediante Ubuntu. Puedes revisar un tutorial [aquí](https://discourse.ubuntu.com/t/instalacion-de-ubuntu-en-windows-10).
 
 ## ¿Cómo abrir la terminal?
 
