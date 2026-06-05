@@ -42,7 +42,7 @@ export const messages = {
   discord: {
     title: "Únete a nuestra comunidad de Discord",
     subtitle: "Somos {memberCount} personas cambiando el mundo de la programación.",
-    subtitleOnline: "Y {onlineCount} estamos online.",
+    subtitleOnline: "{onlineCount} online…",
     cta: "Unirse a discord"
   },
   subscribe: {
