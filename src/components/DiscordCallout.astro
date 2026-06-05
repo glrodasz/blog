@@ -9,6 +9,7 @@ type Props = {
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
+const [subtitleBefore, subtitleAfter] = messages.discord.subtitle.split("{memberCount}");
 ---
 
 <section class="discord-callout">
@@ -16,7 +17,7 @@ const messages = getMessages(locale);
     <div class="inner">
       <div class="text">
         <h2 class="title">{messages.discord.title}</h2>
-        <p class="subtitle">{messages.discord.subtitle.replace("{memberCount}", DISCORD_MEMBER_COUNT)}</p>
+        <p class="subtitle">{subtitleBefore}<span data-discord-count>{DISCORD_MEMBER_COUNT}</span>{subtitleAfter}</p>
       </div>
       <a
         href="https://undf.sh/discord"
@@ -109,3 +110,15 @@ const messages = getMessages(locale);
     }
   }
 </style>
+
+<script>
+  const el = document.querySelector("[data-discord-count]");
+  if (el) {
+    fetch("/api/discord-count")
+      .then((r) => r.json())
+      .then(({ count }) => {
+        if (count != null) el.textContent = String(count);
+      })
+      .catch(() => {});
+  }
+</script>
