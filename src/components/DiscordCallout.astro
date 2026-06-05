@@ -1,7 +1,7 @@
 ---
 import Container from "./Container.astro";
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
-import { getMessages } from "../i18n";
+import { getMessages, DISCORD_MEMBER_COUNT } from "../i18n";
 
 type Props = {
   locale?: Locale;
@@ -9,6 +9,8 @@ type Props = {
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
+const [subtitleBefore, subtitleAfter] = messages.discord.subtitle.split("{memberCount}");
+const [onlineBefore, onlineAfter] = messages.discord.subtitleOnline.split("{onlineCount}");
 ---
 
 <section class="discord-callout">
@@ -16,7 +18,10 @@ const messages = getMessages(locale);
     <div class="inner">
       <div class="text">
         <h2 class="title">{messages.discord.title}</h2>
-        <p class="subtitle">{messages.discord.subtitle}</p>
+        <p class="subtitle">
+          {subtitleBefore}<span data-discord-count>{DISCORD_MEMBER_COUNT}</span>{subtitleAfter}
+          {" "}<span data-discord-online-sentence hidden>{onlineBefore}<span data-discord-online></span>{onlineAfter}</span>
+        </p>
       </div>
       <a
         href="https://undf.sh/discord"
@@ -109,3 +114,22 @@ const messages = getMessages(locale);
     }
   }
 </style>
+
+<script>
+  const countEl = document.querySelector("[data-discord-count]");
+  const onlineEl = document.querySelector("[data-discord-online]");
+  const onlineSentenceEl = document.querySelector("[data-discord-online-sentence]");
+
+  if (countEl) {
+    fetch("/api/discord-count")
+      .then((r) => r.json())
+      .then(({ count, onlineCount }) => {
+        if (count != null) countEl.textContent = String(count);
+        if (onlineCount != null && onlineEl && onlineSentenceEl) {
+          onlineEl.textContent = String(onlineCount);
+          onlineSentenceEl.removeAttribute("hidden");
+        }
+      })
+      .catch(() => {});
+  }
+</script>
