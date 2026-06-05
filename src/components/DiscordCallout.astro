@@ -10,6 +10,7 @@ type Props = {
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
 const [subtitleBefore, subtitleAfter] = messages.discord.subtitle.split("{memberCount}");
+const [onlineBefore, onlineAfter] = messages.discord.subtitleOnline.split("{onlineCount}");
 ---
 
 <section class="discord-callout">
@@ -17,7 +18,10 @@ const [subtitleBefore, subtitleAfter] = messages.discord.subtitle.split("{member
     <div class="inner">
       <div class="text">
         <h2 class="title">{messages.discord.title}</h2>
-        <p class="subtitle">{subtitleBefore}<span data-discord-count>{DISCORD_MEMBER_COUNT}</span>{subtitleAfter}</p>
+        <p class="subtitle">
+          {subtitleBefore}<span data-discord-count>{DISCORD_MEMBER_COUNT}</span>{subtitleAfter}
+          {" "}<span data-discord-online-sentence hidden>{onlineBefore}<span data-discord-online></span>{onlineAfter}</span>
+        </p>
       </div>
       <a
         href="https://undf.sh/discord"
@@ -112,12 +116,19 @@ const [subtitleBefore, subtitleAfter] = messages.discord.subtitle.split("{member
 </style>
 
 <script>
-  const el = document.querySelector("[data-discord-count]");
-  if (el) {
+  const countEl = document.querySelector("[data-discord-count]");
+  const onlineEl = document.querySelector("[data-discord-online]");
+  const onlineSentenceEl = document.querySelector("[data-discord-online-sentence]");
+
+  if (countEl) {
     fetch("/api/discord-count")
       .then((r) => r.json())
-      .then(({ count }) => {
-        if (count != null) el.textContent = String(count);
+      .then(({ count, onlineCount }) => {
+        if (count != null) countEl.textContent = String(count);
+        if (onlineCount != null && onlineEl && onlineSentenceEl) {
+          onlineEl.textContent = String(onlineCount);
+          onlineSentenceEl.removeAttribute("hidden");
+        }
       })
       .catch(() => {});
   }

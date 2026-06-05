@@ -24,10 +24,12 @@ export default async () => {
   }
 
   const data = await res.json();
-  const raw = data.approximate_member_count;
-  const count = typeof raw === "number" ? Math.round(raw / 100) * 100 : null;
+  const rawCount = data.approximate_member_count;
+  const rawOnline = data.approximate_presence_count;
+  const count = typeof rawCount === "number" ? Math.round(rawCount / 100) * 100 : null;
+  const onlineCount = typeof rawOnline === "number" ? Math.round(rawOnline / 10) * 10 : null;
 
-  return json(200, { count }, { "Cache-Control": "public, max-age=3600" });
+  return json(200, { count, onlineCount }, { "Cache-Control": "public, max-age=3600" });
 };
 
 export const config = {
