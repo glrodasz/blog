@@ -42,7 +42,7 @@ export const messages = {
   discord: {
     title: "Join our Discord community",
     subtitle: "We are {memberCount} people changing the world of programming.",
-    subtitleOnline: "{onlineCount} online…",
+    subtitleOnline: "{onlineCount} online right now",
     cta: "Join Discord"
   },
   subscribe: {
