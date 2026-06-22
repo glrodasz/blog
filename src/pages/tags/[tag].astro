@@ -127,7 +127,11 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
         const mobileQuery = window.matchMedia("(max-width: 640px)");
         searchInput?.addEventListener("focus", () => {
           if (!mobileQuery.matches) return;
-          searchInput.scrollIntoView({ behavior: "smooth", block: "start" });
+          const header = document.getElementById("main-header");
+          const offset = (header?.offsetHeight ?? 0) + 16;
+          const top =
+            searchInput.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
         });
       });
     </script>
