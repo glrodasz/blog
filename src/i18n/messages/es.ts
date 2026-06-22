@@ -34,7 +34,9 @@ export const messages = {
   },
   filter: {
     all: "Todos",
-    searchPlaceholder: "Buscar"
+    searchPlaceholder: "Buscar",
+    scrollPrev: "Anterior",
+    scrollNext: "Siguiente"
   },
   tagPage: {
     title: "Etiqueta: {tag}"

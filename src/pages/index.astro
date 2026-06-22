@@ -143,6 +143,20 @@ const [featured, ...rest] = posts;
           if (!mobileQuery.matches) return;
           searchInput.scrollIntoView({ behavior: "smooth", block: "start" });
         });
+
+        const desktopQuery = window.matchMedia("(min-width: 641px)");
+        const filterInner =
+          document.querySelector<HTMLElement>(".filter-inner");
+        searchInput?.addEventListener("focus", () => {
+          if (!desktopQuery.matches || !filterInner) return;
+          filterInner.classList.add("search-focused");
+        });
+        searchInput?.addEventListener("blur", () => {
+          if (!filterInner) return;
+          if (searchInput.value.trim() === "") {
+            filterInner.classList.remove("search-focused");
+          }
+        });
       });
     </script>
   </body>
@@ -158,7 +172,19 @@ const [featured, ...rest] = posts;
     align-items: center;
     justify-content: space-between;
     gap: 1em;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+  }
+
+  .filter-inner.search-focused :global(.search-bar) {
+    flex: 1 1 auto;
+  }
+
+  .filter-inner.search-focused :global(.tag-tab:not(.active)) {
+    display: none;
+  }
+
+  .filter-inner.search-focused :global(.carousel-arrow) {
+    display: none;
   }
 
   @media (max-width: 640px) {
@@ -166,6 +192,7 @@ const [featured, ...rest] = posts;
       flex-direction: column;
       align-items: stretch;
       gap: 0.75em;
+      flex-wrap: wrap;
     }
   }
 </style>

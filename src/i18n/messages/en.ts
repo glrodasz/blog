@@ -34,7 +34,9 @@ export const messages = {
   },
   filter: {
     all: "All",
-    searchPlaceholder: "Search"
+    searchPlaceholder: "Search",
+    scrollPrev: "Previous",
+    scrollNext: "Next"
   },
   tagPage: {
     title: "Tag: {tag}"
