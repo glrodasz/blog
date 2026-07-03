@@ -1,6 +1,6 @@
 ---
 title: "La realidad siempre fue una versión editada"
-pubDate: "2026-06-25T00:00:00.000Z"
+pubDate: "2026-07-03T00:00:00.000Z"
 tags: Pensamientos
 description: "Aunque hoy hablamos de la realidad distorsionada por la AI, esa distorsión existe desde hace mucho. Los medios, la historia y el relato propio siempre han sido versiones editadas de los hechos. La AI solo lo hace más difícil de cuestionar."
 heroImage: "/covers/tree-of-coins-in-a-hill.jpg"

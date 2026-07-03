@@ -1,6 +1,6 @@
 ---
 title: "Reality Has Always Been an Edited Version"
-pubDate: "2026-06-25T00:00:00.000Z"
+pubDate: "2026-07-03T00:00:00.000Z"
 tags: Thoughts
 description: "Although today we talk about reality distorted by AI, that distortion has existed for a long time. Media, history, and personal narratives have always been edited versions of events. AI just makes it harder to question."
 heroImage: "/covers/tree-of-coins-in-a-hill.jpg"
