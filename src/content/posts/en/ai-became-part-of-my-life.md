@@ -9,243 +9,38 @@ languageVersions:
     url: "/es/posts/la-ai-se-volvio-parte-de-mi-vida"
 ---
 
-I have a confession to make: there's no way to live my life without AI anymore.
+I have a confession to make: there's no way to live my life without AI anymore. It became something fundamental. And I already know what some of you are thinking: *"so what course is this guy going to sell us?"* 🙃. Fortunately I'm not here to sell you anything; this is going somewhere else.
 
-I mean, AI has become something fundamental.
+What I want to tell you is why trying these tools early became so important to me. I've always had the fortune (or the stubbornness) of genuinely liking to try things. Many times someone would ask me *"why do you pay for ChatGPT if you have Copilot for free?"*, and my answer was that paying isn't the problem. If you want to be an early adopter you have to try things, and a 20-dollar subscription I can cancel whenever I want isn't going to leave me broke. The question was never whether it was worth paying that forever, but what I could learn if I tried it before everyone else adopted it. And that's where AI started changing the way I work and live.
 
-And I know what some of you are thinking:
+I use AI mainly for two things: work and everyday life. In both, the impact has been enormous.
 
-> "Oh, what course are you trying to sell us?"
->
-> "What promotion is he running?"
+## AI at work
 
-No. Not at all.
+At work I almost never write code from scratch anymore. I don't mean AI does everything by magic or that you can switch your brain off, but the way of programming did change: my job now is more about describing what I need, reviewing what the tool proposes, adjusting, testing, fixing, and iterating again.
 
-Fortunately, I'm not here to sell you anything. This is about something else entirely.
+And to get started you don't need to be a professional "prompt engineer" or take three certificate courses. You just have to use it. With use you start understanding what works for you, what doesn't, when to trust it, when to review it under a magnifying glass, and when to say *"no, this is wrong, let's do it differently"*. You also need patience: AI won't always do 100% of the work for you, but it can do 70, 80, or even 90% depending on the context. And that remaining percentage is rarely "doing it by hand" from scratch; it's more like massaging the result, adjusting details, asking for a better version, writing tests, or reviewing edge cases. That's already a normal part of my workflow.
 
-What I want to tell you is why trying these tools early became so important to me. And this is where a key concept comes in: early adopters.
+I've been at this for a good while. I know people who are really deep into it, with tons of agents, automations, and very advanced workflows; I don't go to that extreme *(I also have a life)*, but I do keep adapting more and more. Tools like Cursor and Claude Code became central to how I program: I use Cursor for more detailed work, because it helps plan, write, and review code, while Claude Code I use for complete tasks, reviewing and refining its planning depending on the case. Although at this point both do practically the same thing, so either one, or alternatives like Codex, works perfectly.
 
-I've had the fortune, or stubbornness, of genuinely liking to try things out. And many times, when someone would say to me:
+That said, there's a big contrast between the personal and the corporate side. On a personal level this is wild: you can try the latest stuff, install things, break your own projects, make mistakes, and start over without much protocol. At the company level the story is different, because companies have security, privacy, compliance, permissions, and licensing restrictions, all of them valid. Using AI on a side project is not the same as using it inside a company with sensitive data, clients, and legal responsibilities, so at work things move a bit slower. It makes sense, and even so, the change can already be felt.
 
-> "Why would you pay for ChatGPT when you have Copilot for free?"
+## AI in personal projects
 
-I'd think: "Man, paying isn't the problem."
+The second big use case is my personal life, and that's where side projects come in. I have a ton of projects lying around, not necessarily abandoned *(because "abandoned" sounds very dramatic)*; sometimes you just change priorities.
 
-Because if you want to be an early adopter, you have to try. And if we're talking about a $20 subscription I can cancel at any time, I'm not going to get poorer by giving it a shot.
+The difference is that now, when I have a free moment, I can open an instance and say: I have five minutes, help me move this forward, sort out this part, look at this error, propose a structure. An hour can go by, a day, or even another weekend, and when I come back I ask *"okay, where were we?"*. Maybe I didn't get very far, but I made progress, and that matters to me. Before, many projects stalled because of the friction of picking them back up: remembering the context, figuring out where I'd left off, opening the editor, checking errors, looking up documentation. Now that friction drops a lot, AI helps me pick things back up, and sometimes a small step is still a step.
 
-The question for me wasn't: "Is it worth paying for this forever?"
+## AI as cognitive offloading
 
-The question was:
+But it's not all code. One of the most important uses for me is cognitive offloading. I've always been big on note apps, and right now I use one I recommend a lot: Voicenotes. I dump everything I'm thinking in there (ideas, task lists, journaling, reflections, pending stuff), record voice notes, it transcribes them, and then I can interact with them using AI.
 
-> "What can I learn if I try this before everyone else adopts it?"
+That helps me not stress out, because I'm one of those people who, if they have something in their head and don't write it down, keep thinking about it 24/7: I stop paying attention to my surroundings, I don't rest, I can't let it go. And if I don't write it down and forget it, you know what the worst part is? That I don't forget that I forgot something. That, I don't forget. And then the mental torture begins: *"what was it? it was important, I had to sit down with it, what was it?"*. I almost always manage to recover the idea, but that moment of frustration is horrible, so I'd rather offload it fast: record it, jot it down, leave it somewhere.
 
-And that's where AI started changing the way I work and live.
+I don't know if something like this has happened to you: on a Sunday I think *"I have to message my friend"*. Monday goes by and in a free moment I think again *"oh, I have to write to him"*. Tuesday comes, I'm walking into a mentoring session (where I'm the mentor) and, talking with my mentee about something related to that friend, I remember I still haven't written to him: *"sorry, give me a moment, I'm going to message him right now because I've been carrying this intention since Sunday"*. That's exactly what I want to avoid. It's not just the task itself, it's the mental load of remembering that I have a pending task. For that, AI, voice notes, transcriptions, and reminders became indispensable.
 
-## My Two Big Use Cases
+## There's no going back
 
-I use AI primarily for two things:
+For me, AI stopped being a curiosity or a tool I use "sometimes". It's now part of how I work, how I organize myself, how I think, and how I move my projects forward. Not because it does everything perfectly or because it replaces judgment or takes away your responsibility to keep learning, but because it reduces friction: it helps me start, keep going, offload my head, and turn five free minutes into something useful.
 
-1. Work
-2. Everyday life
-
-And in both cases, the impact has been enormous.
-
-### AI at Work
-
-At work, I almost never write code from scratch anymore.
-
-I don't mean that AI magically does everything, or that you can just switch your brain off. But I do mean that the way of programming has changed.
-
-Today, my job is often not to sit down and write line by line, but to describe what I need, review what the tool proposes, adjust, test, correct, and iterate again.
-
-And you don't need to be a professional "prompt engineer" or take three certification courses to get started.
-
-You just have to use it.
-
-Use it.
-
-Use it and little by little you'll understand what works for you, what doesn't, when to trust it, when to scrutinize it closely, and when to simply say: "No, this is wrong, let's do it differently."
-
-You also need patience.
-
-AI won't necessarily do 100% or 120% of the work for you. But it can do 70%, 80%, or even 90%, depending on the context.
-
-And that remaining 10% or 20% often isn't even "doing it by hand" from scratch. It's more about massaging the result: adjusting details, asking for a better version, correcting a misinterpretation, improving the design, writing tests, reviewing edge cases.
-
-That has become a normal part of my workflow.
-
-I've been doing this for a while now. And just as I know people who are deeply into it, with tons of agents, automations, and very advanced workflows, I don't go to the extreme either.
-
-Because I also have a life.
-
-But I am adapting more and more.
-
-Tools like Cursor and Claude Code have become central to my programming. I tend to use Cursor for more detailed work. It helps you plan, write, and review code. Claude Code, on the other hand, I use for complete tasks, and depending on the task I review and refine its planning. But at this point both do practically the same thing, so either one, or alternatives like Codex, works perfectly.
-
-And that, both personally and professionally, is huge.
-
-### The Contrast Between Personal and Enterprise
-
-On a personal level, using these tools is wild.
-
-You can try the latest features, install things, break your own projects, experiment, make mistakes, start over. There's not much protocol involved.
-
-But at the enterprise level, the story is different.
-
-Companies tend to have restrictions around security, privacy, compliance, permissions, licensing, and many other valid reasons.
-
-So even if you're personally testing the latest and greatest, at work things tend to move a bit slower.
-
-And that makes sense.
-
-Using AI on a side project is not the same as using it inside a company with sensitive data, clients, internal rules, and legal responsibilities.
-
-But even with those restrictions, the change is already being felt.
-
-## AI in Personal Projects
-
-The second big use case for me is personal life.
-
-And that's where my side projects come in.
-
-I have a lot of projects around. Not necessarily abandoned, because "abandoned" sounds very dramatic. Sometimes you just shift priorities.
-
-But now, when I have a free moment, I can open an instance and say:
-
-> "I have five minutes. Help me move this forward."
->
-> "Square this part away."
->
-> "Look at this error."
->
-> "Propose a structure."
->
-> "Continue from here."
-
-An hour might pass, a day, two days, or even another weekend. Then I come back and say:
-
-> "Okay, where are we with this?"
-
-And maybe I didn't make enormous progress, but I made progress.
-
-And that matters to me.
-
-Because before, many projects would stall because of the friction of reentering them: remembering the context, figuring out where I left off, opening the editor, reviewing errors, looking up documentation.
-
-Now that friction drops significantly.
-
-AI helps me pick things back up.
-
-And sometimes a small step forward is still a step forward.
-
-### AI as Cognitive Offloading
-
-But it's not all code.
-
-One of the most important uses for me is cognitive offloading.
-
-I've always been a big person for note taking apps. Right now I'm using one I highly recommend: Voicenotes.
-
-I use it to dump everything I'm thinking: ideas, task lists, personal journaling, reflections, quick notes, pending things. Voicenotes lets you record voice notes, transcribe them, and then interact with those notes using AI.
-
-And that helps me not stress out.
-
-Because I'm the type of person who, if I have something in my head and don't write it down, will keep thinking about it 24/7.
-
-I stop paying attention to my surroundings.
-
-I can't rest.
-
-I can't let it go.
-
-So for me, leaving evidence of what I'm thinking is really important.
-
-Because if I don't write it down and forget it, you know what the worst part is?
-
-I don't forget that I forgot something.
-
-That I don't forget.
-
-And then the mental torture begins:
-
-> "Dude, what was it?"
->
-> "I was thinking about something."
->
-> "It was important."
->
-> "I needed to sit down with it."
->
-> "I needed to write it."
->
-> "What was it?"
->
-> "What was it?"
->
-> "What was it?"
-
-And I almost always manage to get back to the idea, but it's a horrible moment of frustration.
-
-I hate going through that.
-
-So I prefer to offload it quickly: record it, jot it down, leave it somewhere.
-
-For me, that cognitive offloading is essential.
-
-### The Pending Task That Keeps Circling
-
-I don't know if something like this has happened to you.
-
-On a Sunday I think:
-
-> "I need to message my friend."
-
-Monday passes.
-
-In a free moment I think again:
-
-> "Oh, I need to write to him."
-
-Tuesday arrives.
-
-I'm heading into a mentoring session, where I'm the mentor, and suddenly, while talking with my mentee about something related to my friend, I remember I still haven't messaged him:
-
-> "Sorry, give me a moment. I need to write to him right now, because I've been carrying this intention since Sunday."
-
-That's exactly what I want to avoid.
-
-It's not just the task itself.
-
-It's the mental load of remembering that I have a pending task.
-
-And that's where AI, voice notes, transcriptions, reminders, and tools that organize my thoughts became indispensable.
-
-## There's No Going Back
-
-For me, AI stopped being a curiosity.
-
-It's no longer a tool I use "sometimes."
-
-It's part of how I work, how I organize myself, how I think, and how I move projects forward.
-
-Not because it does everything perfectly.
-
-Not because it replaces judgment.
-
-Not because you can stop learning.
-
-But because it reduces friction.
-
-It helps me start.
-
-It helps me keep going.
-
-It helps me offload my mind.
-
-It helps me turn five free minutes into something useful.
-
-And once you get used to that, going back feels impossible.
-
-Without AI, I can no longer work or live the way I used to.
-
-There's no way.
+And once you get used to that, going back feels impossible. Without AI I can no longer work or live the way I did before. There's no way.

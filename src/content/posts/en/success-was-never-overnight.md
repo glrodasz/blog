@@ -9,72 +9,14 @@ languageVersions:
     url: "/es/posts/el-exito-nunca-fue-de-un-dia-para-otro"
 ---
 
-We really like to believe in sudden success.
+We love to believe in sudden success. We see someone become famous, fill stadiums, launch a company, or show up everywhere, and we think *"wow, this person blew up out of nowhere"*. But it's almost never like that: what we call "overnight success" is usually the moment we find out about a story that had been quietly happening for years.
 
-We see someone who becomes famous, fills stadiums, launches a company, wins awards, shows up everywhere, and we think:
+It happens with musicians, soccer players, actors, scientists, entrepreneurs, and content creators. When you dig into the story of almost anyone who has achieved something hard, you find the same thing: years of work, failed attempts, discipline, sacrifices, and an enormous amount of time invested before the recognition arrived. The problem is that we see the goal and not the training sessions, the concert and not the years playing in empty bars, the viral video and not the hundreds of videos nobody watched.
 
-> "Wow, this person blew up out of nowhere."
+And since we don't see the process, we make up a more comfortable explanation: that they got lucky, that the algorithm favored them, that they knew someone, that they were born talented. Of course luck exists, and connections too, and context matters a lot; not everything depends on individual effort. But using that as the only explanation is also a way of avoiding an uncomfortable truth: most valuable things take longer than we want to accept.
 
-But it's almost never like that.
+We like the idea that with a phone, some free time, and a good idea we can become famous or rich overnight. And yes, it has happened, but it's the exception. The norm is much more boring: repeating, improving, getting frustrated, and keeping going while nobody is watching you yet, for long enough that it looks like *"something happened"*. I think that's why the process is so hard for us to accept: it doesn't look good on social media, it doesn't have the same shine or the immediate reward. But that's where things actually get built.
 
-What we call "overnight success" is usually just the moment we find out about a story that's been quietly happening for years.
+Success doesn't usually appear out of nowhere. What appears out of nowhere is our attention: by the time we discover someone, that person had probably been working for years.
 
-It happens with musicians, soccer players, actors, directors, scientists, entrepreneurs, content creators, and pretty much anyone who has achieved something difficult. When you look into their story, you almost always find the same thing: years of work, failed attempts, discipline, opportunities, sacrifices, and an enormous amount of time invested before recognition arrived.
-
-The problem is that we see the result, not the process.
-
-We see the goal, not the training sessions.
-
-We see the concert, not the years playing in empty venues.
-
-We see the successful company, not the previous failures.
-
-We see the viral video, not the hundreds of videos no one watched.
-
-And because we don't see the process, we make up a more comfortable explanation:
-
-> "They got lucky."
->
-> "The algorithm favored them."
->
-> "They knew someone."
->
-> "It was the perfect timing."
->
-> "They were just born with talent."
-
-And yes, of course luck exists. Opportunities exist. Connections exist. Context matters a lot. Not everything depends on individual effort alone.
-
-But using that as the only explanation is also a way to avoid an uncomfortable truth:
-
-**Most valuable things take longer than we want to accept.**
-
-We love the idea that with a phone, some free time, and a good idea, we can become famous or rich overnight. And yes, that has happened. But it's the exception, not the norm.
-
-The norm is more boring.
-
-The norm is repeating.
-
-The norm is improving.
-
-The norm is getting frustrated.
-
-The norm is keeping going when no one is watching yet.
-
-The norm is doing things for a long time before it looks like "something happened".
-
-And I think that's why it's so hard for us to accept the process. Because the process doesn't look that good on social media. It doesn't have the same shine. It doesn't always get likes. It doesn't always have an immediate reward.
-
-But that's where things are actually built.
-
-Success doesn't usually appear out of nowhere.
-
-What appears out of nowhere is our attention.
-
-When we discover someone, that person had probably been working for years.
-
-And maybe that's an idea worth remembering more often, especially when we feel like we're falling behind, that we haven't achieved enough, or that everyone else is moving faster.
-
-Maybe you're not behind.
-
-**Maybe you're just in the part that isn't visible yet.**
+Maybe it's an idea worth remembering more often, especially when we feel like we're running late, that we haven't achieved enough, or that everyone else is moving faster. Maybe you're not behind; maybe you're just in the part that isn't visible yet.
