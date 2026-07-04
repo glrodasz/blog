@@ -2,7 +2,7 @@
 title: "What do I need to know before programming?"
 pubDate: "2025-07-24T00:00:00.000Z"
 tags: [Learn to program]
-description: "Before starting to program, you don't need to be a genius or memorize formulas; just follow three pillars that simplify the path: learn to read documentation, review high school math, and maintain endless curiosity to adapt to constant technological changes. Let's see why, with these foundations, anyone can take their first steps with confidence."
+description: "To start programming you don't need to be a genius or memorize formulas. In this post I tell you what, in my experience, actually helps — from getting used to reading documentation to reviewing high school math — and why curiosity ends up weighing more than any technical requirement."
 heroImage: "/covers/vintage-wooden-toolbox-with-metal-wrenches.jpg"
 languageVersions:
   - language: "es"
@@ -13,13 +13,13 @@ relatedPosts:
   - how-does-a-programming-language-work
 ---
 
-Before starting to program, you don't need to be a genius or memorize formulas; just follow three pillars that simplify the path:
+Before starting to program, you don't need to be a genius or memorize formulas. In my experience, there are three things that truly simplify the path:
 
 1. Learn to read documentation.
 2. Review high school math.
-3. Maintain endless curiosity to adapt to constant technological changes.
+3. Stay curious so you can adapt when technology changes (because it will).
 
-Let's see why, with these foundations, anyone can take their first steps with confidence.
+Let's go point by point so you can see why this is enough to take your first steps.
 
 ## Reading... yes, but not just for the reason you think!
 Throughout your career you'll spend approximately **90% of your time[^1] reading code, not writing it.** Good programmers:

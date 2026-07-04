@@ -3,7 +3,7 @@ title: Expresiones y sentencias, ¿luego qué?
 pubDate: "2025-10-13T00:00:00.000Z"
 updatedDate: "2025-10-16T00:00:00.000Z"
 tags: Aprende a programar
-description: Detrás de cada línea de código existe una jerarquía invisible, expresiones que forman sentencias, sentencias que componen algoritmos, y algoritmos que, al escalar, se convierten en bibliotecas o frameworks. Entender esa composición no solo ayuda a escribir mejor código, sino a reconocer cuándo algo deja de ser una función aislada para transformarse en una herramienta, un framework o incluso un producto.
+description: En este post seguimos la cadena completa de cómo se compone un programa, desde las expresiones y las sentencias hasta los algoritmos que crecen y terminan convertidos en bibliotecas, frameworks o incluso productos. Entender esa composición ayuda a escribir mejor código y a elegir con más criterio las herramientas que usamos.
 heroImage: "/covers/cardboard-boxes-with-red-toolbox-and-wrenches.jpg"
 languageVersions:
   - language: "en"

@@ -71,15 +71,11 @@ Pero aunque parezca que la IA puede hacer todo por ti, escribir código es solo 
 
 No hay nada más aterrador que ser responsable de algo sin saber cómo funciona. Es como comer algo sin leer los ingredientes: puede que esté rico hoy, pero mañana podría pasarte factura. Es una bomba de tiempo. Si el sistema falla, (y en algún momento lo hará) será mejor saber cómo arreglarlo.
 
-Por eso, mi consejo es usar la inteligencia artificial como un **acompañante**, un asistente que te ayuda, te inspira y te acelera. Pero la dirección técnica debe seguir en tus manos. Aprender a programar te da el criterio para decidir qué funciona, qué no, y cuándo decirle “gracias, pero no lo haremos así”.
+Por eso, mi consejo es usar la inteligencia artificial como un **acompañante**: un asistente que te acelera el trabajo, pero donde la dirección técnica sigue en tus manos. Aprender a programar te da el criterio para decidir qué funciona, qué no, y cuándo decirle “gracias, pero no lo haremos así”.
 
 ## Es mucho más que escribir código
-Podemos crear nuestros propios universos a imagen y semejanza (no estoy exagerando), o cosas tan simples como automatizar tareas.
+Con la programación podemos crear nuestros propios universos a imagen y semejanza (no estoy exagerando), o cosas tan simples como automatizar una tarea que nos quita tiempo. También nos ayuda a entender cómo funcionan los sistemas que usamos todos los días y a tomar mejores decisiones en un mundo lleno de tecnología.
 
-Programar nos permite entender cómo funcionan los sistemas que usamos todos los días y tomar mejores decisiones en un mundo lleno de tecnología.
-
-Aprender a programar es como aprender un nuevo idioma: **tu cerebro se expande**, empiezas a ver patrones en todos lados, a pensar de forma más estructurada y a detectar oportunidades para crear y ejecutar ideas en los procesos de nuestro día a día.
-
-No se trata solo de escribir código, sino de entrenar la cabeza para resolver problemas y convertir ideas en realidad. Y lo mejor de todo: no necesitas estudiar una carrera para hacerlo. Con un par de meses y mucha práctica, puedes ser un programador listo para comerte el mundo.
+A mí me gusta compararlo con aprender un nuevo idioma: empiezas a ver patrones en todos lados y a pensar de forma más estructurada, y de repente detectas oportunidades para crear y ejecutar ideas en los procesos de tu día a día. Al final, programar es entrenar la cabeza para resolver problemas y convertir ideas en realidad. Y no necesitas estudiar una carrera entera para lograrlo: con unos meses y mucha práctica puedes construir tus primeros proyectos y, sobre todo, entender lo que estás haciendo.
 
 [^1]: Node graph architecture - https://en.m.wikipedia.org/wiki/Node_graph_architecture

@@ -2,7 +2,7 @@
 title: How does a programming language work?
 pubDate: "2024-11-11T00:00:00.000Z"
 tags: [Learn to program]
-description: "Programming languages process data and manage flow through expressions and statements. Expressions combine values, operators, and variables to produce results, while statements perform actions. These components transform instructions into practical solutions, ranging from simple calculations to complex systems."
+description: "Behind every programming language there are basic pieces that repeat across all of them, like values, variables, operators, and functions. In this post we look at how each one works and how, combined with expressions and statements, we go from simple instructions to complete solutions."
 heroImage: "/covers/vintage-punched-card-on-wooden-table.jpg"
 languageVersions:
   - language: "es"
@@ -46,7 +46,7 @@ Let's see some examples of the most commonly used values:
 
 > 📫 Boolean _values_ are usually called **flags** (flags) where a flag up indicates `true`, (activated) while a flag down indicates `false` (deactivated).
 
-> ℹ️ Each programming language handles a variety of values and types. Later we'll delve into the specific types that JavaScript supports.
+> ℹ️ Each programming language handles a variety of values and types. Later we'll look at the specific types that JavaScript supports in more detail.
 
 ### Variables
 
@@ -296,8 +296,4 @@ Here, `g` is an anonymous function assigned to a variable.
 
 ## Programming languages are more than syntax
 
-Although initially _values_, _variables_, _operators_, and _functions_ may seem like just symbols and syntax rules, in practice these fundamental elements allow us to build solutions to complex problems.
-
-They are the basic pieces with which we can create from simple calculators to sophisticated artificial intelligence systems.
-
-Understanding how these elements work is the first step to unleashing the true potential of any programming language.
+Although at first _values_, _variables_, _operators_, and _functions_ may seem like just symbols and syntax rules, in practice they are the basic pieces everything else is built with: a simple calculator and an artificial intelligence system use exactly the same fundamentals. That's why it's worth understanding them well from the start; the rest of the language becomes much easier to learn once these pieces are clear.

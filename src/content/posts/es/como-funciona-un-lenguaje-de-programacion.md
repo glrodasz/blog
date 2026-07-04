@@ -2,7 +2,7 @@
 title: ¿Cómo funciona un lenguaje de programación?
 pubDate: "2024-11-11T00:00:00.000Z"
 tags: Aprende a programar
-description: Los lenguajes de programación procesan datos y gestionan el flujo mediante expresiones y sentencias. Las expresiones combinan valores, operadores y variables para producir resultados, mientras que las sentencias realizan acciones. Estos componentes transforman instrucciones en soluciones prácticas, abarcando desde cálculos simples hasta sistemas complejos.
+description: Detrás de cada lenguaje de programación hay unas piezas básicas que se repiten en todos, como los valores, las variables, los operadores y las funciones. En este post vemos cómo funciona cada una y cómo, al combinarlas con expresiones y sentencias, pasamos de instrucciones sencillas a soluciones completas.
 heroImage: "/covers/vintage-punched-card-on-wooden-table.jpg"
 languageVersions:
   - language: "en"
@@ -295,8 +295,4 @@ Aquí, `g` es una función anónima asignada a una variable.
 
 ## Los lenguajes de programación son más que sintaxis
 
-Aunque inicialmente los _valores_, _variables_, _operadores_ y _funciones_ pueden parecer solo símbolos y reglas de sintaxis, en la práctica estos elementos fundamentales nos permiten construir soluciones a problemas complejos.
-
-Son las piezas básicas con las que podemos crear desde simples calculadoras hasta sofisticados sistemas de inteligencia artificial.
-
-Comprender cómo funcionan estos elementos es el primer paso para desatar el verdadero potencial de cualquier lenguaje de programación.
+Aunque al principio los _valores_, _variables_, _operadores_ y _funciones_ pueden parecer solo símbolos y reglas de sintaxis, en la práctica son las piezas básicas con las que se construye todo lo demás: una calculadora sencilla y un sistema de inteligencia artificial usan exactamente los mismos fundamentos. Por eso vale la pena entenderlos bien desde el principio; el resto del lenguaje se aprende mucho más fácil cuando estas piezas están claras.

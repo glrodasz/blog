@@ -2,7 +2,7 @@
 title: Comandos alias para la Terminal
 pubDate: "2020-02-21T00:00:00.000Z"
 tags: Aprende a programar
-description: La terminal facilita las tareas diarias, permitiendo ejecutarlas rápidamente. Aunque aprender todos los comandos puede ser complejo, los comandos alias ofrecen una solución. Estos permiten crear comandos personalizados, más cortos y fáciles de recordar, para simplificar tareas complejas.
+description: Aprenderse todos los comandos de la terminal puede ser agotador. Los comandos alias nos permiten crear atajos personalizados, más cortos y fáciles de recordar, para las tareas que repetimos todos los días. En este post te muestro cómo crearlos, cómo guardarlos y algunos de los que uso a diario.
 heroImage: "/covers/modern-bus-terminal-with-double-decker-buses.jpg"
 relatedPosts:
   - conociendo-la-terminal

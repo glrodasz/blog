@@ -3,7 +3,7 @@ title: Expressions and statements, what's next?
 pubDate: "2025-10-13T00:00:00.000Z"
 updatedDate: "2025-10-16T00:00:00.000Z"
 tags: Learn to program
-description: Behind every line of code there is an invisible hierarchy, expressions that form statements, statements that compose algorithms, and algorithms that, when scaled, become libraries or frameworks. Understanding this composition not only helps write better code, but also recognize when something stops being an isolated function to transform into a tool, a framework, or even a product.
+description: In this post we follow the full chain of how a program is composed, from expressions and statements to the algorithms that grow and end up turned into libraries, frameworks, or even products. Understanding that composition helps you write better code and choose your tools with better judgment.
 heroImage: "/covers/cardboard-boxes-with-red-toolbox-and-wrenches.jpg"
 languageVersions:
   - language: "es"

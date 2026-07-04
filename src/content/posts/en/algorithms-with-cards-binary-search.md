@@ -2,7 +2,7 @@
 title: "Algorithms with cards: Binary search"
 pubDate: "2024-07-11T00:00:00.000Z"
 tags: [Learn to program]
-description: "The binary search algorithm, or \"Binary Search\", is an efficient method for finding an element in an ordered list. It repeatedly divides the search range in half, significantly reducing the number of comparisons needed."
+description: "Binary search is an efficient method for finding an element in an ordered list. The idea is to divide the search range in half over and over until you land on what you're looking for. In this post we apply it step by step with a deck of cards."
 heroImage: "/covers/intertwined-tree-branches-with-green-leaves.jpg"
 languageVersions:
   - language: "es"
@@ -15,11 +15,7 @@ relatedPosts:
 
 > 🤿 This is part of the illustrated series "**Algorithms with cards**", you can find the first article [here](/posts/algorithms-with-cards-bubble-sort/) where we talk about _bubble sort_.
 
-The binary search algorithm, known in English as "Binary Search", is an efficient method for finding an element in an ordered list.
-
-This algorithm works by repeatedly dividing in half the range of possible numbers and then selecting the interval in which the searched element must be, which significantly decreases the number of comparisons needed.
-
-It's especially useful in large lists, as it drastically reduces search time compared to a linear approach.
+The binary search algorithm, or "Binary Search", is an efficient method for finding an element in an ordered list. The idea is to divide the search range in half over and over, always keeping the half where the searched element must be. That way we make far fewer comparisons than checking element by element, and the difference really shows in large lists.
 
 ### The binary search algorithm
 
@@ -85,8 +81,4 @@ Finally, the middle card will be less than the searched card, we discard the ent
 Since this time only one card remains, we only need to ask if that card is the **6 of hearts**, and indeed it is!
 
 ## Why do we need algorithms?
-Although humans can perform these tasks intuitively, algorithms break down the process into precise and repeatable steps, guaranteeing exact results.
-
-From sorting data in a spreadsheet to managing large volumes of information on servers, algorithms are fundamental to modern computing and show us how the combination of simplicity and precision can solve problems that would otherwise be overwhelming.
-
-By applying these concepts with something as everyday as a deck of cards, we can visualize how they might work in more complex contexts.
+We can find a card at a glance, but a computer needs us to break the process down into precise, repeatable steps, which is exactly what an algorithm does. The same principle we applied with the deck is what a spreadsheet uses to sort data, or a server to search among millions of records. That's why I like practicing with cards: if you understand how the search works with 13 cards in your hand, you've already understood how it works in much bigger contexts.
