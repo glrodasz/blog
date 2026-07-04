@@ -16,6 +16,13 @@ const messages = getMessages(locale);
 <div class="tag-carousel" data-tag-carousel>
   <button
     type="button"
+    class:list={["tag-tab", "tag-all", { active: activeTagSlug === "all" }]}
+    data-tag="all"
+  >
+    {messages.filter.all}
+  </button>
+  <button
+    type="button"
     class="carousel-arrow prev"
     data-carousel-prev
     hidden
@@ -37,13 +44,6 @@ const messages = getMessages(locale);
   </button>
   <div class="tag-filter-scroll" data-tag-scroll>
     <nav class="tag-filter" aria-label="Filter by tag">
-      <button
-        type="button"
-        class:list={["tag-tab", { active: activeTagSlug === "all" }]}
-        data-tag="all"
-      >
-        {messages.filter.all}
-      </button>
       {tags.map((tag) => {
         const slug = tagToSlug(tag);
         return (
@@ -182,16 +182,8 @@ const messages = getMessages(locale);
     display: none;
   }
 
-  @media (min-width: 641px) {
-    .tag-tab[data-tag="all"] {
-      position: sticky;
-      left: 0;
-      z-index: 2;
-    }
-
-    .tag-tab[data-tag="all"]:not(.active) {
-      background: var(--color-bg-default);
-    }
+  .tag-all {
+    flex: 0 0 auto;
   }
 
   @media (max-width: 640px) {
@@ -248,32 +240,39 @@ const messages = getMessages(locale);
     next.addEventListener("click", () => scrollByStep(1));
     scroll.addEventListener("scroll", updateArrows, { passive: true });
 
-    // Click-and-drag to scroll (desktop pointer only).
-    let isDown = false;
+    // Click-and-drag to scroll (desktop pointer only). Capture is deferred
+    // until the drag threshold is crossed so plain clicks still reach the tabs.
+    let pending = false;
+    let dragging = false;
     let startX = 0;
     let startScroll = 0;
     let moved = false;
 
     scroll.addEventListener("pointerdown", (event) => {
       if (!desktop.matches || event.button !== 0) return;
-      isDown = true;
+      pending = true;
+      dragging = false;
       moved = false;
       startX = event.clientX;
       startScroll = scroll.scrollLeft;
-      scroll.setPointerCapture(event.pointerId);
-      scroll.classList.add("dragging");
     });
 
     scroll.addEventListener("pointermove", (event) => {
-      if (!isDown) return;
+      if (!pending) return;
       const dx = event.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      scroll.scrollLeft = startScroll - dx;
+      if (!dragging && Math.abs(dx) > 4) {
+        dragging = true;
+        moved = true;
+        scroll.setPointerCapture(event.pointerId);
+        scroll.classList.add("dragging");
+      }
+      if (dragging) scroll.scrollLeft = startScroll - dx;
     });
 
     const endDrag = (event: PointerEvent) => {
-      if (!isDown) return;
-      isDown = false;
+      if (!pending) return;
+      pending = false;
+      dragging = false;
       scroll.classList.remove("dragging");
       if (scroll.hasPointerCapture(event.pointerId)) {
         scroll.releasePointerCapture(event.pointerId);

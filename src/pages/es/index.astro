@@ -59,7 +59,7 @@ const [featured, ...rest] = posts;
 
       document.addEventListener("DOMContentLoaded", () => {
         const tabs = Array.from(
-          document.querySelectorAll<HTMLElement>(".tag-filter [data-tag]")
+          document.querySelectorAll<HTMLElement>(".tag-carousel [data-tag]")
         );
         const searchInput = document.querySelector<HTMLInputElement>(
           "[data-search-input]"
@@ -188,6 +188,9 @@ const [featured, ...rest] = posts;
           if (searchInput.value.trim() === "") {
             filterInner.classList.remove("search-focused");
           }
+        });
+        searchInput?.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") searchInput.blur();
         });
       });
     </script>
