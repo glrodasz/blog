@@ -48,13 +48,14 @@ Reject or rewrite any draft containing these patterns:
 - Colombian-neutral, informal: `tú` for the individual reader, `ustedes` for the audience. Never `vosotros`.
 - Colloquialisms are welcome in moderation ("uy", "ojo", "un montón", "cuadrar algo", "botar ideas"). Don't force them; one or two per post is plenty.
 - Anglicisms stay when they're what devs actually say: *side project, early adopter, feedback, framework, codebase, prompt*. Italicize on first use when it reads as foreign.
-- He writes "AI" (not "IA") in titles/slugs — follow existing usage in the repo rather than "correcting" it.
+- Write "IA" (from "Inteligencia Artificial"), never "AI", anywhere in the visible text (title, description, headings, body). Existing file/slugs that already contain "ai" (e.g. `la-ai-se-volvio-parte-de-mi-vida.md`) stay as-is to avoid breaking URLs — the slug isn't visible prose.
 
 ### English (translation target)
 - English posts are **translations of the Spanish original**, not rewrites. Keep the same structure, jokes, and asides.
 - Translate meaning, not words: fix calques ("sentencias" → "statements", never "sentences"; "librerías" → "libraries").
 - Keep the conversational register; do not formalize. If a joke doesn't survive translation, adapt it — don't delete it and don't explain it.
 - Keep his idiosyncrasies ("I don't forget that I forgot something") even if an editor would smooth them.
+- Write "AI" (from "Artificial Intelligence"), never "IA", anywhere in the visible text.
 
 ### Translation tasks specifically
 1. Never "improve" while translating. If you spot a real error in the source, flag it separately; don't silently fix style.
@@ -79,5 +80,5 @@ Run through this list; if any item fails, revise before showing the draft:
 5. Analogies/anecdotes concrete and real (no invented details)?
 6. Stock LLM phrases absent (section 3 blacklist)?
 7. Register matches a 2024–2025 post read side by side?
-8. Correct language conventions (tú/ustedes, calques fixed, "AI" spelling)?
+8. Correct language conventions (tú/ustedes, calques fixed, "IA" in Spanish / "AI" in English)?
 9. Ending is a reflection in prose, not a slogan?
