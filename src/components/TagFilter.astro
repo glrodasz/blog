@@ -191,6 +191,18 @@ const messages = getMessages(locale);
       margin: 0 -15px;
       padding: 4px 15px;
       max-width: 100vw;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tag-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Collapse the inner scroll box so "Todos" scrolls with the tags. */
+    .tag-filter-scroll {
+      display: contents;
     }
 
     .carousel-arrow {
