@@ -93,8 +93,13 @@ const messages = getMessages(locale);
   .tag-filter-scroll {
     min-width: 0;
     overflow-x: auto;
-    scroll-behavior: smooth;
     scrollbar-width: none;
+    user-select: none;
+    cursor: grab;
+  }
+
+  .tag-filter-scroll.dragging {
+    cursor: grabbing;
   }
 
   .tag-filter-scroll::-webkit-scrollbar {
@@ -116,6 +121,7 @@ const messages = getMessages(locale);
     padding: 8px 14px;
     border-radius: var(--radius-card);
     font-size: 0.95rem;
+    line-height: 1;
     font-weight: 700;
     text-decoration: none;
     color: var(--color-text-default);
@@ -176,6 +182,18 @@ const messages = getMessages(locale);
     display: none;
   }
 
+  @media (min-width: 641px) {
+    .tag-tab[data-tag="all"] {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+    }
+
+    .tag-tab[data-tag="all"]:not(.active) {
+      background: var(--color-bg-default);
+    }
+  }
+
   @media (max-width: 640px) {
     .tag-carousel {
       margin: 0 -15px;
@@ -229,6 +247,56 @@ const messages = getMessages(locale);
     prev.addEventListener("click", () => scrollByStep(-1));
     next.addEventListener("click", () => scrollByStep(1));
     scroll.addEventListener("scroll", updateArrows, { passive: true });
+
+    // Click-and-drag to scroll (desktop pointer only).
+    let isDown = false;
+    let startX = 0;
+    let startScroll = 0;
+    let moved = false;
+
+    scroll.addEventListener("pointerdown", (event) => {
+      if (!desktop.matches || event.button !== 0) return;
+      isDown = true;
+      moved = false;
+      startX = event.clientX;
+      startScroll = scroll.scrollLeft;
+      scroll.setPointerCapture(event.pointerId);
+      scroll.classList.add("dragging");
+    });
+
+    scroll.addEventListener("pointermove", (event) => {
+      if (!isDown) return;
+      const dx = event.clientX - startX;
+      if (Math.abs(dx) > 4) moved = true;
+      scroll.scrollLeft = startScroll - dx;
+    });
+
+    const endDrag = (event: PointerEvent) => {
+      if (!isDown) return;
+      isDown = false;
+      scroll.classList.remove("dragging");
+      if (scroll.hasPointerCapture(event.pointerId)) {
+        scroll.releasePointerCapture(event.pointerId);
+      }
+    };
+    scroll.addEventListener("pointerup", endDrag);
+    scroll.addEventListener("pointercancel", endDrag);
+
+    // Suppress the click that follows a real drag so a tag isn't selected.
+    scroll.addEventListener(
+      "click",
+      (event) => {
+        if (moved) {
+          event.preventDefault();
+          event.stopPropagation();
+          moved = false;
+        }
+      },
+      true
+    );
+
+    // Prevent native link/image dragging inside the carousel.
+    scroll.addEventListener("dragstart", (event) => event.preventDefault());
 
     if ("ResizeObserver" in window) {
       new ResizeObserver(updateArrows).observe(scroll);

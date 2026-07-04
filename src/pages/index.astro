@@ -64,11 +64,38 @@ const [featured, ...rest] = posts;
         const searchInput = document.querySelector<HTMLInputElement>(
           "[data-search-input]"
         );
+        const scroll = document.querySelector<HTMLElement>("[data-tag-scroll]");
         const wrapper = document.querySelector<HTMLElement>("[data-post-grid]");
         const emptyState = document.querySelector<HTMLElement>(
           "[data-empty-state]"
         );
         if (!wrapper) return;
+
+        const desktopQuery = window.matchMedia("(min-width: 641px)");
+        const defaultPlaceholder = searchInput?.placeholder ?? "";
+        const searchInTemplate =
+          searchInput?.dataset.searchInPlaceholder ?? "";
+
+        const updatePlaceholder = (label: string, tag: string) => {
+          if (!searchInput) return;
+          searchInput.placeholder =
+            tag === "all"
+              ? defaultPlaceholder
+              : searchInTemplate.replace("{tag}", label);
+        };
+
+        const scrollTabIntoView = (tab: HTMLElement, tag: string) => {
+          if (!desktopQuery.matches) return;
+          if (tag === "all") {
+            scroll?.scrollTo({ left: 0, behavior: "smooth" });
+          } else {
+            tab.scrollIntoView({
+              behavior: "smooth",
+              inline: "center",
+              block: "nearest",
+            });
+          }
+        };
 
         const filterCards = Array.from(
           wrapper.querySelectorAll<HTMLElement>(".filter-view [data-search]")
@@ -126,6 +153,8 @@ const [featured, ...rest] = posts;
             activeTag = tag;
             tabs.forEach((t) => t.classList.toggle("active", t === tab));
             apply();
+            updatePlaceholder(tab.textContent?.trim() ?? "", tag);
+            scrollTabIntoView(tab, tag);
           });
         });
 
@@ -148,7 +177,6 @@ const [featured, ...rest] = posts;
           window.scrollTo({ top, behavior: "smooth" });
         });
 
-        const desktopQuery = window.matchMedia("(min-width: 641px)");
         const filterInner =
           document.querySelector<HTMLElement>(".filter-inner");
         searchInput?.addEventListener("focus", () => {
@@ -175,8 +203,16 @@ const [featured, ...rest] = posts;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1em;
+    gap: 12px;
     flex-wrap: nowrap;
+  }
+
+  .filter-inner.search-focused :global(.tag-carousel) {
+    flex: 0 0 auto;
+  }
+
+  .filter-inner.search-focused :global(.tag-filter-scroll) {
+    overflow: visible;
   }
 
   .filter-inner.search-focused :global(.search-bar) {

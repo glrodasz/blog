@@ -35,6 +35,7 @@ export const messages = {
   filter: {
     all: "All",
     searchPlaceholder: "Search",
+    searchInPlaceholder: "Search in {tag}",
     scrollPrev: "Previous",
     scrollNext: "Next"
   },
