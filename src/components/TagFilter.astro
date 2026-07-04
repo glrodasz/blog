@@ -102,6 +102,34 @@ const messages = getMessages(locale);
     cursor: grabbing;
   }
 
+  /* Soft fade where the tags meet the arrows, instead of a hard clip. */
+  .tag-filter-scroll.fade-start {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px);
+    mask-image: linear-gradient(to right, transparent 0, #000 24px);
+  }
+
+  .tag-filter-scroll.fade-end {
+    -webkit-mask-image: linear-gradient(to left, transparent 0, #000 24px);
+    mask-image: linear-gradient(to left, transparent 0, #000 24px);
+  }
+
+  .tag-filter-scroll.fade-start.fade-end {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 24px,
+      #000 calc(100% - 24px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 24px,
+      #000 calc(100% - 24px),
+      transparent 100%
+    );
+  }
+
   .tag-filter-scroll::-webkit-scrollbar {
     display: none;
   }
@@ -234,11 +262,14 @@ const messages = getMessages(locale);
       if (!desktop.matches) {
         prev.hidden = true;
         next.hidden = true;
+        scroll.classList.remove("fade-start", "fade-end");
         return;
       }
       const maxScroll = scroll.scrollWidth - scroll.clientWidth;
       prev.hidden = scroll.scrollLeft <= 1;
       next.hidden = scroll.scrollLeft >= maxScroll - 1;
+      scroll.classList.toggle("fade-start", !prev.hidden);
+      scroll.classList.toggle("fade-end", !next.hidden);
     };
 
     const scrollByStep = (direction: 1 | -1) => {
