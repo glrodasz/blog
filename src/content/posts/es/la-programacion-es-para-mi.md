@@ -2,7 +2,7 @@
 title: "¿La programación es para mi?"
 pubDate: "2025-09-19T00:00:00.000Z"
 tags: Aprende a programar
-description: La programación no es solo para genios de las matemáticas ni para quienes crecieron con videojuegos. Requiere curiosidad, disciplina y el hábito de resolver problemas. Descubre si este camino, lleno de retos y aprendizaje constante, puede ser la carrera ideal para ti.
+description: Mucha gente cree que la programación es para genios de las matemáticas o para quienes crecieron con videojuegos. La realidad es más sencilla y a la vez más exigente. En este post te cuento qué se necesita en realidad, para que decidas con calma si esta carrera es para ti.
 heroImage: "/covers/beige-hats-arranged-on-wooden-shelves.jpg"
 languageVersions:
   - language: "en"
@@ -60,9 +60,9 @@ Como mencioné antes, no caigas en la trampa de pagar porque creas que vas a apr
 Si buscas estudiar de manera más tradicional, al ser una carrera de alta demanda muchos gobiernos ofrecen becas y programas para cursarla, así como bootcamps de programación. Averigua en tu ciudad con la entidad de educación gubernamental correspondiente.
 
 ## Lo que debes tener en cuenta
-La verdad es que no existe una respuesta universal. La programación no es para todos, pero sí puede ser para cualquiera que esté dispuesto a aprender de manera constante, a equivocarse y a mejorar cada día. No importa si vienes de una carrera técnica, de una disciplina completamente distinta o si nunca has pisado una universidad: lo que realmente marca la diferencia es tu **curiosidad, disciplina y ganas de resolver problemas**.
+La verdad es que no existe una respuesta universal. La programación no es para todos, pero sí puede ser para cualquiera que esté dispuesto a aprender de manera constante y a equivocarse en el camino. No importa si vienes de una carrera técnica, de una disciplina completamente distinta o si nunca has pisado una universidad; he visto llegar lejos a personas de todos esos contextos, y lo que tenían en común era la curiosidad y el hábito de resolver problemas.
 
-Si disfrutas el reto de pensar en soluciones, te motiva aprender cosas nuevas y puedes construir el hábito de mantenerte en movimiento incluso cuando las cosas se ponen difíciles, entonces la programación puede ser un camino ideal para ti.
+Así que, si disfrutas pensar en soluciones y crees que puedes construir ese hábito incluso cuando las cosas se ponen difíciles, dale una oportunidad. En el peor de los casos habrás aprendido una forma nueva de pensar, y eso nadie te lo quita.
 
 [^1]: Puedes acceder a mi Bootcamp gratuito en https://glrz.me/bootcamp, pero también existen organizaciones como [freeCodeCamp](https://www.freecodecamp.org/espanol/) que ofrecen cursos y bootcamps sin costo alguno.
 [^2]: Fail Fast (Business) - https://en.wikipedia.org/wiki/Fail_fast_(business)

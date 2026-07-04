@@ -2,7 +2,7 @@
 title: "Is programming for me?"
 pubDate: "2025-09-19T00:00:00.000Z"
 tags: [Learn to program]
-description: "Programming isn't just for math geniuses or those who grew up with video games. It requires curiosity, discipline, and the habit of solving problems. Discover if this path, full of challenges and constant learning, could be the ideal career for you."
+description: "Many people believe programming is for math geniuses or for those who grew up with video games. The reality is simpler and, at the same time, more demanding. In this post I tell you what it actually takes, so you can calmly decide whether this career is for you."
 heroImage: "/covers/beige-hats-arranged-on-wooden-shelves.jpg"
 languageVersions:
   - language: "es"
@@ -60,9 +60,9 @@ As I mentioned before, don't fall into the trap of paying because you think you'
 If you're looking to study in a more traditional way, being a high-demand career, many governments offer scholarships and programs to pursue it, as well as programming bootcamps. Check in your city with the corresponding government education entity.
 
 ## What you should keep in mind
-The truth is that there's no universal answer. Programming is not for everyone, but it can be for anyone who is willing to learn constantly, to make mistakes, and to improve every day. It doesn't matter if you come from a technical career, from a completely different discipline, or if you've never set foot in a university: what really makes the difference is your **curiosity, discipline, and desire to solve problems**.
+The truth is that there's no universal answer. Programming is not for everyone, but it can be for anyone who is willing to learn constantly and to make mistakes along the way. It doesn't matter if you come from a technical career, from a completely different discipline, or if you've never set foot in a university; I've seen people from all those backgrounds go far, and what they had in common was curiosity and the habit of solving problems.
 
-If you enjoy the challenge of thinking about solutions, you're motivated to learn new things, and you can build the habit of staying in motion even when things get difficult, then programming can be an ideal path for you.
+So, if you enjoy thinking about solutions and believe you can build that habit even when things get difficult, give it a chance. Worst case, you'll have learned a new way of thinking, and nobody can take that away from you.
 
 [^1]: You can access my free Bootcamp at https://glrz.me/bootcamp, but there are also organizations like [freeCodeCamp](https://www.freecodecamp.org/espanol/) that offer courses and bootcamps at no cost.
 [^2]: Fail Fast (Business) - https://en.wikipedia.org/wiki/Fail_fast_(business)

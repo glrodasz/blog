@@ -1,6 +1,6 @@
 ---
 title: Historia y evolución de JavaScript
-description: "La historia de JavaScript es la historia de la web misma: nació con prisa en 1995, creció en medio del caos y maduró a base de experimentos. Lo que comenzó como un lenguaje improvisado para dar vida a las páginas web terminó expandiéndose hacia servidores, dispositivos móviles y entornos distribuidos, desde Netscape y V8 hasta Node.js, TypeScript, Deno y Bun."
+description: "JavaScript nació con prisa en 1995 y creció en medio del caos de la web. En este post repasamos cómo un lenguaje improvisado para dar vida a las páginas terminó expandiéndose hacia servidores, dispositivos móviles y entornos distribuidos, desde Netscape y V8 hasta Node.js, TypeScript, Deno y Bun."
 pubDate: "2025-11-09T00:00:00.000Z"
 tags: Aprende a programar
 heroImage: "/covers/cardboard-with-eggs-and-js-egg.jpg"
@@ -122,7 +122,7 @@ En esta etapa la propuesta se fusiona al borrador final de la siguiente edición
 ## Un lenguaje en movimiento 
 Cada año, hacia mediados de año, el **TC39** reúne todas las propuestas que han alcanzado la Etapa 4 y publica una nueva edición del estándar (ES2024, ES2025, etc.). Este proceso continuo, basado en consenso y colaboración, mantiene a JavaScript en una evolución constante, equilibrando innovación con estabilidad.
 
-Lejos de ser aquel experimento improvisado de 1995, hoy el lenguaje refleja la madurez de toda una comunidad: miles de desarrolladores, empresas y proyectos que contribuyen a su crecimiento. Su fuerza no radica solo en su alcance técnico, sino en su capacidad para adaptarse, reinventarse y seguir siendo relevante en un ecosistema que nunca deja de cambiar.
+Lejos de ser aquel experimento improvisado de 1995, hoy el lenguaje refleja la madurez de toda una comunidad: miles de desarrolladores, empresas y proyectos que contribuyen a su crecimiento. Y si algo ha demostrado JavaScript en todos estos años es que sabe adaptarse; por eso sigue vigente en un ecosistema que nunca deja de cambiar.
 
 [^1]:  What's Your Least Favourite Programming Language? - [https://youtu.be/03lRzf7iSiU](https://youtu.be/03lRzf7iSiU) 
 [^2]: Netscape Navigator 2 - [https://en.wikipedia.org/wiki/Netscape_Navigator_2](https://en.wikipedia.org/wiki/Netscape_Navigator_2)

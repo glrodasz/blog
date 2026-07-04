@@ -1,6 +1,6 @@
 ---
 title: JavaScript History and Evolution
-description: "JavaScript's history is the history of the web itself: born in haste in 1995, it grew in the midst of chaos and matured through experimentation. What began as an improvised language to bring web pages to life ended up expanding to servers, mobile devices, and distributed environments, from Netscape and V8 to Node.js, TypeScript, Deno, and Bun."
+description: "JavaScript was born in haste in 1995 and grew up in the middle of the web's chaos. In this post we go over how an improvised language meant to bring pages to life ended up expanding to servers, mobile devices, and distributed environments, from Netscape and V8 to Node.js, TypeScript, Deno, and Bun."
 pubDate: "2025-11-09T00:00:00.000Z"
 tags: [Learn to program]
 heroImage: "/covers/cardboard-with-eggs-and-js-egg.jpg"
@@ -122,7 +122,7 @@ At this stage, the proposal is merged into the final draft of the next annual ed
 ## A Language in Motion
 Each year, around mid-year, **TC39** gathers all proposals that have reached Stage 4 and publishes a new edition of the standard (ES2024, ES2025, etc.). This continuous process, based on consensus and collaboration, keeps JavaScript in constant evolution, balancing innovation with stability.
 
-Far from being that improvised experiment of 1995, today the language reflects the maturity of an entire community: thousands of developers, companies, and projects that contribute to its growth. Its strength lies not only in its technical reach, but in its ability to adapt, reinvent itself, and remain relevant in an ecosystem that never stops changing.
+Far from being that improvised experiment of 1995, today the language reflects the maturity of an entire community: thousands of developers, companies, and projects that contribute to its growth. And if JavaScript has proven anything over all these years, it's that it knows how to adapt; that's why it stays current in an ecosystem that never stops changing.
 
 [^1]: What's Your Least Favourite Programming Language? - [https://youtu.be/03lRzf7iSiU](https://youtu.be/03lRzf7iSiU)
 [^2]: Netscape Navigator 2 - [https://en.wikipedia.org/wiki/Netscape_Navigator_2](https://en.wikipedia.org/wiki/Netscape_Navigator_2)

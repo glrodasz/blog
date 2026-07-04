@@ -71,15 +71,11 @@ But although it may seem that AI can do everything for you, writing code is only
 
 There's nothing more terrifying than being responsible for something without knowing how it works. It's like eating something without reading the ingredients: it might taste good today, but tomorrow it could come back to haunt you. It's a time bomb. If the system fails (and at some point it will), it's better to know how to fix it.
 
-That's why my advice is to use artificial intelligence as a **companion**, an assistant that helps you, inspires you, and accelerates you. But technical direction should remain in your hands. Learning to program gives you the criteria to decide what works, what doesn't, and when to say "thanks, but we won't do it that way."
+That's why my advice is to use artificial intelligence as a **companion**: an assistant that speeds up your work, but where the technical direction stays in your hands. Learning to program gives you the criteria to decide what works, what doesn't, and when to say "thanks, but we won't do it that way."
 
 ## It's much more than writing code
-We can create our own universes in our image and likeness (I'm not exaggerating), or things as simple as automating tasks.
+With programming we can create our own universes in our image and likeness (I'm not exaggerating), or things as simple as automating a task that eats up our time. It also helps us understand how the systems we use every day work, and make better decisions in a world full of technology.
 
-Programming allows us to understand how the systems we use every day work and make better decisions in a world full of technology.
-
-Learning to program is like learning a new language: **your brain expands**, you start to see patterns everywhere, think more structured, and detect opportunities to create and execute ideas in our daily processes.
-
-It's not just about writing code, but about training your head to solve problems and turn ideas into reality. And the best part: you don't need to study a degree to do it. With a couple of months and a lot of practice, you can be a programmer ready to take on the world.
+I like to compare it with learning a new language: you start to see patterns everywhere and to think in a more structured way, and suddenly you spot opportunities to create and execute ideas in your daily processes. In the end, programming is training your head to solve problems and turn ideas into reality. And you don't need to study a whole degree to get there: with a few months and a lot of practice you can build your first projects and, above all, understand what you're doing.
 
 [^1]: Node graph architecture - https://en.m.wikipedia.org/wiki/Node_graph_architecture

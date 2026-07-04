@@ -21,12 +21,12 @@ El ecosistema incluye todo lo que rodea a un lenguaje: la comunidad, la document
 
 Parte de ese ecosistema está formada por componentes de los que normalmente no nos preocupamos. A esto lo llamo **"el ecosistema oculto"**: piezas fundamentales para que JavaScript sea tan versátil y esté presente prácticamente en todas partes, como los motores y los entornos de ejecución.
 
-## **Motores de JavaScript**
+## Motores de JavaScript
 Los navegadores web modernos utilizan distintos motores de JavaScript para interpretar o compilar el código, como vimos en el capítulo sobre [Tipos de lenguajes de programación](/es/posts/tipos-de-lenguajes-de-programacion). Cada motor tiene su propia arquitectura, optimizaciones y decisiones de diseño.
 
 JavaScript no se ejecuta de forma nativa en el navegador. El código debe ser transformado a código máquina, y el motor es el responsable de realizar ese proceso. Veamos algunos de los motores actuales y en qué se destacan.
 
-### **V8**
+### V8
 V8 es uno de los motores más populares. Fue creado por Google para su navegador Chrome, pero también dio origen a Node.js y hoy en día es utilizado por Deno, entre otros proyectos.
 
 Es un motor de código abierto que se destaca por su alto rendimiento. Utiliza un intérprete y un compilador *just-in-time* optimizado para convertir JavaScript a código máquina, además de un recolector de basura avanzado que ayuda a reducir pausas largas.
@@ -41,22 +41,22 @@ V8 se actualiza con frecuencia para incorporar las últimas características de 
 
 > 🐤 **Chromium**: es el proyecto de código abierto en el que se basa Chrome. En otras palabras, es el corazón de Chrome sin las partes privadas y propietarias que añade Google. Navegadores como Microsoft Edge, Opera y Brave también se basan en Chromium.
 
-### **SpiderMonkey**
+### SpiderMonkey
 SpiderMonkey es el motor utilizado por Mozilla Firefox, originalmente creado por Netscape. Emplea un intérprete base y múltiples niveles de compilación *just-in-time*, junto con un recolector de basura ajustado para el entorno del navegador. Se destaca por su estricto apego al estándar ECMAScript y por ofrecer excelentes herramientas de depuración.
 
 También puede ser embebido en aplicaciones que necesiten un *entorno de ejecución* de JavaScript completo y conforme al estándar. Un caso conocido fue **MongoDB**, un motor de base de datos no relacional que utilizó SpiderMonkey para ejecutar JavaScript en distintas funcionalidades internas, aunque con el tiempo este uso se ha ido reduciendo.
 
-### **JavaScriptCore**
+### JavaScriptCore
 JavaScriptCore, también llamado Nitro o WebKit JavaScript Engine, es el motor utilizado por Safari. Evolucionó desde el antiguo motor SquirrelFish hacia una arquitectura de múltiples niveles con un compilador *just-in-time* optimizado.
 
 Apple lo ha afinado especialmente para maximizar la eficiencia en memoria y el bajo consumo energético, pensando en dispositivos con recursos limitados. Se integra estrechamente con las APIs nativas de iOS y macOS a través del framework JavaScriptCore y prioriza la estabilidad y el comportamiento predecible sobre cambios radicales.
 
-### **Chakra**
+### Chakra
 Chakra fue el motor utilizado por Internet Explorer 9 y posteriores, así como por Microsoft Edge en su versión legada, Edge 18. Diseñado por Microsoft, ofrecía compilación *just-in-time* y estaba fuertemente optimizado para los sistemas operativos Windows.
 
 > 🦋 Microsoft Edge migró a Chromium y pasó a utilizar V8 en 2020. Aun así, Chakra continuó disponible como ChakraCore, un proyecto de código abierto orientado a usos embebidos, pero Microsoft dejó de publicar nuevas versiones y la disponibilidad de sus descargas oficiales se retiró en 2024.
 
-## **JavaScript en el servidor**
+## JavaScript en el servidor
 Durante muchos años, JavaScript tuvo un lugar muy limitado en el desarrollo web. Hasta inicios del nuevo milenio, alrededor del año 2000, era visto casi exclusivamente como un lenguaje para el navegador. Su propósito se reducía a añadir pequeñas dosis de interactividad: validación de formularios, mostrar u ocultar elementos, reaccionar a clics, entre otras tareas similares.
 
 Quien quisiera construir una aplicación web completa debía enfrentarse, al menos, a dos mundos distintos. Por un lado, JavaScript en el navegador. Por el otro, cualquier lenguaje de la época capaz de ejecutarse en el servidor, como PHP, Python, Java o Ruby. Dos lenguajes, dos ecosistemas y, muchas veces, dos formas muy diferentes de solucionar problemas.
@@ -69,16 +69,16 @@ Pero Node.js no solo trajo JavaScript al servidor. También introdujo un modelo 
 
 Este enfoque encajaba de manera natural con la realidad de la web moderna: aplicaciones altamente concurrentes, más enfocadas en coordinar eventos que en consumir recursos de forma constante.
 
-Por primera vez, JavaScript podía cubrir todo el recorrido de una aplicación web. El mismo lenguaje servía para construir la interfaz de usuario y las interacciones, implementar la lógica de negocio, acceder a datos y exponer APIs. El límite entre cliente y servidor seguía existiendo y siendo claro, pero el lenguaje que los conectaba era ahora el mismo.
+Por primera vez, JavaScript podía cubrir todo el recorrido de una aplicación web: el mismo lenguaje servía para construir la interfaz de usuario y las interacciones, implementar la lógica de negocio, acceder a datos y exponer APIs. El límite entre cliente y servidor seguía existiendo y siendo claro, solo que ahora el lenguaje que los conectaba era el mismo.
 
-El impacto fue inmediato: JavaScript dejó de ser solo un lenguaje y comenzó a consolidarse como una plataforma completa. Surgió **npm**, un sistema de paquetes que con el tiempo se convertiría en uno de los repositorios de software más grandes del mundo. Aparecieron frameworks web como **Express**, que simplificaron enormemente la creación de servidores con tan solo unas líneas de código. Y, casi sin darse cuenta, la comunidad empezó a construir sus propias herramientas en JavaScript: linters, bundlers, task runners y, más adelante, compiladores y entornos completos de desarrollo.
+A partir de ahí, JavaScript se fue convirtiendo en una plataforma completa. Nació **npm**, un sistema de paquetes que con el tiempo se convertiría en uno de los repositorios de software más grandes del mundo, y llegaron frameworks web como **Express**, con los que bastaban unas pocas líneas de código para tener un servidor funcionando. La comunidad, casi sin darse cuenta, empezó a construir sus propias herramientas en JavaScript: linters, bundlers, task runners y, más adelante, compiladores y entornos completos de desarrollo.
 
-Por primera vez, los desarrolladores podían apostar por un solo lenguaje, profundizar en él y utilizarlo en todos los niveles de una aplicación. JavaScript dejaba atrás su papel secundario y se consolidaba como algo nuevo, un **lenguaje verdaderamente full-stack**.
+Los desarrolladores ya podían apostar por un solo lenguaje, profundizar en él y usarlo en todos los niveles de una aplicación. Aquel lenguaje de papel secundario se estaba volviendo full-stack de verdad.
 
-## **Nuevas generaciones de entornos**
+## Nuevas generaciones de entornos
 El crecimiento de JavaScript trajo consigo la aparición de entornos de ejecución alternativos a Node.js, diseñados para casos modernos como aplicaciones serverless, *edge computing* o para mejorar decisiones históricas que en Node.js eran difíciles de cambiar sin romper compatibilidad.
 
-### **Deno**
+### Deno
 Deno es un entorno de ejecución creado por **Ryan Dahl**, el mismo creador de Node.js. Fue presentado en 2018 con la intención de corregir algunos "errores de diseño" que Dahl identificaba en Node.js.
 
 > 🦕 Por si aún no lo has notado, **Deno** es un anagrama de **Node**, el nombre asociado a Node.js.
@@ -89,7 +89,7 @@ Además, incorpora soporte nativo para TypeScript y adopta la importación de m�
 
 Una buena razón para usar Deno es precisamente esa: representa una segunda oportunidad para diseñar un *entorno de ejecución* moderno de JavaScript, aprendiendo de más de una década de experiencia con Node.js.
 
-### **Bun**
+### Bun
 Bun es un *entorno de ejecución* que sorprendió a la comunidad por hacer varias cosas fuera de lo convencional. Fue introducido en 2021 y se posicionó como una alternativa **ultrarrápida**, enfocada principalmente en rendimiento y experiencia de desarrollo.
 
 > 🏎️ **Benchmarking**: en el ecosistema siempre nos vamos a encontrar con herramientas, frameworks o *entornos de ejecución* que dicen ser más rápidos que otros. Pero muchas comparaciones suelen usar ejemplos que benefician a la herramienta que reclama ser la ganadora. Por lo tanto, es importante revisar el contexto y el código usado con criterio propio.
@@ -100,7 +100,7 @@ Bun integra varias herramientas que normalmente requerirían configuraciones sep
 
 La filosofía de Bun es reducir la fricción: iniciar más rápido, consumir menos recursos y facilitar al desarrollador tener todo en uno. Si bien Bun todavía está evolucionando y afinando compatibilidad con todos los paquetes de Node, ya ha generado mucha expectativa en la comunidad por sus capacidades y sus números de rendimiento.
 
-### **Entornos de ejecución especializados**
+### Entornos de ejecución especializados
 Además de Deno y Bun, existen entornos de ejecución orientados a escenarios específicos.
 
 En *edge computing* y funciones **serverless** de nueva generación, por ejemplo, se usan aislamientos de V8 en lugar de procesos tradicionales de Node.js. Plataformas como **Cloudflare Workers** permiten ejecutar código JavaScript en instancias aisladas de manera casi instantánea. Esto posibilita tener miles de funciones concurrentes por servidor y reducir drásticamente el tiempo de arranque.
@@ -111,12 +111,12 @@ Lo interesante es que JavaScript ya no depende de un único modelo de ejecución
 
 Todos estos entornos coexisten hoy y muestran cómo JavaScript sigue expandiéndose sin quedarse atado al navegador ni al modelo clásico de Node.js.
 
-## **Aplicaciones más allá del navegador**
+## Aplicaciones más allá del navegador
 Tras la revolución de Node.js, JavaScript continuó extendiéndose más allá del navegador, llegando al desarrollo de aplicaciones **móviles** y de **escritorio** multiplataforma.
 
 Esto ha revolucionado la forma de crear productos de software, permitiendo construir apps nativas y de escritorio usando solo conocimientos de JavaScript y compartiendo parte del código entre plataformas.
 
-### **En plataformas móviles**
+### En plataformas móviles
 En 2009 surgieron soluciones híbridas como **PhoneGap**, que permitían *"escribir una vez, ejecutar en cualquier lugar"* usando HTML, CSS y JavaScript para crear apps móviles multiplataforma. Básicamente, PhoneGap empaquetaba una aplicación web dentro de un contenedor nativo y exponía APIs en JavaScript para acceder a funcionalidades del dispositivo, como la cámara o los sensores.
 
 El enfoque fue revolucionario, pero venía con limitaciones de rendimiento y UX: las apps eran realmente *WebViews*, no interfaces nativas, lo que a veces se traducía en menor fluidez.
@@ -125,14 +125,14 @@ En 2015, Facebook presentó **React Native**. A diferencia de PhoneGap, aunque l
 
 Muchas otras opciones siguieron apareciendo, como **Ionic**, **NativeScript** y las **Progressive Web Apps**, que llevan experiencias web al móvil directamente.
 
-### **En el escritorio**
+### En el escritorio
 JavaScript también conquistó terreno mediante frameworks como **Electron**, lanzado en 2013 por GitHub.
 
 Electron permite construir aplicaciones de escritorio multiplataforma para Windows, macOS y Linux usando tecnologías web, con Chromium para la interfaz y Node.js para el acceso al sistema. En la práctica, Electron habilita que una aplicación web se distribuya como aplicación de escritorio, ofreciendo una experiencia cercana a la nativa, pero construida con tecnologías web.
 
 Este enfoque ha tenido un impacto enorme en la industria. Muchas aplicaciones de nuestro día a día han sido construidas con Electron: **Visual Studio Code, Slack, Discord, WhatsApp Desktop, Notion, Figma** y **Descript**. Algunas han migrado, o podrían migrar en el futuro, a otras tecnologías, pero sigue siendo sorprendente ver hasta dónde se ha usado JavaScript en aplicaciones de escritorio y en productos que compiten con apps nativas. Es el caso de **Figma**, para diseño, o **Descript**, para edición de video: cosas que antes parecían impensables fuera del entorno nativo.
 
-## **El futuro del ecosistema**
+## El futuro del ecosistema
 JavaScript nos ha demostrado una y otra vez su versatilidad, quizá porque nació junto con la web, como mencionamos en la [Historia y evolución de JavaScript](/es/posts/historia-de-javascript).
 
 La web ayudó a posicionarlo, pero JavaScript también tuvo una ventaja particular: avanzó lentamente. Como un caracol. Esa lentitud, sumada a su adopción masiva, permitió que el lenguaje incorporara lecciones aprendidas de otros ecosistemas sin desaparecer en el intento.

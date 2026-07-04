@@ -3,7 +3,7 @@ title: "Algoritmos con naipes: Ordenamiento burbuja"
 pubDate: "2024-05-23T00:00:00.000Z"
 updatedDate: "2025-07-25T00:00:00.000Z"
 tags: Aprende a programar
-description: El algoritmo de ordenamiento de burbuja, o "Bubble Sort", es un método sencillo para ordenar listas. Compara e intercambia pares adyacentes si están desordenados, repitiendo el proceso hasta que no se necesitan más intercambios. Es ideal por su simplicidad y eficiencia en listas pequeñas.
+description: El ordenamiento de burbuja es uno de los algoritmos más sencillos para ordenar una lista. Compara pares de elementos vecinos y los intercambia si están en el orden incorrecto, hasta que no queda nada por intercambiar. En este post lo aplicamos paso a paso con una baraja de naipes.
 heroImage: "/covers/underwater-bubbles-with-sunlight-rays.jpg"
 languageVersions:
   - language: "en"
@@ -105,10 +105,6 @@ Se hará un ciclo de más comparando la carta actual con la siguiente, sin que h
 
 ### Así es como las burbujas suben a la superficie
 
-Al finalizar todos los ciclos de comparación e intercambio, la baraja de naipes queda completamente ordenada de menor a mayor valor.
-
-Este ejercicio visualiza claramente cómo el ordenamiento de burbuja mueve sistemáticamente las cartas hacia sus posiciones correctas, subrayando la importancia de los algoritmos en la organización de datos. 
-
-Aunque simple, este método demuestra la eficacia de seguir pasos detallados para lograr un objetivo complejo, similar a cómo las computadoras resuelven problemas en nuestro día a día.
+Al terminar todos los ciclos de comparación e intercambio, la baraja queda ordenada de menor a mayor. El nombre del algoritmo viene justamente de eso: en cada ciclo, la carta de mayor valor va “subiendo” hasta el final, como una burbuja que sube a la superficie. Y aunque es un método simple (y no precisamente el más rápido que existe), hacerlo con las cartas en la mano deja muy claro cómo una computadora puede lograr un objetivo complejo siguiendo pasos muy sencillos, uno a la vez.
 
 [^1]: The Stove Top Coffee Maker for Perfect Espresso - https://9barista.com/

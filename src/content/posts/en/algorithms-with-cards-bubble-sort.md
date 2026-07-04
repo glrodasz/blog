@@ -3,7 +3,7 @@ title: "Algorithms with cards: Bubble sort"
 pubDate: "2024-05-23T00:00:00.000Z"
 updatedDate: "2025-07-25T00:00:00.000Z"
 tags: [Learn to program]
-description: "The bubble sort algorithm, or \"Bubble Sort\", is a simple method for sorting lists. It compares and swaps adjacent pairs if they are out of order, repeating the process until no more swaps are needed. It's ideal for its simplicity and efficiency in small lists."
+description: "Bubble sort is one of the simplest algorithms for sorting a list. It compares pairs of neighboring elements and swaps them if they're in the wrong order, until there's nothing left to swap. In this post we apply it step by step with a deck of cards."
 heroImage: "/covers/underwater-bubbles-with-sunlight-rays.jpg"
 languageVersions:
   - language: "es"
@@ -106,10 +106,6 @@ There will be one more cycle comparing the current card with the next one, witho
 
 ### This is how bubbles rise to the surface
 
-After finishing all the comparison and swap cycles, the deck of cards is completely sorted from lowest to highest value.
-
-This exercise clearly visualizes how bubble sort systematically moves cards to their correct positions, underlining the importance of algorithms in data organization.
-
-Although simple, this method demonstrates the effectiveness of following detailed steps to achieve a complex objective, similar to how computers solve problems in our daily lives.
+After finishing all the comparison and swap cycles, the deck ends up sorted from lowest to highest. That's exactly where the algorithm's name comes from: in each cycle, the highest-value card keeps "rising" to the end, like a bubble rising to the surface. And although it's a simple method (and not exactly the fastest one out there), doing it with the cards in your hand makes it very clear how a computer can achieve a complex goal by following very simple steps, one at a time.
 
 [^1]: The Stove Top Coffee Maker for Perfect Espresso - https://9barista.com/
