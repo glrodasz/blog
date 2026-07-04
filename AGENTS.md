@@ -48,7 +48,7 @@ Reject or rewrite any draft containing these patterns:
 - Colombian-neutral, informal: `tú` for the individual reader, `ustedes` for the audience. Never `vosotros`.
 - Colloquialisms are welcome in moderation ("uy", "ojo", "un montón", "cuadrar algo", "botar ideas"). Don't force them; one or two per post is plenty.
 - Anglicisms stay when they're what devs actually say: *side project, early adopter, feedback, framework, codebase, prompt*. Italicize on first use when it reads as foreign.
-- Write "IA" (from "Inteligencia Artificial"), never "AI", anywhere in the visible text (title, description, headings, body). Existing file/slugs that already contain "ai" (e.g. `la-ai-se-volvio-parte-de-mi-vida.md`) stay as-is to avoid breaking URLs — the slug isn't visible prose.
+- Write "IA" (from "Inteligencia Artificial"), never "AI", anywhere in the text — titles, slugs/filenames, description, headings, and body alike.
 
 ### English (translation target)
 - English posts are **translations of the Spanish original**, not rewrites. Keep the same structure, jokes, and asides.
