@@ -37,7 +37,8 @@ export const messages = {
     searchPlaceholder: "Buscar",
     searchInPlaceholder: "Buscar en {tag}",
     scrollPrev: "Anterior",
-    scrollNext: "Siguiente"
+    scrollNext: "Siguiente",
+    noResults: "No se encontraron artículos"
   },
   tagPage: {
     title: "Etiqueta: {tag}"

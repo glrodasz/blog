@@ -4,14 +4,17 @@ import { getMessages } from "../i18n";
 
 type Props = {
   locale?: Locale;
+  placeholder?: string;
 };
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
+const placeholder =
+  Astro.props.placeholder ?? messages.filter.searchPlaceholder;
 ---
 
 <label class="search-bar">
-  <span class="sr-only">{messages.filter.searchPlaceholder}</span>
+  <span class="sr-only">{placeholder}</span>
   <svg
     class="icon"
     width="18"
@@ -32,7 +35,7 @@ const messages = getMessages(locale);
     name="search"
     data-search-input
     data-search-in-placeholder={messages.filter.searchInPlaceholder}
-    placeholder={messages.filter.searchPlaceholder}
+    placeholder={placeholder}
     autocomplete="off"
   />
 </label>

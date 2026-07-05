@@ -55,139 +55,9 @@ const [featured, ...rest] = posts;
     <Footer locale={locale} />
     <SimpleAnalytics />
     <script>
-      import { normalizeForSearch } from "../../utils/searchNormalize";
+      import { initHomeFilter } from "../../utils/homeFilter";
 
-      document.addEventListener("DOMContentLoaded", () => {
-        const tabs = Array.from(
-          document.querySelectorAll<HTMLElement>(".tag-carousel [data-tag]")
-        );
-        const searchInput = document.querySelector<HTMLInputElement>(
-          "[data-search-input]"
-        );
-        const scroll = document.querySelector<HTMLElement>("[data-tag-scroll]");
-        const wrapper = document.querySelector<HTMLElement>("[data-post-grid]");
-        const emptyState = document.querySelector<HTMLElement>(
-          "[data-empty-state]"
-        );
-        if (!wrapper) return;
-
-        const desktopQuery = window.matchMedia("(min-width: 641px)");
-        const defaultPlaceholder = searchInput?.placeholder ?? "";
-        const searchInTemplate =
-          searchInput?.dataset.searchInPlaceholder ?? "";
-
-        const updatePlaceholder = (label: string, tag: string) => {
-          if (!searchInput) return;
-          searchInput.placeholder =
-            tag === "all"
-              ? defaultPlaceholder
-              : searchInTemplate.replace("{tag}", label);
-        };
-
-        const scrollTabIntoView = (tab: HTMLElement, tag: string) => {
-          if (!desktopQuery.matches) return;
-          if (tag === "all") {
-            scroll?.scrollTo({ left: 0, behavior: "smooth" });
-          } else {
-            tab.scrollIntoView({
-              behavior: "smooth",
-              inline: "center",
-              block: "nearest",
-            });
-          }
-        };
-
-        const filterCards = Array.from(
-          wrapper.querySelectorAll<HTMLElement>(".filter-view [data-search]")
-        );
-
-        let activeTag = "all";
-        let query = "";
-
-        const apply = () => {
-          const isFiltering = activeTag !== "all" || query !== "";
-          wrapper.classList.toggle("filter-active", isFiltering);
-
-          if (!isFiltering) {
-            filterCards.forEach((card) => {
-              card.style.display = "";
-            });
-            if (emptyState) emptyState.hidden = true;
-            return;
-          }
-
-          let visibleCount = 0;
-          filterCards.forEach((card) => {
-            const tagSlugs = (card.dataset.tagSlugs ?? "")
-              .split(" ")
-              .filter(Boolean);
-            const haystack = card.dataset.search ?? "";
-            const tagMatch =
-              activeTag === "all" || tagSlugs.includes(activeTag);
-            const queryMatch = !query || haystack.includes(query);
-            const show = tagMatch && queryMatch;
-            card.style.display = show ? "" : "none";
-            if (show) visibleCount += 1;
-          });
-
-          if (emptyState) {
-            emptyState.hidden = visibleCount > 0;
-          }
-        };
-
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", (event) => {
-            const tag = tab.dataset.tag;
-            if (!tag) return;
-            if (tab.tagName === "A") {
-              if (
-                (event as MouseEvent).metaKey ||
-                (event as MouseEvent).ctrlKey ||
-                (event as MouseEvent).shiftKey ||
-                (event as MouseEvent).button === 1
-              ) {
-                return;
-              }
-              event.preventDefault();
-            }
-            activeTag = tag;
-            tabs.forEach((t) => t.classList.toggle("active", t === tab));
-            apply();
-            updatePlaceholder(tab.textContent?.trim() ?? "", tag);
-            scrollTabIntoView(tab, tag);
-          });
-        });
-
-        let debounceId: number | undefined;
-        searchInput?.addEventListener("input", () => {
-          if (debounceId) window.clearTimeout(debounceId);
-          debounceId = window.setTimeout(() => {
-            query = normalizeForSearch(searchInput.value ?? "");
-            apply();
-          }, 120);
-        });
-
-        const mobileQuery = window.matchMedia("(max-width: 640px)");
-        searchInput?.addEventListener("focus", () => {
-          if (!mobileQuery.matches) return;
-          const header = document.getElementById("main-header");
-          const offset = (header?.offsetHeight ?? 0) + 16;
-          const top =
-            searchInput.getBoundingClientRect().top + window.scrollY - offset;
-          window.scrollTo({ top, behavior: "smooth" });
-        });
-
-        searchInput?.addEventListener("keydown", (event) => {
-          if (event.key !== "Escape") return;
-          event.preventDefault();
-          if (searchInput.value !== "") {
-            searchInput.value = "";
-            query = "";
-            apply();
-          }
-          searchInput.blur();
-        });
-      });
+      initHomeFilter();
     </script>
   </body>
 </html>
@@ -205,34 +75,39 @@ const [featured, ...rest] = posts;
     flex-wrap: nowrap;
   }
 
-  @media (min-width: 641px) {
-    .filter-inner:focus-within :global(.tag-carousel) {
-      flex: 0 0 auto;
-    }
-
-    .filter-inner:focus-within :global(.tag-filter-scroll) {
-      overflow: visible;
-    }
-
-    .filter-inner:focus-within :global(.search-bar) {
-      flex: 1 1 auto;
-    }
-
-    .filter-inner:focus-within :global(.tag-tab:not(.active)) {
-      display: none;
-    }
-
-    .filter-inner:focus-within :global(.carousel-arrow) {
-      display: none;
-    }
-  }
-
   @media (max-width: 640px) {
     .filter-inner {
       flex-direction: column;
       align-items: stretch;
       gap: 0.75em;
       flex-wrap: wrap;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Expanded-search state, scoped to search-input focus only (not tags or
+     arrows, which are also focusable descendants of .filter-inner). Global
+     because Astro can't scope :global() inside :has(). */
+  @media (min-width: 641px) {
+    .filter-inner:has([data-search-input]:focus) .tag-carousel {
+      flex: 0 0 auto;
+    }
+
+    .filter-inner:has([data-search-input]:focus) .tag-filter-scroll {
+      overflow: visible;
+    }
+
+    .filter-inner:has([data-search-input]:focus) .search-bar {
+      flex: 1 1 auto;
+    }
+
+    .filter-inner:has([data-search-input]:focus) .tag-tab:not(.active) {
+      display: none;
+    }
+
+    .filter-inner:has([data-search-input]:focus) .carousel-arrow {
+      display: none;
     }
   }
 </style>

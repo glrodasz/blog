@@ -4,6 +4,7 @@ import HighlightedArticleCard from "./HighlightedArticleCard.astro";
 import Container from "./Container.astro";
 import { type Post } from "../utils/content";
 import { type Locale } from "../i18n/config";
+import { getMessages } from "../i18n";
 
 type Props = {
   posts: Post[];
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const { posts, locale, highlightEvery = 3, layout = "magazine" } = Astro.props;
+const messages = getMessages(locale);
 
 type Block =
   | { kind: "grid"; posts: Post[] }
@@ -82,8 +84,8 @@ if (layout === "magazine") {
     </Container>
   </div>
 
-  <p class="empty" data-empty-state hidden>
-    <span></span>
+  <p class="empty" data-empty-state hidden aria-live="polite">
+    <span>{messages.filter.noResults}</span>
   </p>
 </div>
 

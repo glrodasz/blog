@@ -13,11 +13,12 @@ const { tags, locale, activeTagSlug = "all" } = Astro.props;
 const messages = getMessages(locale);
 ---
 
-<div class="tag-carousel" data-tag-carousel>
+<nav class="tag-carousel" data-tag-carousel aria-label="Filter by tag">
   <button
     type="button"
     class:list={["tag-tab", "tag-all", { active: activeTagSlug === "all" }]}
     data-tag="all"
+    aria-current={activeTagSlug === "all" ? "true" : undefined}
   >
     {messages.filter.all}
   </button>
@@ -43,7 +44,7 @@ const messages = getMessages(locale);
     </svg>
   </button>
   <div class="tag-filter-scroll" data-tag-scroll>
-    <nav class="tag-filter" aria-label="Filter by tag">
+    <div class="tag-filter">
       {tags.map((tag) => {
         const slug = tagToSlug(tag);
         return (
@@ -51,12 +52,13 @@ const messages = getMessages(locale);
             class:list={["tag-tab", { active: activeTagSlug === slug }]}
             data-tag={slug}
             href={getTagUrl(tag, locale)}
+            aria-current={activeTagSlug === slug ? "true" : undefined}
           >
             {tag}
           </a>
         );
       })}
-    </nav>
+    </div>
   </div>
   <button
     type="button"
@@ -79,7 +81,7 @@ const messages = getMessages(locale);
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>
   </button>
-</div>
+</nav>
 
 <style>
   .tag-carousel {
@@ -302,6 +304,14 @@ const messages = getMessages(locale);
 
     scroll.addEventListener("pointermove", (event) => {
       if (!pending) return;
+      // Abort a stale drag if the button was released outside the strip
+      // (pointerup never reached us before capture was taken).
+      if (!(event.buttons & 1)) {
+        pending = false;
+        dragging = false;
+        scroll.classList.remove("dragging");
+        return;
+      }
       const dx = event.clientX - startX;
       if (!dragging && Math.abs(dx) > 4) {
         dragging = true;
@@ -322,7 +332,12 @@ const messages = getMessages(locale);
       }
     };
     scroll.addEventListener("pointerup", endDrag);
-    scroll.addEventListener("pointercancel", endDrag);
+    scroll.addEventListener("pointercancel", (event) => {
+      endDrag(event);
+      // No click follows a pointercancel, so don't let the suppressor
+      // swallow the user's next real click.
+      moved = false;
+    });
 
     // Suppress the click that follows a real drag so a tag isn't selected.
     scroll.addEventListener(

@@ -73,7 +73,13 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
           <BackLink />
           <h1 class="title">#{tagLabel}</h1>
           <div class="search-row">
-            <SearchBar locale={locale} />
+            <SearchBar
+              locale={locale}
+              placeholder={messages.filter.searchInPlaceholder.replace(
+                "{tag}",
+                tagLabel
+              )}
+            />
           </div>
         </Container>
       </section>
