@@ -161,6 +161,13 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
     justify-content: flex-end;
   }
 
+  @media (min-width: 641px) {
+    .search-row :global(.search-bar) {
+      flex-basis: 400px;
+      min-width: 400px;
+    }
+  }
+
   @media (max-width: 640px) {
     .search-row {
       justify-content: flex-start;
