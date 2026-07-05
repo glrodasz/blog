@@ -4,14 +4,17 @@ import { getMessages } from "../i18n";
 
 type Props = {
   locale?: Locale;
+  placeholder?: string;
 };
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
+const placeholder =
+  Astro.props.placeholder ?? messages.filter.searchPlaceholder;
 ---
 
 <label class="search-bar">
-  <span class="sr-only">{messages.filter.searchPlaceholder}</span>
+  <span class="sr-only">{placeholder}</span>
   <svg
     class="icon"
     width="18"
@@ -31,7 +34,8 @@ const messages = getMessages(locale);
     type="search"
     name="search"
     data-search-input
-    placeholder={messages.filter.searchPlaceholder}
+    data-search-in-placeholder={messages.filter.searchInPlaceholder}
+    placeholder={placeholder}
     autocomplete="off"
   />
 </label>
@@ -46,7 +50,9 @@ const messages = getMessages(locale);
     border: 1px solid var(--color-border-default);
     border-radius: var(--radius-card);
     color: var(--color-text-muted);
+    flex: 0 0 240px;
     min-width: 240px;
+    transition: flex-grow 0.2s ease, flex-basis 0.2s ease;
   }
 
   .search-bar:focus-within {
@@ -74,9 +80,21 @@ const messages = getMessages(locale);
     flex-shrink: 0;
   }
 
+  @media (min-width: 641px) {
+    .search-bar {
+      height: 32px;
+      padding-block: 0;
+    }
+
+    .search-bar input {
+      padding-block: 0;
+    }
+  }
+
   @media (max-width: 640px) {
     .search-bar {
       display: flex;
+      flex: 0 0 auto;
       width: 100%;
       min-width: 0;
     }

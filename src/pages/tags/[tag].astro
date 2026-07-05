@@ -73,7 +73,13 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
           <BackLink />
           <h1 class="title">#{tagLabel}</h1>
           <div class="search-row">
-            <SearchBar locale={locale} />
+            <SearchBar
+              locale={locale}
+              placeholder={messages.filter.searchInPlaceholder.replace(
+                "{tag}",
+                tagLabel
+              )}
+            />
           </div>
         </Container>
       </section>
@@ -127,7 +133,11 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
         const mobileQuery = window.matchMedia("(max-width: 640px)");
         searchInput?.addEventListener("focus", () => {
           if (!mobileQuery.matches) return;
-          searchInput.scrollIntoView({ behavior: "smooth", block: "start" });
+          const header = document.getElementById("main-header");
+          const offset = (header?.offsetHeight ?? 0) + 16;
+          const top =
+            searchInput.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
         });
       });
     </script>
@@ -149,6 +159,13 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
   .search-row {
     display: flex;
     justify-content: flex-end;
+  }
+
+  @media (min-width: 641px) {
+    .search-row :global(.search-bar) {
+      flex-basis: 400px;
+      min-width: 400px;
+    }
   }
 
   @media (max-width: 640px) {

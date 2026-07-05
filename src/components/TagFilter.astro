@@ -13,44 +13,145 @@ const { tags, locale, activeTagSlug = "all" } = Astro.props;
 const messages = getMessages(locale);
 ---
 
-<div class="tag-filter-scroll">
-  <nav class="tag-filter" aria-label="Filter by tag">
-    <button
-      type="button"
-      class:list={["tag-tab", { active: activeTagSlug === "all" }]}
-      data-tag="all"
+<nav class="tag-carousel" data-tag-carousel aria-label="Filter by tag">
+  <button
+    type="button"
+    class:list={["tag-tab", "tag-all", { active: activeTagSlug === "all" }]}
+    data-tag="all"
+    aria-current={activeTagSlug === "all" ? "true" : undefined}
+  >
+    {messages.filter.all}
+  </button>
+  <button
+    type="button"
+    class="carousel-arrow prev"
+    data-carousel-prev
+    hidden
+    aria-label={messages.filter.scrollPrev}
+  >
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
     >
-      {messages.filter.all}
-    </button>
-    {tags.map((tag) => {
-      const slug = tagToSlug(tag);
-      return (
-        <a
-          class:list={["tag-tab", { active: activeTagSlug === slug }]}
-          data-tag={slug}
-          href={getTagUrl(tag, locale)}
-        >
-          {tag}
-        </a>
-      );
-    })}
-  </nav>
-</div>
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+  <div class="tag-filter-scroll" data-tag-scroll>
+    <div class="tag-filter">
+      {tags.map((tag) => {
+        const slug = tagToSlug(tag);
+        return (
+          <a
+            class:list={["tag-tab", { active: activeTagSlug === slug }]}
+            data-tag={slug}
+            href={getTagUrl(tag, locale)}
+            aria-current={activeTagSlug === slug ? "true" : undefined}
+          >
+            {tag}
+          </a>
+        );
+      })}
+    </div>
+  </div>
+  <button
+    type="button"
+    class="carousel-arrow next"
+    data-carousel-next
+    hidden
+    aria-label={messages.filter.scrollNext}
+  >
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </button>
+</nav>
 
 <style>
+  .tag-carousel {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .tag-filter-scroll {
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    user-select: none;
+    cursor: grab;
+  }
+
+  .tag-filter-scroll.dragging {
+    cursor: grabbing;
+  }
+
+  /* Soft fade where the tags meet the arrows, instead of a hard clip. */
+  .tag-filter-scroll.fade-start {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px);
+    mask-image: linear-gradient(to right, transparent 0, #000 24px);
+  }
+
+  .tag-filter-scroll.fade-end {
+    -webkit-mask-image: linear-gradient(to left, transparent 0, #000 24px);
+    mask-image: linear-gradient(to left, transparent 0, #000 24px);
+  }
+
+  .tag-filter-scroll.fade-start.fade-end {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 24px,
+      #000 calc(100% - 24px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 24px,
+      #000 calc(100% - 24px),
+      transparent 100%
+    );
+  }
+
+  .tag-filter-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
   .tag-filter {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 8px;
     align-items: center;
+    width: max-content;
   }
 
   .tag-tab {
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
     padding: 8px 14px;
     border-radius: var(--radius-card);
     font-size: 0.95rem;
+    line-height: 1;
     font-weight: 700;
     text-decoration: none;
     color: var(--color-text-default);
@@ -81,24 +182,61 @@ const messages = getMessages(locale);
     color: var(--color-bg-default);
   }
 
+  .carousel-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-chip);
+    background: var(--color-bg-surface);
+    color: var(--color-text-default);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .carousel-arrow:hover {
+    background: var(--color-accent-subtle);
+    color: var(--color-accent-fg);
+  }
+
+  .carousel-arrow:focus-visible {
+    outline: 2px solid var(--color-aquarius-600);
+    outline-offset: 2px;
+  }
+
+  .carousel-arrow[hidden] {
+    display: none;
+  }
+
+  .tag-all {
+    flex: 0 0 auto;
+  }
+
   @media (max-width: 640px) {
-    .tag-filter-scroll {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+    .tag-carousel {
       margin: 0 -15px;
       padding: 4px 15px;
-      scrollbar-width: none;
-      min-width: 0;
       max-width: 100vw;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
-    .tag-filter-scroll::-webkit-scrollbar {
+    .tag-carousel::-webkit-scrollbar {
       display: none;
     }
 
-    .tag-filter {
-      flex-wrap: nowrap;
-      width: max-content;
+    /* Collapse the inner scroll box so "Todos" scrolls with the tags. */
+    .tag-filter-scroll {
+      display: contents;
+    }
+
+    .carousel-arrow {
+      display: none;
     }
 
     .tag-tab {
@@ -112,3 +250,116 @@ const messages = getMessages(locale);
     }
   }
 </style>
+
+<script>
+  const desktop = window.matchMedia("(min-width: 641px)");
+
+  document.querySelectorAll<HTMLElement>("[data-tag-carousel]").forEach((carousel) => {
+    const scroll = carousel.querySelector<HTMLElement>("[data-tag-scroll]");
+    const prev = carousel.querySelector<HTMLButtonElement>("[data-carousel-prev]");
+    const next = carousel.querySelector<HTMLButtonElement>("[data-carousel-next]");
+    if (!scroll || !prev || !next) return;
+
+    const updateArrows = () => {
+      if (!desktop.matches) {
+        prev.hidden = true;
+        next.hidden = true;
+        scroll.classList.remove("fade-start", "fade-end");
+        return;
+      }
+      const maxScroll = scroll.scrollWidth - scroll.clientWidth;
+      prev.hidden = scroll.scrollLeft <= 1;
+      next.hidden = scroll.scrollLeft >= maxScroll - 1;
+      scroll.classList.toggle("fade-start", !prev.hidden);
+      scroll.classList.toggle("fade-end", !next.hidden);
+    };
+
+    const scrollByStep = (direction: 1 | -1) => {
+      scroll.scrollBy({
+        left: direction * scroll.clientWidth * 0.8,
+        behavior: "smooth",
+      });
+    };
+
+    prev.addEventListener("click", () => scrollByStep(-1));
+    next.addEventListener("click", () => scrollByStep(1));
+    scroll.addEventListener("scroll", updateArrows, { passive: true });
+
+    // Click-and-drag to scroll (desktop pointer only). Capture is deferred
+    // until the drag threshold is crossed so plain clicks still reach the tabs.
+    let pending = false;
+    let dragging = false;
+    let startX = 0;
+    let startScroll = 0;
+    let moved = false;
+
+    scroll.addEventListener("pointerdown", (event) => {
+      if (!desktop.matches || event.button !== 0) return;
+      pending = true;
+      dragging = false;
+      moved = false;
+      startX = event.clientX;
+      startScroll = scroll.scrollLeft;
+    });
+
+    scroll.addEventListener("pointermove", (event) => {
+      if (!pending) return;
+      // Abort a stale drag if the button was released outside the strip
+      // (pointerup never reached us before capture was taken).
+      if (!(event.buttons & 1)) {
+        pending = false;
+        dragging = false;
+        scroll.classList.remove("dragging");
+        return;
+      }
+      const dx = event.clientX - startX;
+      if (!dragging && Math.abs(dx) > 4) {
+        dragging = true;
+        moved = true;
+        scroll.setPointerCapture(event.pointerId);
+        scroll.classList.add("dragging");
+      }
+      if (dragging) scroll.scrollLeft = startScroll - dx;
+    });
+
+    const endDrag = (event: PointerEvent) => {
+      if (!pending) return;
+      pending = false;
+      dragging = false;
+      scroll.classList.remove("dragging");
+      if (scroll.hasPointerCapture(event.pointerId)) {
+        scroll.releasePointerCapture(event.pointerId);
+      }
+    };
+    scroll.addEventListener("pointerup", endDrag);
+    scroll.addEventListener("pointercancel", (event) => {
+      endDrag(event);
+      // No click follows a pointercancel, so don't let the suppressor
+      // swallow the user's next real click.
+      moved = false;
+    });
+
+    // Suppress the click that follows a real drag so a tag isn't selected.
+    scroll.addEventListener(
+      "click",
+      (event) => {
+        if (moved) {
+          event.preventDefault();
+          event.stopPropagation();
+          moved = false;
+        }
+      },
+      true
+    );
+
+    // Prevent native link/image dragging inside the carousel.
+    scroll.addEventListener("dragstart", (event) => event.preventDefault());
+
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(updateArrows).observe(scroll);
+    }
+    desktop.addEventListener("change", updateArrows);
+
+    updateArrows();
+  });
+</script>

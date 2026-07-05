@@ -34,7 +34,11 @@ export const messages = {
   },
   filter: {
     all: "All",
-    searchPlaceholder: "Search"
+    searchPlaceholder: "Search",
+    searchInPlaceholder: "Search in {tag}",
+    scrollPrev: "Previous",
+    scrollNext: "Next",
+    noResults: "No articles found"
   },
   tagPage: {
     title: "Tag: {tag}"
