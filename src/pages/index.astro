@@ -177,20 +177,15 @@ const [featured, ...rest] = posts;
           window.scrollTo({ top, behavior: "smooth" });
         });
 
-        const filterInner =
-          document.querySelector<HTMLElement>(".filter-inner");
-        searchInput?.addEventListener("focus", () => {
-          if (!desktopQuery.matches || !filterInner) return;
-          filterInner.classList.add("search-focused");
-        });
-        searchInput?.addEventListener("blur", () => {
-          if (!filterInner) return;
-          if (searchInput.value.trim() === "") {
-            filterInner.classList.remove("search-focused");
-          }
-        });
         searchInput?.addEventListener("keydown", (event) => {
-          if (event.key === "Escape") searchInput.blur();
+          if (event.key !== "Escape") return;
+          event.preventDefault();
+          if (searchInput.value !== "") {
+            searchInput.value = "";
+            query = "";
+            apply();
+          }
+          searchInput.blur();
         });
       });
     </script>
@@ -210,24 +205,26 @@ const [featured, ...rest] = posts;
     flex-wrap: nowrap;
   }
 
-  .filter-inner.search-focused :global(.tag-carousel) {
-    flex: 0 0 auto;
-  }
+  @media (min-width: 641px) {
+    .filter-inner:focus-within :global(.tag-carousel) {
+      flex: 0 0 auto;
+    }
 
-  .filter-inner.search-focused :global(.tag-filter-scroll) {
-    overflow: visible;
-  }
+    .filter-inner:focus-within :global(.tag-filter-scroll) {
+      overflow: visible;
+    }
 
-  .filter-inner.search-focused :global(.search-bar) {
-    flex: 1 1 auto;
-  }
+    .filter-inner:focus-within :global(.search-bar) {
+      flex: 1 1 auto;
+    }
 
-  .filter-inner.search-focused :global(.tag-tab:not(.active)) {
-    display: none;
-  }
+    .filter-inner:focus-within :global(.tag-tab:not(.active)) {
+      display: none;
+    }
 
-  .filter-inner.search-focused :global(.carousel-arrow) {
-    display: none;
+    .filter-inner:focus-within :global(.carousel-arrow) {
+      display: none;
+    }
   }
 
   @media (max-width: 640px) {
