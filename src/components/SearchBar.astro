@@ -77,6 +77,17 @@ const messages = getMessages(locale);
     flex-shrink: 0;
   }
 
+  @media (min-width: 641px) {
+    .search-bar {
+      height: 32px;
+      padding-block: 0;
+    }
+
+    .search-bar input {
+      padding-block: 0;
+    }
+  }
+
   @media (max-width: 640px) {
     .search-bar {
       display: flex;
