@@ -19,6 +19,6 @@ const readingTime = calculateReadingTime(post.body);
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data} readingTime={readingTime} locale={locale}>
+<BlogPost {...post.data} readingTime={readingTime} locale={locale} markdownBody={post.body}>
   <Content />
 </BlogPost>

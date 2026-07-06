@@ -1,0 +1,282 @@
+---
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+import Copy from "lucide-astro/Copy";
+import Check from "lucide-astro/Check";
+
+type Props = {
+  title: string;
+  pubDate: Date;
+  url: string;
+  markdownBody: string;
+  locale?: Locale;
+};
+
+const { title, pubDate, url, markdownBody } = Astro.props;
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+
+const titleCase = (str: string) =>
+  str.charAt(0).toLocaleUpperCase(locale) + str.slice(1).toLocaleLowerCase();
+
+const formatDate = (date: Date) => {
+  const parts = date
+    .toLocaleDateString(locale, { year: "numeric", month: "short", day: "numeric" })
+    .split(" ");
+
+  if (parts.length >= 3) {
+    parts[1] = titleCase(parts[1]);
+  }
+
+  return parts.join(" ");
+};
+
+const formattedDate = formatDate(pubDate);
+---
+
+<div class="copy-article">
+  <button
+    type="button"
+    class="copy-article-trigger"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-label={messages.blog.copyArticle}
+  >
+    <Copy size={16} aria-hidden="true" class="copy-icon" />
+    <Check size={16} aria-hidden="true" class="check-icon" />
+  </button>
+  <div class="copy-article-menu" role="menu" hidden>
+    <button type="button" role="menuitem" class="copy-article-option" data-format="markdown">
+      {messages.blog.copyAsMarkdown}
+    </button>
+    <button type="button" role="menuitem" class="copy-article-option" data-format="richtext">
+      {messages.blog.copyAsRichText}
+    </button>
+  </div>
+  <span class="copy-article-status" role="status" aria-live="polite"></span>
+</div>
+
+<script
+  define:vars={{
+    title,
+    url,
+    formattedDate,
+    markdownBody,
+    originalArticleLabel: messages.blog.originalArticle,
+    copiedLabel: messages.blog.copied,
+  }}
+>
+  const root = document.currentScript.previousElementSibling;
+  const trigger = root.querySelector(".copy-article-trigger");
+  const menu = root.querySelector(".copy-article-menu");
+  const status = root.querySelector(".copy-article-status");
+
+  const closeMenu = () => {
+    menu.hidden = true;
+    trigger.setAttribute("aria-expanded", "false");
+  };
+
+  const openMenu = () => {
+    menu.hidden = false;
+    trigger.setAttribute("aria-expanded", "true");
+  };
+
+  trigger.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (menu.hidden) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!root.contains(event.target)) closeMenu();
+  });
+
+  root.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+      trigger.focus();
+    }
+  });
+
+  const escapeHtml = (str) =>
+    str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+
+  const copyPlainText = async (text) => {
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (error) {
+        console.warn("Clipboard write failed, falling back to execCommand.", error);
+      }
+    }
+
+    const helper = document.createElement("textarea");
+    helper.value = text;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "absolute";
+    helper.style.left = "-9999px";
+    document.body.appendChild(helper);
+    helper.select();
+    const copied = document.execCommand("copy");
+    document.body.removeChild(helper);
+    return copied;
+  };
+
+  const copyRichText = async (html, plainText) => {
+    if (navigator.clipboard?.write && window.ClipboardItem) {
+      try {
+        const item = new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([plainText], { type: "text/plain" }),
+        });
+        await navigator.clipboard.write([item]);
+        return true;
+      } catch (error) {
+        console.warn("Rich clipboard write failed, falling back to plain text.", error);
+      }
+    }
+
+    return copyPlainText(plainText);
+  };
+
+  const showCopied = () => {
+    trigger.classList.add("copied");
+    status.textContent = copiedLabel;
+    window.setTimeout(() => {
+      trigger.classList.remove("copied");
+      status.textContent = "";
+    }, 1500);
+  };
+
+  const buildMarkdown = () =>
+    `# ${title}\n\n${formattedDate}\n\n${originalArticleLabel}: ${url}\n\n${markdownBody}`;
+
+  const buildRichHtml = () => {
+    const contentEl = document.querySelector(".blog-content");
+    let bodyHtml = "";
+
+    if (contentEl) {
+      const clone = contentEl.cloneNode(true);
+      clone.querySelectorAll(".heading-copy-btn").forEach((btn) => btn.remove());
+      bodyHtml = clone.innerHTML;
+    }
+
+    const header = `<h1>${escapeHtml(title)}</h1><p><em>${escapeHtml(
+      formattedDate
+    )}</em></p><p><a href="${url}">${escapeHtml(originalArticleLabel)}</a></p>`;
+
+    return header + bodyHtml;
+  };
+
+  root.querySelectorAll(".copy-article-option").forEach((option) => {
+    option.addEventListener("click", async () => {
+      closeMenu();
+      const format = option.dataset.format;
+      let success = false;
+
+      if (format === "markdown") {
+        success = await copyPlainText(buildMarkdown());
+      } else if (format === "richtext") {
+        const html = buildRichHtml();
+        const temp = document.createElement("div");
+        temp.innerHTML = html;
+        const plainText = temp.textContent ?? "";
+        success = await copyRichText(html, plainText);
+      }
+
+      if (success) showCopied();
+    });
+  });
+</script>
+
+<style>
+  .copy-article {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .copy-article-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2em;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .copy-article-trigger:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .copy-article-trigger:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .copy-article-trigger :global(.check-icon) {
+    display: none;
+    color: var(--color-accent-hover);
+  }
+
+  .copy-article-trigger.copied :global(.copy-icon) {
+    display: none;
+  }
+
+  .copy-article-trigger.copied :global(.check-icon) {
+    display: inline-flex;
+  }
+
+  .copy-article-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    padding: 0.35em;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-card);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .copy-article-option {
+    display: block;
+    width: 100%;
+    padding: 0.45em 0.6em;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    color: var(--color-text-default);
+    font-size: 0.95em;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .copy-article-option:hover,
+  .copy-article-option:focus-visible {
+    background: var(--color-bg-subtle);
+    outline: none;
+  }
+
+  .copy-article-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+</style>
