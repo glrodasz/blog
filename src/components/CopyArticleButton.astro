@@ -240,16 +240,21 @@ const formattedDate = formatDate(pubDate);
   .copy-article-menu {
     position: absolute;
     top: calc(100% + 6px);
-    left: 0;
+    right: 0;
     z-index: 2;
-    display: flex;
+    display: none;
     flex-direction: column;
     min-width: 180px;
+    max-width: calc(100vw - 2rem);
     padding: 0.35em;
     background: var(--color-bg-surface);
     border: 1px solid var(--color-border-default);
     border-radius: var(--radius-card);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .copy-article-menu:not([hidden]) {
+    display: flex;
   }
 
   .copy-article-option {
