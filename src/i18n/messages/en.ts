@@ -13,7 +13,13 @@ export const messages = {
     backToHome: "Back to home",
     share: "Share",
     sharePrefix: "On",
-    copyHeadingLink: "Copy link to section"
+    copyHeadingLink: "Copy link to section",
+    copyPage: "Copy page",
+    copyArticle: "Copy article",
+    copyAsMarkdown: "Copy as Markdown",
+    copyAsRichText: "Copy as rich text",
+    copied: "Copied!",
+    originalArticle: "Original article"
   },
   navigation: {
     home: "Home",

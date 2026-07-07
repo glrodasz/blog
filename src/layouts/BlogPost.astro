@@ -7,6 +7,7 @@ import FormattedDate from "../components/FormattedDate.astro";
 import Container from "../components/Container.astro";
 import SimpleAnalytics from "../components/SimpleAnalytics.astro";
 import LanguageVersionBanner from "../components/LanguageVersionBanner.astro";
+import CopyArticleButton from "../components/CopyArticleButton.astro";
 import TagChip from "../components/TagChip.astro";
 import BackLink from "../components/BackLink.astro";
 import AuthorBio from "../components/AuthorBio.astro";
@@ -30,6 +31,7 @@ type Props = CollectionEntry<"posts">["data"] & {
   locale?: Locale;
   languageVersions?: LanguageVersion[];
   isPage?: boolean;
+  markdownBody?: string;
 };
 
 const {
@@ -43,6 +45,7 @@ const {
   tags: rawTags,
   relatedPosts,
   isPage = false,
+  markdownBody,
 } = Astro.props;
 
 const locale = getLocaleFromAstro(Astro);
@@ -126,6 +129,15 @@ const tags = rawTags
                 languageVersions={languageVersions}
                 currentLocale={locale}
               />
+              {markdownBody && (
+                <CopyArticleButton
+                  title={title}
+                  pubDate={pubDate}
+                  url={canonicalUrl}
+                  markdownBody={markdownBody}
+                  locale={locale}
+                />
+              )}
             </div>
           )}
         </div>

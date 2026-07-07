@@ -1,0 +1,367 @@
+---
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+import Copy from "lucide-astro/Copy";
+import Check from "lucide-astro/Check";
+import ChevronDown from "lucide-astro/ChevronDown";
+import Hash from "lucide-astro/Hash";
+import Type from "lucide-astro/Type";
+
+type Props = {
+  title: string;
+  pubDate: Date;
+  url: string;
+  markdownBody: string;
+  locale?: Locale;
+};
+
+const { title, pubDate, url, markdownBody } = Astro.props;
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+
+const titleCase = (str: string) =>
+  str.charAt(0).toLocaleUpperCase(locale) + str.slice(1).toLocaleLowerCase();
+
+const formatDate = (date: Date) => {
+  const parts = date
+    .toLocaleDateString(locale, { year: "numeric", month: "short", day: "numeric" })
+    .split(" ");
+
+  if (parts.length >= 3) {
+    parts[1] = titleCase(parts[1]);
+  }
+
+  return parts.join(" ");
+};
+
+const formattedDate = formatDate(pubDate);
+
+const sanitizeMarkdownBody = (body: string) =>
+  body
+    .replace(/^import\s+\w+\s+from\s+["'][^"']+\.astro["'];?\s*$/gm, "")
+    .replace(/<CodePen\b([^/>]*)\/>/g, (_match, attrs: string) => {
+      const getAttr = (name: string) => attrs.match(new RegExp(`${name}="([^"]*)"`))?.[1];
+      const codePenUser = getAttr("user");
+      const slug = getAttr("slug");
+      const title = getAttr("title");
+      return codePenUser && slug
+        ? `[${title || "View on CodePen"}](https://codepen.io/${codePenUser}/pen/${slug})`
+        : "";
+    })
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
+---
+
+<div class="copy-article">
+  <button
+    type="button"
+    class="copy-article-trigger"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-label={messages.blog.copyArticle}
+  >
+    <Copy size={14} aria-hidden="true" class="copy-icon" />
+    <Check size={14} aria-hidden="true" class="check-icon" />
+    <span class="copy-article-label default-label">{messages.blog.copyPage}</span>
+    <span class="copy-article-label copied-label">{messages.blog.copied}</span>
+    <ChevronDown size={14} aria-hidden="true" class="chevron-icon" />
+  </button>
+  <div class="copy-article-menu" role="menu" hidden>
+    <button type="button" role="menuitem" class="copy-article-option" data-format="markdown">
+      <Hash size={14} aria-hidden="true" />
+      {messages.blog.copyAsMarkdown}
+    </button>
+    <button type="button" role="menuitem" class="copy-article-option" data-format="richtext">
+      <Type size={14} aria-hidden="true" />
+      {messages.blog.copyAsRichText}
+    </button>
+  </div>
+  <span class="copy-article-status" role="status" aria-live="polite"></span>
+</div>
+
+<script
+  define:vars={{
+    title,
+    url,
+    formattedDate,
+    markdownBody: sanitizedMarkdownBody,
+    originalArticleLabel: messages.blog.originalArticle,
+    copiedLabel: messages.blog.copied,
+  }}
+>
+  const root = document.currentScript.previousElementSibling;
+  const trigger = root.querySelector(".copy-article-trigger");
+  const menu = root.querySelector(".copy-article-menu");
+  const status = root.querySelector(".copy-article-status");
+
+  const closeMenu = () => {
+    menu.hidden = true;
+    trigger.setAttribute("aria-expanded", "false");
+  };
+
+  const positionMenu = () => {
+    const margin = 8;
+    const triggerRect = trigger.getBoundingClientRect();
+
+    menu.style.left = "0px";
+    const menuWidth = menu.offsetWidth;
+
+    let left = triggerRect.right - menuWidth;
+    if (left < margin) left = margin;
+    if (left + menuWidth > window.innerWidth - margin) {
+      left = window.innerWidth - margin - menuWidth;
+    }
+
+    menu.style.top = `${triggerRect.bottom + 6}px`;
+    menu.style.left = `${left}px`;
+  };
+
+  const openMenu = () => {
+    menu.hidden = false;
+    trigger.setAttribute("aria-expanded", "true");
+    positionMenu();
+  };
+
+  window.addEventListener("scroll", closeMenu, { passive: true, capture: true });
+  window.addEventListener("resize", closeMenu);
+
+  trigger.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (menu.hidden) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!root.contains(event.target)) closeMenu();
+  });
+
+  root.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+      trigger.focus();
+    }
+  });
+
+  const escapeHtml = (str) =>
+    str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+
+  const copyPlainText = async (text) => {
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (error) {
+        console.warn("Clipboard write failed, falling back to execCommand.", error);
+      }
+    }
+
+    const helper = document.createElement("textarea");
+    helper.value = text;
+    helper.setAttribute("readonly", "");
+    helper.style.position = "absolute";
+    helper.style.left = "-9999px";
+    document.body.appendChild(helper);
+    helper.select();
+    const copied = document.execCommand("copy");
+    document.body.removeChild(helper);
+    return copied;
+  };
+
+  const copyRichText = async (html, plainText) => {
+    if (navigator.clipboard?.write && window.ClipboardItem) {
+      try {
+        const item = new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([plainText], { type: "text/plain" }),
+        });
+        await navigator.clipboard.write([item]);
+        return true;
+      } catch (error) {
+        console.warn("Rich clipboard write failed, falling back to plain text.", error);
+      }
+    }
+
+    return copyPlainText(plainText);
+  };
+
+  const showCopied = () => {
+    trigger.classList.add("copied");
+    status.textContent = copiedLabel;
+    window.setTimeout(() => {
+      trigger.classList.remove("copied");
+      status.textContent = "";
+    }, 1500);
+  };
+
+  const buildMarkdown = () =>
+    `# ${title}\n\n${formattedDate}\n\n${originalArticleLabel}: ${url}\n\n${markdownBody}`;
+
+  const buildRichHtml = () => {
+    const contentEl = document.querySelector(".blog-content");
+    let bodyHtml = "";
+
+    if (contentEl) {
+      const clone = contentEl.cloneNode(true);
+      clone.querySelectorAll(".heading-copy-btn, script, style, noscript").forEach((el) => el.remove());
+      bodyHtml = clone.innerHTML;
+    }
+
+    const header = `<h1>${escapeHtml(title)}</h1><p><em>${escapeHtml(
+      formattedDate
+    )}</em></p><p><a href="${url}">${escapeHtml(originalArticleLabel)}</a></p>`;
+
+    return header + bodyHtml;
+  };
+
+  root.querySelectorAll(".copy-article-option").forEach((option) => {
+    option.addEventListener("click", async () => {
+      closeMenu();
+      const format = option.dataset.format;
+      let success = false;
+
+      if (format === "markdown") {
+        success = await copyPlainText(buildMarkdown());
+      } else if (format === "richtext") {
+        const html = buildRichHtml();
+        success = await copyRichText(html, buildMarkdown());
+      }
+
+      if (success) showCopied();
+    });
+  });
+</script>
+
+<style>
+  .copy-article {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .copy-article-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.2em 0.7em;
+    background: var(--color-bg-inset);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-chip);
+    color: inherit;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .copy-article-trigger:hover {
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-emphasis);
+  }
+
+  .copy-article-trigger:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .copy-article-trigger .copied-label {
+    display: none;
+  }
+
+  .copy-article-trigger :global(.check-icon) {
+    display: none;
+    color: var(--color-accent-hover);
+  }
+
+  .copy-article-trigger.copied {
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-emphasis);
+  }
+
+  .copy-article-trigger.copied :global(.copy-icon),
+  .copy-article-trigger.copied :global(.chevron-icon),
+  .copy-article-trigger.copied .default-label {
+    display: none;
+  }
+
+  .copy-article-trigger.copied :global(.check-icon) {
+    display: inline-flex;
+  }
+
+  .copy-article-trigger.copied .copied-label {
+    display: inline;
+  }
+
+  .copy-article-menu {
+    position: fixed;
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    min-width: 180px;
+    max-width: calc(100vw - 2rem);
+    padding: 0.35em;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-card);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .copy-article-menu:not([hidden]) {
+    display: flex;
+  }
+
+  .copy-article-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    width: 100%;
+    padding: 0.45em 0.6em;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    color: var(--color-text-default);
+    font-size: 0.95em;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .copy-article-option :global(svg) {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+  }
+
+  .copy-article-option:hover,
+  .copy-article-option:focus-visible {
+    background: var(--color-bg-subtle);
+    outline: none;
+  }
+
+  .copy-article-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .copy-article-trigger {
+      padding: 0.35em 0.5em;
+    }
+
+    .copy-article-trigger .copy-article-label,
+    .copy-article-trigger.copied .copied-label {
+      display: none;
+    }
+  }
+</style>
