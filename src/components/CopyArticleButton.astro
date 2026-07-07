@@ -3,6 +3,9 @@ import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 import Copy from "lucide-astro/Copy";
 import Check from "lucide-astro/Check";
+import ChevronDown from "lucide-astro/ChevronDown";
+import Hash from "lucide-astro/Hash";
+import Type from "lucide-astro/Type";
 
 type Props = {
   title: string;
@@ -57,16 +60,20 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
     class="copy-article-trigger"
     aria-haspopup="true"
     aria-expanded="false"
-    aria-label={messages.blog.copyArticle}
   >
-    <Copy size={16} aria-hidden="true" class="copy-icon" />
-    <Check size={16} aria-hidden="true" class="check-icon" />
+    <Copy size={14} aria-hidden="true" class="copy-icon" />
+    <Check size={14} aria-hidden="true" class="check-icon" />
+    <span class="copy-article-label default-label">{messages.blog.copyPage}</span>
+    <span class="copy-article-label copied-label">{messages.blog.copied}</span>
+    <ChevronDown size={14} aria-hidden="true" class="chevron-icon" />
   </button>
   <div class="copy-article-menu" role="menu" hidden>
     <button type="button" role="menuitem" class="copy-article-option" data-format="markdown">
+      <Hash size={14} aria-hidden="true" />
       {messages.blog.copyAsMarkdown}
     </button>
     <button type="button" role="menuitem" class="copy-article-option" data-format="richtext">
+      <Type size={14} aria-hidden="true" />
       {messages.blog.copyAsRichText}
     </button>
   </div>
@@ -220,17 +227,21 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
   .copy-article-trigger {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    padding: 0.2em;
-    background: none;
-    border: none;
+    gap: 0.35em;
+    padding: 0.2em 0.7em;
+    background: var(--color-bg-inset);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-chip);
     color: inherit;
+    font-size: 0.9em;
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 4px;
+    white-space: nowrap;
   }
 
   .copy-article-trigger:hover {
     color: var(--color-accent-hover);
+    border-color: var(--color-accent-emphasis);
   }
 
   .copy-article-trigger:focus-visible {
@@ -238,17 +249,32 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
     outline-offset: 2px;
   }
 
+  .copy-article-trigger .copied-label {
+    display: none;
+  }
+
   .copy-article-trigger :global(.check-icon) {
     display: none;
     color: var(--color-accent-hover);
   }
 
-  .copy-article-trigger.copied :global(.copy-icon) {
+  .copy-article-trigger.copied {
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-emphasis);
+  }
+
+  .copy-article-trigger.copied :global(.copy-icon),
+  .copy-article-trigger.copied :global(.chevron-icon),
+  .copy-article-trigger.copied .default-label {
     display: none;
   }
 
   .copy-article-trigger.copied :global(.check-icon) {
     display: inline-flex;
+  }
+
+  .copy-article-trigger.copied .copied-label {
+    display: inline;
   }
 
   .copy-article-menu {
@@ -272,7 +298,9 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
   }
 
   .copy-article-option {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     width: 100%;
     padding: 0.45em 0.6em;
     background: none;
@@ -280,8 +308,15 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
     border-radius: 4px;
     color: var(--color-text-default);
     font-size: 0.95em;
+    line-height: 1.2;
+    white-space: nowrap;
     text-align: left;
     cursor: pointer;
+  }
+
+  .copy-article-option :global(svg) {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
   }
 
   .copy-article-option:hover,

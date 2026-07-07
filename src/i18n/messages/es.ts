@@ -14,6 +14,7 @@ export const messages = {
     share: "Comparte",
     sharePrefix: "En",
     copyHeadingLink: "Copiar enlace a sección",
+    copyPage: "Copiar página",
     copyArticle: "Copiar artículo",
     copyAsMarkdown: "Copiar como Markdown",
     copyAsRichText: "Copiar como texto enriquecido",
