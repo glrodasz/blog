@@ -60,6 +60,7 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
     class="copy-article-trigger"
     aria-haspopup="true"
     aria-expanded="false"
+    aria-label={messages.blog.copyArticle}
   >
     <Copy size={14} aria-hidden="true" class="copy-icon" />
     <Check size={14} aria-hidden="true" class="check-icon" />
@@ -100,10 +101,31 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
     trigger.setAttribute("aria-expanded", "false");
   };
 
+  const positionMenu = () => {
+    const margin = 8;
+    const triggerRect = trigger.getBoundingClientRect();
+
+    menu.style.left = "0px";
+    const menuWidth = menu.offsetWidth;
+
+    let left = triggerRect.right - menuWidth;
+    if (left < margin) left = margin;
+    if (left + menuWidth > window.innerWidth - margin) {
+      left = window.innerWidth - margin - menuWidth;
+    }
+
+    menu.style.top = `${triggerRect.bottom + 6}px`;
+    menu.style.left = `${left}px`;
+  };
+
   const openMenu = () => {
     menu.hidden = false;
     trigger.setAttribute("aria-expanded", "true");
+    positionMenu();
   };
+
+  window.addEventListener("scroll", closeMenu, { passive: true, capture: true });
+  window.addEventListener("resize", closeMenu);
 
   trigger.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -278,9 +300,7 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
   }
 
   .copy-article-menu {
-    position: absolute;
-    top: calc(100% + 6px);
-    right: 0;
+    position: fixed;
     z-index: 2;
     display: none;
     flex-direction: column;
@@ -332,5 +352,16 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .copy-article-trigger {
+      padding: 0.35em 0.5em;
+    }
+
+    .copy-article-trigger .copy-article-label,
+    .copy-article-trigger.copied .copied-label {
+      display: none;
+    }
   }
 </style>
