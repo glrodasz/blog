@@ -32,6 +32,23 @@ const formatDate = (date: Date) => {
 };
 
 const formattedDate = formatDate(pubDate);
+
+const sanitizeMarkdownBody = (body: string) =>
+  body
+    .replace(/^import\s+\w+\s+from\s+["'][^"']+\.astro["'];?\s*$/gm, "")
+    .replace(/<CodePen\b([^/>]*)\/>/g, (_match, attrs: string) => {
+      const getAttr = (name: string) => attrs.match(new RegExp(`${name}="([^"]*)"`))?.[1];
+      const codePenUser = getAttr("user");
+      const slug = getAttr("slug");
+      const title = getAttr("title");
+      return codePenUser && slug
+        ? `[${title || "View on CodePen"}](https://codepen.io/${codePenUser}/pen/${slug})`
+        : "";
+    })
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+
+const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
 ---
 
 <div class="copy-article">
@@ -61,7 +78,7 @@ const formattedDate = formatDate(pubDate);
     title,
     url,
     formattedDate,
-    markdownBody,
+    markdownBody: sanitizedMarkdownBody,
     originalArticleLabel: messages.blog.originalArticle,
     copiedLabel: messages.blog.copied,
   }}
@@ -165,7 +182,7 @@ const formattedDate = formatDate(pubDate);
 
     if (contentEl) {
       const clone = contentEl.cloneNode(true);
-      clone.querySelectorAll(".heading-copy-btn").forEach((btn) => btn.remove());
+      clone.querySelectorAll(".heading-copy-btn, script, style, noscript").forEach((el) => el.remove());
       bodyHtml = clone.innerHTML;
     }
 
@@ -186,10 +203,7 @@ const formattedDate = formatDate(pubDate);
         success = await copyPlainText(buildMarkdown());
       } else if (format === "richtext") {
         const html = buildRichHtml();
-        const temp = document.createElement("div");
-        temp.innerHTML = html;
-        const plainText = temp.textContent ?? "";
-        success = await copyRichText(html, plainText);
+        success = await copyRichText(html, buildMarkdown());
       }
 
       if (success) showCopied();
