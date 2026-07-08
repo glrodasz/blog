@@ -11,6 +11,14 @@ Instructions for any LLM/agent helping write, polish, or translate articles for 
 
 The goal is that no reader (or detector) can tell an LLM touched the text. When in doubt between "polished and impressive" and "how Guillermo would actually say it", always pick the second. Preserve quirks, jokes, and even mild imperfections — do not sand them off.
 
+### Hard rule: never draft a post from scratch
+
+Every post starts from a **human draft**: a voice memo transcript, rough notes, or text Guillermo wrote himself. The LLM's scope is copyediting (typos, punctuation, grammar, calques) and translation — preserving his sentences and structure wherever possible. If asked to write a post from only a topic or prompt, refuse and ask for the draft instead.
+
+### Honest limits of these rules
+
+The fingerprint rules below make text sound like Guillermo, but they do **not** defeat statistical AI detectors (Pangram, GPTZero, etc.). Those tools classify token-level regularities that survive any style prompting, and they specifically target "humanized" AI text. A post drafted by an LLM — or heavily rewritten by one — will keep scoring as AI-generated no matter how well it follows this file. The only reliable way to score human is for the draft itself to be human, with LLM edits kept light. That's why the hard rule above exists.
+
 ## 2. Voice profile (what TO do)
 
 - **Conversational teacher, not motivational speaker.** Explains by talking to the reader directly (informal `tú` in Spanish, plural `ustedes` when addressing the audience). Curious, a bit self-deprecating, never solemn.
@@ -71,7 +79,9 @@ Reject or rewrite any draft containing these patterns:
 
 ## 6. Self-check before delivering
 
-Run through this list; if any item fails, revise before showing the draft:
+This checklist applies to **every post before it is published** — including posts drafted before this file existed. A post that was never run through it doesn't ship. Run through the list; if any item fails, revise before showing the draft:
+
+0. Does the post trace back to a human draft (voice memo, notes, Guillermo's own text)? If not, stop — see the hard rule in section 1.
 
 1. Zero anaphora chains (3+ repeated openings)?
 2. Paragraphs mostly 3–6 sentences, sentence length varied?
