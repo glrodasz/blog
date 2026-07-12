@@ -82,6 +82,7 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
 </div>
 
 <script
+  is:inline
   define:vars={{
     title,
     url,
@@ -171,7 +172,7 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
     helper.style.left = "-9999px";
     document.body.appendChild(helper);
     helper.select();
-    const copied = document.execCommand("copy");
+    const copied = /** @type {any} */ (document).execCommand("copy");
     document.body.removeChild(helper);
     return copied;
   };

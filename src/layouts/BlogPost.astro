@@ -75,7 +75,7 @@ const tags = rawTags
       locale={locale}
     />
     {!isPage && (
-      <script type="application/ld+json" set:html={JSON.stringify({
+      <script is:inline type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": title,
@@ -173,7 +173,7 @@ const tags = rawTags
     </main>
     <Footer locale={locale} />
     <SimpleAnalytics />
-    <script define:vars={{ linkIconPaths: JSON.stringify(linkIconPaths), copyLinkLabel: messages.blog.copyHeadingLink }}>
+    <script is:inline define:vars={{ linkIconPaths: JSON.stringify(linkIconPaths), copyLinkLabel: messages.blog.copyHeadingLink }}>
       const linkIconData = JSON.parse(linkIconPaths);
       const headings = Array.from(
         document.querySelectorAll(
@@ -201,7 +201,7 @@ const tags = rawTags
         helper.style.left = "-9999px";
         document.body.appendChild(helper);
         helper.select();
-        const copied = document.execCommand("copy");
+        const copied = /** @type {any} */ (document).execCommand("copy");
         document.body.removeChild(helper);
         return copied;
       };
