@@ -73,7 +73,7 @@ const basePostPath = "/es/posts/";
     <Footer locale={locale} />
     <SimpleAnalytics />
 
-    <script define:vars={{ allSlugs, basePostPath }}>
+    <script is:inline define:vars={{ allSlugs, basePostPath }}>
       document.addEventListener("DOMContentLoaded", () => {
         const raw = window.location.pathname;
 
