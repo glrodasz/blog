@@ -44,7 +44,7 @@ Para 2021, el ecosistema volvió a sorprendernos con una propuesta que no solo p
 
 Desde entonces, JavaScript no ha dejado de expandirse, han surgido nuevos entornos de ejecución, estándares compartidos y herramientas cada vez más rápidas y compatibles, consolidando su lugar como uno de los lenguajes más versátiles del mundo.
 
-![](/images/posts/es/historia-de-javascript/javascript-timeline.jpg)
+![Línea de tiempo sobre fondo negro con logos y años, desde JavaScript en 1995 hasta Bun en 2021.](/images/posts/es/historia-de-javascript/javascript-timeline.jpg)
 **1995–2021, la evolución del ecosistema JavaScript:** JSCore, V8, Node.js, Express, TypeScript, Deno y Bun.
 
 ## ¿Por qué fue necesario crear JavaScript?

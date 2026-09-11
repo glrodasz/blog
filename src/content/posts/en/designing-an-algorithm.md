@@ -30,19 +30,19 @@ Although we're not going to cover all the basic or additional shapes, we will de
 
 #### Flow line
 It's represented with a line (or arrow if necessary) and indicates the flow of the algorithm, in other words, the path we're going to follow. The lines connect one shape to another, starting from one and ending in another.
-![](/images/posts/es/disenando-un-algoritmo/linea-de-flujo.png)
+![Flowchart with every shape faded out, except the purple arrow lines that connect each shape to the next.](/images/posts/es/disenando-un-algoritmo/linea-de-flujo.png)
 
 #### Terminal
 They are represented with a rectangle with rounded corners (stadium shape) and are used to indicate the beginning and end of an algorithm. This way we'll have clear where to start and where it ends.
-![](/images/posts/es/disenando-un-algoritmo/terminal.png)
+![The same flowchart with everything faded out, except two rounded shapes highlighted in green: “Inicio” (Start) at the top and “Fin” (End) on the right.](/images/posts/es/disenando-un-algoritmo/terminal.png)
 
 #### Decision
 They are represented with a diamond and indicate a condition that usually has two options, generally Yes / No. This means that from the diamond there are always two flow lines where each line represents the decision taken by where the algorithm continues. It's the same as when we find a path that forks and then we must decide which way to continue.
-![](/images/posts/es/disenando-un-algoritmo/decision.png)
+![Flowchart with an orange diamond highlighted that reads “Si i <= n” (if i is less than or equal to n). Two arrows leave it: “No” toward the end and “Sí” (yes) downward.](/images/posts/es/disenando-un-algoritmo/decision.png)
 
 #### Process
 It's represented with a rectangle and represents an operation that generates a change in the algorithm. This is where we represent the logic or operations that we'll be doing in our algorithm, similar to how we've been doing it in the task list.
-![](/images/posts/es/disenando-un-algoritmo/proceso.png)
+![Flowchart with a red rectangle highlighted that reads “Leer n, iniciar i” (read n, initialize i), placed between the start terminal and the first decision.](/images/posts/es/disenando-un-algoritmo/proceso.png)
 
 ### Algorithm in a flowchart
 To better understand how to create flowcharts, let's solve a classic problem called "FizzBuzz".
@@ -66,7 +66,7 @@ Next, let's see step by step what would be a solution to this problem using a fl
 
 > ℹ️ The numerical annotations in the flowchart are only for educational purposes. A flowchart usually doesn't come with extra notes or a step-by-step description, since it's considered that the diagram itself is more than enough.
 
-![](/images/posts/es/disenando-un-algoritmo/fizz-buzz.png)
+![Complete FizzBuzz flowchart with numbered annotations from 1 to 9. It starts at “Inicio” (Start), reads n and initializes i, then chains three decision diamonds (i % 3 == 0 and i % 5 == 0, i % 3 == 0, i % 5 == 0) that lead to printing “FizzBuzz”, “Fizz”, “Buzz” or the number. Every path goes through “i = i + 1” and returns to the first decision, which ends at “Fin” (End) when i is greater than n.](/images/posts/es/disenando-un-algoritmo/fizz-buzz.png)
 1. We locate the **"Start"** Terminal, which for convenience is at the top. This is where the algorithm begins. We follow the arrow down.
 2. We encounter our first **Process**: **Read n, initialize i**. This means that the user must enter up to what number we're going to count (for example, `n = 100`) and that we initialize `i = 1`. We advance following the arrow.
 3. We reach the first **Decision**, where we ask ourselves: **Is i less than or equal to n?**
@@ -108,7 +108,7 @@ Let's cook synchronously a rice with chopped and roasted carrot. I know it's not
 
 #### One step at a time
 Imagine you only have **one burner available**, and you can't do more than one thing at a time. So we cook step by step.
-![](/images/posts/es/disenando-un-algoritmo/sincrono.png)
+![Illustration split in two: on top, a bag of rice and a steaming red pot on a stove; below, two carrots and a frying pan with slices on the same stove. Only one thing is on the heat at a time.](/images/posts/es/disenando-un-algoritmo/sincrono.png)
 1. We put the rice to cook in a pot. This takes about 15 minutes.
 2. When it's done, we let it rest for about 5 minutes.
 3. **Once the rice is ready**, we cut the carrot into slices.
@@ -124,7 +124,7 @@ Now let's make exactly the same recipe, but using an **asynchronous** approach. 
 
 #### Taking advantage of time
 This time we're going to have **multiple burners**, which allows us to do more than one thing at a time. So we'll cook more efficiently.
-![](/images/posts/es/disenando-un-algoritmo/asincrono.png)
+![Illustration of a stove with two burners on at the same time: a red pot with rice and a frying pan with carrot slices, both steaming. Next to it there is a table with a plant.](/images/posts/es/disenando-un-algoritmo/asincrono.png)
 
 1. We put the rice to cook in a pot. This takes about 15 minutes.
 2. **While the rice is cooking**, we take a carrot and cut it into slices.
@@ -143,7 +143,7 @@ This type of diagram is more commonly used to show communication between differe
 
 > 🔁 It's read from left to right (who participates) and from top to bottom (in what order things happen). The arrows indicate messages between participants, like when a cook puts something to heat, waits, and meanwhile does something else.
 
-![](/images/posts/es/disenando-un-algoritmo/diagrama-de-secuencias.png)
+![Sequence diagram with four participants: Cook, Pot, Cutting board and Pan. The arrows go in order: cook rice (15 minutes), cut carrots, transfer slices and sauté carrots (5 minutes). A note says the carrots are ready before the rice; then, let the rice rest (5 minutes) and serve rice with carrots.](/images/posts/es/disenando-un-algoritmo/diagrama-de-secuencias.png)
 [🔗 See the diagram at swimlanes.io](https://glrz.me/diagrama-secuencias)
 
 Later we'll see concrete examples from the programming world, like the **client-server** flow. But, for now, we use this resource to better represent what happens in our recipe, and thus visualize clearly what it means to execute tasks in parallel.
