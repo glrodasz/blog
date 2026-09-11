@@ -1,0 +1,120 @@
+---
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+import Headphones from "lucide-astro/Headphones";
+import type { PostAudio } from "../utils/audio";
+import { toMinutes } from "../utils/audio";
+
+type Props = {
+  audio: PostAudio;
+  title: string;
+  locale?: Locale;
+};
+
+const { audio, title } = Astro.props;
+const locale = getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+const minutes = toMinutes(audio.durationSeconds);
+const id = `audio-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<button
+  type="button"
+  class="audio-trigger"
+  aria-expanded="false"
+  aria-controls={id}
+  aria-label={`${messages.blog.listenLabel} (${minutes} ${messages.blog.minReadCard})`}
+>
+  <Headphones size={14} aria-hidden="true" />
+  <span class="audio-trigger-label">{messages.blog.listen}</span>
+  <span class="audio-trigger-duration"
+    >· {minutes} {messages.blog.minReadCard}</span
+  >
+</button>
+<div class="audio-panel" id={id} hidden>
+  <audio
+    controls
+    preload="none"
+    src={audio.src}
+    aria-label={`${messages.blog.listenLabel}: ${title}`}></audio>
+</div>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>(".audio-trigger")
+    .forEach((trigger) => {
+      const panel = document.getElementById(
+        trigger.getAttribute("aria-controls") ?? "",
+      );
+      const audio = panel?.querySelector("audio");
+      if (!panel || !audio) return;
+      let started = false;
+
+      trigger.addEventListener("click", () => {
+        const open = panel.hidden;
+        panel.hidden = !open;
+        trigger.setAttribute("aria-expanded", String(open));
+        if (open && !started) {
+          started = true;
+          audio.play().catch(() => {
+            /* autoplay blocked: the visible controls still work */
+          });
+        }
+      });
+    });
+</script>
+
+<style>
+  .audio-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    padding: 0.2em 0.7em;
+    background: var(--color-bg-inset);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-chip);
+    color: inherit;
+    font-size: 0.9em;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .audio-trigger:hover,
+  .audio-trigger[aria-expanded="true"] {
+    color: var(--color-accent-hover);
+    border-color: var(--color-accent-emphasis);
+  }
+
+  .audio-trigger:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .audio-trigger-duration {
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  /* Takes a full row of the .post-meta flex container. */
+  .audio-panel {
+    flex-basis: 100%;
+    margin-top: 0.25em;
+  }
+
+  .audio-panel audio {
+    width: 100%;
+    max-width: 640px;
+    display: block;
+  }
+
+  @media (max-width: 480px) {
+    .audio-trigger {
+      padding: 0.35em 0.5em;
+    }
+
+    .audio-trigger-label {
+      display: none;
+    }
+  }
+</style>

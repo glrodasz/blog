@@ -5,6 +5,7 @@ import {
   calculateReadingTime,
   generateSlugPaths,
 } from "../../../utils/content";
+import { getPostAudio } from "../../../utils/audio";
 import { type Locale, getLocaleFromAstro } from "../../../i18n/config";
 
 export async function getStaticPaths() {
@@ -20,8 +21,9 @@ const { post } = Astro.props;
 const locale = getLocaleFromAstro(Astro) || "es";
 const readingTime = calculateReadingTime(post.body);
 const { Content } = await post.render();
+const audio = getPostAudio(post.slug, locale);
 ---
 
-<BlogPost {...post.data} readingTime={readingTime} locale={locale} markdownBody={post.body}>
+<BlogPost {...post.data} readingTime={readingTime} locale={locale} markdownBody={post.body} audio={audio}>
   <Content />
 </BlogPost>
