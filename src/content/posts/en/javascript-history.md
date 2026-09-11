@@ -44,7 +44,7 @@ By 2021, the ecosystem surprised us again with a proposal that not only aims to 
 
 Since then, JavaScript has not stopped expanding, new runtime environments have emerged, shared standards, and increasingly faster and more compatible tools, consolidating its place as one of the most versatile languages in the world.
 
-![](/images/posts/es/historia-de-javascript/javascript-timeline.jpg)
+![Timeline on a black background with logos and years, from JavaScript in 1995 to Bun in 2021.](/images/posts/es/historia-de-javascript/javascript-timeline.jpg)
 **1995–2021, the evolution of the JavaScript ecosystem:** JSCore, V8, Node.js, Express, TypeScript, Deno, and Bun.
 
 ## Why Was JavaScript Necessary?

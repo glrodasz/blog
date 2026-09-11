@@ -33,7 +33,7 @@ The same principle controls today the **ABS** brakes of your car (which prevent 
 
 Programming even took us (literally) to the Moon: Margaret Hamilton and her team wrote hundreds of thousands of lines of code for the Apollo 11 navigation and control software.
 
-![](/images/posts/es/para-que-me-sirve-programar/margaret-hamilton.jpg)
+![Black-and-white photograph of Margaret Hamilton smiling, with glasses and a striped dress, standing next to a stack of printed code listings almost as tall as she is.](/images/posts/es/para-que-me-sirve-programar/margaret-hamilton.jpg)
 *Hamilton in 1969, standing next to the Apollo guidance software listings that she and her MIT team produced.*
 
 The most incredible thing is that you don't even need a complicated environment to start. If you have an iPhone, for example, you can automate tasks with the native **Shortcuts** app, a *low-code* tool that lets you create flows by dragging blocks. It's still programming, just with less typing and immediate results.

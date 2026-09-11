@@ -19,6 +19,12 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Check every post can be narrated
+        run: yarn audio:check-alt
+
+      - name: Unit tests
+        run: yarn test:unit
+
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
