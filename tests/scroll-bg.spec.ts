@@ -97,4 +97,33 @@ test.describe("scroll-tinted page background", () => {
     expect(before.content).not.toBe("none");
     expect(before.zIndex).toBe("-1");
   });
+
+  test("html keeps no background of its own, so body's paints the canvas", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    const htmlBackground = () =>
+      page.evaluate(() => {
+        const html = getComputedStyle(document.documentElement);
+        return { color: html.backgroundColor, image: html.backgroundImage };
+      });
+
+    // The infinite-background effect relies on CSS background propagation:
+    // with no background on <html>, the <body> background paints the canvas,
+    // which is the surface Safari fills the rubber-band / overscroll area
+    // with. Putting any background on <html> breaks the effect on Safari
+    // while leaving every other assertion in this file green.
+    const noBackground = { color: "rgba(0, 0, 0, 0)", image: "none" };
+
+    await expect(page.locator("body")).toHaveClass(/\bat-top\b/);
+    expect(await htmlBackground()).toEqual(noBackground);
+
+    // Re-check once scrolled, where the body background swaps. This waits on
+    // at-top clearing rather than on footer-visible: the assertion is about
+    // <html>, so it should not depend on the footer observer.
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+    await expect(page.locator("body")).not.toHaveClass(/\bat-top\b/);
+    expect(await htmlBackground()).toEqual(noBackground);
+  });
 });
