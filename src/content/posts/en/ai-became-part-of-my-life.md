@@ -7,6 +7,10 @@ heroImage: "/covers/close-up-of-a-robotic-hand-over-human-hand.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/la-ia-se-volvio-parte-de-mi-vida"
+relatedPosts:
+  - reality-has-always-been-edited
+  - making-things-for-yourself
+  - success-was-never-overnight
 ---
 
 I have a confession to make: there's no way to live my life without AI anymore. It became something fundamental. And I already know what some of you are thinking: *"so what course is this guy going to sell us?"* 🙃. Fortunately I'm not here to sell you anything; this is going somewhere else.

@@ -7,6 +7,10 @@ heroImage: "/covers/hand-carved-wooden-horse.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/hacer-cosas-para-uno-mismo"
+relatedPosts:
+  - success-was-never-overnight
+  - ai-became-part-of-my-life
+  - reality-has-always-been-edited
 ---
 
 There's a part of success nobody talks about much, and it's that sustaining something over a long time is hard. There are days when you simply don't feel like it, because results usually take longer than you estimate. You publish something that took you months, for example, and it's not unusual for about three people to see it _(one of them a friend or a relative 😅)_. And then the activity that used to excite you starts to feel like an obligation.
