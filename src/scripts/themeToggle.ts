@@ -3,8 +3,7 @@ const THEME_COLOR_LIGHT = "#ffffff";
 const THEME_COLOR_DARK = "#1b262c";
 
 function updateThemeLabels(): void {
-  const isDark =
-    document.documentElement.getAttribute("data-theme") === "dark";
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
   document.querySelectorAll<HTMLSpanElement>(".theme-label").forEach((el) => {
     const light = el.dataset.light ?? "Light";
     const dark = el.dataset.dark ?? "Dark";
@@ -25,12 +24,12 @@ export function initThemeToggle(): void {
             : "dark";
         document.documentElement.setAttribute("data-theme", next);
         const meta = document.querySelector<HTMLMetaElement>(
-          'meta[name="theme-color"]'
+          'meta[name="theme-color"]',
         );
         if (meta)
           meta.setAttribute(
             "content",
-            next === "dark" ? THEME_COLOR_DARK : THEME_COLOR_LIGHT
+            next === "dark" ? THEME_COLOR_DARK : THEME_COLOR_LIGHT,
           );
         try {
           localStorage.setItem(THEME_STORAGE_KEY, next);

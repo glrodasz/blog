@@ -4,7 +4,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const json = (status, body) =>
   new Response(JSON.stringify(body), {
     status,
-    headers: { "content-type": "application/json" }
+    headers: { "content-type": "application/json" },
   });
 
 const parseListIds = (raw) => {
@@ -18,9 +18,15 @@ const parseListIds = (raw) => {
 
 const resolveListIds = (locale) => {
   if (locale === "es") {
-    return parseListIds(process.env.BREVO_LIST_IDS_ES) ?? parseListIds(process.env.BREVO_LIST_IDS);
+    return (
+      parseListIds(process.env.BREVO_LIST_IDS_ES) ??
+      parseListIds(process.env.BREVO_LIST_IDS)
+    );
   }
-  return parseListIds(process.env.BREVO_LIST_IDS_EN) ?? parseListIds(process.env.BREVO_LIST_IDS);
+  return (
+    parseListIds(process.env.BREVO_LIST_IDS_EN) ??
+    parseListIds(process.env.BREVO_LIST_IDS)
+  );
 };
 
 export default async (req) => {
@@ -45,11 +51,12 @@ export default async (req) => {
     return json(400, { error: "invalid_email" });
   }
 
-  const locale = typeof payload?.locale === "string" ? payload.locale.trim() : "en";
+  const locale =
+    typeof payload?.locale === "string" ? payload.locale.trim() : "en";
 
   const body = {
     email,
-    updateEnabled: true
+    updateEnabled: true,
   };
   const listIds = resolveListIds(locale);
   if (listIds) body.listIds = listIds;
@@ -59,9 +66,9 @@ export default async (req) => {
     headers: {
       "api-key": apiKey,
       "content-type": "application/json",
-      accept: "application/json"
+      accept: "application/json",
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   });
 
   if (response.ok) {
@@ -81,5 +88,5 @@ export default async (req) => {
 };
 
 export const config = {
-  path: "/api/subscribe"
+  path: "/api/subscribe",
 };

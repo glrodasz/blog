@@ -52,16 +52,17 @@ const {
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
 const tabTitle = `${title} • ${messages.site.shortDescription} • ${messages.site.title} by ${messages.site.author}`;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "http://localhost/").href;
+const canonicalUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? "http://localhost/",
+).href;
 
 const localePrefix = locale === "es" ? "es/" : "";
-const computedImage = heroImage ?? (isPage ? `/og/${localePrefix}about.png` : `/og/${localePrefix}home.png`);
+const computedImage =
+  heroImage ??
+  (isPage ? `/og/${localePrefix}about.png` : `/og/${localePrefix}home.png`);
 
-const tags = rawTags
-  ? Array.isArray(rawTags)
-    ? rawTags
-    : [rawTags]
-  : [];
+const tags = rawTags ? (Array.isArray(rawTags) ? rawTags : [rawTags]) : [];
 ---
 
 <html lang={locale}>
@@ -75,21 +76,35 @@ const tags = rawTags
       type={isPage ? "website" : "article"}
       locale={locale}
     />
-    {!isPage && (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": title,
-        "description": description,
-        "image": new URL(computedImage, Astro.site ?? SITE_URL).href,
-        "datePublished": pubDate.toISOString(),
-        "dateModified": (updatedDate ?? pubDate).toISOString(),
-        "author": { "@type": "Person", "name": "Guillermo Rodas", "url": "https://guillermorodas.com" },
-        "publisher": { "@type": "Organization", "name": messages.site.title, "url": SITE_URL },
-        "url": canonicalUrl,
-        "inLanguage": locale,
-      })} />
-    )}
+    {
+      !isPage && (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: title,
+            description: description,
+            image: new URL(computedImage, Astro.site ?? SITE_URL).href,
+            datePublished: pubDate.toISOString(),
+            dateModified: (updatedDate ?? pubDate).toISOString(),
+            author: {
+              "@type": "Person",
+              name: "Guillermo Rodas",
+              url: "https://guillermorodas.com",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: messages.site.title,
+              url: SITE_URL,
+            },
+            url: canonicalUrl,
+            inLanguage: locale,
+          })}
+        />
+      )
+    }
   </head>
   <body>
     <Header locale={locale} />
@@ -97,60 +112,72 @@ const tags = rawTags
       <Container>
         <div class="post-head">
           <BackLink />
-          {tags.length > 0 && (
-            <div class="post-tags">
-              {tags.map((tag) => <TagChip tag={tag} locale={locale} />)}
-            </div>
-          )}
+          {
+            tags.length > 0 && (
+              <div class="post-tags">
+                {tags.map((tag) => (
+                  <TagChip tag={tag} locale={locale} />
+                ))}
+              </div>
+            )
+          }
           <h1 class="post-title">{title}</h1>
-          {!isPage && (
-            <div class="post-meta">
-              <FormattedDate date={pubDate} locale={locale} />
-              {updatedDate && (
-                <span
-                  class="last-updated-on"
-                  tabindex="0"
-                  role="note"
-                  aria-label={messages.blog.updatedLabel}
-                  aria-describedby="last-updated-date"
-                >
-                  ({messages.blog.updatedLabel}
-                  <Info class="last-updated-icon" aria-hidden="true" />)
-                  <span class="last-updated-tooltip" role="tooltip" id="last-updated-date">
-                    <FormattedDate date={updatedDate} locale={locale} />
+          {
+            !isPage && (
+              <div class="post-meta">
+                <FormattedDate date={pubDate} locale={locale} />
+                {updatedDate && (
+                  <span
+                    class="last-updated-on"
+                    tabindex="0"
+                    role="note"
+                    aria-label={messages.blog.updatedLabel}
+                    aria-describedby="last-updated-date"
+                  >
+                    ({messages.blog.updatedLabel}
+                    <Info class="last-updated-icon" aria-hidden="true" />)
+                    <span
+                      class="last-updated-tooltip"
+                      role="tooltip"
+                      id="last-updated-date"
+                    >
+                      <FormattedDate date={updatedDate} locale={locale} />
+                    </span>
                   </span>
-                </span>
-              )}
-              {readingTime && (
-                <span class="reading-time">
-                  • {readingTime} {messages.blog.minRead}
-                </span>
-              )}
-              <LanguageVersionBanner
-                languageVersions={languageVersions}
-                currentLocale={locale}
-              />
-              {markdownBody && (
-                <CopyArticleButton
-                  title={title}
-                  pubDate={pubDate}
-                  url={canonicalUrl}
-                  markdownBody={markdownBody}
-                  locale={locale}
+                )}
+                {readingTime && (
+                  <span class="reading-time">
+                    • {readingTime} {messages.blog.minRead}
+                  </span>
+                )}
+                <LanguageVersionBanner
+                  languageVersions={languageVersions}
+                  currentLocale={locale}
                 />
-              )}
-            </div>
-          )}
+                {markdownBody && (
+                  <CopyArticleButton
+                    title={title}
+                    pubDate={pubDate}
+                    url={canonicalUrl}
+                    markdownBody={markdownBody}
+                    locale={locale}
+                  />
+                )}
+              </div>
+            )
+          }
         </div>
       </Container>
 
-      {heroImage && (
-        <div class="hero-image">
-          <Container>
-            <img width={1200} height={510} src={heroImage} alt={title} />
-          </Container>
-        </div>
-      )}
+      {
+        heroImage && (
+          <div class="hero-image">
+            <Container>
+              <img width={1200} height={510} src={heroImage} alt={title} />
+            </Container>
+          </div>
+        )
+      }
 
       <Container>
         <article>
@@ -160,12 +187,14 @@ const tags = rawTags
             </div>
           </div>
         </article>
-        {!isPage && (
-          <section class="post-footer">
-            <AuthorBio locale={locale} />
-            <ShareButtons locale={locale} title={title} url={canonicalUrl} />
-          </section>
-        )}
+        {
+          !isPage && (
+            <section class="post-footer">
+              <AuthorBio locale={locale} />
+              <ShareButtons locale={locale} title={title} url={canonicalUrl} />
+            </section>
+          )
+        }
       </Container>
 
       <RelatedPosts slugs={relatedPosts} locale={locale} />
@@ -174,12 +203,18 @@ const tags = rawTags
     </main>
     <Footer locale={locale} />
     <SimpleAnalytics />
-    <script is:inline define:vars={{ linkIconPaths: JSON.stringify(linkIconPaths), copyLinkLabel: messages.blog.copyHeadingLink }}>
+    <script
+      is:inline
+      define:vars={{
+        linkIconPaths: JSON.stringify(linkIconPaths),
+        copyLinkLabel: messages.blog.copyHeadingLink,
+      }}
+    >
       const linkIconData = JSON.parse(linkIconPaths);
       const headings = Array.from(
         document.querySelectorAll(
-          ".blog-content h2[id], .blog-content h3[id], .blog-content h4[id], .blog-content h5[id], .blog-content h6[id]"
-        )
+          ".blog-content h2[id], .blog-content h3[id], .blog-content h4[id], .blog-content h5[id], .blog-content h6[id]",
+        ),
       );
 
       const copyLinkToClipboard = async (url) => {
@@ -190,7 +225,7 @@ const tags = rawTags
           } catch (error) {
             console.warn(
               "Clipboard write failed, falling back to execCommand.",
-              error
+              error,
             );
           }
         }
@@ -232,7 +267,10 @@ const tags = rawTags
         const copyBtn = document.createElement("button");
         copyBtn.className = "heading-copy-btn";
         copyBtn.setAttribute("type", "button");
-        copyBtn.setAttribute("aria-label", `${copyLinkLabel}: "${headingText}"`);
+        copyBtn.setAttribute(
+          "aria-label",
+          `${copyLinkLabel}: "${headingText}"`,
+        );
         copyBtn.innerHTML = `
           <svg aria-hidden="true" width="0.75em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             ${linkIconData.map(([_, attrs]) => `<path d="${attrs.d}" />`).join("")}

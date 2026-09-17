@@ -1,0 +1,5 @@
+# Published prose is hand-formatted and stays that way.
+# Prettier rewrites *italic* to _italic_ (see AGENTS.md section 2) and
+# reformats ```javascript pseudocode blocks as real JavaScript.
+src/content/posts/
+AGENTS.md

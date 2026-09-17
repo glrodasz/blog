@@ -60,13 +60,15 @@
   --gray: 96, 115, 159;
   --gray-light: 229, 233, 240;
   --gray-dark: 34, 41, 57;
-  --box-shadow: 0 2px 5px rgba(var(--gray), 12%),
-    0 6px 20px rgba(var(--gray), 20%), 0 14px 28px rgba(var(--gray), 18%);
+  --box-shadow:
+    0 2px 5px rgba(var(--gray), 12%), 0 6px 20px rgba(var(--gray), 20%),
+    0 14px 28px rgba(var(--gray), 18%);
   --radius-card: 8px;
   --radius-chip: 999px;
 
   /* Body: native UI text; titles: Sora (loaded in BaseHead) */
-  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  --font-body:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji";
   --font-title: "Sora", var(--font-body);
@@ -106,8 +108,9 @@
   --black: 255, 255, 255;
   --gray: 0, 0, 0;
   --gray-light: 44, 61, 71;
-  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
-    0 6px 20px rgba(0, 0, 0, 0.25), 0 14px 28px rgba(0, 0, 0, 0.2);
+  --box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25),
+    0 14px 28px rgba(0, 0, 0, 0.2);
 
   color-scheme: dark;
 }
@@ -205,12 +208,12 @@ h6:has(+ p) {
   margin-top: 2.5rem;
 }
 
-h1+p,
-h2+p,
-h3+p,
-h4+p,
-h5+p,
-h6+p {
+h1 + p,
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p,
+h6 + p {
   margin-top: 0.5rem;
 }
 
@@ -226,7 +229,7 @@ h3 {
   font-size: 1.953em;
 }
 
-h3+ul {
+h3 + ul {
   margin-bottom: 3em;
 }
 
@@ -291,8 +294,8 @@ p {
   margin-bottom: 0.5rem;
 }
 
-.prose p+ul,
-.prose p+ol {
+.prose p + ul,
+.prose p + ol {
   margin-top: 0;
 }
 
@@ -383,7 +386,7 @@ img {
   height: auto;
 }
 
-img+em {
+img + em {
   text-align: center;
   display: block;
   margin: 0 auto;
@@ -406,7 +409,7 @@ pre {
   overflow: hidden;
 }
 
-pre>code {
+pre > code {
   all: unset;
   font-size: 16px;
   width: 100%;
@@ -435,7 +438,6 @@ hr {
 
 time {
   margin: 0.2em 0;
-  ;
 }
 
 sup {
@@ -483,7 +485,7 @@ sup {
   counter-reset: line;
 }
 
-.astro-code code>.line::before {
+.astro-code code > .line::before {
   counter-increment: line;
   content: counter(line);
   margin-right: 1em;
@@ -492,21 +494,21 @@ sup {
   display: inline-block;
 }
 
-.astro-code code>.line:hover::before {
+.astro-code code > .line:hover::before {
   opacity: 1;
 }
 
-.astro-code code>.line:last-of-type {
+.astro-code code > .line:last-of-type {
   display: none;
 }
 
-.astro-code code>.line {
+.astro-code code > .line {
   display: inline-block;
   width: calc(100% - 10px);
   padding: 0 5px;
 }
 
-.astro-code code>.line:hover {
+.astro-code code > .line:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -539,7 +541,7 @@ sup {
     font-size: 1.2em;
   }
 
-  .astro-code code>.line:hover {
+  .astro-code code > .line:hover {
     background: transparent;
   }
 
@@ -631,26 +633,11 @@ html[data-locale-pending]::before {
   z-index: 9999;
   background-color: var(--color-bg-default);
   background-image:
-    linear-gradient(
-      var(--color-bg-surface),
-      var(--color-bg-surface)
-    ),
-    linear-gradient(
-      var(--color-bg-surface),
-      var(--color-bg-surface)
-    ),
-    linear-gradient(
-      var(--color-bg-surface),
-      var(--color-bg-surface)
-    ),
-    linear-gradient(
-      var(--color-bg-surface),
-      var(--color-bg-surface)
-    ),
-    linear-gradient(
-      var(--color-bg-surface),
-      var(--color-bg-surface)
-    );
+    linear-gradient(var(--color-bg-surface), var(--color-bg-surface)),
+    linear-gradient(var(--color-bg-surface), var(--color-bg-surface)),
+    linear-gradient(var(--color-bg-surface), var(--color-bg-surface)),
+    linear-gradient(var(--color-bg-surface), var(--color-bg-surface)),
+    linear-gradient(var(--color-bg-surface), var(--color-bg-surface));
   background-size:
     min(92%, 720px) 56px,
     min(88%, 680px) 220px,

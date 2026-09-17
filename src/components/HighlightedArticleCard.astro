@@ -26,7 +26,7 @@ const tags = getPostTags(post);
 const readingTime = calculateReadingTime(post.body);
 const tagSlugs = tags.map(tagToSlug).join(" ");
 const searchHaystack = normalizeForSearch(
-  [post.data.title, post.data.description].filter(Boolean).join(" ")
+  [post.data.title, post.data.description].filter(Boolean).join(" "),
 );
 ---
 
@@ -37,22 +37,28 @@ const searchHaystack = normalizeForSearch(
   data-search={searchHaystack}
 >
   <a class="cover" href={href} tabindex="-1" aria-hidden="true">
-    {post.data.heroImage && (
-      <img
-        src={post.data.heroImage}
-        alt=""
-        width={720}
-        height={540}
-        loading="lazy"
-      />
-    )}
+    {
+      post.data.heroImage && (
+        <img
+          src={post.data.heroImage}
+          alt=""
+          width={720}
+          height={540}
+          loading="lazy"
+        />
+      )
+    }
   </a>
   <div class="body">
-    {tags.length > 0 && (
-      <div class="tags">
-        {tags.map((tag) => <TagChip tag={tag} locale={locale} />)}
-      </div>
-    )}
+    {
+      tags.length > 0 && (
+        <div class="tags">
+          {tags.map((tag) => (
+            <TagChip tag={tag} locale={locale} />
+          ))}
+        </div>
+      )
+    }
     <h3 class="title">
       <a href={href}>{post.data.title}</a>
     </h3>
@@ -71,7 +77,8 @@ const searchHaystack = normalizeForSearch(
       <span class="reading-time">
         <FormattedDate date={post.data.pubDate} locale={locale} />
         <span aria-hidden="true"> · </span>
-        {readingTime} {messages.blog.minReadCard}
+        {readingTime}
+        {messages.blog.minReadCard}
       </span>
     </footer>
   </div>
@@ -86,7 +93,9 @@ const searchHaystack = normalizeForSearch(
     grid-template-columns: 1.1fr 1fr;
     gap: 0;
     box-shadow: 0 4px 12px rgba(var(--gray), 12%);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
     min-height: 320px;
   }
 

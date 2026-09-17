@@ -36,7 +36,7 @@ export async function getStaticPaths() {
     props: {
       tagLabel: entry.label,
       posts: entry.posts.sort(
-        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+        (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
       ),
       locale: "es" as const,
     },
@@ -77,7 +77,7 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
               locale={locale}
               placeholder={messages.filter.searchInPlaceholder.replace(
                 "{tag}",
-                tagLabel
+                tagLabel,
               )}
             />
           </div>
@@ -93,16 +93,15 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
 
       document.addEventListener("DOMContentLoaded", () => {
         const searchInput = document.querySelector<HTMLInputElement>(
-          "[data-search-input]"
+          "[data-search-input]",
         );
         const wrapper = document.querySelector<HTMLElement>("[data-post-grid]");
-        const emptyState = document.querySelector<HTMLElement>(
-          "[data-empty-state]"
-        );
+        const emptyState =
+          document.querySelector<HTMLElement>("[data-empty-state]");
         if (!wrapper) return;
 
         const cards = Array.from(
-          wrapper.querySelectorAll<HTMLElement>(".filter-view [data-search]")
+          wrapper.querySelectorAll<HTMLElement>(".filter-view [data-search]"),
         );
 
         let query = "";
@@ -141,36 +140,35 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
         });
       });
     </script>
+    <style>
+      .tag-header {
+        padding: 1.5em 0 1em;
+      }
+
+      .title {
+        margin: 0.4em 0 0.8em;
+        color: var(--color-text-strong);
+        font-size: 2.4em;
+        line-height: 1.1;
+      }
+
+      .search-row {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      @media (min-width: 641px) {
+        .search-row :global(.search-bar) {
+          flex-basis: 400px;
+          min-width: 400px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .search-row {
+          justify-content: flex-start;
+        }
+      }
+    </style>
   </body>
 </html>
-
-<style>
-  .tag-header {
-    padding: 1.5em 0 1em;
-  }
-
-  .title {
-    margin: 0.4em 0 0.8em;
-    color: var(--color-text-strong);
-    font-size: 2.4em;
-    line-height: 1.1;
-  }
-
-  .search-row {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  @media (min-width: 641px) {
-    .search-row :global(.search-bar) {
-      flex-basis: 400px;
-      min-width: 400px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .search-row {
-      justify-content: flex-start;
-    }
-  }
-</style>

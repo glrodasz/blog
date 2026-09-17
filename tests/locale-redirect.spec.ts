@@ -16,15 +16,20 @@ test.describe("locale redirect", () => {
 
     await expect(page).toHaveURL(SAMPLE_POST);
     await expect(page.locator("html")).toHaveAttribute("data-locale-ready", "");
-    await expect(page.locator("html")).not.toHaveAttribute("data-locale-pending", "");
+    await expect(page.locator("html")).not.toHaveAttribute(
+      "data-locale-pending",
+      "",
+    );
   });
 
-  test("redirects saved Spanish preference from / to /es/", async ({ page }) => {
+  test("redirects saved Spanish preference from / to /es/", async ({
+    page,
+  }) => {
     await page.addInitScript(
       ({ key, value }) => {
         localStorage.setItem(key, value);
       },
-      { key: LOCALE_STORAGE_KEY, value: "es" }
+      { key: LOCALE_STORAGE_KEY, value: "es" },
     );
 
     await page.goto("/");
@@ -40,7 +45,7 @@ test.describe("locale redirect", () => {
       ({ key, value }) => {
         localStorage.setItem(key, value);
       },
-      { key: LOCALE_STORAGE_KEY, value: "es" }
+      { key: LOCALE_STORAGE_KEY, value: "es" },
     );
 
     await page.goto(SAMPLE_POST);
@@ -56,7 +61,7 @@ test.describe("locale redirect", () => {
       ({ key, value }) => {
         localStorage.setItem(key, value);
       },
-      { key: LOCALE_STORAGE_KEY, value: "es" }
+      { key: LOCALE_STORAGE_KEY, value: "es" },
     );
 
     await page.goto("/tags/learn-to-program/");
@@ -75,7 +80,7 @@ test.describe("locale redirect", () => {
     await toggle.dispatchEvent("mousedown");
     const storedLocale = await page.evaluate(
       (key) => localStorage.getItem(key),
-      LOCALE_STORAGE_KEY
+      LOCALE_STORAGE_KEY,
     );
     expect(storedLocale).toBe("en");
 
@@ -92,14 +97,20 @@ test.describe("locale redirect", () => {
 
     await expect(page).toHaveURL("/about");
     await expect(page.locator("html")).toHaveAttribute("data-locale-ready", "");
-    await expect(page.locator("html")).not.toHaveAttribute("data-locale-pending", "");
+    await expect(page.locator("html")).not.toHaveAttribute(
+      "data-locale-pending",
+      "",
+    );
   });
 });
 
 test.describe("locale redirect with Spanish locale", () => {
   test.use({ locale: "es-ES" });
 
-  test("redirects Spanish browser from / to /es/", async ({ page, context }) => {
+  test("redirects Spanish browser from / to /es/", async ({
+    page,
+    context,
+  }) => {
     await context.clearCookies();
     await clearLocaleStorage(page);
 
@@ -109,7 +120,9 @@ test.describe("locale redirect with Spanish locale", () => {
     await expect(page.locator("html")).toHaveAttribute("data-locale-ready", "");
   });
 
-  test("redirects Spanish browser from /about to /es/about", async ({ page }) => {
+  test("redirects Spanish browser from /about to /es/about", async ({
+    page,
+  }) => {
     await clearLocaleStorage(page);
     await page.goto("/about");
 

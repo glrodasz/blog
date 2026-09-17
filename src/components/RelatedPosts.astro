@@ -21,18 +21,20 @@ if (related.length === 0) {
 const messages = getMessages(locale);
 ---
 
-{related.length > 0 && (
-  <section class="related-posts">
-    <Container>
-      <h2 class="title">{messages.home.relatedTitle}</h2>
-      <div class="grid">
-        {related.slice(0, 3).map((post) => (
-          <ArticleCard post={post} locale={locale} />
-        ))}
-      </div>
-    </Container>
-  </section>
-)}
+{
+  related.length > 0 && (
+    <section class="related-posts">
+      <Container>
+        <h2 class="title">{messages.home.relatedTitle}</h2>
+        <div class="grid">
+          {related.slice(0, 3).map((post) => (
+            <ArticleCard post={post} locale={locale} />
+          ))}
+        </div>
+      </Container>
+    </section>
+  )
+}
 
 <style>
   .related-posts {

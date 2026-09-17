@@ -144,8 +144,8 @@ const messages = getMessages(locale);
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           email: state.input.value.trim(),
-          locale: state.form.dataset.locale ?? "en"
-        })
+          locale: state.form.dataset.locale ?? "en",
+        }),
       });
       if (!response.ok) throw new Error(`Request failed: ${response.status}`);
       showSuccess(state.form);
@@ -160,7 +160,9 @@ const messages = getMessages(locale);
     const forms = document.querySelectorAll<HTMLFormElement>(".subscribe-form");
     forms.forEach((form) => {
       const input = form.querySelector<HTMLInputElement>("input[type=email]");
-      const button = form.querySelector<HTMLButtonElement>("button[type=submit]");
+      const button = form.querySelector<HTMLButtonElement>(
+        "button[type=submit]",
+      );
       const errorEl = form.querySelector<HTMLElement>(".subscribe-form__error");
       if (!input || !button || !errorEl) return;
       const state: FormState = { form, input, button, errorEl };
