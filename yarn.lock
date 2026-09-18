@@ -5364,7 +5364,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-gfm@npm:^4.0.0":
+"remark-gfm@npm:^4.0.0, remark-gfm@npm:^4.0.1":
   version: 4.0.1
   resolution: "remark-gfm@npm:4.0.1"
   dependencies:
@@ -6323,9 +6323,12 @@ __metadata:
     lucide-astro: "npm:0.556.0"
     prettier: "npm:^3.2.5"
     prettier-plugin-astro: "npm:^0.13.0"
+    remark-gfm: "npm:^4.0.1"
+    remark-parse: "npm:^11.0.0"
     satori: "npm:^0.26.0"
     sharp: "npm:^0.34.5"
     typescript: "npm:^5.4.3"
+    unified: "npm:^11.0.5"
   languageName: unknown
   linkType: soft
 

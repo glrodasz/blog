@@ -11,7 +11,13 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "playwright test",
-    "test:ui": "playwright test --ui"
+    "test:ui": "playwright test --ui",
+    "test:unit": "node --test scripts/audio/*.test.mjs",
+    "audio:generate": "node scripts/audio/generate.mjs",
+    "audio:script": "node scripts/audio/print-narration.mjs",
+    "audio:audition": "node scripts/audio/audition.mjs",
+    "audio:check-alt": "node scripts/audio/check-alt.mjs",
+    "audio:describe-images": "node scripts/audio/describe-images.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -29,7 +35,10 @@
     "@playwright/test": "^1.60.0",
     "esbuild": "^0.25.0",
     "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0"
+    "prettier-plugin-astro": "^0.13.0",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "unified": "^11.0.5"
   },
   "packageManager": "yarn@4.10.3"
 }

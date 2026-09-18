@@ -1,0 +1,56 @@
+name: Audio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/content/posts/**"
+      - "scripts/audio/**"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Regenerate every post (use after changing voices or narration rules)"
+        type: boolean
+        default: false
+
+# One run at a time so two merges never race on the manifest.
+concurrency:
+  group: audio-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Generate narration audio
+        run: node scripts/audio/generate.mjs ${{ inputs.force && '--force' || '' }}
+        env:
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+
+      # Pushes made with GITHUB_TOKEN do not trigger other workflows, but Netlify
+      # still sees the commit and redeploys with the new files.
+      - name: Commit audio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/audio src/data/audio-manifest.json
+          if git diff --cached --quiet; then
+            echo "No audio changes."
+            exit 0
+          fi
+          git commit -m "chore(audio): regenerate narration"
+          git push

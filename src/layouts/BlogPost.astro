@@ -8,6 +8,7 @@ import Container from "../components/Container.astro";
 import SimpleAnalytics from "../components/SimpleAnalytics.astro";
 import LanguageVersionBanner from "../components/LanguageVersionBanner.astro";
 import CopyArticleButton from "../components/CopyArticleButton.astro";
+import AudioPlayer from "../components/AudioPlayer.astro";
 import TagChip from "../components/TagChip.astro";
 import BackLink from "../components/BackLink.astro";
 import AuthorBio from "../components/AuthorBio.astro";
@@ -19,6 +20,7 @@ import { getMessages } from "../i18n";
 import { Link } from "lucide";
 import Info from "lucide-astro/Info";
 import { SITE_URL } from "../consts";
+import { type PostAudio, toIsoDuration } from "../utils/audio";
 
 const linkIconPaths = Link;
 
@@ -33,6 +35,7 @@ type Props = CollectionEntry<"posts">["data"] & {
   languageVersions?: LanguageVersion[];
   isPage?: boolean;
   markdownBody?: string;
+  audio?: PostAudio;
 };
 
 const {
@@ -47,6 +50,7 @@ const {
   relatedPosts,
   isPage = false,
   markdownBody,
+  audio,
 } = Astro.props;
 
 const locale = getLocaleFromAstro(Astro);
@@ -88,6 +92,15 @@ const tags = rawTags
         "publisher": { "@type": "Organization", "name": messages.site.title, "url": SITE_URL },
         "url": canonicalUrl,
         "inLanguage": locale,
+        ...(audio && {
+          "audio": {
+            "@type": "AudioObject",
+            "contentUrl": new URL(audio.src, Astro.site ?? SITE_URL).href,
+            "encodingFormat": "audio/mpeg",
+            "duration": toIsoDuration(audio.durationSeconds),
+            "inLanguage": locale,
+          },
+        }),
       })} />
     )}
   </head>
@@ -139,6 +152,7 @@ const tags = rawTags
                   locale={locale}
                 />
               )}
+              {audio && <AudioPlayer audio={audio} title={title} locale={locale} />}
             </div>
           )}
         </div>

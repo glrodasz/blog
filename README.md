@@ -9,6 +9,7 @@ Undefined Shell is a bilingual Astro site by Guillermo Rodas focused on programm
 - **Content collections** for posts with frontmatter validation (title, dates, tags, language versions, hero images, redirects).
 - **SEO extras** including RSS feed generation, sitemap, and custom redirects.
 - **Analytics-ready** via Simple Analytics embed.
+- **Audio narration** of every post in Spanish and English, generated with Azure Speech after each merge (see `scripts/audio/README.md`).
 
 ## Project structure
 
@@ -76,6 +77,8 @@ Key directories and files:
 - `yarn build` – Run `astro check`, build the site, and copy `_redirects` to `dist/`.
 - `yarn preview` – Preview the production build.
 - `yarn format` – Format the codebase with Prettier.
+- `yarn test:unit` – Unit tests for the audio narration scripts.
+- `yarn audio:*` – Audio narration pipeline commands, documented in `scripts/audio/README.md`.
 
 ## License
 

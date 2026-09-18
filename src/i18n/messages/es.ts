@@ -19,6 +19,8 @@ export const messages = {
     copyAsMarkdown: "Copiar como Markdown",
     copyAsRichText: "Copiar como texto enriquecido",
     copied: "¡Copiado!",
+    listen: "Escuchar",
+    listenLabel: "Escuchar este artículo",
     originalArticle: "Artículo original"
   },
   navigation: {

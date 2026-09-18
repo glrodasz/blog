@@ -30,19 +30,19 @@ Aunque no vamos a cubrir todas las formas básicas o extras, sí describiremos l
 
 #### Línea de flujo
 Se representa con una línea (o flecha de ser necesario) y esta indica el flujo del algoritmo, en otras palabras, el camino por el cual vamos a seguir. Las líneas conectan una forma con otra, saliendo de una y terminando en otra.
-![](/images/posts/es/disenando-un-algoritmo/linea-de-flujo.png)
+![Diagrama de flujo con todas las formas atenuadas, excepto las líneas con flechas moradas que conectan cada forma con la siguiente.](/images/posts/es/disenando-un-algoritmo/linea-de-flujo.png)
 
 #### Terminal
 Se representan con un rectángulo de esquinas redondeadas (forma de estadio deportivo) y se usa para indicar el principio y fin de un algoritmo. De esta forma tendremos claro por dónde empezar y en qué lugar termina.
-![](/images/posts/es/disenando-un-algoritmo/terminal.png)
+![El mismo diagrama de flujo con todo atenuado, excepto dos formas de esquinas redondeadas resaltadas en verde: “Inicio” arriba y “Fin” a la derecha.](/images/posts/es/disenando-un-algoritmo/terminal.png)
 
 #### Decisión
 Se representan con un rombo (diamante) y indica una condición que suele tener al menos dos opciones, generalmente Si / No. Esto quiere decir que del rombo siempre salen dos líneas de flujo donde cada línea representa la decisión tomada por donde continua el algoritmo. Es igual a cuando nos encontramos un camino que se bifurca y luego debemos decidir por dónde continuar.
-![](/images/posts/es/disenando-un-algoritmo/decision.png)
+![Diagrama de flujo con un rombo naranja resaltado que dice “Si i <= n”. De él salen dos flechas: “No” hacia “Fin” y “Sí” hacia abajo.](/images/posts/es/disenando-un-algoritmo/decision.png)
 
 #### Proceso
 Se representa con un rectángulo y representa una operación que genera un cambio en el algoritmo. Aquí es donde representamos la lógica u operaciones que iremos haciendo en nuestro algoritmo, similar a como lo hemos venido haciendo en la lista de tareas.
-![](/images/posts/es/disenando-un-algoritmo/proceso.png)
+![Diagrama de flujo con un rectángulo rojo resaltado que dice “Leer n, iniciar i”, ubicado entre “Inicio” y la primera decisión.](/images/posts/es/disenando-un-algoritmo/proceso.png)
 
 ### Algoritmo en un diagrama de flujo
 Para entender mejor cómo crear diagramas de flujo resolvamos un problema clásico llamado “FizzBuzz”.
@@ -66,7 +66,7 @@ A continuación veamos paso a paso lo que sería una solución de dicho problema
 
 > ℹ️ Las anotaciones númericas en el diagrama de flujo solo están con un fin educativo. Un diagrama de flujo no suele venir acompañado de notas extras o una descripción paso a paso, pues se considera que el diagrama en sí es más que suficiente.
 
-![](/images/posts/es/disenando-un-algoritmo/fizz-buzz.png)
+![Diagrama de flujo completo de FizzBuzz con anotaciones numeradas del 1 al 9. Empieza en “Inicio”, lee n e inicia i, y encadena tres rombos de decisión (i % 3 == 0 y i % 5 == 0, i % 3 == 0, i % 5 == 0) que llevan a imprimir “FizzBuzz”, “Fizz”, “Buzz” o el número. Todos los caminos pasan por “i = i + 1” y vuelven a la primera decisión, que termina en “Fin” cuando i es mayor que n.](/images/posts/es/disenando-un-algoritmo/fizz-buzz.png)
 1. Ubicamos la Terminal **“Inicio”**, que por conveniencia está en la parte superior. Aquí es donde comienza el algoritmo. Seguimos la flecha hacia abajo.
 2. Nos encontramos con nuestro primer **Proceso**: **Leer n, iniciar i**. Esto significa que el usuario debe ingresar hasta qué número vamos a contar (por ejemplo, `n = 100`) y que inicializamos `i = 1`. Avanzamos siguiendo la flecha.
 3. Llegamos a la primera **Decisión**, donde nos preguntamos: **¿i es menor o igual que n?**
@@ -108,7 +108,7 @@ Vamos a cocinar de manera síncrona un arroz con zanahoria picada y asada. Ya s�
 
 #### Un paso a la vez
 Imagina que solo tienes **un solo fogón disponible**, y no puedes hacer más de una cosa a la vez. Así que cocinamos paso por paso.
-![](/images/posts/es/disenando-un-algoritmo/sincrono.png)
+![Ilustración dividida en dos: arriba, un paquete de arroz y una olla roja humeante sobre una estufa; abajo, dos zanahorias y una sartén con rodajas sobre la misma estufa. Solo hay una cosa al fuego en cada momento.](/images/posts/es/disenando-un-algoritmo/sincrono.png)
 1. Ponemos el arroz a cocinar en una olla. Esto tarda unos 15 minutos.
 2. Cuando termina, lo dejamos reposar durante unos 5 minutos.
 3. **Una vez que el arroz está listo**, cortamos la zanahoria en rodajas.
@@ -124,7 +124,7 @@ Ahora vamos a hacer exactamente la misma receta, pero usando un enfoque **asínc
 
 #### Aprovechando el tiempo
 Este vez vamos a disponer de **multiples fogónes**, lo que nos permite hacer más de una cosa a la vez. Así que cocinaremos de una manera más eficiente.
-![](/images/posts/es/disenando-un-algoritmo/asincrono.png)
+![Ilustración de una estufa con dos fogones encendidos al mismo tiempo: una olla roja con arroz y una sartén con rodajas de zanahoria, ambas humeando. Al lado hay una mesa con una planta.](/images/posts/es/disenando-un-algoritmo/asincrono.png)
 
 1. Ponemos el arroz a cocinar en una olla. Esto tarda unos 15 minutos.
 2. **Mientras el arroz se cocina**, tomamos una zanahoria y la cortamos en rodajas.
@@ -143,7 +143,7 @@ Este tipo de diagrama se usa más comúnmente para mostrar la comunicación entr
 
 > 🔁 Se lee de izquierda a derecha (quién participa) y de arriba a abajo (en qué orden suceden las cosas). Las flechas indican mensajes entre participantes, como cuando un cocinero pone algo a calentar, espera, y mientras tanto hace otra cosa.
 
-![](/images/posts/es/disenando-un-algoritmo/diagrama-de-secuencias.png)
+![Diagrama de secuencia con cuatro participantes: Cocinero, Olla, Tabla y Sartén. Las flechas van en orden: cocinar arroz (15 minutos), cortar zanahorias, transferir rodajas y saltear zanahorias (5 minutos). Una nota indica que las zanahorias quedan listas antes que el arroz; luego, reposar arroz (5 minutos) y servir arroz con zanahorias.](/images/posts/es/disenando-un-algoritmo/diagrama-de-secuencias.png)
 [🔗 Mira el diagrama en swimlanes.io](https://glrz.me/diagrama-secuencias)
 
 Más adelante veremos ejemplos concretos del mundo de la programación, como el flujo **cliente-servidor**. Pero, por ahora, usamos este recurso para representar mejor lo que ocurre en nuestra receta, y así visualizar de forma clara lo que significa ejecutar tareas en paralelo.
