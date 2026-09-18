@@ -10,9 +10,9 @@ type Redirect = Record<
 
 export const getRedirects = async (): Promise<Redirect> => {
   const redirectsContent = fs.readFileSync("_redirects", "utf-8");
-  
+
   const redirects: Redirect = {};
-  
+
   redirectsContent
     .split("\n")
     .map((line) => line.trim())

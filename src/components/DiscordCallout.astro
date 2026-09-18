@@ -9,8 +9,10 @@ type Props = {
 
 const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
-const [subtitleBefore, subtitleAfter] = messages.discord.subtitle.split("{memberCount}");
-const [onlineBefore, onlineAfter] = messages.discord.subtitleOnline.split("{onlineCount}");
+const [subtitleBefore, subtitleAfter] =
+  messages.discord.subtitle.split("{memberCount}");
+const [onlineBefore, onlineAfter] =
+  messages.discord.subtitleOnline.split("{onlineCount}");
 ---
 
 <section class="discord-callout">
@@ -19,11 +21,14 @@ const [onlineBefore, onlineAfter] = messages.discord.subtitleOnline.split("{onli
       <div class="text">
         <h2 class="title">{messages.discord.title}</h2>
         <p class="subtitle">
-          {subtitleBefore}<span data-discord-count>{DISCORD_MEMBER_COUNT}</span>{subtitleAfter}
+          {subtitleBefore}<span data-discord-count>{DISCORD_MEMBER_COUNT}</span
+          >{subtitleAfter}
         </p>
         <p class="online-status" data-discord-online-sentence hidden>
           <span class="live-dot" aria-hidden="true"></span>
-          <span class="online-text">{onlineBefore}<span data-discord-online></span>{onlineAfter}</span>
+          <span class="online-text"
+            >{onlineBefore}<span data-discord-online></span>{onlineAfter}</span
+          >
         </p>
       </div>
       <a
@@ -159,7 +164,9 @@ const [onlineBefore, onlineAfter] = messages.discord.subtitleOnline.split("{onli
 <script>
   const countEl = document.querySelector("[data-discord-count]");
   const onlineEl = document.querySelector("[data-discord-online]");
-  const onlineSentenceEl = document.querySelector("[data-discord-online-sentence]");
+  const onlineSentenceEl = document.querySelector(
+    "[data-discord-online-sentence]",
+  );
 
   if (countEl) {
     fetch("/api/discord-count")

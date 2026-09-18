@@ -8,16 +8,15 @@ import { normalizeForSearch } from "./searchNormalize";
 export function initHomeFilter() {
   document.addEventListener("DOMContentLoaded", () => {
     const tabs = Array.from(
-      document.querySelectorAll<HTMLElement>(".tag-carousel [data-tag]")
+      document.querySelectorAll<HTMLElement>(".tag-carousel [data-tag]"),
     );
     const searchInput = document.querySelector<HTMLInputElement>(
-      "[data-search-input]"
+      "[data-search-input]",
     );
     const scroll = document.querySelector<HTMLElement>("[data-tag-scroll]");
     const wrapper = document.querySelector<HTMLElement>("[data-post-grid]");
-    const emptyState = document.querySelector<HTMLElement>(
-      "[data-empty-state]"
-    );
+    const emptyState =
+      document.querySelector<HTMLElement>("[data-empty-state]");
     if (!wrapper) return;
 
     const desktopQuery = window.matchMedia("(min-width: 641px)");
@@ -46,7 +45,7 @@ export function initHomeFilter() {
     };
 
     const filterCards = Array.from(
-      wrapper.querySelectorAll<HTMLElement>(".filter-view [data-search]")
+      wrapper.querySelectorAll<HTMLElement>(".filter-view [data-search]"),
     );
 
     let activeTag = "all";

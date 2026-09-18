@@ -24,7 +24,11 @@ const titleCase = (str: string) =>
 
 const formatDate = (date: Date) => {
   const parts = date
-    .toLocaleDateString(locale, { year: "numeric", month: "short", day: "numeric" })
+    .toLocaleDateString(locale, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
     .split(" ");
 
   if (parts.length >= 3) {
@@ -40,7 +44,8 @@ const sanitizeMarkdownBody = (body: string) =>
   body
     .replace(/^import\s+\w+\s+from\s+["'][^"']+\.astro["'];?\s*$/gm, "")
     .replace(/<CodePen\b([^/>]*)\/>/g, (_match, attrs: string) => {
-      const getAttr = (name: string) => attrs.match(new RegExp(`${name}="([^"]*)"`))?.[1];
+      const getAttr = (name: string) =>
+        attrs.match(new RegExp(`${name}="([^"]*)"`))?.[1];
       const codePenUser = getAttr("user");
       const slug = getAttr("slug");
       const title = getAttr("title");
@@ -64,16 +69,28 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
   >
     <Copy size={14} aria-hidden="true" class="copy-icon" />
     <Check size={14} aria-hidden="true" class="check-icon" />
-    <span class="copy-article-label default-label">{messages.blog.copyPage}</span>
+    <span class="copy-article-label default-label"
+      >{messages.blog.copyPage}</span
+    >
     <span class="copy-article-label copied-label">{messages.blog.copied}</span>
     <ChevronDown size={14} aria-hidden="true" class="chevron-icon" />
   </button>
   <div class="copy-article-menu" role="menu" hidden>
-    <button type="button" role="menuitem" class="copy-article-option" data-format="markdown">
+    <button
+      type="button"
+      role="menuitem"
+      class="copy-article-option"
+      data-format="markdown"
+    >
       <Hash size={14} aria-hidden="true" />
       {messages.blog.copyAsMarkdown}
     </button>
-    <button type="button" role="menuitem" class="copy-article-option" data-format="richtext">
+    <button
+      type="button"
+      role="menuitem"
+      class="copy-article-option"
+      data-format="richtext"
+    >
       <Type size={14} aria-hidden="true" />
       {messages.blog.copyAsRichText}
     </button>
@@ -125,7 +142,10 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
     positionMenu();
   };
 
-  window.addEventListener("scroll", closeMenu, { passive: true, capture: true });
+  window.addEventListener("scroll", closeMenu, {
+    passive: true,
+    capture: true,
+  });
   window.addEventListener("resize", closeMenu);
 
   trigger.addEventListener("click", (event) => {
@@ -161,7 +181,10 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
         await navigator.clipboard.writeText(text);
         return true;
       } catch (error) {
-        console.warn("Clipboard write failed, falling back to execCommand.", error);
+        console.warn(
+          "Clipboard write failed, falling back to execCommand.",
+          error,
+        );
       }
     }
 
@@ -187,7 +210,10 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
         await navigator.clipboard.write([item]);
         return true;
       } catch (error) {
-        console.warn("Rich clipboard write failed, falling back to plain text.", error);
+        console.warn(
+          "Rich clipboard write failed, falling back to plain text.",
+          error,
+        );
       }
     }
 
@@ -212,12 +238,14 @@ const sanitizedMarkdownBody = sanitizeMarkdownBody(markdownBody);
 
     if (contentEl) {
       const clone = contentEl.cloneNode(true);
-      clone.querySelectorAll(".heading-copy-btn, script, style, noscript").forEach((el) => el.remove());
+      clone
+        .querySelectorAll(".heading-copy-btn, script, style, noscript")
+        .forEach((el) => el.remove());
       bodyHtml = clone.innerHTML;
     }
 
     const header = `<h1>${escapeHtml(title)}</h1><p><em>${escapeHtml(
-      formattedDate
+      formattedDate,
     )}</em></p><p><a href="${url}">${escapeHtml(originalArticleLabel)}</a></p>`;
 
     return header + bodyHtml;

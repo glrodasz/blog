@@ -21,7 +21,7 @@ const otherLanguage = LANGUAGE_CONFIG[otherLocale];
 const switchHref = switchLocalePath(currentPath, otherLocale);
 const switchLabel = messages.navigation.switchToLanguage.replace(
   "{language}",
-  otherLanguage.name
+  otherLanguage.name,
 );
 ---
 
@@ -53,7 +53,9 @@ const switchLabel = messages.navigation.switchToLanguage.replace(
     line-height: 1;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
   }
 
   .language-toggle:hover {
@@ -76,7 +78,8 @@ const switchLabel = messages.navigation.switchToLanguage.replace(
   import { LOCALE_STORAGE_KEY } from "../i18n/config";
 
   document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.querySelector<HTMLAnchorElement>(".language-toggle");
+    const toggle =
+      document.querySelector<HTMLAnchorElement>(".language-toggle");
     if (!toggle) return;
 
     toggle.addEventListener("mousedown", () => {

@@ -3,8 +3,9 @@ export const messages = {
     title: "Undefined Shell",
     author: "Guillermo Rodas",
     shortDescription: "Programación y desarrollo web",
-    description: "Undefined Shell by Guillermo Rodas es tu fuente definitiva para todo lo relacionado con la programación y el desarrollo web. En Undefined Shell, nos apasiona explorar y aprender sobre el desarrollo de productos digitales innovadores, especialmente en el ámbito Full-stack y JavaScript. Ofrecemos tutoriales detallados, análisis de las últimas tendencias tecnológicas y consejos prácticos para desarrolladores de todos los niveles. Únete a nuestra comunidad apasionada por el desarrollo web y lleva tus habilidades al siguiente nivel.",
-    url: "https://blog.guillermorodas.com"
+    description:
+      "Undefined Shell by Guillermo Rodas es tu fuente definitiva para todo lo relacionado con la programación y el desarrollo web. En Undefined Shell, nos apasiona explorar y aprender sobre el desarrollo de productos digitales innovadores, especialmente en el ámbito Full-stack y JavaScript. Ofrecemos tutoriales detallados, análisis de las últimas tendencias tecnológicas y consejos prácticos para desarrolladores de todos los niveles. Únete a nuestra comunidad apasionada por el desarrollo web y lleva tus habilidades al siguiente nivel.",
+    url: "https://blog.guillermorodas.com",
   },
   blog: {
     updatedLabel: "Actualizado",
@@ -19,7 +20,7 @@ export const messages = {
     copyAsMarkdown: "Copiar como Markdown",
     copyAsRichText: "Copiar como texto enriquecido",
     copied: "¡Copiado!",
-    originalArticle: "Artículo original"
+    originalArticle: "Artículo original",
   },
   navigation: {
     home: "Inicio",
@@ -27,16 +28,16 @@ export const messages = {
     subscribe: "Suscribirse",
     skipToMain: "Saltar al contenido principal",
     selectLanguage: "Seleccionar idioma",
-    switchToLanguage: "Cambiar a {language}"
+    switchToLanguage: "Cambiar a {language}",
   },
   theme: {
     light: "Claro",
     dark: "Oscuro",
-    toggle: "Cambiar entre tema claro y oscuro"
+    toggle: "Cambiar entre tema claro y oscuro",
   },
   home: {
     readArticle: "Leer artículo",
-    relatedTitle: "Artículos que te pueden gustar"
+    relatedTitle: "Artículos que te pueden gustar",
   },
   filter: {
     all: "Todos",
@@ -44,16 +45,17 @@ export const messages = {
     searchInPlaceholder: "Buscar en {tag}",
     scrollPrev: "Anterior",
     scrollNext: "Siguiente",
-    noResults: "No se encontraron artículos"
+    noResults: "No se encontraron artículos",
   },
   tagPage: {
-    title: "Etiqueta: {tag}"
+    title: "Etiqueta: {tag}",
   },
   discord: {
     title: "Únete a nuestra comunidad de Discord",
-    subtitle: "Somos {memberCount} personas cambiando el mundo de la programación.",
+    subtitle:
+      "Somos {memberCount} personas cambiando el mundo de la programación.",
     subtitleOnline: "{onlineCount} en línea ahora mismo",
-    cta: "Unirse a discord"
+    cta: "Unirse a discord",
   },
   subscribe: {
     title: "Suscríbete para estar actualizado",
@@ -61,12 +63,12 @@ export const messages = {
     submit: "Suscribirse",
     submitting: "Enviando...",
     thanks: "¡Gracias por suscribirte!",
-    error: "Algo salió mal. Inténtalo de nuevo."
+    error: "Algo salió mal. Inténtalo de nuevo.",
   },
   author: {
     name: "Guillermo Rodas",
     bio: "Guillermo Rodas es un ingeniero JavaScript full-stack de Colombia. Sus colores CSS favoritos son tomato, rebeccapurple y papayawhip.",
-    avatar: "/authors/guillermo-rodas.svg"
+    avatar: "/authors/guillermo-rodas.svg",
   },
   footer: {
     creditBy: "por",
@@ -74,10 +76,10 @@ export const messages = {
     followTwitter: "Sigue Undefined Shell en Twitter",
     followInstagram: "Sigue Undefined Shell en Instagram",
     followTwitch: "Sigue Undefined Shell en Twitch",
-    followYoutube: "Sigue Undefined Shell en YouTube"
+    followYoutube: "Sigue Undefined Shell en YouTube",
   },
   languageBanner: {
-    readIn: "Leer en {language}"
+    readIn: "Leer en {language}",
   },
   notFound: {
     tabTitle: "404 — Página no encontrada",
@@ -87,6 +89,6 @@ export const messages = {
     errorLine: "Error: comando no encontrado (código 404)",
     suggestion: "¿Quisiste decir:",
     backToHome: "← Volver al inicio",
-    suggestionsTitle: "Ya que estás aquí, lee algo bueno"
-  }
+    suggestionsTitle: "Ya que estás aquí, lee algo bueno",
+  },
 } as const;

@@ -3,7 +3,8 @@ import { generateRSSFeed } from "../../utils/content";
 import { getValidLocale } from "../../i18n/config";
 
 export async function GET(context) {
-  const locale = getValidLocale(context.currentLocale || context.preferredLocale) || "es";
+  const locale =
+    getValidLocale(context.currentLocale || context.preferredLocale) || "es";
   const feedData = await generateRSSFeed(locale, context);
   return rss(feedData);
 }

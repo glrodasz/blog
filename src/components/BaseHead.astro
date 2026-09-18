@@ -47,11 +47,14 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
   (function () {
     try {
       var stored = localStorage.getItem("theme");
-      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       var theme = stored || (prefersDark ? "dark" : "light");
       document.documentElement.setAttribute("data-theme", theme);
       var meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute("content", theme === "dark" ? "#1b262c" : "#ffffff");
+      if (meta)
+        meta.setAttribute("content", theme === "dark" ? "#1b262c" : "#ffffff");
     } catch (_) {}
   })();
 </script>
@@ -69,7 +72,12 @@ const rssFeedUrl = locale === "es" ? "/es/rss.xml" : "/rss.xml";
 />
 
 <!-- RSS Autodiscovery -->
-<link rel="alternate" type="application/rss+xml" title="Undefined Shell RSS" href={rssFeedUrl} />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="Undefined Shell RSS"
+  href={rssFeedUrl}
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

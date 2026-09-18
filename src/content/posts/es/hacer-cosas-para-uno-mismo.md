@@ -7,6 +7,10 @@ heroImage: "/covers/hand-carved-wooden-horse.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/making-things-for-yourself"
+relatedPosts:
+  - el-exito-nunca-fue-de-un-dia-para-otro
+  - la-ia-se-volvio-parte-de-mi-vida
+  - la-realidad-siempre-fue-editada
 ---
 
 Hay una parte del éxito de la que poco se habla y es que sostener algo a lo largo del tiempo es difícil. Existen días en los que simplemente no tienes ganas, porque generalmente los resultados tardan más de lo que estimas. Por ejemplo, publicas algo que te tomó meses y no es nada raro que lo vean unas tres personas _(una de ellas, un amigo o familiar 😅)_. Entonces, la actividad que te emocionaba empieza a sentirse como una obligación.

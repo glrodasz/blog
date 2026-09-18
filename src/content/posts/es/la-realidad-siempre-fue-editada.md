@@ -7,6 +7,10 @@ heroImage: "/covers/tree-of-coins-in-a-hill.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/reality-has-always-been-edited"
+relatedPosts:
+  - la-ia-se-volvio-parte-de-mi-vida
+  - el-exito-nunca-fue-de-un-dia-para-otro
+  - hacer-cosas-para-uno-mismo
 ---
 
 Hoy vemos cómo la realidad se está distorsionando por la inteligencia artificial, pero creo que esta distorsión existe desde mucho antes. Incluso se podría decir que siempre ha existido.

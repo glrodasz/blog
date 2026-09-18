@@ -2,7 +2,7 @@ export const LOCALES = ["en", "es"] as const;
 export const DEFAULT_LOCALE = "en" as const;
 export const LOCALE_STORAGE_KEY = "locale" as const;
 
-export type Locale = typeof LOCALES[number];
+export type Locale = (typeof LOCALES)[number];
 
 export type LocaleAction =
   | { type: "skip" }
@@ -30,7 +30,8 @@ export function getLocaleFromAstro(astro: {
   preferredLocale?: string;
   props?: { locale?: string };
 }): Locale {
-  const locale = astro.currentLocale || astro.preferredLocale || astro.props?.locale;
+  const locale =
+    astro.currentLocale || astro.preferredLocale || astro.props?.locale;
   return getValidLocale(locale);
 }
 
@@ -43,7 +44,7 @@ export function isExplicitLocalePath(pathname: string): boolean {
 }
 
 export function detectLocaleFromNavigator(
-  languages: readonly string[] | undefined
+  languages: readonly string[] | undefined,
 ): Locale {
   if (!languages?.length) {
     return DEFAULT_LOCALE;
@@ -58,7 +59,10 @@ export function detectLocaleFromNavigator(
   return DEFAULT_LOCALE;
 }
 
-export function buildLocalizedPath(pathname: string, targetLocale: Locale): string {
+export function buildLocalizedPath(
+  pathname: string,
+  targetLocale: Locale,
+): string {
   if (targetLocale === DEFAULT_LOCALE) {
     if (pathname === "/es" || pathname.startsWith("/es/")) {
       const unprefixed = pathname.slice(3) || "/";
@@ -100,21 +104,27 @@ export function resolveLocaleAction({
   return { type: "ready" };
 }
 
-export function switchLocalePath(currentPath: string, targetLocale: Locale): string {
-  const segments = currentPath.split('/').filter(Boolean);
+export function switchLocalePath(
+  currentPath: string,
+  targetLocale: Locale,
+): string {
+  const segments = currentPath.split("/").filter(Boolean);
   const firstSegment = segments[0];
-  
+
   let cleanPath: string;
   if (isValidLocale(firstSegment)) {
     const remainingSegments = segments.slice(1);
-    cleanPath = remainingSegments.length > 0 ? '/' + remainingSegments.join('/') : '/';
+    cleanPath =
+      remainingSegments.length > 0 ? "/" + remainingSegments.join("/") : "/";
   } else {
     cleanPath = currentPath;
   }
-  
-  if (cleanPath.includes('/posts/')) {
-    return targetLocale === DEFAULT_LOCALE ? '/' : `/${targetLocale}/`;
+
+  if (cleanPath.includes("/posts/")) {
+    return targetLocale === DEFAULT_LOCALE ? "/" : `/${targetLocale}/`;
   }
-  
-  return targetLocale === DEFAULT_LOCALE ? cleanPath : `/${targetLocale}${cleanPath}`;
+
+  return targetLocale === DEFAULT_LOCALE
+    ? cleanPath
+    : `/${targetLocale}${cleanPath}`;
 }
