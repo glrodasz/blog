@@ -26,7 +26,7 @@ No es un requisito para empezar a programar, pero tarde o que temprano nos vamos
 - **Linux/Ubuntu:** Ctrl + Alt + T
 - **Mac OS:**  Cmd + Tecla espaciadora y buscar por "Terminal"
 
-![Terminal en Mac OS, usando Pure un ZSH prompt.](/images/posts/es/conociendo-la-terminal/terminal-en-mac-os.png)_Terminal en Mac OS, usando Pure un ZSH prompt._
+![Ventana de la Terminal de Mac OS con fondo oscuro. Se ejecutó el comando “lucky” y aparece un chiste en inglés dentro de un globo de texto (“A rock store eventually closed down; they were taking too much for granite”) dicho por un dinosaurio dibujado con caracteres ASCII en colores arcoíris. Abajo, el prompt de Pure espera un nuevo comando.](/images/posts/es/conociendo-la-terminal/terminal-en-mac-os.png)_Terminal en Mac OS, usando Pure un ZSH prompt._
 
 ## ¿Cómo funciona la terminal?
 

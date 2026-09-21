@@ -44,6 +44,7 @@ yarn audio:generate --dry-run      # which posts would regenerate, and how many 
 yarn audio:generate --only es/que-es-un-algoritmo
 yarn audio:audition                # one sample paragraph per candidate voice → scratch/audition/
 yarn audio:describe-images         # draft alt text for images that have none (Azure OpenAI vision)
+yarn audio:describe-images --all   # also redo images that already have alt text; review the diff
 yarn test:unit
 ```
 

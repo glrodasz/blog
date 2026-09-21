@@ -3,7 +3,10 @@
  * deployment, and write the suggestion into the markdown so it can be reviewed
  * as a normal diff. Never touches images that already have alt text.
  *
- *   node scripts/audio/describe-images.mjs [--dry-run]
+ *   node scripts/audio/describe-images.mjs [--dry-run] [--all]
+ *
+ * --all also rewrites images that already have alt text (the current alt is
+ * passed to the model as a hint). Review the diff before committing.
  *
  * Env: AZURE_OPENAI_ENDPOINT (https://<resource>.openai.azure.com),
  *      AZURE_OPENAI_API_KEY, AZURE_OPENAI_DEPLOYMENT (a vision-capable model),
@@ -18,7 +21,10 @@ try {
 } catch {}
 
 const DRY_RUN = process.argv.includes("--dry-run");
-const IMAGE_RE = /!\[\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
+const ALL = process.argv.includes("--all");
+const IMAGE_RE = ALL
+  ? /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g
+  : /!\[()\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
 const MIME = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
@@ -32,7 +38,7 @@ const LANGUAGE = {
   en: "English",
 };
 
-function prompt(locale, before, after) {
+function prompt(locale, before, after, currentAlt) {
   return (
     `You write alt text for images in a programming blog written in ${LANGUAGE[locale]}. ` +
     "Describe what the image shows in one or two sentences, so that someone listening to the article " +
@@ -40,11 +46,14 @@ function prompt(locale, before, after) {
     'that appear in the image. Do not start with "image of" or "diagram of". Do not interpret or add ' +
     "information that is not visible.\n\n" +
     `Context before the image: «${before}»\nContext after the image: «${after}»\n\n` +
+    (currentAlt
+      ? `Current alt text, which may be too short: «${currentAlt}»\n\n`
+      : "") +
     "Reply with the alt text only, in the blog's language."
   );
 }
 
-async function describe({ locale, imagePath, before, after }) {
+async function describe({ locale, imagePath, before, after, currentAlt }) {
   const endpoint = process.env.AZURE_OPENAI_ENDPOINT?.replace(/\/$/, "");
   const key = process.env.AZURE_OPENAI_API_KEY;
   const deployment = process.env.AZURE_OPENAI_DEPLOYMENT;
@@ -66,7 +75,7 @@ async function describe({ locale, imagePath, before, after }) {
           {
             role: "user",
             content: [
-              { type: "text", text: prompt(locale, before, after) },
+              { type: "text", text: prompt(locale, before, after, currentAlt) },
               {
                 type: "image_url",
                 image_url: { url: dataUrl, detail: "high" },
@@ -117,7 +126,8 @@ for (const post of listPosts()) {
   let raw = post.raw;
   let offset = 0;
   for (const match of matches) {
-    const url = match[1];
+    const currentAlt = match[1];
+    const url = match[2];
     const imagePath = join(ROOT, "public", url);
     const label = `${relative(ROOT, post.file)} → ${url}`;
     if (!existsSync(imagePath)) {
