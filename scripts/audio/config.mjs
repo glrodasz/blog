@@ -7,8 +7,8 @@
 
 /** Azure Speech voice per locale. Run `yarn audio:audition` to compare candidates. */
 export const VOICES = {
-  es: "es-es-MX-JorgeMultilingualNeural",
-  en: "en-es-MX-JorgeMultilingualNeural",
+  es: "es-MX-JorgeMultilingualNeural",
+  en: "es-MX-JorgeMultilingualNeural",
 };
 
 /** BCP-47 tag used for the SSML `xml:lang` attribute. */
