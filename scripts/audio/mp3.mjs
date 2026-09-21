@@ -17,7 +17,10 @@ const SAMPLE_RATES = {
 export function stripId3(buffer) {
   if (buffer.length >= 10 && buffer.toString("latin1", 0, 3) === "ID3") {
     const size =
-      ((buffer[6] & 0x7f) << 21) | ((buffer[7] & 0x7f) << 14) | ((buffer[8] & 0x7f) << 7) | (buffer[9] & 0x7f);
+      ((buffer[6] & 0x7f) << 21) |
+      ((buffer[7] & 0x7f) << 14) |
+      ((buffer[8] & 0x7f) << 7) |
+      (buffer[9] & 0x7f);
     return buffer.subarray(10 + size);
   }
   return buffer;
@@ -35,12 +38,14 @@ function parseHeader(buffer, offset) {
   const version = versionBits === 3 ? 1 : versionBits === 2 ? 2 : 2.5;
   const bitrateIndex = (b3 >> 4) & 0x0f;
   const sampleRateIndex = (b3 >> 2) & 0x03;
-  if (bitrateIndex === 0 || bitrateIndex === 15 || sampleRateIndex === 3) return null;
+  if (bitrateIndex === 0 || bitrateIndex === 15 || sampleRateIndex === 3)
+    return null;
   const bitrate = BITRATES[version === 1 ? 1 : 2][bitrateIndex] * 1000;
   const sampleRate = SAMPLE_RATES[version][sampleRateIndex];
   const padding = (b3 >> 1) & 0x01;
   const samples = version === 1 ? 1152 : 576;
-  const frameLength = Math.floor((samples / 8) * bitrate / sampleRate) + padding;
+  const frameLength =
+    Math.floor(((samples / 8) * bitrate) / sampleRate) + padding;
   return { frameLength, samples, sampleRate };
 }
 

@@ -20,7 +20,7 @@ if (!languageVersions || languageVersions.length === 0) {
 }
 
 const otherVersions = languageVersions.filter(
-  (version) => version.language !== currentLocale
+  (version) => version.language !== currentLocale,
 );
 
 if (otherVersions.length === 0) {
@@ -40,7 +40,7 @@ const formatMessage = (template: string, language: string) => {
       LANGUAGE_CONFIG[versionLocale]?.name ?? version.language.toUpperCase();
     const linkLabel = formatMessage(
       targetMessages.languageBanner.readIn,
-      languageName
+      languageName,
     );
 
     return (

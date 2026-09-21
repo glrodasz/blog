@@ -7,6 +7,10 @@ heroImage: "/covers/metal-detector-with-gold-coins.jpg"
 languageVersions:
   - language: "es"
     url: "/es/posts/el-exito-nunca-fue-de-un-dia-para-otro"
+relatedPosts:
+  - making-things-for-yourself
+  - reality-has-always-been-edited
+  - ai-became-part-of-my-life
 ---
 
 We love to believe in sudden success. We see someone become famous, fill stadiums, launch a company, or show up everywhere, and we think *"wow, this person blew up out of nowhere"*. But it's almost never like that: what we call "overnight success" is usually the moment we find out about a story that had been quietly happening for years.

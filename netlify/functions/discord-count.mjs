@@ -13,7 +13,7 @@ export default async () => {
   let res;
   try {
     res = await fetch(
-      `https://discord.com/api/v10/invites/${inviteCode}?with_counts=true`
+      `https://discord.com/api/v10/invites/${inviteCode}?with_counts=true`,
     );
   } catch {
     return json(502, { count: null });
@@ -29,7 +29,11 @@ export default async () => {
   const count = typeof rawCount === "number" ? rawCount : null;
   const onlineCount = typeof rawOnline === "number" ? rawOnline : null;
 
-  return json(200, { count, onlineCount }, { "Cache-Control": "public, max-age=7200, stale-while-revalidate=3600" });
+  return json(
+    200,
+    { count, onlineCount },
+    { "Cache-Control": "public, max-age=7200, stale-while-revalidate=3600" },
+  );
 };
 
 export const config = {

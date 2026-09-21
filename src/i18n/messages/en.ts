@@ -3,8 +3,9 @@ export const messages = {
     title: "Undefined Shell",
     author: "Guillermo Rodas",
     shortDescription: "Programming and web development",
-    description: "Undefined Shell by Guillermo Rodas is your definitive source for everything related to programming and web development. At Undefined Shell, we are passionate about exploring and learning about innovative digital product development, especially in the Full-stack and JavaScript realm. We offer detailed tutorials, analysis of the latest technological trends, and practical tips for developers of all levels. Join our community passionate about web development and take your skills to the next level.",
-    url: "https://blog.guillermorodas.com"
+    description:
+      "Undefined Shell by Guillermo Rodas is your definitive source for everything related to programming and web development. At Undefined Shell, we are passionate about exploring and learning about innovative digital product development, especially in the Full-stack and JavaScript realm. We offer detailed tutorials, analysis of the latest technological trends, and practical tips for developers of all levels. Join our community passionate about web development and take your skills to the next level.",
+    url: "https://blog.guillermorodas.com",
   },
   blog: {
     updatedLabel: "Updated",
@@ -21,7 +22,7 @@ export const messages = {
     copied: "Copied!",
     listen: "Listen",
     listenLabel: "Listen to this article",
-    originalArticle: "Original article"
+    originalArticle: "Original article",
   },
   navigation: {
     home: "Home",
@@ -29,16 +30,16 @@ export const messages = {
     subscribe: "Subscribe",
     skipToMain: "Skip to main content",
     selectLanguage: "Select language",
-    switchToLanguage: "Switch to {language}"
+    switchToLanguage: "Switch to {language}",
   },
   theme: {
     light: "Light",
     dark: "Dark",
-    toggle: "Toggle light or dark theme"
+    toggle: "Toggle light or dark theme",
   },
   home: {
     readArticle: "Read article",
-    relatedTitle: "Articles you might like"
+    relatedTitle: "Articles you might like",
   },
   filter: {
     all: "All",
@@ -46,16 +47,16 @@ export const messages = {
     searchInPlaceholder: "Search in {tag}",
     scrollPrev: "Previous",
     scrollNext: "Next",
-    noResults: "No articles found"
+    noResults: "No articles found",
   },
   tagPage: {
-    title: "Tag: {tag}"
+    title: "Tag: {tag}",
   },
   discord: {
     title: "Join our Discord community",
     subtitle: "We are {memberCount} people changing the world of programming.",
     subtitleOnline: "{onlineCount} online right now",
-    cta: "Join Discord"
+    cta: "Join Discord",
   },
   subscribe: {
     title: "Subscribe to stay updated",
@@ -63,12 +64,12 @@ export const messages = {
     submit: "Subscribe",
     submitting: "Subscribing...",
     thanks: "Thanks for subscribing!",
-    error: "Something went wrong. Please try again."
+    error: "Something went wrong. Please try again.",
   },
   author: {
     name: "Guillermo Rodas",
     bio: "Guillermo Rodas is a full-stack JavaScript engineer from Colombia. His favorite CSS colors are tomato, rebeccapurple and papayawhip.",
-    avatar: "/authors/guillermo-rodas.svg"
+    avatar: "/authors/guillermo-rodas.svg",
   },
   footer: {
     creditBy: "by",
@@ -76,10 +77,10 @@ export const messages = {
     followTwitter: "Follow Undefined Shell on Twitter",
     followInstagram: "Follow Undefined Shell on Instagram",
     followTwitch: "Follow Undefined Shell on Twitch",
-    followYoutube: "Follow Undefined Shell on YouTube"
+    followYoutube: "Follow Undefined Shell on YouTube",
   },
   languageBanner: {
-    readIn: "Read in {language}"
+    readIn: "Read in {language}",
   },
   notFound: {
     tabTitle: "404 — Page not found",
@@ -89,6 +90,6 @@ export const messages = {
     errorLine: "Error: command not found (exit code 404)",
     suggestion: "Did you mean:",
     backToHome: "← Back to home",
-    suggestionsTitle: "While you're here, read something good"
-  }
+    suggestionsTitle: "While you're here, read something good",
+  },
 } as const;

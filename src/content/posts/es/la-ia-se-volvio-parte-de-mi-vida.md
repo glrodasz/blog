@@ -7,6 +7,10 @@ heroImage: "/covers/close-up-of-a-robotic-hand-over-human-hand.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/ai-became-part-of-my-life"
+relatedPosts:
+  - la-realidad-siempre-fue-editada
+  - hacer-cosas-para-uno-mismo
+  - el-exito-nunca-fue-de-un-dia-para-otro
 ---
 
 Tengo una confesión que hacer: ya no hay forma de vivir mi vida sin IA. Se volvió algo fundamental. Y ya sé lo que algunos están pensando: *"¿y este qué curso nos va a vender?"* 🙃. Afortunadamente no vengo a venderles nada; esto va por otro lado.

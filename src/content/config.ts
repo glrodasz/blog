@@ -8,10 +8,14 @@ const postSchema = z.object({
   heroImage: z.string().optional(),
   redirect: z.boolean().optional(),
   tags: z.union([z.string(), z.array(z.string())]).optional(),
-  languageVersions: z.array(z.object({
-    language: z.string(),
-    url: z.string()
-  })).optional(),
+  languageVersions: z
+    .array(
+      z.object({
+        language: z.string(),
+        url: z.string(),
+      }),
+    )
+    .optional(),
   relatedPosts: z.array(z.string()).optional(),
   featured: z.boolean().optional(),
 });
@@ -21,6 +25,6 @@ const posts = defineCollection({
   schema: postSchema,
 });
 
-export const collections = { 
+export const collections = {
   posts,
 };

@@ -25,20 +25,25 @@ Key directories and files:
 ## Getting started
 
 1. **Install dependencies**
+
    ```bash
    yarn install
    ```
 
 2. **Start the development server**
+
    ```bash
    yarn dev
    ```
+
    The site runs with hot reload; open the printed local URL in your browser.
 
 3. **Run a production build** (includes type and content checks)
+
    ```bash
    yarn build
    ```
+
    The static site is emitted to `dist/` with `_redirects` copied into place.
 
 4. **Preview the production build**

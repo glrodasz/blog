@@ -45,19 +45,21 @@ const messages = getMessages(locale);
   </button>
   <div class="tag-filter-scroll" data-tag-scroll>
     <div class="tag-filter">
-      {tags.map((tag) => {
-        const slug = tagToSlug(tag);
-        return (
-          <a
-            class:list={["tag-tab", { active: activeTagSlug === slug }]}
-            data-tag={slug}
-            href={getTagUrl(tag, locale)}
-            aria-current={activeTagSlug === slug ? "true" : undefined}
-          >
-            {tag}
-          </a>
-        );
-      })}
+      {
+        tags.map((tag) => {
+          const slug = tagToSlug(tag);
+          return (
+            <a
+              class:list={["tag-tab", { active: activeTagSlug === slug }]}
+              data-tag={slug}
+              href={getTagUrl(tag, locale)}
+              aria-current={activeTagSlug === slug ? "true" : undefined}
+            >
+              {tag}
+            </a>
+          );
+        })
+      }
     </div>
   </div>
   <button
@@ -159,7 +161,9 @@ const messages = getMessages(locale);
     border: none;
     font-family: inherit;
     cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease,
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
       border-color 0.15s ease;
   }
 
@@ -195,7 +199,9 @@ const messages = getMessages(locale);
     background: var(--color-bg-surface);
     color: var(--color-text-default);
     cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease;
   }
 
   .carousel-arrow:hover {
@@ -254,112 +260,118 @@ const messages = getMessages(locale);
 <script>
   const desktop = window.matchMedia("(min-width: 641px)");
 
-  document.querySelectorAll<HTMLElement>("[data-tag-carousel]").forEach((carousel) => {
-    const scroll = carousel.querySelector<HTMLElement>("[data-tag-scroll]");
-    const prev = carousel.querySelector<HTMLButtonElement>("[data-carousel-prev]");
-    const next = carousel.querySelector<HTMLButtonElement>("[data-carousel-next]");
-    if (!scroll || !prev || !next) return;
+  document
+    .querySelectorAll<HTMLElement>("[data-tag-carousel]")
+    .forEach((carousel) => {
+      const scroll = carousel.querySelector<HTMLElement>("[data-tag-scroll]");
+      const prev = carousel.querySelector<HTMLButtonElement>(
+        "[data-carousel-prev]",
+      );
+      const next = carousel.querySelector<HTMLButtonElement>(
+        "[data-carousel-next]",
+      );
+      if (!scroll || !prev || !next) return;
 
-    const updateArrows = () => {
-      if (!desktop.matches) {
-        prev.hidden = true;
-        next.hidden = true;
-        scroll.classList.remove("fade-start", "fade-end");
-        return;
-      }
-      const maxScroll = scroll.scrollWidth - scroll.clientWidth;
-      prev.hidden = scroll.scrollLeft <= 1;
-      next.hidden = scroll.scrollLeft >= maxScroll - 1;
-      scroll.classList.toggle("fade-start", !prev.hidden);
-      scroll.classList.toggle("fade-end", !next.hidden);
-    };
+      const updateArrows = () => {
+        if (!desktop.matches) {
+          prev.hidden = true;
+          next.hidden = true;
+          scroll.classList.remove("fade-start", "fade-end");
+          return;
+        }
+        const maxScroll = scroll.scrollWidth - scroll.clientWidth;
+        prev.hidden = scroll.scrollLeft <= 1;
+        next.hidden = scroll.scrollLeft >= maxScroll - 1;
+        scroll.classList.toggle("fade-start", !prev.hidden);
+        scroll.classList.toggle("fade-end", !next.hidden);
+      };
 
-    const scrollByStep = (direction: 1 | -1) => {
-      scroll.scrollBy({
-        left: direction * scroll.clientWidth * 0.8,
-        behavior: "smooth",
+      const scrollByStep = (direction: 1 | -1) => {
+        scroll.scrollBy({
+          left: direction * scroll.clientWidth * 0.8,
+          behavior: "smooth",
+        });
+      };
+
+      prev.addEventListener("click", () => scrollByStep(-1));
+      next.addEventListener("click", () => scrollByStep(1));
+      scroll.addEventListener("scroll", updateArrows, { passive: true });
+
+      // Click-and-drag to scroll (desktop pointer only). Capture is deferred
+      // until the drag threshold is crossed so plain clicks still reach the tabs.
+      let pending = false;
+      let dragging = false;
+      let startX = 0;
+      let startScroll = 0;
+      let moved = false;
+
+      scroll.addEventListener("pointerdown", (event) => {
+        if (!desktop.matches || event.button !== 0) return;
+        pending = true;
+        dragging = false;
+        moved = false;
+        startX = event.clientX;
+        startScroll = scroll.scrollLeft;
       });
-    };
 
-    prev.addEventListener("click", () => scrollByStep(-1));
-    next.addEventListener("click", () => scrollByStep(1));
-    scroll.addEventListener("scroll", updateArrows, { passive: true });
+      scroll.addEventListener("pointermove", (event) => {
+        if (!pending) return;
+        // Abort a stale drag if the button was released outside the strip
+        // (pointerup never reached us before capture was taken).
+        if (!(event.buttons & 1)) {
+          pending = false;
+          dragging = false;
+          scroll.classList.remove("dragging");
+          return;
+        }
+        const dx = event.clientX - startX;
+        if (!dragging && Math.abs(dx) > 4) {
+          dragging = true;
+          moved = true;
+          scroll.setPointerCapture(event.pointerId);
+          scroll.classList.add("dragging");
+        }
+        if (dragging) scroll.scrollLeft = startScroll - dx;
+      });
 
-    // Click-and-drag to scroll (desktop pointer only). Capture is deferred
-    // until the drag threshold is crossed so plain clicks still reach the tabs.
-    let pending = false;
-    let dragging = false;
-    let startX = 0;
-    let startScroll = 0;
-    let moved = false;
-
-    scroll.addEventListener("pointerdown", (event) => {
-      if (!desktop.matches || event.button !== 0) return;
-      pending = true;
-      dragging = false;
-      moved = false;
-      startX = event.clientX;
-      startScroll = scroll.scrollLeft;
-    });
-
-    scroll.addEventListener("pointermove", (event) => {
-      if (!pending) return;
-      // Abort a stale drag if the button was released outside the strip
-      // (pointerup never reached us before capture was taken).
-      if (!(event.buttons & 1)) {
+      const endDrag = (event: PointerEvent) => {
+        if (!pending) return;
         pending = false;
         dragging = false;
         scroll.classList.remove("dragging");
-        return;
-      }
-      const dx = event.clientX - startX;
-      if (!dragging && Math.abs(dx) > 4) {
-        dragging = true;
-        moved = true;
-        scroll.setPointerCapture(event.pointerId);
-        scroll.classList.add("dragging");
-      }
-      if (dragging) scroll.scrollLeft = startScroll - dx;
-    });
-
-    const endDrag = (event: PointerEvent) => {
-      if (!pending) return;
-      pending = false;
-      dragging = false;
-      scroll.classList.remove("dragging");
-      if (scroll.hasPointerCapture(event.pointerId)) {
-        scroll.releasePointerCapture(event.pointerId);
-      }
-    };
-    scroll.addEventListener("pointerup", endDrag);
-    scroll.addEventListener("pointercancel", (event) => {
-      endDrag(event);
-      // No click follows a pointercancel, so don't let the suppressor
-      // swallow the user's next real click.
-      moved = false;
-    });
-
-    // Suppress the click that follows a real drag so a tag isn't selected.
-    scroll.addEventListener(
-      "click",
-      (event) => {
-        if (moved) {
-          event.preventDefault();
-          event.stopPropagation();
-          moved = false;
+        if (scroll.hasPointerCapture(event.pointerId)) {
+          scroll.releasePointerCapture(event.pointerId);
         }
-      },
-      true
-    );
+      };
+      scroll.addEventListener("pointerup", endDrag);
+      scroll.addEventListener("pointercancel", (event) => {
+        endDrag(event);
+        // No click follows a pointercancel, so don't let the suppressor
+        // swallow the user's next real click.
+        moved = false;
+      });
 
-    // Prevent native link/image dragging inside the carousel.
-    scroll.addEventListener("dragstart", (event) => event.preventDefault());
+      // Suppress the click that follows a real drag so a tag isn't selected.
+      scroll.addEventListener(
+        "click",
+        (event) => {
+          if (moved) {
+            event.preventDefault();
+            event.stopPropagation();
+            moved = false;
+          }
+        },
+        true,
+      );
 
-    if ("ResizeObserver" in window) {
-      new ResizeObserver(updateArrows).observe(scroll);
-    }
-    desktop.addEventListener("change", updateArrows);
+      // Prevent native link/image dragging inside the carousel.
+      scroll.addEventListener("dragstart", (event) => event.preventDefault());
 
-    updateArrows();
-  });
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(updateArrows).observe(scroll);
+      }
+      desktop.addEventListener("change", updateArrows);
+
+      updateArrows();
+    });
 </script>

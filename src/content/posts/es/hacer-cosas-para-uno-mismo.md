@@ -2,31 +2,51 @@
 title: "Hacer cosas para uno mismo"
 pubDate: "2026-05-25T00:00:00.000Z"
 tags: Pensamientos
-description: "Sostener algo durante mucho tiempo es difícil de verdad, y ninguna fórmula reemplaza la motivación interna. Por qué hacer cosas primero para uno mismo aumenta las probabilidades de seguir el tiempo suficiente."
+description: "Sostener algo a lo largo del tiempo es difícil y la validación externa es demasiado inestable como para ser el motor. Por qué hacer las cosas primero para uno mismo, y qué pasa cuando te preguntas: si no lo viese nadie, ¿igual valdría la pena hacerlo?"
 heroImage: "/covers/hand-carved-wooden-horse.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/making-things-for-yourself"
+relatedPosts:
+  - el-exito-nunca-fue-de-un-dia-para-otro
+  - la-ia-se-volvio-parte-de-mi-vida
+  - la-realidad-siempre-fue-editada
 ---
 
-Hay una parte del éxito de la que casi nadie habla: sostener algo durante mucho tiempo es difícil. Y no lo digo en el sentido romántico de "hay que luchar por los sueños", sino en el sentido más aburrido y cotidiano de la palabra. Hay días en los que no tienes ganas, los resultados tardan más de lo que esperabas, publicas algo que te tomó horas y lo ven tres personas *(una de ellas tu mamá 🙃)*, y lo que antes te emocionaba empieza a sentirse como una obligación.
+Hay una parte del éxito de la que poco se habla y es que sostener algo a lo largo del tiempo es difícil. Existen días en los que simplemente no tienes ganas, porque generalmente los resultados tardan más de lo que estimas. Por ejemplo, publicas algo que te tomó meses y no es nada raro que lo vean unas tres personas _(una de ellas, un amigo o familiar 😅)_. Entonces, la actividad que te emocionaba empieza a sentirse como una obligación.
 
-Con la creación de contenido esto pasa muchísimo. Seguro has visto creadores que seguías y que de un momento a otro dejaron de publicar. Gente con buenas ideas, talento, carisma y conocimiento que simplemente desapareció. Y no fue porque fueran malos ni porque "el algoritmo los castigó": muchas veces desaparecieron porque sostener algo solo para complacer a otros es agotador.
+En el mundo de la creación de contenido esto pasa más de lo que creemos. Seguramente has visto creadores que seguías y que, de un momento a otro, dejaron de publicar, convirtiéndose en simples fantasmas.
 
-La fórmula te la pueden dar mil veces: publica todos los días, usa este gancho, súbete a esta tendencia, optimiza para el algoritmo, mide esto y repite. Todo eso puede ayudar, claro. El problema es que ninguna fórmula reemplaza la motivación interna.
+Gente con buenas ideas, talento y conocimiento que desapareció. Porque lo que nadie te dice es que sostener algo para complacer a los demás es sumamente agotador.
 
-Es como ir al gimnasio. Puedes comprar la proteína, la ropa, la membresía, la rutina perfecta y hasta el reloj que te mide todo, pero si odias cada segundo del proceso, tarde o temprano lo vas a dejar. Con el contenido pasa igual: puedes aprender a escribir mejores posts, editar mejores videos y entender mejor las plataformas, pero si no encuentras una satisfacción real en lo que haces, todo empieza a irse cuesta abajo.
+Muchos te dan la fórmula secreta: publica todos los días, usa este gancho, móntate en este “trend”, hackea el algoritmo, mide esto y repite. Todo eso ayuda, por supuesto. Pero para la motivación interna no existe fórmula ni receta médica.
 
-Y no lo digo desde la superioridad, porque yo también he caído en esa trampa. Uno empieza algo por curiosidad, por ganas de compartir o de explorar una idea, y poco a poco se va colando la validación externa: que si esto no le gusta a nadie, que si no alcanza los likes, que si el algoritmo no lo muestra, que si debería estar haciendo otra cosa. Cuando menos te das cuenta, ya no estás creando desde la curiosidad sino desde la ansiedad, y ahí es cuando todo se vuelve pesado.
+Es como ir al gimnasio: de nada sirve comprar la proteína, la ropa, la membresía o el reloj que mide cada gota de sudor si odias cada segundo del proceso. Tarde o temprano lo vas a dejar.
 
-Por eso, con el tiempo, intento volver siempre a una idea muy simple: hacer las cosas primero para mí.
+Con la creación de contenido es igual. Si no encuentras una satisfacción en lo que haces, todo cuesta más y, poco a poco, te va absorbiendo la energía y eso mágico que muchos llaman motivación.
 
-Ojo, no significa ignorar a la audiencia, ni dejar de escuchar feedback, ni hacer contenido incomprensible porque *"a mí me gusta"*. Significa que el motor principal no puede ser la validación externa, porque la validación externa es inestable: a veces llega, a veces no, a veces llega tarde y a veces llega por razones que ni entiendes. Algo que hiciste en cinco minutos puede funcionar mejor que algo que preparaste durante semanas, y si tu única razón para continuar depende de eso, estás en problemas.
+No lo estoy diciendo desde un punto de vista de superioridad, porque yo también he caído en esa trampa. Yo empecé por curiosidad y ganas de compartir lo aprendido, pero poco a poco se va metiendo la validación externa. Empiezas a revisar los likes, las vistas, las métricas. Se te mete la idea de que, si el algoritmo no lo muestra, quizás es porque deberías estar haciendo otra cosa.
 
-En cambio, cuando haces algo para ti, el resultado mínimo ya tiene valor. Si armo un curso para aprender mejor un tema, ya gané algo aunque nadie lo compre. Si hago un tutorial para ordenar una idea, o un stream para explorar un problema, o un side project por pura curiosidad, lo peor que puede pasar es que solo me guste a mí. Y si lo hice para mí desde el principio, entonces no fue una pérdida.
+Cuando menos lo piensas, ya no estás creando desde tu propósito inicial sino desde la ansiedad, y ahí es donde todo se empieza a derrumbar.
 
-Creo que esa es una de las razones por las que he podido sostener ciertos proyectos durante tanto tiempo: cursos, tutoriales, streams, mentorías, comunidades. No siempre con la misma intensidad ni de forma perfecta, pero siempre con la misma intención de fondo: aprender algo, entender algo, explicar algo, o construir algo que a mí también me gustaría encontrar. Cuando algo nace de ahí, es más fácil de sostener. No porque deje de ser difícil (sigue habiendo cansancio, frustración, dudas y comparación), sino porque la dificultad se siente distinta cuando el proceso también es tuyo.
+Por eso, de vez en cuando necesito recordarme cuál era ese propósito inicial y que es importante hacer las cosas primero para mí, para uno mismo.
 
-Así que antes de preguntarte si algo va a funcionar, quizás vale la pena hacerte otra pregunta: si esto no recibe la atención que espero, ¿igual tendría sentido hacerlo? Si la respuesta es no, tal vez estás construyendo algo demasiado frágil. Si la respuesta es sí, tienes una base mucho más sólida.
+Esto no significa ignorar por completo a la audiencia. También es importante escuchar el feedback, pero no todo el feedback, por bueno o malo que sea, va a ser de completa utilidad y, peor aún, no puede ser nuestra guía de validación.
 
-Hacer cosas para uno mismo no garantiza el éxito, pero sube muchísimo las probabilidades de durar lo suficiente como para tener una oportunidad real.
+La razón es que esa validación es muy inestable. A veces llega, a veces no llega o llega demasiado tarde. Tiene que existir algo más allá que nos motive a continuar.
+
+Cuando haces algo para ti, lo peor que puede pasar es que te beneficie solo a ti, y solo eso debería ser razón suficiente para hacerlo. Que les sirva a los demás debería ser una consecuencia del buen trabajo o de qué tan común sea el problema que estás solucionando.
+
+Cuando lo haces para ti, no hay pérdida.
+
+Por ejemplo, cuando hago un tutorial, suele ser para ordenar mis ideas, o un stream, porque la presión de ser observado me motiva a mantener la constancia de aprender un tema nuevo. Los _side projects_ casi siempre nacen de la necesidad de solucionar un problema que me afecta y que muy probablemente afecta a los demás.
+
+Gracias a esa intención inicial de aprender algo, entender mejor un concepto o construir algo que me gustaría encontrar, es que es posible sostener el hábito de compartir y crear contenido. El cansancio, la frustración y las dudas siguen existiendo, pero la satisfacción cuando se finalizan cada uno de estos proyectos es más que gratificante cuando el proceso es tuyo.
+
+Así que, antes de cuestionarte si algo va a ser viral, creo que es más importante hacerte otra pregunta:
+
+Si no lo viese nadie, ¿igual valdría la pena hacerlo?
+
+Si la respuesta es no, quizás estás construyendo algo demasiado dependiente de la reacción de los demás. **Algo frágil.**
+
+Hacer cosas para uno mismo no garantiza el éxito, pero sí aumenta demasiado las probabilidades de durar lo suficiente en el tiempo para que se dé una oportunidad real.

@@ -43,43 +43,43 @@ if (layout === "magazine") {
 ---
 
 <div class="post-grid-wrapper" data-post-grid data-layout={layout}>
-  {layout === "magazine" && (
-    <div class="magazine-view">
-      {blocks.map((block) => {
-        if (block.kind === "grid") {
+  {
+    layout === "magazine" && (
+      <div class="magazine-view">
+        {blocks.map((block) => {
+          if (block.kind === "grid") {
+            return (
+              <section class="grid-section">
+                <Container>
+                  <div class="grid">
+                    {block.posts.map((post) => (
+                      <ArticleCard post={post} locale={locale} />
+                    ))}
+                  </div>
+                </Container>
+              </section>
+            );
+          }
           return (
-            <section class="grid-section">
+            <section class="highlight-section">
               <Container>
-                <div class="grid">
-                  {block.posts.map((post) => (
-                    <ArticleCard post={post} locale={locale} />
-                  ))}
-                </div>
+                <HighlightedArticleCard
+                  post={block.post}
+                  locale={locale}
+                  imageSide={block.imageSide}
+                />
               </Container>
             </section>
           );
-        }
-        return (
-          <section class="highlight-section">
-            <Container>
-              <HighlightedArticleCard
-                post={block.post}
-                locale={locale}
-                imageSide={block.imageSide}
-              />
-            </Container>
-          </section>
-        );
-      })}
-    </div>
-  )}
+        })}
+      </div>
+    )
+  }
 
   <div class="filter-view">
     <Container>
       <div class="grid" data-filter-grid>
-        {posts.map((post) => (
-          <ArticleCard post={post} locale={locale} />
-        ))}
+        {posts.map((post) => <ArticleCard post={post} locale={locale} />)}
       </div>
     </Container>
   </div>

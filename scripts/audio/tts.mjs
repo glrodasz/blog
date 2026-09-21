@@ -4,7 +4,14 @@
  * each response at 10 minutes of audio), synthesizes them with limited
  * concurrency and retries, and returns one concatenated MP3 buffer.
  */
-import { BREAKS, CONCURRENCY, LOCALE_TAGS, MAX_CHUNK_CHARS, OUTPUT_FORMAT, VOICES } from "./config.mjs";
+import {
+  BREAKS,
+  CONCURRENCY,
+  LOCALE_TAGS,
+  MAX_CHUNK_CHARS,
+  OUTPUT_FORMAT,
+  VOICES,
+} from "./config.mjs";
 import { concatMp3 } from "./mp3.mjs";
 
 const SENTENCE_RE = /(?<=[.!?…])\s+/u;
@@ -14,7 +21,9 @@ export function getCredentials(env = process.env) {
   const key = env.AZURE_SPEECH_KEY;
   const region = env.AZURE_SPEECH_REGION;
   if (!key || !region) {
-    throw new Error("AZURE_SPEECH_KEY and AZURE_SPEECH_REGION must be set (see .env.example)");
+    throw new Error(
+      "AZURE_SPEECH_KEY and AZURE_SPEECH_REGION must be set (see .env.example)",
+    );
   }
   return { key, region };
 }
@@ -68,7 +77,9 @@ export function toSsml(chunk, { voice, lang }) {
   const parts = chunk.map((segment, index) => {
     const text = escapeXml(segment.text);
     const before =
-      segment.kind === "heading" && index > 0 ? `<break time="${BREAKS.heading}"/>` : "";
+      segment.kind === "heading" && index > 0
+        ? `<break time="${BREAKS.heading}"/>`
+        : "";
     const after =
       segment.kind === "title"
         ? `<break time="${BREAKS.title}"/>`
@@ -85,7 +96,10 @@ export function toSsml(chunk, { voice, lang }) {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export async function synthesizeSsml(ssml, { key, region, format = OUTPUT_FORMAT, fetchImpl = fetch }) {
+export async function synthesizeSsml(
+  ssml,
+  { key, region, format = OUTPUT_FORMAT, fetchImpl = fetch },
+) {
   const url = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
   let lastError;
   for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
@@ -108,7 +122,9 @@ export async function synthesizeSsml(ssml, { key, region, format = OUTPUT_FORMAT
     }
     if (response.ok) return Buffer.from(await response.arrayBuffer());
     const body = await response.text().catch(() => "");
-    lastError = new Error(`Azure TTS ${response.status} ${response.statusText}: ${body.slice(0, 300)}`);
+    lastError = new Error(
+      `Azure TTS ${response.status} ${response.statusText}: ${body.slice(0, 300)}`,
+    );
     const retryable = response.status === 429 || response.status >= 500;
     if (!retryable) throw lastError;
   }
@@ -118,12 +134,15 @@ export async function synthesizeSsml(ssml, { key, region, format = OUTPUT_FORMAT
 async function mapWithConcurrency(items, limit, worker) {
   const results = new Array(items.length);
   let next = 0;
-  const runners = Array.from({ length: Math.min(limit, items.length) }, async () => {
-    while (next < items.length) {
-      const index = next++;
-      results[index] = await worker(items[index], index);
-    }
-  });
+  const runners = Array.from(
+    { length: Math.min(limit, items.length) },
+    async () => {
+      while (next < items.length) {
+        const index = next++;
+        results[index] = await worker(items[index], index);
+      }
+    },
+  );
   await Promise.all(runners);
   return results;
 }
@@ -132,11 +151,20 @@ async function mapWithConcurrency(items, limit, worker) {
  * @param {{ segments: {kind: string, text: string}[], locale: "es"|"en", voice?: string }} input
  * @returns {Promise<{ audio: Buffer, chunks: number }>}
  */
-export async function synthesizeNarration({ segments, locale, voice = VOICES[locale], credentials, fetchImpl }) {
+export async function synthesizeNarration({
+  segments,
+  locale,
+  voice = VOICES[locale],
+  credentials,
+  fetchImpl,
+}) {
   const lang = LOCALE_TAGS[locale];
   const chunks = packChunks(segments);
   const buffers = await mapWithConcurrency(chunks, CONCURRENCY, (chunk) =>
-    synthesizeSsml(toSsml(chunk, { voice, lang }), { ...credentials, fetchImpl })
+    synthesizeSsml(toSsml(chunk, { voice, lang }), {
+      ...credentials,
+      fetchImpl,
+    }),
   );
   return { audio: concatMp3(buffers), chunks: chunks.length };
 }

@@ -9,9 +9,21 @@
  * failed (the manifest still records the ones that succeeded).
  */
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { join, relative } from "node:path";
-import { AUDIO_DIR, MANIFEST_PATH, NARRATION_VERSION, OUTPUT_FORMAT, VOICES } from "./config.mjs";
+import {
+  AUDIO_DIR,
+  MANIFEST_PATH,
+  NARRATION_VERSION,
+  OUTPUT_FORMAT,
+  VOICES,
+} from "./config.mjs";
 import { buildNarration } from "./narration.mjs";
 import { mp3Duration } from "./mp3.mjs";
 import { ROOT, listPosts } from "./posts.mjs";
@@ -20,7 +32,9 @@ import { getCredentials, synthesizeNarration } from "./tts.mjs";
 const args = process.argv.slice(2);
 const FORCE = args.includes("--force");
 const DRY_RUN = args.includes("--dry-run");
-const ONLY = args.includes("--only") ? args[args.indexOf("--only") + 1] : undefined;
+const ONLY = args.includes("--only")
+  ? args[args.indexOf("--only") + 1]
+  : undefined;
 
 try {
   process.loadEnvFile(join(ROOT, ".env"));
@@ -31,17 +45,30 @@ try {
 const manifestFile = join(ROOT, MANIFEST_PATH);
 
 export function readManifest() {
-  return existsSync(manifestFile) ? JSON.parse(readFileSync(manifestFile, "utf-8")) : {};
+  return existsSync(manifestFile)
+    ? JSON.parse(readFileSync(manifestFile, "utf-8"))
+    : {};
 }
 
 export function writeManifest(manifest) {
-  const sorted = Object.fromEntries(Object.keys(manifest).sort().map((key) => [key, manifest[key]]));
+  const sorted = Object.fromEntries(
+    Object.keys(manifest)
+      .sort()
+      .map((key) => [key, manifest[key]]),
+  );
   writeFileSync(manifestFile, `${JSON.stringify(sorted, null, 2)}\n`);
 }
 
 export function contentHash({ text, voice }) {
   return createHash("sha256")
-    .update(JSON.stringify({ v: NARRATION_VERSION, voice, format: OUTPUT_FORMAT, text }))
+    .update(
+      JSON.stringify({
+        v: NARRATION_VERSION,
+        voice,
+        format: OUTPUT_FORMAT,
+        text,
+      }),
+    )
     .digest("hex");
 }
 
@@ -54,15 +81,21 @@ const formatDuration = (seconds) => {
 async function main() {
   const manifest = readManifest();
   const posts = listPosts().filter((post) => !ONLY || post.key === ONLY);
-  if (ONLY && posts.length === 0) throw new Error(`No post matches --only ${ONLY}`);
+  if (ONLY && posts.length === 0)
+    throw new Error(`No post matches --only ${ONLY}`);
 
   const plan = [];
   for (const post of posts) {
-    const narration = buildNarration({ markdown: post.raw, locale: post.locale, file: relative(ROOT, post.file) });
+    const narration = buildNarration({
+      markdown: post.raw,
+      locale: post.locale,
+      file: relative(ROOT, post.file),
+    });
     const voice = VOICES[post.locale];
     const hash = contentHash({ text: narration.text, voice });
     const current = manifest[post.key];
-    const fileExists = current?.file && existsSync(join(ROOT, "public", current.file));
+    const fileExists =
+      current?.file && existsSync(join(ROOT, "public", current.file));
     const stale = FORCE || !current || current.hash !== hash || !fileExists;
     plan.push({ post, narration, voice, hash, stale, current });
   }
@@ -71,10 +104,12 @@ async function main() {
   const staleChars = stalePosts.reduce((n, p) => n + p.narration.chars, 0);
   console.log(
     `${stalePosts.length}/${plan.length} posts need audio (${staleChars.toLocaleString("en-US")} characters)` +
-      (DRY_RUN ? " [dry run]" : "")
+      (DRY_RUN ? " [dry run]" : ""),
   );
   for (const p of plan) {
-    console.log(`  ${p.stale ? "•" : "–"} ${p.post.key} ${p.stale ? "regenerate" : "unchanged"}`);
+    console.log(
+      `  ${p.stale ? "•" : "–"} ${p.post.key} ${p.stale ? "regenerate" : "unchanged"}`,
+    );
   }
   if (DRY_RUN) return;
 
@@ -85,13 +120,21 @@ async function main() {
       const { post, narration, voice, hash, current } = item;
       try {
         const started = Date.now();
-        const { audio, chunks } = await synthesizeNarration({ segments: narration.segments, locale: post.locale, voice, credentials });
+        const { audio, chunks } = await synthesizeNarration({
+          segments: narration.segments,
+          locale: post.locale,
+          voice,
+          credentials,
+        });
         const durationSeconds = Math.round(mp3Duration(audio));
         const fileName = `${post.slug}-${hash.slice(0, 8)}.mp3`;
         const dir = join(ROOT, AUDIO_DIR, post.locale);
         mkdirSync(dir, { recursive: true });
         writeFileSync(join(dir, fileName), audio);
-        if (current?.file && current.file !== `/audio/${post.locale}/${fileName}`) {
+        if (
+          current?.file &&
+          current.file !== `/audio/${post.locale}/${fileName}`
+        ) {
           rmSync(join(ROOT, "public", current.file), { force: true });
         }
         manifest[post.key] = {
@@ -104,7 +147,7 @@ async function main() {
           generatedAt: new Date().toISOString(),
         };
         console.log(
-          `  ✓ ${post.key} (${formatDuration(durationSeconds)}, ${(audio.length / 1e6).toFixed(1)} MB, ${chunks} chunk${chunks === 1 ? "" : "s"}, ${Math.round((Date.now() - started) / 1000)}s)`
+          `  ✓ ${post.key} (${formatDuration(durationSeconds)}, ${(audio.length / 1e6).toFixed(1)} MB, ${chunks} chunk${chunks === 1 ? "" : "s"}, ${Math.round((Date.now() - started) / 1000)}s)`,
         );
       } catch (error) {
         failures.push(post.key);
@@ -127,7 +170,9 @@ async function main() {
 
   writeManifest(manifest);
   if (failures.length) {
-    throw new Error(`${failures.length} post(s) failed: ${failures.join(", ")}`);
+    throw new Error(
+      `${failures.length} post(s) failed: ${failures.join(", ")}`,
+    );
   }
   console.log("Done.");
 }

@@ -48,10 +48,19 @@ mkdirSync(outDir, { recursive: true });
 
 for (const [locale, voice] of CANDIDATES) {
   const sample = SAMPLES[locale];
-  const ssml = toSsml([{ kind: "paragraph", text: sample.text }], { voice, lang: sample.lang });
+  const ssml = toSsml([{ kind: "paragraph", text: sample.text }], {
+    voice,
+    lang: sample.lang,
+  });
   try {
-    const audio = await synthesizeSsml(ssml, { ...credentials, format: OUTPUT_FORMAT });
-    const file = join(outDir, `${locale}-${voice.replace(/[^a-z0-9]+/gi, "-")}.mp3`);
+    const audio = await synthesizeSsml(ssml, {
+      ...credentials,
+      format: OUTPUT_FORMAT,
+    });
+    const file = join(
+      outDir,
+      `${locale}-${voice.replace(/[^a-z0-9]+/gi, "-")}.mp3`,
+    );
     writeFileSync(file, audio);
     console.log(`  ✓ ${file.replace(ROOT, "")}`);
   } catch (error) {

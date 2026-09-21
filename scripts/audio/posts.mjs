@@ -19,7 +19,9 @@ export function splitFrontmatter(raw) {
 
 /** Minimal scalar lookup in frontmatter; handles quoted and unquoted values. */
 export function getFrontmatterValue(frontmatter, key) {
-  const line = frontmatter.match(new RegExp(`^${key}:[ \\t]*(.*)$`, "m"))?.[1]?.trim();
+  const line = frontmatter
+    .match(new RegExp(`^${key}:[ \\t]*(.*)$`, "m"))?.[1]
+    ?.trim();
   if (!line) return undefined;
   if (line.startsWith('"') && line.endsWith('"')) {
     return line.slice(1, -1).replace(/\\"/g, '"');

@@ -33,7 +33,13 @@ const today = new Date();
     <Container>
       <div class="copy-inner">
         <span class="copy copy-full">
-          {messages.site.title} {messages.footer.creditBy} <a href="https://guillermorodas.com" target="_blank" rel="noopener noreferrer">{messages.author.name}</a> &nbsp;&copy;&nbsp; {today.getFullYear()}
+          {messages.site.title}
+          {messages.footer.creditBy}
+          <a
+            href="https://guillermorodas.com"
+            target="_blank"
+            rel="noopener noreferrer">{messages.author.name}</a
+          > &nbsp;&copy;&nbsp; {today.getFullYear()}
         </span>
         <span class="copy copy-short">
           {messages.site.title} &nbsp;&copy;&nbsp; {today.getFullYear()}

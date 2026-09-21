@@ -30,7 +30,7 @@ export function initScrollBackground() {
       {
         threshold: 0.1,
         rootMargin: "0px 0px -10px 0px",
-      }
+      },
     );
     footerObserver.observe(footer);
   }
@@ -51,7 +51,7 @@ export function initScrollBackground() {
         ticking = true;
       }
     },
-    { passive: true }
+    { passive: true },
   );
 
   updateAtTop();

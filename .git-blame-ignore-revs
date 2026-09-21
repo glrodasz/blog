@@ -1,0 +1,7 @@
+# Mechanical commits to skip in `git blame`.
+# Opt in locally with:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+# GitHub honors this file automatically.
+
+# chore: format codebase with Prettier
+7136674f9804b6e35e9d64d501e784545b4b3eba

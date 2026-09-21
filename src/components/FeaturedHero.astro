@@ -20,16 +20,22 @@ const tags = getPostTags(post);
   <Container>
     <div class="inner">
       <a class="cover" href={href} aria-hidden="true" tabindex="-1">
-        {post.data.heroImage && (
-          <img src={post.data.heroImage} alt="" width={720} height={480} />
-        )}
+        {
+          post.data.heroImage && (
+            <img src={post.data.heroImage} alt="" width={720} height={480} />
+          )
+        }
       </a>
       <div class="body">
-        {tags.length > 0 && (
-          <div class="tags">
-            {tags.map((tag) => <TagChip tag={tag} locale={locale} variant="solid" />)}
-          </div>
-        )}
+        {
+          tags.length > 0 && (
+            <div class="tags">
+              {tags.map((tag) => (
+                <TagChip tag={tag} locale={locale} variant="solid" />
+              ))}
+            </div>
+          )
+        }
         <h1 class="title">
           <a href={href}>{post.data.title}</a>
         </h1>

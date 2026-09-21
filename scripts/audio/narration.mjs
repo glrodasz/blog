@@ -14,7 +14,8 @@ import { splitFrontmatter, getFrontmatterValue } from "./posts.mjs";
 
 const AUDIO_OVERRIDE_RE = /^<!--\s*audio:\s*([\s\S]*?)\s*-->$/;
 const URL_RE = /^(https?:\/\/|www\.)\S+$/i;
-const EMOJI_RE = /\p{Extended_Pictographic}|\p{Emoji_Modifier}|\u{FE0F}|\u{200D}|\u{20E3}/gu;
+const EMOJI_RE =
+  /\p{Extended_Pictographic}|\p{Emoji_Modifier}|\u{FE0F}|\u{200D}|\u{20E3}/gu;
 
 export class NarrationError extends Error {
   constructor(message, { file, line } = {}) {
@@ -76,14 +77,21 @@ function audioOverride(node) {
 
 export function buildNarration({ markdown, locale, file }) {
   const phrases = PHRASES[locale];
-  if (!phrases) throw new NarrationError(`Unsupported locale "${locale}"`, { file });
+  if (!phrases)
+    throw new NarrationError(`Unsupported locale "${locale}"`, { file });
 
   const { frontmatter, body } = splitFrontmatter(markdown);
   const title = normalize(getFrontmatterValue(frontmatter, "title") ?? "");
   if (!title) throw new NarrationError("Post has no title", { file });
 
-  const lineOffset = markdown.length - body.length ? markdown.slice(0, markdown.length - body.length).split("\n").length - 1 : 0;
-  const tree = unified().use(remarkParse).use(remarkGfm).parse(preClean(body, locale));
+  const lineOffset =
+    markdown.length - body.length
+      ? markdown.slice(0, markdown.length - body.length).split("\n").length - 1
+      : 0;
+  const tree = unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .parse(preClean(body, locale));
   const segments = [{ kind: "title", text: title }];
 
   const push = (kind, text) => {
@@ -158,7 +166,9 @@ export function buildNarration({ markdown, locale, file }) {
       const alt = pendingAlt;
       pendingAlt = undefined;
       const dup =
-        captionText && (comparable(captionText) === comparable(alt) || comparable(captionText).includes(comparable(alt)));
+        captionText &&
+        (comparable(captionText) === comparable(alt) ||
+          comparable(captionText).includes(comparable(alt)));
       if (!dup) push("image", `${phrases.image} ${alt}`);
     };
 
@@ -195,7 +205,12 @@ export function buildNarration({ markdown, locale, file }) {
       if (!alt) {
         throw new NarrationError(
           `Image ${child.url} has no alt text and no <!-- audio: ... --> override`,
-          { file, line: child.position ? child.position.start.line + lineOffset : undefined }
+          {
+            file,
+            line: child.position
+              ? child.position.start.line + lineOffset
+              : undefined,
+          },
         );
       }
       pendingAlt = alt;

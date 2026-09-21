@@ -7,6 +7,10 @@ heroImage: "/covers/metal-detector-with-gold-coins.jpg"
 languageVersions:
   - language: "en"
     url: "/posts/success-was-never-overnight"
+relatedPosts:
+  - hacer-cosas-para-uno-mismo
+  - la-realidad-siempre-fue-editada
+  - la-ia-se-volvio-parte-de-mi-vida
 ---
 
 Nos encanta creer en el éxito repentino. Vemos a alguien que se vuelve famoso, llena estadios, lanza una empresa o aparece en todas partes, y pensamos *"wow, esta persona explotó de la nada"*. Pero casi nunca es así: lo que llamamos "éxito de la noche a la mañana" suele ser el momento en que nosotros nos enteramos de una historia que llevaba años ocurriendo en silencio.

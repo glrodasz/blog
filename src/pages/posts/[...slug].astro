@@ -21,6 +21,12 @@ const { Content } = await post.render();
 const audio = getPostAudio(post.slug, locale);
 ---
 
-<BlogPost {...post.data} readingTime={readingTime} locale={locale} markdownBody={post.body} audio={audio}>
+<BlogPost
+  {...post.data}
+  readingTime={readingTime}
+  locale={locale}
+  markdownBody={post.body}
+  audio={audio}
+>
   <Content />
 </BlogPost>
