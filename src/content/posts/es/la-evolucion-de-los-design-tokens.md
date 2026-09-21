@@ -65,7 +65,7 @@ Finalmente, el tercer nivel no es realmente tan nuevo, pues los tokens asociados
 
 Si siguiéramos la metáfora, una página de nuestra app sería toda la experiencia de una cena, con platillos de entrada, principal y postre, pero eso es una historia que prefiero contar con otra analogía: _Física Cuántica y vendrá en otro post._
 
-![Sistema de tokens de 3 niveles](/images/posts/es/la-evolucion-de-los-design-tokens/representacion-design-tokens.png)
+![Tabla sobre fondo oscuro con cuatro filas: “Raw values” muestra animales y plantas (vaca y cerdo, bambú y lechuga, gallina y pato, trigo); “Reference Tokens” muestra ingredientes crudos (carne, zanahoria, huevos, arroz); “System Tokens” muestra los ingredientes cocinados (bistec, zanahoria asada, huevo frito, tazón de arroz); y “Component Tokens” muestra platos completos (hamburguesa con salsa, lasaña con bebida, tostada con huevo y miel, arroz con salsa de soya).](/images/posts/es/la-evolucion-de-los-design-tokens/representacion-design-tokens.png)
 _Sistema de tokens de 3 niveles, aplicado metafóricamente a nuestro restaurante "The Tasty Token Bistro"._
 
 # Convención de nombres

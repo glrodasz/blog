@@ -25,6 +25,9 @@ pnpm-debug.log*
 
 package-lock.json
 
+# local audio auditions (scripts/audio/audition.mjs)
+scratch/
+
 # Playwright
 test-results/
 playwright-report/

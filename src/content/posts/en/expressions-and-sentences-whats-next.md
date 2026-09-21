@@ -25,7 +25,7 @@ If we wanted to explain it practically, we could think of atomic design where **
 
 > 💧 **Algorithm** and **code** are sometimes used as synonyms. However, colloquially, we often call a specific part of a product an *algorithm*. We might hear things like *"the search algorithm"* or *"the discount algorithm"*, etc.
 
-![Expressions, statements, algorithms and code](/images/posts/es/expresiones-y-sentencias-luego-que/composicion.png)
+![Four stages joined by arrows: “Expresiones” (colored shapes being added and multiplied), “Sentencias” (an if with braces and an assignment, numbered 1, 2 and 3), “Algoritmo” (blocks of code lines) and “Código” (an editor window with the full program).](/images/posts/es/expresiones-y-sentencias-luego-que/composicion.png)
 _**Expressions** are the smallest units, which compose themselves to generate **code**._
 
 ## Code can be many things
@@ -35,7 +35,7 @@ When we talk about *code*, we can be referring to many things, *similar to what 
 * **Libraries**: sets of utilities grouped with a common purpose.
 * **Frameworks**: larger libraries that include multiple utilities and add structure, rules or conventions for developing a product.
 
-![Utilities, libraries and frameworks](/images/posts/es/expresiones-y-sentencias-luego-que/categorizacion.png)
+![Three code editor windows titled “Utilidad”, “Biblioteca” and “Framework”. Under the first there is a box with a toolbox; under the second, several boxes with loose tools; under the third, a person assembling something among boxes, a pallet and a hammer.](/images/posts/es/expresiones-y-sentencias-luego-que/categorizacion.png)
 _**Utilities**, **libraries** and **frameworks** can be seen as different types within the code ecosystem: from the simplest to the most sophisticated._
 
 ## Algorithms in code

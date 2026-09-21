@@ -1,6 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import { LOCALES, DEFAULT_LOCALE, type Locale } from "../i18n/config";
 import { getMessages } from "../i18n";
+import { getPostAudio } from "./audio";
 
 export type Post = CollectionEntry<"posts">;
 
@@ -63,13 +64,23 @@ export async function generateRSSFeed(locale: Locale, context: RSSFeedContext) {
     description: messages.site.description,
     site: context.site,
     xmlns: { media: "http://search.yahoo.com/mrss/" },
-    items: sortedPosts.map((post) => ({
-      ...post.data,
-      link: getPostUrl(post.slug, locale),
-      customData: post.data.heroImage
-        ? `<media:content url="${context.site}${post.data.heroImage}" medium="image" />`
-        : undefined,
-    })),
+    items: sortedPosts.map((post) => {
+      const audio = getPostAudio(post.slug, locale);
+      return {
+        ...post.data,
+        link: getPostUrl(post.slug, locale),
+        enclosure: audio
+          ? {
+              url: new URL(audio.src, context.site).href,
+              length: audio.bytes,
+              type: "audio/mpeg",
+            }
+          : undefined,
+        customData: post.data.heroImage
+          ? `<media:content url="${context.site}${post.data.heroImage}" medium="image" />`
+          : undefined,
+      };
+    }),
   };
 }
 
