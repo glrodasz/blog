@@ -11,11 +11,23 @@ entry exists.
 `.github/workflows/audio.yml` runs after a push to `main` that touches
 `src/content/posts/**`. It builds the narration text for every post, hashes it
 together with the voice, output format and `NARRATION_VERSION`, and calls Azure
-only for posts whose hash changed. New files are committed back to `main`
-(Netlify then redeploys). Frontmatter-only edits (tags, dates) do not
+only for posts whose hash changed. Frontmatter-only edits (tags, dates) do not
 regenerate audio; title or body edits do.
 
+`main` only takes changes through a pull request, so the new files are committed
+to the `chore/audio-narration` branch and the workflow opens a pull request
+titled `chore(audio): regenerate narration`. Merge it to publish the MP3s
+(Netlify then redeploys). While that pull request is open, later runs add to the
+same branch and update the same pull request, so nothing already narrated there
+is synthesized — and paid for — twice.
+
 Secrets needed in the repository: `AZURE_SPEECH_KEY`, `AZURE_SPEECH_REGION`.
+
+Optional: `AUDIO_PUSH_TOKEN`, a personal access token with `repo` scope. Pushes
+and pull requests made with the default `GITHUB_TOKEN` do not trigger other
+workflows, so the Test checks stay unreported on the audio pull request. Setting
+`AUDIO_PUSH_TOKEN` makes the workflow use it instead, and CI then runs on the
+audio pull request like on any other.
 
 To regenerate everything (after changing a voice in `config.mjs`), run the
 workflow manually with `force` checked, or bump `NARRATION_VERSION`.
