@@ -46,6 +46,29 @@ test("toSsml escapes text and wraps the voice", () => {
   assert.equal(escapeXml("'"), "&apos;");
 });
 
+test("toSsml wraps English terms in a lang element", () => {
+  const ssml = toSsml([seg("El framework hace el build & ya")], {
+    voice: "v",
+    lang: "es-MX",
+    englishTerms: ["framework", "build"],
+  });
+  assert.ok(
+    ssml.includes(
+      'El <lang xml:lang="en-US">framework</lang> hace el ' +
+        '<lang xml:lang="en-US">build</lang> &amp; ya',
+    ),
+  );
+});
+
+test("toSsml leaves the text untouched without English terms", () => {
+  const ssml = toSsml([seg("El framework hace el build")], {
+    voice: "v",
+    lang: "es-MX",
+  });
+  assert.ok(!ssml.includes("<lang"));
+  assert.ok(ssml.includes("El framework hace el build"));
+});
+
 test("synthesizeSsml retries on 429 and then succeeds", async () => {
   let calls = 0;
   const fetchImpl = async () => {

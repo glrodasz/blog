@@ -1,11 +1,19 @@
 /**
- * Synthesize one sample paragraph per candidate voice so you can pick by ear.
- *   node scripts/audio/audition.mjs            → scratch/audition/<voice>.mp3
+ * Synthesize one sample paragraph per candidate voice, plus the same Spanish
+ * paragraph with and without the English terms of config.mjs wrapped in
+ * `<lang xml:lang="en-US">`, so you can pick both by ear.
+ *   node scripts/audio/audition.mjs   → scratch/audition/<voice>.mp3
+ *                                       scratch/audition/es-terms-*.mp3
  * Costs a few cents in total.
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { OUTPUT_FORMAT } from "./config.mjs";
+import {
+  ENGLISH_TERMS,
+  LOCALE_TAGS,
+  OUTPUT_FORMAT,
+  VOICES,
+} from "./config.mjs";
 import { ROOT } from "./posts.mjs";
 import { getCredentials, synthesizeSsml, toSsml } from "./tts.mjs";
 
@@ -42,6 +50,21 @@ const CANDIDATES = [
   ["en", "es-MX-JorgeMultilingualNeural"],
 ];
 
+/**
+ * Same Spanish paragraph twice: once as Azure reads it by default, once with
+ * ENGLISH_TERMS wrapped in `<lang xml:lang="en-US">`. Listen to both to decide
+ * whether a term belongs in the list.
+ */
+const CODE_SWITCH_SAMPLE =
+  "Los design tokens viven en el codebase y el framework los compila en el build. " +
+  "Cuando abro un pull request pido feedback antes del deploy, y si el layout se rompe " +
+  "reviso el componente de React con Claude Code.";
+
+const CODE_SWITCH_VARIANTS = [
+  ["plain", []],
+  ["code-switch", ENGLISH_TERMS.es],
+];
+
 const credentials = getCredentials();
 const outDir = join(ROOT, "scratch/audition");
 mkdirSync(outDir, { recursive: true });
@@ -65,5 +88,24 @@ for (const [locale, voice] of CANDIDATES) {
     console.log(`  ✓ ${file.replace(ROOT, "")}`);
   } catch (error) {
     console.error(`  ✗ ${voice}: ${error.message}`);
+  }
+}
+
+for (const [label, englishTerms] of CODE_SWITCH_VARIANTS) {
+  const ssml = toSsml([{ kind: "paragraph", text: CODE_SWITCH_SAMPLE }], {
+    voice: VOICES.es,
+    lang: LOCALE_TAGS.es,
+    englishTerms,
+  });
+  try {
+    const audio = await synthesizeSsml(ssml, {
+      ...credentials,
+      format: OUTPUT_FORMAT,
+    });
+    const file = join(outDir, `es-terms-${label}.mp3`);
+    writeFileSync(file, audio);
+    console.log(`  ✓ ${file.replace(ROOT, "")}`);
+  } catch (error) {
+    console.error(`  ✗ ${label}: ${error.message}`);
   }
 }
