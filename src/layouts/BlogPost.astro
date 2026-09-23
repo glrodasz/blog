@@ -66,6 +66,9 @@ const computedImage =
   heroImage ??
   (isPage ? `/og/${localePrefix}about.png` : `/og/${localePrefix}home.png`);
 
+const hasTranslation =
+  languageVersions?.some((version) => version.language !== locale) ?? false;
+
 const tags = rawTags ? (Array.isArray(rawTags) ? rawTags : [rawTags]) : [];
 ---
 
@@ -162,6 +165,9 @@ const tags = rawTags ? (Array.isArray(rawTags) ? rawTags : [rawTags]) : [];
                   <span class="reading-time">
                     • {readingTime} {messages.blog.minRead}
                   </span>
+                )}
+                {(hasTranslation || markdownBody || audio) && (
+                  <span class="post-meta-break" aria-hidden="true" />
                 )}
                 <LanguageVersionBanner
                   languageVersions={languageVersions}
@@ -333,6 +339,22 @@ const tags = rawTags ? (Array.isArray(rawTags) ? rawTags : [rawTags]) : [];
 
       .post-meta :global(time) {
         margin: 0;
+      }
+
+      /* Desktop: date, reading time, translation link and action chips share
+         one line. Narrow screens: date + reading time on the first row, the
+         translation link and action chips always on the second, so the layout
+         doesn't depend on how long the localized strings are. */
+      .post-meta-break {
+        display: none;
+      }
+
+      @media (max-width: 720px) {
+        .post-meta-break {
+          display: block;
+          flex-basis: 100%;
+          height: 0;
+        }
       }
 
       .last-updated-on {
