@@ -21,7 +21,7 @@ export const LOCALE_TAGS = {
 export const OUTPUT_FORMAT = "audio-24khz-48kbitrate-mono-mp3";
 
 /** Bump when narration rules change in a way that should re-render existing audio. */
-export const NARRATION_VERSION = 2;
+export const NARRATION_VERSION = 1;
 
 /** Locale used for the `<lang>` element wrapped around ENGLISH_TERMS. */
 export const ENGLISH_LOCALE_TAG = "en-US";
@@ -44,6 +44,9 @@ export const ENGLISH_LOCALE_TAG = "en-US";
  *
  * Plurals are listed explicitly — matching is whole-term, so `framework` does
  * not match inside `frameworks`. Order does not matter: the longest term wins.
+ *
+ * This list is part of the content hash, so editing it regenerates the posts of
+ * that locale on the next run — and only those.
  */
 export const ENGLISH_TERMS = {
   es: [

@@ -74,8 +74,11 @@ yarn audio:audition                                    # es-terms-plain.mp3 vs e
 
 Matching is whole-term and case-insensitive, and the original casing is kept, so
 plurals need their own entry (`framework` never matches inside `frameworks`).
-Editing the list does not change the content hash, so bump `NARRATION_VERSION`
-to re-render existing audio.
+
+The list is part of the content hash, so editing it regenerates the posts of
+that locale on the next run — and only those. A locale with an empty list keeps
+the hashes it had before the feature existed, which is why the English posts are
+not re-synthesized to produce identical audio.
 
 ## Local commands
 
