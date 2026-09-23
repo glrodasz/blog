@@ -47,6 +47,39 @@ workflow manually with `force` checked, or bump `NARRATION_VERSION`.
 
 `yarn audio:check-alt` (also in CI) fails when any image lacks a description.
 
+## English terms in the Spanish narration
+
+The voice (`es-MX-JorgeMultilingualNeural`) is multilingual, but Azure detects
+the language per sentence, not per word: an English term inside a Spanish
+paragraph comes out with Spanish phonetics ("React" as "rre-act"). No Azure
+voice does word-level code switching on its own.
+
+The fix is SSML. `ENGLISH_TERMS.es` in `config.mjs` lists the terms a Spanish
+reader expects to hear in English, and `code-switch.mjs` wraps each occurrence
+in `<lang xml:lang="en-US">`, which Azure applies word by word. Only
+multilingual voices support that element, so the list is tied to keeping a
+`*MultilingualNeural` voice.
+
+Two groups stay out of the list on purpose, because English pronunciation makes
+them sound worse: words Spanish absorbed (web, software, blog, post, internet)
+and acronyms read letter by letter (HTML, CSS, DOM, API), which a Spanish reader
+expects with Spanish letter names.
+
+To tune the list:
+
+```bash
+yarn audio:script es/design-tokens-al-rescate --ssml   # see what gets wrapped, free
+yarn audio:audition                                    # es-terms-plain.mp3 vs es-terms-code-switch.mp3
+```
+
+Matching is whole-term and case-insensitive, and the original casing is kept, so
+plurals need their own entry (`framework` never matches inside `frameworks`).
+
+The list is part of the content hash, so editing it regenerates the posts of
+that locale on the next run — and only those. A locale with an empty list keeps
+the hashes it had before the feature existed, which is why the English posts are
+not re-synthesized to produce identical audio.
+
 ## Local commands
 
 ```bash

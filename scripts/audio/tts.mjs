@@ -7,11 +7,14 @@
 import {
   BREAKS,
   CONCURRENCY,
+  ENGLISH_LOCALE_TAG,
+  ENGLISH_TERMS,
   LOCALE_TAGS,
   MAX_CHUNK_CHARS,
   OUTPUT_FORMAT,
   VOICES,
 } from "./config.mjs";
+import { buildEnglishPattern, splitEnglishRuns } from "./code-switch.mjs";
 import { concatMp3 } from "./mp3.mjs";
 
 const SENTENCE_RE = /(?<=[.!?…])\s+/u;
@@ -73,9 +76,21 @@ export function escapeXml(text) {
     .replace(/'/g, "&apos;");
 }
 
-export function toSsml(chunk, { voice, lang }) {
+/** Escapes a segment, wrapping English terms in `<lang>` so they keep their own pronunciation. */
+function renderText(text, pattern) {
+  return splitEnglishRuns(text, pattern)
+    .map(({ text: run, english }) =>
+      english
+        ? `<lang xml:lang="${ENGLISH_LOCALE_TAG}">${escapeXml(run)}</lang>`
+        : escapeXml(run),
+    )
+    .join("");
+}
+
+export function toSsml(chunk, { voice, lang, englishTerms = [] }) {
+  const pattern = buildEnglishPattern(englishTerms);
   const parts = chunk.map((segment, index) => {
-    const text = escapeXml(segment.text);
+    const text = renderText(segment.text, pattern);
     const before =
       segment.kind === "heading" && index > 0
         ? `<break time="${BREAKS.heading}"/>`
@@ -155,13 +170,14 @@ export async function synthesizeNarration({
   segments,
   locale,
   voice = VOICES[locale],
+  englishTerms = ENGLISH_TERMS[locale] ?? [],
   credentials,
   fetchImpl,
 }) {
   const lang = LOCALE_TAGS[locale];
   const chunks = packChunks(segments);
   const buffers = await mapWithConcurrency(chunks, CONCURRENCY, (chunk) =>
-    synthesizeSsml(toSsml(chunk, { voice, lang }), {
+    synthesizeSsml(toSsml(chunk, { voice, lang, englishTerms }), {
       ...credentials,
       fetchImpl,
     }),

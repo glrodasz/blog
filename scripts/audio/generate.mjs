@@ -16,9 +16,11 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
-import { join, relative } from "node:path";
+import { join, relative, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   AUDIO_DIR,
+  ENGLISH_TERMS,
   MANIFEST_PATH,
   NARRATION_VERSION,
   OUTPUT_FORMAT,
@@ -59,13 +61,19 @@ export function writeManifest(manifest) {
   writeFileSync(manifestFile, `${JSON.stringify(sorted, null, 2)}\n`);
 }
 
-export function contentHash({ text, voice }) {
+/**
+ * Everything that changes the audio, and nothing else. `terms` is omitted when
+ * the locale has none, so locales without code switching keep the hashes they
+ * had before the feature existed and are not re-synthesized for nothing.
+ */
+export function contentHash({ text, voice, englishTerms = [] }) {
   return createHash("sha256")
     .update(
       JSON.stringify({
         v: NARRATION_VERSION,
         voice,
         format: OUTPUT_FORMAT,
+        ...(englishTerms.length ? { terms: englishTerms } : {}),
         text,
       }),
     )
@@ -92,7 +100,8 @@ async function main() {
       file: relative(ROOT, post.file),
     });
     const voice = VOICES[post.locale];
-    const hash = contentHash({ text: narration.text, voice });
+    const englishTerms = ENGLISH_TERMS[post.locale] ?? [];
+    const hash = contentHash({ text: narration.text, voice, englishTerms });
     const current = manifest[post.key];
     const fileExists =
       current?.file && existsSync(join(ROOT, "public", current.file));
@@ -177,7 +186,10 @@ async function main() {
   console.log("Done.");
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exit(1);
-});
+// Only run when invoked as a script, so tests can import contentHash.
+if (fileURLToPath(import.meta.url) === resolve(process.argv[1] ?? "")) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exit(1);
+  });
+}
