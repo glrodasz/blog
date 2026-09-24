@@ -161,7 +161,7 @@ const tags = rawTags ? (Array.isArray(rawTags) ? rawTags : [rawTags]) : [];
                     </span>
                   </span>
                 )}
-                {readingTime && (
+                {readingTime && !audio && (
                   <span class="reading-time">
                     • {readingTime} {messages.blog.minRead}
                   </span>
@@ -350,6 +350,10 @@ const tags = rawTags ? (Array.isArray(rawTags) ? rawTags : [rawTags]) : [];
       }
 
       @media (max-width: 720px) {
+        .post-meta {
+          row-gap: 0.25em;
+        }
+
         .post-meta-break {
           display: block;
           flex-basis: 100%;
