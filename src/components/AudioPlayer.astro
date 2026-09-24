@@ -4,8 +4,8 @@ import { getMessages } from "../i18n";
 import Headphones from "lucide-astro/Headphones";
 import Play from "lucide-astro/Play";
 import Pause from "lucide-astro/Pause";
-import RotateCcw from "lucide-astro/RotateCcw";
-import RotateCw from "lucide-astro/RotateCw";
+import Volume2 from "lucide-astro/Volume2";
+import VolumeX from "lucide-astro/VolumeX";
 import X from "lucide-astro/X";
 import type { PostAudio } from "../utils/audio";
 import { toMinutes } from "../utils/audio";
@@ -21,6 +21,9 @@ const locale = getLocaleFromAstro(Astro);
 const messages = getMessages(locale);
 const minutes = toMinutes(audio.durationSeconds);
 const id = `audio-${Math.random().toString(36).slice(2, 8)}`;
+
+const SKIP_BACK = 10;
+const SKIP_FORWARD = 30;
 
 const formatTime = (seconds: number) => {
   const s = Math.floor(seconds);
@@ -49,69 +52,118 @@ const formatTime = (seconds: number) => {
   aria-label={messages.blog.listenLabel}
   data-open="false"
   data-playing="false"
+  data-muted="false"
   data-title={title}
   data-artist={messages.site.author}
   data-play-label={messages.blog.audioPlay}
   data-pause-label={messages.blog.audioPause}
+  data-mute-label={messages.blog.audioMute}
+  data-unmute-label={messages.blog.audioUnmute}
 >
   <audio preload="none" src={audio.src}></audio>
-  <button
-    type="button"
-    class="audio-bar-play"
-    aria-label={messages.blog.audioPlay}
-  >
-    <Play size={18} aria-hidden="true" class="icon-play" />
-    <Pause size={18} aria-hidden="true" class="icon-pause" />
-  </button>
-  <button
-    type="button"
-    class="audio-bar-icon audio-bar-skip"
-    data-skip="-15"
-    aria-label={messages.blog.audioBack}
-  >
-    <RotateCcw size={16} aria-hidden="true" />
-  </button>
-  <div class="audio-bar-main">
+  <div class="audio-bar-controls">
+    <button
+      type="button"
+      class="audio-bar-play"
+      aria-label={messages.blog.audioPlay}
+    >
+      <Play size={18} aria-hidden="true" class="icon-play" />
+      <Pause size={18} aria-hidden="true" class="icon-pause" />
+    </button>
+    <button
+      type="button"
+      class="audio-bar-icon"
+      data-skip={-SKIP_BACK}
+      aria-label={messages.blog.audioBack}
+    >
+      <svg
+        aria-hidden="true"
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+        <path d="M3 3v5h5"></path>
+        <text x="12" y="15.5" class="skip-label">{SKIP_BACK}</text>
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="audio-bar-icon"
+      data-skip={SKIP_FORWARD}
+      aria-label={messages.blog.audioForward}
+    >
+      <svg
+        aria-hidden="true"
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+        <path d="M21 3v5h-5"></path>
+        <text x="12" y="15.5" class="skip-label">{SKIP_FORWARD}</text>
+      </svg>
+    </button>
+    <span class="audio-bar-time" aria-hidden="true">
+      <span class="audio-bar-current">0:00</span>
+      <span class="audio-bar-time-sep">/</span>
+      <span class="audio-bar-duration">{formatTime(audio.durationSeconds)}</span
+      >
+    </span>
     <span class="audio-bar-title">{title}</span>
-    <div class="audio-bar-progress">
+    <div class="audio-bar-volume">
+      <button
+        type="button"
+        class="audio-bar-icon audio-bar-mute"
+        aria-label={messages.blog.audioMute}
+      >
+        <Volume2 size={18} aria-hidden="true" class="icon-volume" />
+        <VolumeX size={18} aria-hidden="true" class="icon-muted" />
+      </button>
       <input
         type="range"
-        class="audio-bar-seek"
+        class="audio-bar-range audio-bar-volume-range"
         min="0"
-        max={Math.round(audio.durationSeconds)}
-        step="1"
-        value="0"
-        aria-label={messages.blog.audioSeek}
+        max="1"
+        step="0.05"
+        value="1"
+        aria-label={messages.blog.audioVolume}
       />
-      <span class="audio-bar-time" aria-hidden="true">
-        <span class="audio-bar-current">0:00</span> / <span
-          class="audio-bar-duration">{formatTime(audio.durationSeconds)}</span
-        >
-      </span>
     </div>
+    <button
+      type="button"
+      class="audio-bar-speed"
+      aria-label={messages.blog.audioSpeed}
+    >
+      1×
+    </button>
+    <button
+      type="button"
+      class="audio-bar-icon audio-bar-close"
+      aria-label={messages.blog.audioClose}
+    >
+      <X size={18} aria-hidden="true" />
+    </button>
   </div>
-  <button
-    type="button"
-    class="audio-bar-icon audio-bar-skip"
-    data-skip="15"
-    aria-label={messages.blog.audioForward}
-  >
-    <RotateCw size={16} aria-hidden="true" />
-  </button>
-  <button
-    type="button"
-    class="audio-bar-speed"
-    aria-label={messages.blog.audioSpeed}
-  >
-    1×
-  </button>
-  <button
-    type="button"
-    class="audio-bar-icon audio-bar-close"
-    aria-label={messages.blog.audioClose}
-  >
-    <X size={16} aria-hidden="true" />
-  </button>
+  <input
+    type="range"
+    class="audio-bar-range audio-bar-seek"
+    min="0"
+    max={Math.round(audio.durationSeconds)}
+    step="1"
+    value="0"
+    aria-label={messages.blog.audioSeek}
+  />
 </div>
 
 <script>
@@ -120,6 +172,14 @@ const formatTime = (seconds: number) => {
   const formatTime = (seconds: number) => {
     const s = Math.max(0, Math.floor(seconds));
     return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+  };
+
+  const setFill = (range: HTMLInputElement) => {
+    const max = Number(range.max) || 1;
+    range.style.setProperty(
+      "--progress",
+      `${(Number(range.value) / max) * 100}%`,
+    );
   };
 
   document
@@ -136,6 +196,8 @@ const formatTime = (seconds: number) => {
       const playBtn = q<HTMLButtonElement>(".audio-bar-play");
       const speedBtn = q<HTMLButtonElement>(".audio-bar-speed");
       const closeBtn = q<HTMLButtonElement>(".audio-bar-close");
+      const muteBtn = q<HTMLButtonElement>(".audio-bar-mute");
+      const volume = q<HTMLInputElement>(".audio-bar-volume-range");
       const seek = q<HTMLInputElement>(".audio-bar-seek");
       const current = q<HTMLElement>(".audio-bar-current");
       const duration = q<HTMLElement>(".audio-bar-duration");
@@ -152,10 +214,10 @@ const formatTime = (seconds: number) => {
           /* autoplay blocked: the play button still works */
         });
 
-      const setProgress = () => {
-        seek.style.setProperty(
-          "--progress",
-          `${(Number(seek.value) / Number(seek.max || 1)) * 100}%`,
+      const skip = (seconds: number) => {
+        audio.currentTime = Math.min(
+          Math.max(0, audio.currentTime + seconds),
+          audio.duration || Infinity,
         );
       };
 
@@ -175,14 +237,11 @@ const formatTime = (seconds: number) => {
       );
 
       bar
-        .querySelectorAll<HTMLButtonElement>(".audio-bar-skip")
+        .querySelectorAll<HTMLButtonElement>("[data-skip]")
         .forEach((button) =>
-          button.addEventListener("click", () => {
-            audio.currentTime = Math.min(
-              Math.max(0, audio.currentTime + Number(button.dataset.skip)),
-              audio.duration || Infinity,
-            );
-          }),
+          button.addEventListener("click", () =>
+            skip(Number(button.dataset.skip)),
+          ),
         );
 
       speedBtn.addEventListener("click", () => {
@@ -198,10 +257,30 @@ const formatTime = (seconds: number) => {
         trigger.focus();
       });
 
+      muteBtn.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+      });
+
+      volume.addEventListener("input", () => {
+        audio.volume = Number(volume.value);
+        audio.muted = audio.volume === 0;
+      });
+
+      audio.addEventListener("volumechange", () => {
+        const muted = audio.muted || audio.volume === 0;
+        bar.dataset.muted = String(muted);
+        muteBtn.setAttribute(
+          "aria-label",
+          (muted ? bar.dataset.unmuteLabel : bar.dataset.muteLabel) ?? "",
+        );
+        volume.value = String(muted ? 0 : audio.volume);
+        setFill(volume);
+      });
+
       seek.addEventListener("input", () => {
         seeking = true;
         current.textContent = formatTime(Number(seek.value));
-        setProgress();
+        setFill(seek);
       });
       seek.addEventListener("change", () => {
         audio.currentTime = Number(seek.value);
@@ -211,20 +290,19 @@ const formatTime = (seconds: number) => {
       audio.addEventListener("loadedmetadata", () => {
         seek.max = String(Math.round(audio.duration));
         duration.textContent = formatTime(audio.duration);
-        setProgress();
+        setFill(seek);
       });
 
       audio.addEventListener("timeupdate", () => {
         if (seeking) return;
         seek.value = String(Math.floor(audio.currentTime));
         current.textContent = formatTime(audio.currentTime);
-        setProgress();
+        setFill(seek);
       });
 
       const syncPlaying = () => {
         const playing = !audio.paused;
         bar.dataset.playing = String(playing);
-        trigger.dataset.playing = String(playing);
         playBtn.setAttribute(
           "aria-label",
           (playing ? bar.dataset.pauseLabel : bar.dataset.playLabel) ?? "",
@@ -234,6 +312,8 @@ const formatTime = (seconds: number) => {
       audio.addEventListener("pause", syncPlaying);
       audio.addEventListener("ended", syncPlaying);
 
+      setFill(volume);
+
       // Lock screen / headset controls.
       if ("mediaSession" in navigator) {
         audio.addEventListener("play", () => {
@@ -242,12 +322,10 @@ const formatTime = (seconds: number) => {
             artist: bar.dataset.artist,
           });
         });
-        navigator.mediaSession.setActionHandler("seekbackward", () => {
-          audio.currentTime = Math.max(0, audio.currentTime - 15);
-        });
-        navigator.mediaSession.setActionHandler("seekforward", () => {
-          audio.currentTime += 15;
-        });
+        navigator.mediaSession.setActionHandler("seekbackward", () =>
+          skip(-10),
+        );
+        navigator.mediaSession.setActionHandler("seekforward", () => skip(30));
       }
     });
 </script>
@@ -284,17 +362,18 @@ const formatTime = (seconds: number) => {
     color: var(--color-text-muted);
   }
 
-  /* Floating player pinned to the bottom of the viewport. */
+  /* Floating player pinned to the bottom of the viewport, as wide as the
+     article text (.prose in BlogPost.astro). */
   .audio-bar {
     position: fixed;
     left: 50%;
     bottom: calc(12px + env(safe-area-inset-bottom));
     z-index: 50;
-    width: min(640px, calc(100% - 24px));
+    width: min(920px, calc(100% - 30px));
     display: flex;
-    align-items: center;
-    gap: 0.5em;
-    padding: 0.6em 0.75em;
+    flex-direction: column;
+    gap: 0.4em;
+    padding: 0.6em 0.9em 0.75em;
     background: var(--color-bg-surface);
     color: var(--color-text-default);
     border: 1px solid var(--color-border-default);
@@ -321,6 +400,12 @@ const formatTime = (seconds: number) => {
     }
   }
 
+  .audio-bar-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
   .audio-bar button {
     flex-shrink: 0;
     display: inline-flex;
@@ -332,7 +417,7 @@ const formatTime = (seconds: number) => {
   }
 
   .audio-bar button:focus-visible,
-  .audio-bar-seek:focus-visible {
+  .audio-bar-range:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
@@ -350,26 +435,37 @@ const formatTime = (seconds: number) => {
   }
 
   .audio-bar :global(.icon-pause),
-  .audio-bar[data-playing="true"] :global(.icon-play) {
+  .audio-bar[data-playing="true"] :global(.icon-play),
+  .audio-bar :global(.icon-muted),
+  .audio-bar[data-muted="true"] :global(.icon-volume) {
     display: none;
   }
 
-  .audio-bar[data-playing="true"] :global(.icon-pause) {
+  .audio-bar[data-playing="true"] :global(.icon-pause),
+  .audio-bar[data-muted="true"] :global(.icon-muted) {
     display: block;
   }
 
   .audio-bar-icon,
   .audio-bar-speed {
-    height: 32px;
-    min-width: 32px;
+    height: 36px;
+    min-width: 36px;
     border-radius: var(--radius-chip);
     background: transparent;
     color: var(--color-text-muted);
   }
 
+  .skip-label {
+    fill: currentColor;
+    stroke: none;
+    font-size: 7.5px;
+    font-weight: 700;
+    text-anchor: middle;
+  }
+
   .audio-bar-speed {
     padding: 0 0.4em;
-    font-size: 0.8em;
+    font-size: 0.85em;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
   }
@@ -380,16 +476,27 @@ const formatTime = (seconds: number) => {
     color: var(--color-accent-hover);
   }
 
-  .audio-bar-main {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
+  .audio-bar-time {
+    font-size: 0.8em;
+    color: var(--color-text-muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .audio-bar-current {
+    color: var(--color-text-strong);
+    font-weight: 600;
+  }
+
+  .audio-bar-time-sep {
+    margin: 0 0.2em;
   }
 
   .audio-bar-title {
-    font-size: 0.8em;
+    flex: 1;
+    min-width: 0;
+    margin-left: 0.5em;
+    font-size: 0.85em;
     font-weight: 700;
     color: var(--color-text-strong);
     white-space: nowrap;
@@ -397,16 +504,18 @@ const formatTime = (seconds: number) => {
     text-overflow: ellipsis;
   }
 
-  .audio-bar-progress {
+  .audio-bar-volume {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    gap: 0.25em;
   }
 
-  .audio-bar-seek {
+  .audio-bar-volume-range {
+    width: 80px;
+  }
+
+  .audio-bar-range {
     --progress: 0%;
-    flex: 1;
-    min-width: 0;
     height: 4px;
     margin: 0;
     appearance: none;
@@ -419,7 +528,11 @@ const formatTime = (seconds: number) => {
     cursor: pointer;
   }
 
-  .audio-bar-seek::-webkit-slider-thumb {
+  .audio-bar-seek {
+    width: 100%;
+  }
+
+  .audio-bar-range::-webkit-slider-thumb {
     appearance: none;
     width: 12px;
     height: 12px;
@@ -427,7 +540,7 @@ const formatTime = (seconds: number) => {
     background: var(--color-accent-emphasis);
   }
 
-  .audio-bar-seek::-moz-range-thumb {
+  .audio-bar-range::-moz-range-thumb {
     width: 12px;
     height: 12px;
     border: 0;
@@ -435,16 +548,16 @@ const formatTime = (seconds: number) => {
     background: var(--color-accent-emphasis);
   }
 
-  .audio-bar-time {
-    font-size: 0.7em;
-    color: var(--color-text-muted);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
   /* Keep the end of the page reachable above the floating bar. */
   :global(body.audio-bar-open) {
-    padding-bottom: 96px;
+    padding-bottom: 110px;
+  }
+
+  @media (max-width: 720px) {
+    /* Phones use the hardware volume buttons (iOS ignores audio.volume). */
+    .audio-bar-volume {
+      display: none;
+    }
   }
 
   @media (max-width: 480px) {
@@ -457,12 +570,16 @@ const formatTime = (seconds: number) => {
     }
 
     .audio-bar {
-      gap: 0.25em;
-      padding: 0.5em 0.6em;
+      padding: 0.5em 0.6em 0.7em;
     }
 
-    .audio-bar .audio-bar-skip {
-      display: none;
+    .audio-bar-controls {
+      gap: 0.2em;
+    }
+
+    /* Not enough room next to the controls; the time takes its place. */
+    .audio-bar-title {
+      visibility: hidden;
     }
   }
 </style>
