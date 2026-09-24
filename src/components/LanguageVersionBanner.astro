@@ -72,6 +72,14 @@ const formatMessage = (template: string, language: string) => {
     margin-right: 0.15em;
   }
 
+  /* On narrow screens BlogPost.astro starts the link on its own row, where a
+     leading separator would dangle. */
+  @media (max-width: 720px) {
+    .meta-sep {
+      display: none;
+    }
+  }
+
   .translation-meta :global(.language-icon) {
     flex-shrink: 0;
   }

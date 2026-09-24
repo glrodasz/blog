@@ -1,10 +1,10 @@
 ---
 import TagChip from "./TagChip.astro";
 import FormattedDate from "./FormattedDate.astro";
+import PostDuration from "./PostDuration.astro";
 import {
   type Post,
   getPostUrl,
-  calculateReadingTime,
   getPostTags,
   tagToSlug,
 } from "../utils/content";
@@ -22,7 +22,6 @@ const messages = getMessages(locale);
 
 const href = getPostUrl(post.slug, locale);
 const tags = getPostTags(post);
-const readingTime = calculateReadingTime(post.body);
 const tagSlugs = tags.map(tagToSlug).join(" ");
 const searchHaystack = normalizeForSearch(
   [post.data.title, post.data.description].filter(Boolean).join(" "),
@@ -76,8 +75,7 @@ const searchHaystack = normalizeForSearch(
       <span class="reading-time">
         <FormattedDate date={post.data.pubDate} locale={locale} />
         <span aria-hidden="true"> · </span>
-        {readingTime}
-        {messages.blog.minReadCard}
+        <PostDuration post={post} locale={locale} />
       </span>
     </footer>
   </div>

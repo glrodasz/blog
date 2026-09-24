@@ -1,0 +1,46 @@
+---
+import Headphones from "lucide-astro/Headphones";
+import { type Post, calculateReadingTime } from "../utils/content";
+import { getPostAudio, toMinutes } from "../utils/audio";
+import { type Locale } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  post: Post;
+  locale: Locale;
+};
+
+const { post, locale } = Astro.props;
+const messages = getMessages(locale);
+
+// Posts with narration show the listening time instead of the reading time.
+const audio = getPostAudio(post.slug, locale);
+const minutes = audio
+  ? toMinutes(audio.durationSeconds)
+  : calculateReadingTime(post.body);
+---
+
+<span class="post-duration">
+  {
+    audio && (
+      <>
+        <Headphones size={12} aria-hidden="true" class="duration-icon" />
+        <span class="sr-only">{messages.blog.listen}:</span>
+      </>
+    )
+  }
+  {minutes}
+  {messages.blog.minReadCard}
+</span>
+
+<style>
+  .post-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+
+  .post-duration :global(.duration-icon) {
+    flex-shrink: 0;
+  }
+</style>
