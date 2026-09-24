@@ -173,6 +173,9 @@ const tags = rawTags ? (Array.isArray(rawTags) ? rawTags : [rawTags]) : [];
                   languageVersions={languageVersions}
                   currentLocale={locale}
                 />
+                {audio && (
+                  <AudioPlayer audio={audio} title={title} locale={locale} />
+                )}
                 {markdownBody && (
                   <CopyArticleButton
                     title={title}
@@ -181,9 +184,6 @@ const tags = rawTags ? (Array.isArray(rawTags) ? rawTags : [rawTags]) : [];
                     markdownBody={markdownBody}
                     locale={locale}
                   />
-                )}
-                {audio && (
-                  <AudioPlayer audio={audio} title={title} locale={locale} />
                 )}
               </div>
             )

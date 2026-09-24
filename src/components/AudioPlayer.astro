@@ -96,9 +96,11 @@ const id = `audio-${Math.random().toString(36).slice(2, 8)}`;
     color: var(--color-text-muted);
   }
 
-  /* Takes a full row of the .post-meta flex container. */
+  /* Takes a full row of the .post-meta flex container, after every other
+     item (the copy button follows the trigger in the markup). */
   .audio-panel {
     flex-basis: 100%;
+    order: 1;
     margin-top: 0.25em;
   }
 
