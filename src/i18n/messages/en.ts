@@ -22,6 +22,13 @@ export const messages = {
     copied: "Copied!",
     listen: "Listen",
     listenLabel: "Listen to this article",
+    audioPlay: "Play",
+    audioPause: "Pause",
+    audioBack: "Back 15 seconds",
+    audioForward: "Forward 15 seconds",
+    audioSeek: "Playback position",
+    audioSpeed: "Playback speed",
+    audioClose: "Close player",
     originalArticle: "Original article",
   },
   navigation: {

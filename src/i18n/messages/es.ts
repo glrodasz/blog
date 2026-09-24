@@ -22,6 +22,13 @@ export const messages = {
     copied: "¡Copiado!",
     listen: "Escuchar",
     listenLabel: "Escuchar este artículo",
+    audioPlay: "Reproducir",
+    audioPause: "Pausar",
+    audioBack: "Retroceder 15 segundos",
+    audioForward: "Adelantar 15 segundos",
+    audioSeek: "Posición de reproducción",
+    audioSpeed: "Velocidad de reproducción",
+    audioClose: "Cerrar reproductor",
     originalArticle: "Artículo original",
   },
   navigation: {
