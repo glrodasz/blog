@@ -2,6 +2,7 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import { LOCALES, DEFAULT_LOCALE, type Locale } from "../i18n/config";
 import { getMessages } from "../i18n";
 import { getPostAudio } from "./audio";
+import { PODCAST } from "../consts";
 
 export type Post = CollectionEntry<"posts">;
 
@@ -50,6 +51,24 @@ export function calculateReadingTime(
   return roundedMinutes;
 }
 
+/** Channel-level iTunes tags so podcast apps and directories pick up the feed. */
+function getPodcastChannelData(locale: Locale, site: string): string {
+  const { author } = getMessages(locale).site;
+  return [
+    `<language>${locale}</language>`,
+    `<itunes:author>${author}</itunes:author>`,
+    PODCAST.ownerEmail &&
+      `<itunes:owner><itunes:name>${author}</itunes:name><itunes:email>${PODCAST.ownerEmail}</itunes:email></itunes:owner>`,
+    PODCAST.cover &&
+      `<itunes:image href="${new URL(PODCAST.cover, site).href}" />`,
+    `<itunes:category text="${PODCAST.category}" />`,
+    `<itunes:explicit>${PODCAST.explicit}</itunes:explicit>`,
+    `<itunes:type>episodic</itunes:type>`,
+  ]
+    .filter(Boolean)
+    .join("");
+}
+
 export async function generateRSSFeed(locale: Locale, context: RSSFeedContext) {
   const posts = await getPostsByLanguage(locale);
   const messages = getMessages(locale);
@@ -63,9 +82,19 @@ export async function generateRSSFeed(locale: Locale, context: RSSFeedContext) {
     title: messages.site.title,
     description: messages.site.description,
     site: context.site,
-    xmlns: { media: "http://search.yahoo.com/mrss/" },
+    xmlns: {
+      media: "http://search.yahoo.com/mrss/",
+      itunes: "http://www.itunes.com/dtds/podcast-1.0.dtd",
+    },
+    customData: getPodcastChannelData(locale, context.site),
     items: sortedPosts.map((post) => {
       const audio = getPostAudio(post.slug, locale);
+      const heroImage = post.data.heroImage
+        ? `<media:content url="${new URL(post.data.heroImage, context.site).href}" medium="image" />`
+        : "";
+      const duration = audio
+        ? `<itunes:duration>${Math.round(audio.durationSeconds)}</itunes:duration>`
+        : "";
       return {
         ...post.data,
         link: getPostUrl(post.slug, locale),
@@ -76,9 +105,7 @@ export async function generateRSSFeed(locale: Locale, context: RSSFeedContext) {
               type: "audio/mpeg",
             }
           : undefined,
-        customData: post.data.heroImage
-          ? `<media:content url="${context.site}${post.data.heroImage}" medium="image" />`
-          : undefined,
+        customData: heroImage + duration || undefined,
       };
     }),
   };
