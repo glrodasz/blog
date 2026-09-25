@@ -144,219 +144,219 @@
     "generatedAt": "2026-09-21T21:47:48.416Z"
   },
   "es/algoritmos-con-naipes-busqueda-binaria": {
-    "hash": "b7dcab555fe3ae4b6820919a821a7a99d437252a3a6f001b1f12a34d2a17a59a",
+    "hash": "95e59a8689544bd54550381928547699448dd2ee7af82643d45fd8075d37cba1",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/algoritmos-con-naipes-busqueda-binaria-b7dcab55.mp3",
+    "file": "/audio/es/algoritmos-con-naipes-busqueda-binaria-95e59a86.mp3",
     "durationSeconds": 231,
     "bytes": 1385136,
     "chars": 3627,
-    "generatedAt": "2026-09-23T11:20:24.061Z"
+    "generatedAt": "2026-09-25T15:33:41.229Z"
   },
   "es/algoritmos-con-naipes-ordenamiento-burbuja": {
-    "hash": "4f13b17cee2d3010e517535699f74a3dbe1953aabe844e4ddaec12a8d937a6fa",
+    "hash": "a3fee78b5b465b75475566eabeca84ff5263ea25e89c6e28690f000ec09f2f29",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/algoritmos-con-naipes-ordenamiento-burbuja-4f13b17c.mp3",
+    "file": "/audio/es/algoritmos-con-naipes-ordenamiento-burbuja-a3fee78b.mp3",
     "durationSeconds": 357,
     "bytes": 2140416,
     "chars": 5582,
-    "generatedAt": "2026-09-23T11:20:32.798Z"
+    "generatedAt": "2026-09-25T15:33:50.210Z"
   },
   "es/comandos-alias-para-la-terminal": {
-    "hash": "dea6cf0e329a369214dd65fc9e82fac2a359e8b8dba1d061a20f8766092b1197",
+    "hash": "b902d64a29cf86a01993bb6ddecbd5448457d0b77743d2e115fb227a1dc61881",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/comandos-alias-para-la-terminal-dea6cf0e.mp3",
+    "file": "/audio/es/comandos-alias-para-la-terminal-b902d64a.mp3",
     "durationSeconds": 276,
     "bytes": 1653696,
     "chars": 3722,
-    "generatedAt": "2026-09-23T11:20:39.659Z"
+    "generatedAt": "2026-09-25T15:33:57.393Z"
   },
   "es/como-funciona-un-lenguaje-de-programacion": {
-    "hash": "64c44e14c0d973e362584988a3038df2f4c5ff4f2c0ee758f5d50d3ae0c153ff",
+    "hash": "c931cc321e01117ba6dd5fe7ee83bc3acf371b367c76114434289e0250025eae",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/como-funciona-un-lenguaje-de-programacion-64c44e14.mp3",
+    "file": "/audio/es/como-funciona-un-lenguaje-de-programacion-c931cc32.mp3",
     "durationSeconds": 1109,
     "bytes": 6655536,
     "chars": 15801,
-    "generatedAt": "2026-09-23T11:20:57.286Z"
+    "generatedAt": "2026-09-25T15:34:12.608Z"
   },
   "es/conociendo-la-terminal": {
-    "hash": "79fcabcb5d950b48332d51484284c34e5720a5283be10f92f1446b2a8f145177",
+    "hash": "d0305b0e9e10a3cee39377ab832e24c2296403523d34122cab254f4670e8281d",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/conociendo-la-terminal-79fcabcb.mp3",
-    "durationSeconds": 668,
-    "bytes": 4010400,
+    "file": "/audio/es/conociendo-la-terminal-d0305b0e.mp3",
+    "durationSeconds": 679,
+    "bytes": 4075200,
     "chars": 9768,
-    "generatedAt": "2026-09-23T11:21:08.724Z"
+    "generatedAt": "2026-09-25T15:34:32.107Z"
   },
   "es/crea-html-templates-con-lit-html": {
-    "hash": "e8bfc3ef5754628ed75028156e63d4fc98c5ce8f83abd725ef8025edd563a55d",
+    "hash": "a472f79ba3d05d527bda2d5036798772ee7c39773f5066952ad2479cdb5bc941",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/crea-html-templates-con-lit-html-e8bfc3ef.mp3",
+    "file": "/audio/es/crea-html-templates-con-lit-html-a472f79b.mp3",
     "durationSeconds": 576,
-    "bytes": 3454992,
+    "bytes": 3453264,
     "chars": 8492,
-    "generatedAt": "2026-09-23T11:21:23.660Z"
+    "generatedAt": "2026-09-25T15:34:48.782Z"
   },
   "es/design-tokens-al-rescate": {
-    "hash": "4a4e7282571071e29764c811bdcba70b0408b33b9d23cf3f686de8de677ed25d",
+    "hash": "11771a2ceafb5ed02318420d8ec8d5576805d51fb9864449ab5d64af7ef0113b",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/design-tokens-al-rescate-4a4e7282.mp3",
-    "durationSeconds": 559,
-    "bytes": 3355056,
+    "file": "/audio/es/design-tokens-al-rescate-11771a2c.mp3",
+    "durationSeconds": 558,
+    "bytes": 3350592,
     "chars": 8947,
-    "generatedAt": "2026-09-23T11:21:39.122Z"
+    "generatedAt": "2026-09-25T15:35:01.926Z"
   },
   "es/disenando-un-algoritmo": {
-    "hash": "fd43bfcbb20e9108775d963aeb7a1e9000f1e99f6bd2852b276f17c4fc9a3b6b",
+    "hash": "a34d25b7c16058c3c5d2af2df61a4e546ecea1f6941a76a2a134d674750e2142",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/disenando-un-algoritmo-fd43bfcb.mp3",
+    "file": "/audio/es/disenando-un-algoritmo-a34d25b7.mp3",
     "durationSeconds": 900,
     "bytes": 5402592,
     "chars": 13234,
-    "generatedAt": "2026-09-23T11:21:54.086Z"
+    "generatedAt": "2026-09-25T15:35:16.590Z"
   },
   "es/ecosistema-oculto-de-javascript": {
-    "hash": "3194cfa0d846762138ed692ca59430c99c0a5ef809f8f8161da559fa480d19d6",
+    "hash": "96713029e143408c51be8e565565cac57444406c964095c7e54ad4824107a3e8",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/ecosistema-oculto-de-javascript-3194cfa0.mp3",
-    "durationSeconds": 999,
-    "bytes": 5991408,
+    "file": "/audio/es/ecosistema-oculto-de-javascript-96713029.mp3",
+    "durationSeconds": 998,
+    "bytes": 5986656,
     "chars": 15834,
-    "generatedAt": "2026-09-23T11:22:22.216Z"
+    "generatedAt": "2026-09-25T15:35:45.211Z"
   },
   "es/el-exito-nunca-fue-de-un-dia-para-otro": {
-    "hash": "b9083577cb03ba60e89756c130454fbc1b2fb4cdec6f21ecb2b575df66b3958a",
+    "hash": "b62ed842647079b6ef2129b9c45e176a57c3f98eea438c7072fcaf88311a9c63",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/el-exito-nunca-fue-de-un-dia-para-otro-b9083577.mp3",
+    "file": "/audio/es/el-exito-nunca-fue-de-un-dia-para-otro-b62ed842.mp3",
     "durationSeconds": 140,
     "bytes": 837072,
     "chars": 2328,
-    "generatedAt": "2026-09-23T11:22:27.762Z"
+    "generatedAt": "2026-09-25T15:35:51.058Z"
   },
   "es/estatico-dinamico-spa-mpa-jamstack": {
-    "hash": "93170ac130b93157df173da23f5935166ec2706e7dfd244c7939781243a9f8cb",
+    "hash": "6c811c67d5d9ee34f35f5408e37fa52671eef2bc302da3ab6ffa3b2d4c6fb0c1",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/estatico-dinamico-spa-mpa-jamstack-93170ac1.mp3",
-    "durationSeconds": 1093,
-    "bytes": 6555168,
+    "file": "/audio/es/estatico-dinamico-spa-mpa-jamstack-6c811c67.mp3",
+    "durationSeconds": 1092,
+    "bytes": 6550560,
     "chars": 16664,
-    "generatedAt": "2026-09-23T11:22:50.658Z"
+    "generatedAt": "2026-09-25T15:36:13.865Z"
   },
   "es/evolucion-de-las-arquitecturas-de-css": {
-    "hash": "7816f4459613b72ed0d10280cf31406393e8b5602643ea908f05eab201b77e42",
+    "hash": "c23c89582e5bbccec86fa848714a7eff17e67af672a236e70762420030d62f3d",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/evolucion-de-las-arquitecturas-de-css-7816f445.mp3",
-    "durationSeconds": 811,
-    "bytes": 4863168,
+    "file": "/audio/es/evolucion-de-las-arquitecturas-de-css-c23c8958.mp3",
+    "durationSeconds": 810,
+    "bytes": 4861296,
     "chars": 11970,
-    "generatedAt": "2026-09-23T11:23:10.607Z"
+    "generatedAt": "2026-09-25T15:36:35.332Z"
   },
   "es/expresiones-y-sentencias-luego-que": {
-    "hash": "377b7ed522a57f0b02f2fc2299719341c33f1d8ec5191683f5f802e5443641d2",
+    "hash": "5188ce86408dae299d52c0a79bc1facd43238e3436700746559e60b9a633523f",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/expresiones-y-sentencias-luego-que-377b7ed5.mp3",
+    "file": "/audio/es/expresiones-y-sentencias-luego-que-5188ce86.mp3",
     "durationSeconds": 711,
-    "bytes": 4266432,
+    "bytes": 4263840,
     "chars": 11184,
-    "generatedAt": "2026-09-23T11:23:28.125Z"
+    "generatedAt": "2026-09-25T15:36:53.142Z"
   },
   "es/hacer-cosas-para-uno-mismo": {
-    "hash": "7ffa89eff72d7195285c740ee34ab7f5688d379a2c98fc6bad4770d1f8314b77",
+    "hash": "31ae2916f6c6e7448e40f40ba378183c9b5354b0e1adcc88be99739c6ecc7279",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/hacer-cosas-para-uno-mismo-7ffa89ef.mp3",
+    "file": "/audio/es/hacer-cosas-para-uno-mismo-31ae2916.mp3",
     "durationSeconds": 242,
-    "bytes": 1450800,
+    "bytes": 1450080,
     "chars": 3945,
-    "generatedAt": "2026-09-23T11:23:36.570Z"
+    "generatedAt": "2026-09-25T15:36:59.843Z"
   },
   "es/historia-de-javascript": {
-    "hash": "4f897dbceefa37bc271f870049c864ffca0c68f38c13cc2351f45df304b1f4f7",
+    "hash": "fb596152882db2a9c45ff015ca8936423d226628ff6167e24b1e62833ddd4c4b",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/historia-de-javascript-4f897dbc.mp3",
-    "durationSeconds": 844,
-    "bytes": 5062752,
+    "file": "/audio/es/historia-de-javascript-fb596152.mp3",
+    "durationSeconds": 843,
+    "bytes": 5060448,
     "chars": 13170,
-    "generatedAt": "2026-09-23T11:23:59.321Z"
+    "generatedAt": "2026-09-25T15:37:19.690Z"
   },
   "es/introduccion-a-los-web-components": {
-    "hash": "44f9212ca9eb20d26d77439f5b22e7c28f6177e5c10421c7128a6fc1bf5ea2fa",
+    "hash": "9b97f457d228b449ddba0d91a0a47391e299c21c33f890a43bcb878daefdd5f2",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/introduccion-a-los-web-components-44f9212c.mp3",
-    "durationSeconds": 367,
-    "bytes": 2204352,
+    "file": "/audio/es/introduccion-a-los-web-components-9b97f457.mp3",
+    "durationSeconds": 368,
+    "bytes": 2208240,
     "chars": 5351,
-    "generatedAt": "2026-09-23T11:24:08.709Z"
+    "generatedAt": "2026-09-25T15:37:30.066Z"
   },
   "es/la-evolucion-de-los-design-tokens": {
-    "hash": "8caef8057ef47cc7b8fe04bb93bedca538d1ce36e452f5b0db4ef5685b0896e9",
+    "hash": "3d13d6d42ec8ce7fcf5f54db654f3e68ad3370a9f51795b557fece5254dc852c",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/la-evolucion-de-los-design-tokens-8caef805.mp3",
+    "file": "/audio/es/la-evolucion-de-los-design-tokens-3d13d6d4.mp3",
     "durationSeconds": 538,
-    "bytes": 3228624,
+    "bytes": 3227472,
     "chars": 8524,
-    "generatedAt": "2026-09-23T11:24:21.440Z"
+    "generatedAt": "2026-09-25T15:37:42.432Z"
   },
   "es/la-ia-se-volvio-parte-de-mi-vida": {
-    "hash": "80517685e3d0e974f0423f80080a417a5b505cdf72b473510680d3a7125dc012",
+    "hash": "4867645f453c2057795d83e9d7daf8671dea81b4b50a7705e2d619eb29594a6d",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/la-ia-se-volvio-parte-de-mi-vida-80517685.mp3",
+    "file": "/audio/es/la-ia-se-volvio-parte-de-mi-vida-4867645f.mp3",
     "durationSeconds": 402,
-    "bytes": 2414016,
+    "bytes": 2413008,
     "chars": 6435,
-    "generatedAt": "2026-09-23T11:24:33.473Z"
+    "generatedAt": "2026-09-25T15:37:49.933Z"
   },
   "es/la-programacion-es-para-mi": {
-    "hash": "41f9b808e1be4de6860721c5b5112b3838be34f397db9f9349fc13e2341dab24",
+    "hash": "6b937005ddfe61e15e32cef95d521d3c32c57039b655a5af7748b6003d0dbb3f",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/la-programacion-es-para-mi-41f9b808.mp3",
+    "file": "/audio/es/la-programacion-es-para-mi-6b937005.mp3",
     "durationSeconds": 412,
-    "bytes": 2473488,
+    "bytes": 2474064,
     "chars": 7026,
-    "generatedAt": "2026-09-23T11:24:44.084Z"
+    "generatedAt": "2026-09-25T15:38:00.474Z"
   },
   "es/la-realidad-siempre-fue-editada": {
-    "hash": "d2441460bda313494a3aa47b1eaaa1681590aceae0c7ba34f6f0d20a38334c5f",
+    "hash": "c90ee4e9b940bd83e818e50f7b523dbb1c1a1923aa920191b2cfd48e3ceaf577",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/la-realidad-siempre-fue-editada-d2441460.mp3",
+    "file": "/audio/es/la-realidad-siempre-fue-editada-c90ee4e9.mp3",
     "durationSeconds": 163,
     "bytes": 979344,
     "chars": 2759,
-    "generatedAt": "2026-09-23T11:24:49.036Z"
+    "generatedAt": "2026-09-25T15:38:05.771Z"
   },
   "es/para-que-me-sirve-programar": {
-    "hash": "12ce30a9f35259173ab2bef5229923621d69f70edfed7062c4c8bf528199532c",
+    "hash": "6fb9f2633dc6ae2c79b6affae79993b70832fd435bc5c0828a9a29aac5bb09e7",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/para-que-me-sirve-programar-12ce30a9.mp3",
-    "durationSeconds": 535,
-    "bytes": 3208320,
+    "file": "/audio/es/para-que-me-sirve-programar-6fb9f263.mp3",
+    "durationSeconds": 534,
+    "bytes": 3206160,
     "chars": 8766,
-    "generatedAt": "2026-09-23T11:25:00.017Z"
+    "generatedAt": "2026-09-25T15:38:17.482Z"
   },
   "es/que-es-un-algoritmo": {
-    "hash": "4d745ca1fa555c5e3c14a9f75e36ec4ad76ac9370494b42b8d9699e72b3a01a1",
+    "hash": "1a3425e7af80c1aacf78ae1bb01960ed48f87e12a1e62d5df495ba78c947029e",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/que-es-un-algoritmo-4d745ca1.mp3",
+    "file": "/audio/es/que-es-un-algoritmo-1a3425e7.mp3",
     "durationSeconds": 395,
     "bytes": 2371104,
     "chars": 6079,
-    "generatedAt": "2026-09-23T11:25:10.108Z"
+    "generatedAt": "2026-09-25T15:38:27.510Z"
   },
   "es/que-necesitas-saber-antes-de-programar": {
-    "hash": "0abce868b50f6b0e27df9f20c04a0eae749cedfb9602595ded61f8aa268e2649",
+    "hash": "109c700f68cebcc25d967a30f67aa6f80315f46b99b37a999c03e8899e85710e",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/que-necesitas-saber-antes-de-programar-0abce868.mp3",
+    "file": "/audio/es/que-necesitas-saber-antes-de-programar-109c700f.mp3",
     "durationSeconds": 697,
-    "bytes": 4184784,
+    "bytes": 4184496,
     "chars": 10549,
-    "generatedAt": "2026-09-23T11:25:25.819Z"
+    "generatedAt": "2026-09-25T15:38:41.297Z"
   },
   "es/tipos-de-lenguajes-de-programacion": {
-    "hash": "f0def9252b5318f14a92effec36d795d302af26c22f566a5e8097362e364f7ab",
+    "hash": "3eea564cc9385a4cd7e0bcefa0ac7505cd8de7065ce531e754c5b0e404e73ecf",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/tipos-de-lenguajes-de-programacion-f0def925.mp3",
+    "file": "/audio/es/tipos-de-lenguajes-de-programacion-3eea564c.mp3",
     "durationSeconds": 614,
-    "bytes": 3683376,
+    "bytes": 3684528,
     "chars": 9278,
-    "generatedAt": "2026-09-23T11:25:40.692Z"
+    "generatedAt": "2026-09-25T15:38:54.203Z"
   }
 }
