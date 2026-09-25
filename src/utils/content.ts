@@ -59,8 +59,7 @@ function getPodcastChannelData(locale: Locale, site: string): string {
     `<itunes:author>${author}</itunes:author>`,
     PODCAST.ownerEmail &&
       `<itunes:owner><itunes:name>${author}</itunes:name><itunes:email>${PODCAST.ownerEmail}</itunes:email></itunes:owner>`,
-    PODCAST.cover &&
-      `<itunes:image href="${new URL(PODCAST.cover, site).href}" />`,
+    `<itunes:image href="${new URL(PODCAST.cover[locale], site).href}" />`,
     `<itunes:category text="${PODCAST.category}" />`,
     `<itunes:explicit>${PODCAST.explicit}</itunes:explicit>`,
     `<itunes:type>episodic</itunes:type>`,
