@@ -74,6 +74,17 @@ test("the shipped Spanish list catches the tech terms of a real sentence", () =>
   );
 });
 
+test("the shipped Spanish list catches hyphenated and multi-word terms", () => {
+  const out = runs(
+    "Un compilador just-in-time y un recolector de basura (Garbage Collector) en un framework full-stack.",
+    ENGLISH_TERMS.es,
+  );
+  assert.deepEqual(
+    out.filter((r) => r.english).map((r) => r.text),
+    ["just-in-time", "Garbage Collector", "framework", "full-stack"],
+  );
+});
+
 test("English posts get no wrapping", () => {
   assert.deepEqual(ENGLISH_TERMS.en, []);
 });
