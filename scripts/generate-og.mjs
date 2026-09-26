@@ -13,6 +13,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const fontData = readFileSync(join(ROOT, "public/fonts/atkinson-bold.woff"));
 const logoData = readFileSync(join(ROOT, "public/android-chrome-192x192.png"));
 const logoBase64 = `data:image/png;base64,${logoData.toString("base64")}`;
+// Vector logo for the large podcast cover, where the 192 px PNG would blur.
+const logoSvgData = readFileSync(join(ROOT, "public/favicon.svg"));
+const logoSvgBase64 = `data:image/svg+xml;base64,${logoSvgData.toString("base64")}`;
 
 const BG = "#1B262C";
 const CYAN = "#35B6C8";
@@ -57,17 +60,20 @@ function collectTags(locale) {
 }
 
 async function makeImage(opts) {
-  const { variant, title, subtitle } = opts;
-  const element =
-    variant === "brand"
-      ? brandTemplate(title, subtitle)
-      : contentTemplate(title, subtitle);
+  const { variant, title, subtitle, width = 1200, height = 630 } = opts;
+  const templates = {
+    brand: brandTemplate,
+    content: contentTemplate,
+    podcast: podcastTemplate,
+  };
+  const element = templates[variant](title, subtitle);
   const svg = await satori(element, {
-    width: 1200,
-    height: 630,
+    width,
+    height,
     fonts: [{ name: "Atkinson", data: fontData, weight: 700, style: "normal" }],
   });
-  return sharp(Buffer.from(svg)).png().toBuffer();
+  // Flatten to RGB: podcast directories reject artwork with an alpha channel.
+  return sharp(Buffer.from(svg)).flatten({ background: BG }).png().toBuffer();
 }
 
 function brandTemplate(title, subtitle) {
@@ -207,6 +213,73 @@ function contentTemplate(title, subtitle) {
   };
 }
 
+// Square podcast cover (Apple Podcasts / Spotify ask for 1400–3000 px).
+function podcastTemplate(title, subtitle) {
+  return {
+    type: "div",
+    props: {
+      style: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: BG,
+        background: `radial-gradient(ellipse at 60% 35%, #1a3a42 0%, ${BG} 60%, #0D2E32 100%)`,
+        padding: "240px",
+        gap: "120px",
+        fontFamily: "Atkinson",
+      },
+      children: [
+        {
+          type: "img",
+          props: { src: logoSvgBase64, width: 1100, height: 1100 },
+        },
+        {
+          type: "div",
+          props: {
+            style: {
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "56px",
+            },
+            children: [
+              {
+                type: "div",
+                props: {
+                  style: {
+                    color: LIGHT,
+                    fontSize: "280px",
+                    fontWeight: 700,
+                    textAlign: "center",
+                    lineHeight: 1,
+                  },
+                  children: title,
+                },
+              },
+              {
+                type: "div",
+                props: {
+                  style: {
+                    color: CYAN,
+                    fontSize: "150px",
+                    fontWeight: 700,
+                    textAlign: "center",
+                    lineHeight: 1.1,
+                  },
+                  children: subtitle,
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
+  };
+}
+
 async function write(outPath, opts) {
   const buf = await makeImage(opts);
   writeFileSync(outPath, buf);
@@ -247,6 +320,21 @@ async function main() {
     variant: "content",
     title: "Acerca del blog",
     subtitle: es.sub,
+  });
+
+  await write(join(ogDir, "podcast.png"), {
+    variant: "podcast",
+    title: "Undefined Shell",
+    subtitle: "Podcast · English",
+    width: 3000,
+    height: 3000,
+  });
+  await write(join(ogDir, "es/podcast.png"), {
+    variant: "podcast",
+    title: "Undefined Shell",
+    subtitle: "Podcast · Español",
+    width: 3000,
+    height: 3000,
   });
 
   for (const [slug, label] of collectTags("en")) {
