@@ -63,13 +63,13 @@
     "generatedAt": "2026-09-21T21:46:31.042Z"
   },
   "en/javascript-history": {
-    "hash": "94f48ef628595392a49f09112c584410516e32af6a1b1051b301f43828810fab",
+    "hash": "68b2bee244fd4c068b83cb8671db6e5cf5eb000cb625297699f91af79f848602",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/en/javascript-history-94f48ef6.mp3",
-    "durationSeconds": 844,
-    "bytes": 5066352,
-    "chars": 12381,
-    "generatedAt": "2026-09-21T21:46:41.743Z"
+    "file": "/audio/en/javascript-history-68b2bee2.mp3",
+    "durationSeconds": 856,
+    "bytes": 5133312,
+    "chars": 12545,
+    "generatedAt": "2026-10-04T19:05:52.920Z"
   },
   "en/making-things-for-yourself": {
     "hash": "fd452a55d741d4ed41209440eaea04903b90cd494b3ec3d8b6ef2262776c6d03",
@@ -270,13 +270,13 @@
     "generatedAt": "2026-09-25T15:36:59.843Z"
   },
   "es/historia-de-javascript": {
-    "hash": "fb596152882db2a9c45ff015ca8936423d226628ff6167e24b1e62833ddd4c4b",
+    "hash": "367781765135b40863f2abb7630b8ae4e29b927598336c9c021c84ac7a3d7325",
     "voice": "es-MX-JorgeMultilingualNeural",
-    "file": "/audio/es/historia-de-javascript-fb596152.mp3",
-    "durationSeconds": 843,
-    "bytes": 5060448,
-    "chars": 13170,
-    "generatedAt": "2026-09-25T15:37:19.690Z"
+    "file": "/audio/es/historia-de-javascript-36778176.mp3",
+    "durationSeconds": 853,
+    "bytes": 5117184,
+    "chars": 13318,
+    "generatedAt": "2026-10-04T19:06:12.603Z"
   },
   "es/introduccion-a-los-web-components": {
     "hash": "9b97f457d228b449ddba0d91a0a47391e299c21c33f890a43bcb878daefdd5f2",
