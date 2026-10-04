@@ -13,6 +13,8 @@ relatedPosts:
   - estatico-dinamico-spa-mpa-jamstack
 ---
 
+> 👾 ¿Y si en vez de leer esta historia, la recorres? Vívela de manera interactiva en [javascript.guillermorodas.com](https://javascript.guillermorodas.com/es) y luego vuelve aquí por los detalles.
+
 La historia de JavaScript es la historia de la web misma: nació con prisa, creció en medio del caos y maduró a base de experimentos. Lo que comenzó como un lenguaje improvisado para dar vida a las páginas web terminó expandiéndose hacia servidores, dispositivos móviles y entornos distribuidos. Su camino no ha sido lineal ni predecible, pero justamente ahí radica su encanto: logró evolucionar sin perder su esencia. Por eso, es uno de los lenguajes más amados y odiados[^1] al mismo tiempo, pero sin duda **imposible de ignorar**.
 
 ## Breve historia de JavaScript

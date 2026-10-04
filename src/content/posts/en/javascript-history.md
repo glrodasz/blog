@@ -13,6 +13,8 @@ relatedPosts:
   - expressions-and-sentences-whats-next
 ---
 
+> 👾 What if, instead of reading this story, you walked through it? Experience it interactively at [javascript.guillermorodas.com](https://javascript.guillermorodas.com/) and then come back here for the details.
+
 JavaScript's history is the history of the web itself: born in haste, it grew in the midst of chaos and matured through experimentation. What began as an improvised language to bring web pages to life ended up expanding to servers, mobile devices, and distributed environments. Its path has not been linear or predictable, but that's precisely its charm: it managed to evolve without losing its essence. That's why it's one of the most loved and hated[^1] languages at the same time, but undoubtedly **impossible to ignore**.
 
 ## Brief History of JavaScript
