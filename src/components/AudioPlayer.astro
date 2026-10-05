@@ -45,6 +45,8 @@ const formatTime = (seconds: number) => {
   >
 </button>
 
+<div class="audio-scrim" aria-hidden="true"></div>
+
 <div
   class="audio-bar"
   id={id}
@@ -393,9 +395,40 @@ const formatTime = (seconds: number) => {
     transition: transform 0.25s ease;
   }
 
+  /* Gradient behind the floating bar so it stands out from the article. */
+  .audio-scrim {
+    position: fixed;
+    inset: auto 0 0;
+    z-index: 49;
+    height: calc(220px + env(safe-area-inset-bottom));
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--gray), 0%),
+      rgba(var(--gray), 18%) 45%,
+      rgba(var(--gray), 40%)
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  :global(body.audio-bar-open) .audio-scrim {
+    opacity: 1;
+  }
+
+  :global([data-theme="dark"]) .audio-scrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--gray), 0%),
+      rgba(var(--gray), 35%) 45%,
+      rgba(var(--gray), 65%)
+    );
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .audio-bar,
-    .audio-bar[data-open="true"] {
+    .audio-bar[data-open="true"],
+    .audio-scrim {
       transition: none;
     }
   }
