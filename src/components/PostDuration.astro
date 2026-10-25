@@ -14,10 +14,10 @@ const { post, locale } = Astro.props;
 const messages = getMessages(locale);
 
 // Posts with narration show the listening time instead of the reading time.
-const audio = getPostAudio(post.slug, locale);
+const audio = getPostAudio(post.id, locale);
 const minutes = audio
   ? toMinutes(audio.durationSeconds)
-  : calculateReadingTime(post.body);
+  : calculateReadingTime(post.body ?? "");
 ---
 
 <span class="post-duration">

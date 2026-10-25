@@ -21,7 +21,7 @@ type Props = {
 const { post, locale, imageSide = "left" } = Astro.props;
 const messages = getMessages(locale);
 
-const href = getPostUrl(post.slug, locale);
+const href = getPostUrl(post.id, locale);
 const tags = getPostTags(post);
 const tagSlugs = tags.map(tagToSlug).join(" ");
 const searchHaystack = normalizeForSearch(
