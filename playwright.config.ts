@@ -12,7 +12,9 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "yarn dev",
+    // --ignore-lock keeps Astro from backgrounding the server when it detects
+    // an AI agent, which would make Playwright think the server exited.
+    command: "yarn dev --ignore-lock",
     url: "http://localhost:4321",
     reuseExistingServer: !process.env.CI,
     stdout: "ignore",

@@ -23,8 +23,8 @@ export function getCleanSlug(slug: string): string {
 }
 
 export async function getPostsByLanguage(language: Locale) {
-  return await getCollection("posts", ({ slug }) => {
-    return getLanguageFromSlug(slug) === language;
+  return await getCollection("posts", ({ id }) => {
+    return getLanguageFromSlug(id) === language;
   });
 }
 
@@ -87,7 +87,7 @@ export async function generateRSSFeed(locale: Locale, context: RSSFeedContext) {
     },
     customData: getPodcastChannelData(locale, context.site),
     items: sortedPosts.map((post) => {
-      const audio = getPostAudio(post.slug, locale);
+      const audio = getPostAudio(post.id, locale);
       const heroImage = post.data.heroImage
         ? `<media:content url="${new URL(post.data.heroImage, context.site).href}" medium="image" />`
         : "";
@@ -96,7 +96,7 @@ export async function generateRSSFeed(locale: Locale, context: RSSFeedContext) {
         : "";
       return {
         ...post.data,
-        link: getPostUrl(post.slug, locale),
+        link: getPostUrl(post.id, locale),
         enclosure: audio
           ? {
               url: new URL(audio.src, context.site).href,
@@ -114,7 +114,7 @@ export async function generateSlugPaths(locale: Locale) {
   const posts = await getPostsByLanguage(locale);
 
   return posts.map((post) => ({
-    params: { slug: getCleanSlug(post.slug) },
+    params: { slug: getCleanSlug(post.id) },
     props: { post, locale },
   }));
 }
@@ -160,7 +160,7 @@ export async function getRelatedPosts(
   const all = await getPostsByLanguage(locale);
   const bySlug = new Map<string, Post>();
   for (const post of all) {
-    bySlug.set(getCleanSlug(post.slug), post);
+    bySlug.set(getCleanSlug(post.id), post);
   }
   return slugs
     .map((slug) => bySlug.get(slug))

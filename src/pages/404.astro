@@ -15,7 +15,7 @@ const allPosts = (await getPostsByLanguage(locale)).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 const posts = allPosts.slice(0, 2);
-const allSlugs = allPosts.map((p) => getCleanSlug(p.slug));
+const allSlugs = allPosts.map((p) => getCleanSlug(p.id));
 const basePostPath = "/posts/";
 ---
 
