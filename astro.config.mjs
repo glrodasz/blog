@@ -16,6 +16,10 @@ const site =
 // https://astro.build/config
 export default defineConfig({
   site,
+  // Astro 7 defaults to JSX whitespace rules, which drop the spaces between
+  // adjacent expressions (e.g. "6 min" renders as "6min"). Keep the
+  // lossless compression Astro used before.
+  compressHTML: true,
   integrations: [mdx(), sitemap()],
   i18n: {
     locales: LOCALES,

@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry } from "astro:content";
+import { type CollectionEntry, render } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 import { calculateReadingTime, generateSlugPaths } from "../../utils/content";
 import { getPostAudio } from "../../utils/audio";
@@ -16,9 +16,9 @@ type Props = {
 
 const { post } = Astro.props;
 const locale = getLocaleFromAstro(Astro);
-const readingTime = calculateReadingTime(post.body);
-const { Content } = await post.render();
-const audio = getPostAudio(post.slug, locale);
+const readingTime = calculateReadingTime(post.body ?? "");
+const { Content } = await render(post);
+const audio = getPostAudio(post.id, locale);
 ---
 
 <BlogPost
