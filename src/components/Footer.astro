@@ -4,6 +4,7 @@ import SubscribeForm from "./SubscribeForm.astro";
 import FollowButtons from "./FollowButtons.astro";
 import LanguageSelector from "./LanguageSelector.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import SimpleAnalyticsBadge from "./SimpleAnalyticsBadge.astro";
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
 
@@ -44,6 +45,7 @@ const today = new Date();
         <span class="copy copy-short">
           {messages.site.title} &nbsp;&copy;&nbsp; {today.getFullYear()}
         </span>
+        <SimpleAnalyticsBadge />
         <div class="footer-utilities">
           <LanguageSelector currentLocale={locale} currentPath={currentPath} />
           <ThemeToggle />
@@ -126,6 +128,10 @@ const today = new Date();
     font-size: 0.75em;
   }
 
+  .copy-inner :global(.analytics-badge) {
+    margin-left: auto;
+  }
+
   .footer-utilities :global(.language-toggle),
   .footer-utilities :global(.theme-toggle) {
     color: var(--color-text-on-inverse-muted);
@@ -165,8 +171,14 @@ const today = new Date();
 
     .copy-inner {
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: center;
       gap: 0.5em;
+    }
+
+    .copy-inner :global(.analytics-badge) {
+      order: 1;
+      margin-left: 0;
     }
   }
 </style>

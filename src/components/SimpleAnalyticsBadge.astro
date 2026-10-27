@@ -1,0 +1,42 @@
+---
+// The badge is an external image, so it can't read CSS variables: these hex
+// values mirror --color-bg-inverse-raised, --color-text-on-inverse-muted and
+// --color-aquarius-600 from global.css.
+const badgeParams = new URLSearchParams({
+  mode: "dark",
+  radius: "14",
+  background: "2c3d47",
+  text: "92adbc",
+  logo: "35b6c8",
+});
+const badgeSrc = `https://simpleanalyticsbadges.com/blog.guillermorodas.com?${badgeParams}`;
+---
+
+<a
+  class="analytics-badge"
+  href="https://dashboard.simpleanalytics.com/?utm_source=blog.guillermorodas.com&utm_content=badge&affiliate=cuqaw"
+  referrerpolicy="origin"
+  target="_blank"
+  rel="noopener"
+>
+  <img
+    src={badgeSrc}
+    alt="Simple Analytics"
+    width="210"
+    height="50"
+    loading="lazy"
+    referrerpolicy="no-referrer"
+    crossorigin="anonymous"
+  />
+</a>
+
+<style>
+  .analytics-badge {
+    display: inline-flex;
+  }
+
+  .analytics-badge img {
+    width: auto;
+    height: 28px;
+  }
+</style>
