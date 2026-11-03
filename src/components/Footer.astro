@@ -43,7 +43,7 @@ const today = new Date();
           > &nbsp;&copy;&nbsp; {today.getFullYear()}
         </span>
         <span class="copy copy-short">
-          {messages.site.title} &nbsp;&copy;&nbsp; {today.getFullYear()}
+          &copy;&nbsp;{today.getFullYear()}
         </span>
         <SimpleAnalyticsBadge />
         <div class="footer-utilities">
@@ -170,21 +170,26 @@ const today = new Date();
     }
 
     .copy-inner {
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75em 0.5em;
-    }
-
-    .footer-utilities {
-      margin-left: auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0.5em;
     }
 
     .copy-inner :global(.analytics-badge) {
-      order: 1;
-      flex-basis: 100%;
-      justify-content: center;
       margin-left: 0;
+    }
+
+    .footer-utilities {
+      justify-self: end;
+    }
+
+    .footer-utilities :global(.language-label),
+    .footer-utilities :global(.theme-label) {
+      display: none;
+    }
+
+    .footer-utilities :global(.language-label-short) {
+      display: inline;
     }
   }
 </style>
