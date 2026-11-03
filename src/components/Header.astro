@@ -185,25 +185,38 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
 
 <script>
   const BRAND_TAG_BASE_PX = 11;
+  const BRAND_TAG_MAX_PX = 16;
 
+  // Match the tagline width to the brand title: shrink the font when the
+  // tagline is longer, otherwise grow it up to a cap and fill the rest with
+  // letter-spacing so short taglines don't render oversized.
   function fitBrandTag() {
     const brand = document.querySelector(".brand .brand-text");
     const title = brand?.querySelector(".brand-title");
     const tag = brand?.querySelector(".brand-tag");
     if (!title || !tag) return;
     if (!(tag instanceof HTMLElement)) return;
-    if (getComputedStyle(tag).display === "none") {
-      tag.style.removeProperty("font-size");
-      return;
-    }
+    tag.style.removeProperty("font-size");
+    tag.style.removeProperty("letter-spacing");
+    tag.style.removeProperty("margin-right");
+    if (getComputedStyle(tag).display === "none") return;
     const targetW = title.getBoundingClientRect().width;
     if (targetW < 1) return;
-    tag.style.removeProperty("font-size");
     tag.style.fontSize = `${BRAND_TAG_BASE_PX}px`;
     const w = tag.scrollWidth;
     if (w < 0.1) return;
-    const size = (BRAND_TAG_BASE_PX * targetW) / w;
+    const size = Math.min(
+      (BRAND_TAG_BASE_PX * targetW) / w,
+      BRAND_TAG_MAX_PX,
+    );
     tag.style.fontSize = `${size}px`;
+    const chars = Array.from(tag.textContent?.trim() ?? "").length;
+    const baseSpacing = parseFloat(getComputedStyle(tag).letterSpacing) || 0;
+    const visibleW = tag.scrollWidth - baseSpacing;
+    if (chars < 2 || visibleW >= targetW - 0.5) return;
+    const spacing = baseSpacing + (targetW - visibleW) / (chars - 1);
+    tag.style.letterSpacing = `${spacing}px`;
+    tag.style.marginRight = `${-spacing}px`;
   }
 
   function handleScroll() {
