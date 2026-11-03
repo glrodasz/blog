@@ -294,11 +294,11 @@ async function main() {
 
   const en = {
     title: "Undefined Shell by Guillermo Rodas",
-    sub: "Everything related to programming and web development",
+    sub: "Thinking in systems: software architecture, AI and the craft of building",
   };
   const es = {
     title: "Undefined Shell by Guillermo Rodas",
-    sub: "Todo sobre programación y desarrollo web",
+    sub: "Pensar en sistemas: arquitectura, IA y el oficio de construir",
   };
 
   await write(join(ogDir, "home.png"), {

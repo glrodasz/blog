@@ -1,6 +1,6 @@
 # Undefined Shell
 
-Undefined Shell is a bilingual Astro site by Guillermo Rodas focused on programming and web development. The project hosts English and Spanish articles about full‑stack and JavaScript topics, complete with RSS, sitemap generation, and multilingual routing.
+Undefined Shell is a bilingual Astro site by Guillermo Rodas about thinking in systems: software architecture, AI, and the craft of building digital products. The project hosts English and Spanish articles, complete with RSS, sitemap generation, and multilingual routing.
 
 ## Features
 

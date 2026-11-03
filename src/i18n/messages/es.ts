@@ -2,9 +2,9 @@ export const messages = {
   site: {
     title: "Undefined Shell",
     author: "Guillermo Rodas",
-    shortDescription: "Programación y desarrollo web",
+    shortDescription: "Pensar en sistemas",
     description:
-      "Undefined Shell by Guillermo Rodas es tu fuente definitiva para todo lo relacionado con la programación y el desarrollo web. En Undefined Shell, nos apasiona explorar y aprender sobre el desarrollo de productos digitales innovadores, especialmente en el ámbito Full-stack y JavaScript. Ofrecemos tutoriales detallados, análisis de las últimas tendencias tecnológicas y consejos prácticos para desarrolladores de todos los niveles. Únete a nuestra comunidad apasionada por el desarrollo web y lleva tus habilidades al siguiente nivel.",
+      "Undefined Shell es el blog de Guillermo Rodas: un espacio para pensar en sistemas. Escribo sobre arquitectura de software, inteligencia artificial y el oficio de construir productos digitales, y también sobre aprendizaje, procesos y la forma en que trabajamos.",
     url: "https://blog.guillermorodas.com",
   },
   blog: {
