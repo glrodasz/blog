@@ -36,6 +36,9 @@ const switchLabel = messages.navigation.switchToLanguage.replace(
 >
   <LanguageIcon />
   <span class="language-label">{otherLanguage.name}</span>
+  <span class="language-label-short" aria-hidden="true"
+    >{otherLocale.toUpperCase()}</span
+  >
 </a>
 
 <style>
@@ -67,10 +70,15 @@ const switchLabel = messages.navigation.switchToLanguage.replace(
     outline-offset: 2px;
   }
 
-  .language-label {
+  .language-label,
+  .language-label-short {
     font-size: inherit;
     font-weight: 600;
     letter-spacing: 0.02em;
+  }
+
+  .language-label-short {
+    display: none;
   }
 </style>
 

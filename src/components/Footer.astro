@@ -43,7 +43,8 @@ const today = new Date();
           > &nbsp;&copy;&nbsp; {today.getFullYear()}
         </span>
         <span class="copy copy-short">
-          {messages.site.title} &nbsp;&copy;&nbsp; {today.getFullYear()}
+          <span class="copy-title">{messages.site.title}&nbsp;</span
+          >&copy;&nbsp;{today.getFullYear()}
         </span>
         <SimpleAnalyticsBadge />
         <div class="footer-utilities">
@@ -144,10 +145,12 @@ const today = new Date();
     letter-spacing: 0.02em;
   }
 
-  .footer-utilities :global(.language-toggle:hover),
-  .footer-utilities :global(.theme-toggle:hover) {
-    background-color: rgba(255, 255, 255, 8%);
-    color: var(--color-text-on-inverse);
+  @media (hover: hover) {
+    .footer-utilities :global(.language-toggle:hover),
+    .footer-utilities :global(.theme-toggle:hover) {
+      background-color: rgba(255, 255, 255, 8%);
+      color: var(--color-text-on-inverse);
+    }
   }
 
   .footer-utilities :global(.language-toggle:focus-visible),
@@ -167,18 +170,54 @@ const today = new Date();
 
     .copy-short {
       display: inline;
+      white-space: nowrap;
+    }
+
+    .copy-band {
+      padding-bottom: calc(1.5em + env(safe-area-inset-bottom));
     }
 
     .copy-inner {
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5em;
+      gap: 6px;
     }
 
     .copy-inner :global(.analytics-badge) {
-      order: 1;
       margin-left: 0;
+    }
+
+    .copy-inner :global(.analytics-badge img) {
+      height: 24px;
+    }
+
+    /* Bleed into the container gutter so the 44px tap targets fit. */
+    .footer-utilities {
+      gap: 0;
+      margin-right: -10px;
+    }
+
+    .footer-utilities :global(.language-toggle),
+    .footer-utilities :global(.theme-toggle) {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0 0.35em;
+      justify-content: center;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .footer-utilities :global(.language-label),
+    .footer-utilities :global(.theme-label) {
+      display: none;
+    }
+
+    .footer-utilities :global(.language-label-short) {
+      display: inline;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .copy-title {
+      display: none;
     }
   }
 </style>
