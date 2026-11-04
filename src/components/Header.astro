@@ -127,7 +127,7 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
   .brand-title {
     white-space: nowrap;
     font-family: var(--font-title);
-    font-size: 26px;
+    font-size: 22px;
     letter-spacing: 0.03em;
   }
 
@@ -136,7 +136,7 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
   }
 
   .brand-tag {
-    margin-top: 4px;
+    margin-top: 0;
     font-size: 11px;
     color: var(--color-aquarius-600);
     letter-spacing: 0.12em;
@@ -178,40 +178,94 @@ const homeHref = locale === DEFAULT_LOCALE ? "/" : `/${locale}/`;
     }
 
     .brand-title {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 </style>
 
 <script>
   const BRAND_TAG_BASE_PX = 11;
-  const BRAND_TAG_MAX_PX = 16;
+  const BRAND_TAG_MAX_PX = 14;
 
-  // Match the tagline width to the brand title: shrink the font when the
-  // tagline is longer, otherwise grow it up to a cap and fill the rest with
-  // letter-spacing so short taglines don't render oversized.
+  // Horizontal ink insets of a glyph: the gap between its advance box and
+  // the painted pixels, so edges line up on what is visible, not on boxes.
+  function inkInsets(el: Element, ch: string) {
+    const cs = getComputedStyle(el);
+    const ctx = document.createElement("canvas").getContext("2d");
+    if (!ctx) return { left: 0, right: 0 };
+    ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const m = ctx.measureText(ch);
+    return {
+      left: -m.actualBoundingBoxLeft,
+      right: m.width - m.actualBoundingBoxRight,
+    };
+  }
+
+  function textEdges(el: Element) {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    const parts: { node: Element; text: string }[] = [];
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      const text = n.textContent?.trim();
+      if (text && n.parentElement) parts.push({ node: n.parentElement, text });
+    }
+    const first = parts[0];
+    const last = parts.at(-1);
+    const lower = (n: Element, t: string) =>
+      getComputedStyle(n).textTransform === "lowercase" ? t.toLowerCase() : t;
+    return {
+      first: first?.node ?? el,
+      last: last?.node ?? el,
+      firstChar: first ? lower(first.node, Array.from(first.text)[0]) : "",
+      lastChar: last
+        ? lower(last.node, Array.from(last.text).at(-1) ?? "")
+        : "",
+      chars: Array.from((el.textContent ?? "").trim()).length,
+    };
+  }
+
+  // Visible (ink) width and left ink offset of a single-line text element.
+  function inkBox(el: HTMLElement) {
+    const e = textEdges(el);
+    const trailing = parseFloat(getComputedStyle(e.last).letterSpacing) || 0;
+    const left = inkInsets(e.first, e.firstChar).left;
+    const right = inkInsets(e.last, e.lastChar).right;
+    return {
+      left,
+      width: el.scrollWidth - trailing - left - right,
+      chars: e.chars,
+    };
+  }
+
+  // Match the tagline's painted width to the brand title's: shrink the font
+  // when the tagline is longer, otherwise grow it up to a cap and fill the
+  // rest with letter-spacing so short taglines don't render oversized.
   function fitBrandTag() {
     const brand = document.querySelector(".brand .brand-text");
     const title = brand?.querySelector(".brand-title");
     const tag = brand?.querySelector(".brand-tag");
-    if (!title || !tag) return;
-    if (!(tag instanceof HTMLElement)) return;
+    if (!(title instanceof HTMLElement) || !(tag instanceof HTMLElement))
+      return;
     tag.style.removeProperty("font-size");
     tag.style.removeProperty("letter-spacing");
+    tag.style.removeProperty("margin-left");
     tag.style.removeProperty("margin-right");
     if (getComputedStyle(tag).display === "none") return;
-    const targetW = title.getBoundingClientRect().width;
-    if (targetW < 1) return;
+    const target = inkBox(title);
+    if (target.width < 1) return;
     tag.style.fontSize = `${BRAND_TAG_BASE_PX}px`;
-    const w = tag.scrollWidth;
-    if (w < 0.1) return;
-    const size = Math.min((BRAND_TAG_BASE_PX * targetW) / w, BRAND_TAG_MAX_PX);
+    const base = inkBox(tag);
+    if (base.width < 0.1) return;
+    const size = Math.min(
+      (BRAND_TAG_BASE_PX * target.width) / base.width,
+      BRAND_TAG_MAX_PX,
+    );
     tag.style.fontSize = `${size}px`;
-    const chars = Array.from(tag.textContent?.trim() ?? "").length;
+    const sized = inkBox(tag);
+    tag.style.marginLeft = `${target.left - sized.left}px`;
+    if (sized.chars < 2 || sized.width >= target.width - 0.25) return;
     const baseSpacing = parseFloat(getComputedStyle(tag).letterSpacing) || 0;
-    const visibleW = tag.scrollWidth - baseSpacing;
-    if (chars < 2 || visibleW >= targetW - 0.5) return;
-    const spacing = baseSpacing + (targetW - visibleW) / (chars - 1);
+    const spacing =
+      baseSpacing + (target.width - sized.width) / (sized.chars - 1);
     tag.style.letterSpacing = `${spacing}px`;
     tag.style.marginRight = `${-spacing}px`;
   }
