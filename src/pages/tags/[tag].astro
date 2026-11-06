@@ -71,8 +71,8 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
       <section class="tag-header">
         <Container>
           <BackLink />
-          <h1 class="title">#{tagLabel}</h1>
-          <div class="search-row">
+          <div class="title-row">
+            <h1 class="title">#{tagLabel}</h1>
             <SearchBar
               locale={locale}
               placeholder={messages.filter.searchInPlaceholder.replace(
@@ -145,28 +145,46 @@ const pageTitle = messages.tagPage.title.replace("{tag}", tagLabel);
         padding: 1.5em 0 1em;
       }
 
-      .title {
+      .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
         margin: 0.4em 0 0.8em;
+      }
+
+      .title {
+        margin: 0;
+        min-width: 0;
         color: var(--color-text-strong);
         font-size: 2.4em;
         line-height: 1.1;
-      }
-
-      .search-row {
-        display: flex;
-        justify-content: flex-end;
+        overflow-wrap: anywhere;
       }
 
       @media (min-width: 641px) {
-        .search-row :global(.search-bar) {
-          flex-basis: 400px;
-          min-width: 400px;
+        .title-row :global(.search-bar) {
+          flex-basis: 280px;
+          min-width: 280px;
         }
       }
 
       @media (max-width: 640px) {
-        .search-row {
-          justify-content: flex-start;
+        .title-row {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.75em;
+        }
+      }
+    </style>
+
+    <style is:global>
+      /* Same expand-on-focus as the home filter bar: the collapsed search
+     grows into the free space next to the title. Global because Astro can't
+     scope :global() inside :has(). */
+      @media (min-width: 641px) {
+        .title-row:has([data-search-input]:focus) .search-bar {
+          flex: 1 1 auto;
         }
       }
     </style>
