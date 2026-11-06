@@ -33,7 +33,7 @@ const formatTime = (seconds: number) => {
 
 <button
   type="button"
-  class="audio-trigger"
+  class="audio-trigger btn btn-sm btn-outline"
   aria-expanded="false"
   aria-controls={id}
   aria-label={`${messages.blog.listenLabel} (${minutes} ${messages.blog.minReadCard})`}
@@ -333,35 +333,9 @@ const formatTime = (seconds: number) => {
 </script>
 
 <style>
-  .audio-trigger {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35em;
-    padding: 0.2em 0.7em;
-    background: var(--color-bg-inset);
-    border: 1px solid var(--color-border-default);
-    border-radius: var(--radius-chip);
-    color: inherit;
-    font-size: 0.9em;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-
-  .audio-trigger:hover,
-  .audio-trigger[aria-expanded="true"] {
-    color: var(--color-accent-hover);
-    border-color: var(--color-accent-emphasis);
-  }
-
-  .audio-trigger:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-
   .audio-trigger-duration {
-    font-weight: 400;
-    color: var(--color-text-muted);
+    font-weight: 500;
+    color: var(--color-text-default);
   }
 
   /* Floating player pinned to the bottom of the viewport, as wide as the

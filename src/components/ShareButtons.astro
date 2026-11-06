@@ -52,7 +52,7 @@ const buttons = [
       buttons.map(({ name, href, icon }) => (
         <a
           href={href}
-          class="share-button"
+          class="share-button btn btn-sm btn-primary"
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${messages.blog.share} ${messages.blog.sharePrefix.toLowerCase()} ${name}`}
@@ -140,32 +140,6 @@ const buttons = [
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-  }
-
-  .share-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: var(--radius-card);
-    background: var(--color-aquarius-600);
-    color: var(--color-white);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.85rem;
-    line-height: 1;
-    transition:
-      background 0.15s ease,
-      transform 0.15s ease;
-  }
-
-  .share-button:hover {
-    background: var(--color-aquarius-700);
-  }
-
-  .share-button:focus-visible {
-    outline: 2px solid var(--color-aquarius-700);
-    outline-offset: 2px;
   }
 
   .icon {

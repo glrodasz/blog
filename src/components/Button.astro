@@ -2,64 +2,19 @@
 export interface Props {
   href: string;
   title: string;
-  type?: string;
+  type?: "primary" | "secondary" | "outline";
+  size?: "sm" | "md" | "lg";
 }
 
-const { href, title, type = "primary" } = Astro.props;
+const { href, title, type = "primary", size = "md" } = Astro.props;
 ---
 
-<a href={href} target="_blank" class={`button button-${type}`}>
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={`btn btn-${size} btn-${type}`}
+>
   <slot />
   <span>{title}</span>
 </a>
-
-<style>
-  .button {
-    display: inline-flex;
-    padding: 12px 16px;
-    align-items: center;
-    gap: 8px;
-    height: 56px;
-    border-radius: 2px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 25px;
-    color: var(--color-aquarius-50);
-    text-decoration: none;
-    transition: background 0.2s ease-in-out;
-  }
-
-  .button-primary {
-    background: var(--color-aquarius-600);
-
-    &:hover {
-      background: var(--color-aquarius-700);
-      box-shadow: 0px 6px 10px rgba(44, 159, 175, 0.17);
-    }
-
-    &:disabled {
-      background: var(--color-aquarius-200);
-    }
-  }
-
-  .button-secondary {
-    background: var(--color-bg-inverse);
-
-    &:hover {
-      background: var(--color-bg-inverse-raised);
-      box-shadow: 0px 6px 10px rgba(27, 38, 44, 0.16);
-    }
-
-    &:disabled {
-      background: var(--color-black-pearl-200);
-    }
-  }
-
-  .button:focus-visible {
-    outline: 2px solid var(--color-white);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px var(--color-aquarius-700);
-  }
-</style>
