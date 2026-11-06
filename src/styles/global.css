@@ -712,7 +712,9 @@ html[data-locale-ready] body {
    One system for every clickable button or button-styled link.
    Variant: .btn-primary | .btn-secondary | .btn-outline
    Size:    .btn-sm (32px) | .btn-md (40px, default) | .btn-lg (48px)
-   Square icon-only buttons add .btn-icon. */
+   Square icon-only buttons add .btn-icon.
+   Variants list :visited too, so the global a:visited (0,1,1) can't
+   repaint a visited button-link in the accent color. */
 .btn {
   --btn-height: 40px;
   --btn-padding: 0 16px;
@@ -784,27 +786,32 @@ html[data-locale-ready] body {
   padding: 0;
 }
 
-.btn-primary {
+.btn-primary,
+.btn-primary:visited {
   background: var(--color-button-primary-bg);
   color: var(--color-button-primary-fg);
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-primary:hover:visited {
   background: var(--color-button-primary-bg-hover);
   color: var(--color-button-primary-fg);
 }
 
-.btn-secondary {
+.btn-secondary,
+.btn-secondary:visited {
   background: var(--color-button-secondary-bg);
   color: var(--color-button-secondary-fg);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover,
+.btn-secondary:hover:visited {
   background: var(--color-button-secondary-bg-hover);
   color: var(--color-button-secondary-fg);
 }
 
-.btn-outline {
+.btn-outline,
+.btn-outline:visited {
   background: var(--color-button-outline-bg);
   border-color: var(--color-button-outline-border);
   color: var(--color-button-outline-fg);
@@ -816,6 +823,7 @@ html[data-locale-ready] body {
 }
 
 .btn-outline:hover,
+.btn-outline:hover:visited,
 .btn-outline[aria-expanded="true"] {
   background: var(--color-button-outline-bg-hover);
   border-color: var(--color-button-outline-border-hover);
