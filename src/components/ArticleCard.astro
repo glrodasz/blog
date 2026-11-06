@@ -69,7 +69,7 @@ const searchHaystack = normalizeForSearch(
       </div>
       <span class="reading-time">
         <FormattedDate date={post.data.pubDate} locale={locale} />
-        <span aria-hidden="true"> · </span>
+        <span class="separator" aria-hidden="true">•</span>
         <PostDuration post={post} locale={locale} />
       </span>
     </footer>
@@ -183,6 +183,14 @@ const searchHaystack = normalizeForSearch(
   }
 
   .reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
     white-space: nowrap;
+  }
+
+  .separator {
+    font-size: 0.9em;
+    line-height: 1;
   }
 </style>
