@@ -1,0 +1,52 @@
+---
+import { type Locale, getLocaleFromAstro } from "../i18n/config";
+import { getMessages } from "../i18n";
+
+type Props = {
+  size: number;
+  locale?: Locale;
+  decorative?: boolean;
+};
+
+const { size, decorative = true } = Astro.props;
+const locale = Astro.props.locale ?? getLocaleFromAstro(Astro);
+const messages = getMessages(locale);
+const base = messages.author.avatar;
+const WIDTHS = [48, 96];
+const srcset = (ext: string) =>
+  WIDTHS.map((w) => `${base}-${w}.${ext} ${w}w`).join(", ");
+const sizes = `${size}px`;
+---
+
+<picture class="avatar">
+  <source type="image/avif" srcset={srcset("avif")} sizes={sizes} />
+  <source type="image/webp" srcset={srcset("webp")} sizes={sizes} />
+  <img
+    src={`${base}-96.jpg`}
+    srcset={srcset("jpg")}
+    sizes={sizes}
+    alt={decorative ? "" : messages.author.name}
+    width={size}
+    height={size}
+    loading="lazy"
+    decoding="async"
+    aria-hidden={decorative ? "true" : undefined}
+    style={`--avatar-size: ${size}px`}
+  />
+</picture>
+
+<style>
+  .avatar {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  img {
+    width: var(--avatar-size);
+    height: var(--avatar-size);
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--color-accent-subtle);
+    flex-shrink: 0;
+  }
+</style>
