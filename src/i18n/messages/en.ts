@@ -79,7 +79,7 @@ export const messages = {
   author: {
     name: "Guillermo Rodas",
     bio: "Guillermo Rodas is a full-stack JavaScript engineer from Colombia. His favorite CSS colors are tomato, rebeccapurple and papayawhip.",
-    avatar: "/authors/guillermo-rodas.svg",
+    avatar: "/authors/guillermo-rodas",
   },
   footer: {
     creditBy: "by",

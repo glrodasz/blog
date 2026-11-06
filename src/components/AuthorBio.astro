@@ -1,6 +1,7 @@
 ---
 import { type Locale, getLocaleFromAstro } from "../i18n/config";
 import { getMessages } from "../i18n";
+import Avatar from "./Avatar.astro";
 
 type Props = {
   locale?: Locale;
@@ -11,13 +12,7 @@ const messages = getMessages(locale);
 ---
 
 <div class="author-bio">
-  <img
-    src={messages.author.avatar}
-    alt=""
-    width="48"
-    height="48"
-    class="avatar"
-  />
+  <Avatar size={48} locale={locale} />
   <div class="text">
     <p class="name">{messages.author.name}</p>
     <p class="bio">{messages.author.bio}</p>
@@ -29,15 +24,6 @@ const messages = getMessages(locale);
     display: flex;
     align-items: flex-start;
     gap: 14px;
-  }
-
-  .avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: var(--color-accent-subtle);
-    flex-shrink: 0;
   }
 
   .text {
