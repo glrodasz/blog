@@ -13,7 +13,7 @@ const messages = getMessages(locale);
 <div class="follow-buttons">
   <a
     href="https://twitch.tv/guillermorodas"
-    class="icon-button"
+    class="icon-button btn btn-md btn-icon btn-primary"
     aria-label={messages.footer.followTwitch}
     target="_blank"
     rel="noopener noreferrer"
@@ -35,7 +35,7 @@ const messages = getMessages(locale);
   </a>
   <a
     href="https://instagram.com/germorodas"
-    class="icon-button"
+    class="icon-button btn btn-md btn-icon btn-primary"
     aria-label={messages.footer.followInstagram}
     target="_blank"
     rel="noopener noreferrer"
@@ -55,7 +55,7 @@ const messages = getMessages(locale);
   </a>
   <a
     href="https://x.com/germorodas"
-    class="icon-button"
+    class="icon-button btn btn-md btn-icon btn-primary"
     aria-label={messages.footer.followTwitter}
     target="_blank"
     rel="noopener noreferrer"
@@ -75,7 +75,7 @@ const messages = getMessages(locale);
   </a>
   <a
     href="https://youtube.com/@guillermorodas"
-    class="icon-button"
+    class="icon-button btn btn-md btn-icon btn-primary"
     aria-label={messages.footer.followYoutube}
     target="_blank"
     rel="noopener noreferrer"
@@ -100,28 +100,5 @@ const messages = getMessages(locale);
     display: flex;
     gap: 10px;
     align-items: center;
-  }
-
-  .icon-button {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-card);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-aquarius-600);
-    color: var(--color-white);
-    text-decoration: none;
-    transition: background 0.15s ease;
-  }
-
-  .icon-button:hover {
-    background: var(--color-aquarius-700);
-  }
-
-  .icon-button:focus-visible {
-    outline: 2px solid var(--color-white);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px var(--color-aquarius-700);
   }
 </style>

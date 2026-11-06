@@ -29,7 +29,9 @@ const messages = getMessages(locale);
     autocomplete="email"
     required
   />
-  <button type="submit">{messages.subscribe.submit}</button>
+  <button type="submit" class="btn btn-lg btn-primary"
+    >{messages.subscribe.submit}</button
+  >
   <p class="subscribe-form__error" role="alert" hidden></p>
 </form>
 
@@ -66,19 +68,8 @@ const messages = getMessages(locale);
   }
 
   .subscribe-form button {
-    padding: 14px 22px;
-    background: var(--color-aquarius-600);
-    color: var(--color-white);
-    border: none;
-    font-weight: 700;
-    font-size: 15px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background 0.15s ease;
-  }
-
-  .subscribe-form button:hover {
-    background: var(--color-aquarius-700);
+    height: auto;
+    border-radius: 0;
   }
 
   .subscribe-form button[disabled] {
