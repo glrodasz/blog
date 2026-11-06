@@ -64,12 +64,12 @@ const searchHaystack = normalizeForSearch(
     <p class="card-excerpt">{post.data.description}</p>
     <footer class="card-meta">
       <div class="author">
-        <Avatar size={28} locale={locale} />
+        <Avatar size={22} locale={locale} />
         <span>{messages.author.name}</span>
       </div>
       <span class="reading-time">
         <FormattedDate date={post.data.pubDate} locale={locale} />
-        <span aria-hidden="true"> · </span>
+        <span class="separator" aria-hidden="true">•</span>
         <PostDuration post={post} locale={locale} />
       </span>
     </footer>
@@ -164,21 +164,33 @@ const searchHaystack = normalizeForSearch(
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 0.5em;
     gap: 0.6em;
-    font-size: 0.75em;
+    font-size: 0.7em;
     color: var(--color-text-muted);
   }
 
   .author {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     color: var(--color-text-default);
+    font-size: 0.85em;
     font-weight: 700;
     line-height: 1;
+    white-space: nowrap;
   }
 
   .reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
     white-space: nowrap;
+  }
+
+  .separator {
+    font-size: 0.9em;
+    line-height: 1;
   }
 </style>
